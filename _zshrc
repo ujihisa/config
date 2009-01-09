@@ -1,0 +1,512 @@
+# labp :: Boolean {{{
+function labp() {
+  [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
+}
+# }}}
+case "${OSTYPE}" in
+freebsd*|darwin*) # OSX {{{
+  export LESSCHARSET='utf-8'
+  export LANG=en_US.UTF-8
+  alias cp='cp -i'
+  #alias rm='rm -i'
+  alias mv='mv -i'
+  alias ls='ls -GFw'
+  alias ll='ls -lw'
+  alias la='ls -aw'
+  alias le='less'
+  alias cddu='cd ~/Documents/uvn'
+  alias cdb='cd /Users/ujihisa/Documents/rrm/rubydoc/refm/api/src/_builtin'
+  alias cdg='cd /opt/local/lib/ruby/gems/1.8/gems'
+  alias cdr='cd ~/Documents/rubyforge'
+  alias less='lv'
+  alias cote="/usr/bin/open -a /Applications/CotEditor.app"
+  alias ..='cd .. && ls'
+  alias ...='cd ../.. && ls'
+  alias wget='wget --user-agent=Mozilla'
+  alias mysql='mysql5'
+  alias lv='lv -c'
+  export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+  export PATH=$PATH:~/Documents/uvn/repos_ruby/said/trunk
+  export MANPATH=/opt/local/man:$MANPATH
+  alias sr='command screen -r || command screen -AU vim'
+
+  autoload -U compinit
+  compinit
+
+  autoload colors
+  colors
+  autoload predict-on
+  setopt complete_aliases # aliased ls needs if file/dir completions work
+
+  export EDITOR='/opt/local/bin/vim'
+  bindkey -v
+
+  export PATH=~/bin:$PATH:/Users/ujihisa/Documents/rrm/bitclust/bin
+  export PATH=$PATH:~/Documents/rrm/bitclust/tools
+  export PATH=$PATH:~/bin/scala-2.6.0-final/
+
+  alias gnuplot="/Applications/MacPorts/AquaTerm.app/Contents/MacOS/AquaTerm &; gnuplot"
+
+  case "${OSTYPE}" in
+  darwin*)
+    alias port-out="sudo port sync -d && sudo port outdated"
+    alias port-upall="sudo port sync -d && sudo port upgrade outdated"
+    alias port-up="sudo port upgrade"
+    #alias updateports="sudo port selfupdate; sudo port outdated"
+    #alias portupgrade="sudo port upgrade installed"
+    ;;
+  freebsd*)
+    case ${UID} in
+    0)
+      updateports() 
+      {
+        if [ -f /usr/ports/.portsnap.INDEX ]
+        then
+            portsnap fetch update
+        else
+            portsnap fetch extract update
+        fi
+        (cd /usr/ports/; make index)
+
+        portversion -v -l \<
+      }
+      alias appsupgrade='pkgdb -F && BATCH=YES NO_CHECKSUM=YES portupgrade -a'
+      ;;
+    esac
+    ;;
+  esac
+
+  # by http://d.hatena.ne.jp/babie/20051110
+  #PS1=$'%{\e]2;[%n@%m:%~]\a'$'\e]1;%%: %~\a%}'$'%{\e[00;04;32m%}%~%{\e[00m%}\n[%{\e[$00;37m%}%n@%m${WINDOW:+":$WINDOW"}%{\e[00m%}]# '
+
+  #PS1=$'%{\e]2;[%n@%m:%~]\a'$'\e]1;%%: %~\a%}'$'%{\e[00;04;32m%}%~%{\e[00m%}\n%{\e[00;32m%}[%n@%m%{\e[00;32m%}]$ '
+  if labp; then
+    PS1=$'%{\e[00;00;32m%}%~%{\e[00m%}\n%{\e[00;04;32m%}[%n@%m]%{\e[00;00;32m%}%% '
+  else
+    PS1=$'%{\e[00;00;32m%}%~%{\e[00m%}\n%{\e[00;04;32m%}[%n@%m]%{\e[00;00;32m%}$ '
+  fi
+
+
+  RPS1=$'%{\e[00;04;32m%}[%D{%H}:%D{%M}:%D{%S}]%{\e[00m%}'
+
+  # histories
+  #   http://journal.mycom.co.jp/column/zsh/003/index.html
+  HISTFILE=~/.zsh_history
+  HISTSIZE=100000
+  SAVEHIST=100000
+  setopt hist_ignore_dups     # ignore duplication command history list
+  setopt share_history        # share command history data 
+
+
+  # alias r18='/Users/ujihisa/Documents/uvn/workshops/ruby/18'
+  # export HREF_DATADIR='/usr/local/src/href-0.3.3'
+
+  # svk wrapper
+  #   svk pushv PATH
+  #   => svk push PATH --verbatim
+  #   svk dil FILE
+  #   => svk di FILE | diffcolor.rb | lv -c
+  function svk() {
+    if [ $1 = "pushv" ] ; then
+      echo svk push $2 --verbatim
+      command svk push $2 --verbatim
+    elif [ $1 = "dil" ] ; then
+      command svk di $2 | diffcolor.rb | /usr/bin/less -RE
+    else
+      command svk $*
+    fi
+  }
+  function svn() {
+    if [ $1 = "dil" ] ; then
+      command svn di $2 | diffcolor.rb | /usr/bin/less -RE
+    else
+      command svn $*
+    fi
+  }
+
+  alias ssh_terrsa_in='ssh 192.168.1.22'
+  alias ssh_think_in='ssh 192.168.1.21'
+  alias ssh_necma_in='ssh 192.168.1.20'
+  alias ssh_terrsa_out='ssh -p 2000 219.23.140.27'
+  alias ssh_ikomastation_in='ssh 192.168.1.12'
+  alias ssh_ikomastation_out='ssh 218.183.125.77'
+  alias ssh_sharestyle='ssh sharestyle.com'
+  alias ssh_sanjone_in_home='ssh -p 2022 192.168.1.20'
+  alias ssh_sanjone_in_lab='ssh 192.168.25.5'
+  alias ssh_sanjone_out='ssh -p 2022 219.23.140.27'
+
+  autoload history-search-end
+  zle -N history-beginning-search-backward-end history-search-end
+  zle -N history-beginning-search-forward-end history-search-end
+  bindkey '^N' history-beginning-search-backward-end
+  bindkey '^P' history-beginning-search-forward-end
+  bindkey '^F' history-incremental-search-backward
+
+  export __CF_USER_TEXT_ENCODING='0x1F5:0x08000100:14'
+
+  ;; # }}}
+linux*|cygwin*) # LINUX {{{
+  alias ls="ls --color"
+  alias aptup="sudo aptitude update && sudo aptitude full-upgrade -y"
+  export PATH=$PATH:/var/lib/gems/1.8/bin
+  export PATH=$PATH:~/bin
+  export PATH=$PATH:/sbin
+  export GIT_PAGER='less -RE'
+  ## Environment variable configuration
+  #
+  # LANG
+  #
+  export LANG=C
+  export LC_ALL=C
+  export EDITOR='vim'
+
+
+  ## Default shell configuration
+  #
+  # set prompt
+  #
+  autoload colors
+  colors
+  case ${UID} in
+  0)
+      PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
+      PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
+      SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+      [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+          PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+      ;;
+  *)
+      PROMPT="%{${fg[red]}%}%/%%%{${reset_color}%} "
+      PROMPT2="%{${fg[red]}%}%_%%%{${reset_color}%} "
+      SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+      [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+          PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+      ;;
+  esac
+
+  # auto change directory
+  #
+  setopt auto_cd
+
+  # auto directory pushd that you can get dirs list by cd -[tab]
+  #
+  setopt auto_pushd
+
+  # command correct edition before each completion attempt
+  #
+  setopt correct
+
+  # compacked complete list display
+  #
+  setopt list_packed
+
+  # no remove postfix slash of command line
+  #
+  setopt noautoremoveslash
+
+  # no beep sound when complete list displayed
+  #
+  setopt nolistbeep
+
+
+  ## Keybind configuration
+  #
+  # emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes 
+  #   to end of it)
+  #
+  bindkey -v
+
+  # historical backward/forward search with linehead string binded to ^P/^N
+  #
+  autoload history-search-end
+  zle -N history-beginning-search-backward-end history-search-end
+  zle -N history-beginning-search-forward-end history-search-end
+  bindkey "^p" history-beginning-search-backward-end
+  bindkey "^n" history-beginning-search-forward-end
+  bindkey "\\ep" history-beginning-search-backward-end
+  bindkey "\\en" history-beginning-search-forward-end
+
+  bindkey "[A" history-beginning-search-backward-end
+  bindkey "[B" history-beginning-search-forward-end
+
+
+  ## Command history configuration
+  #
+  HISTFILE=~/.zsh_history
+  HISTSIZE=10000
+  SAVEHIST=10000
+  setopt hist_ignore_dups     # ignore duplication command history list
+  setopt share_history        # share command history data
+
+
+  ## Completion configuration
+  #
+  fpath=(~/.zsh/functions/Completion ${fpath})
+  autoload -U compinit
+  compinit -u
+
+
+  ## zsh editor
+  #
+  autoload zed
+
+
+  ## Prediction configuration
+  #
+  #autoload predict-on
+  #predict-off
+
+
+  ## Alias configuration
+  #
+  # expand aliases before completing
+  #
+  setopt complete_aliases     # aliased ls needs if file/dir completions work
+
+  alias where="command -v"
+  alias j="jobs -l"
+
+  alias la="ls -a"
+  alias lf="ls -F"
+  alias ll="ls -l"
+
+  alias du="du -h"
+  alias df="df -h"
+
+  alias su="su -l"
+
+  ## terminal configuration
+  #
+  unset LSCOLORS
+  case "${TERM}" in
+  xterm)
+      export TERM=xterm-color
+      ;;
+  kterm)
+      export TERM=kterm-color
+      # set BackSpace control character
+      stty erase
+      ;;
+  cons25)
+      unset LANG
+      export LSCOLORS=ExFxCxdxBxegedabagacad
+      export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+      zstyle ':completion:*' list-colors \
+          'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
+      ;;
+  esac
+
+  # set terminal title including current directory
+  #
+  case "${TERM}" in
+  kterm*|xterm*)
+      precmd() {
+          echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+      }
+      export LSCOLORS=exfxcxdxbxegedabagacad
+      export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+      zstyle ':completion:*' list-colors \
+          'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+      ;;
+  esac
+
+
+  ## load user .zshrc configuration file
+  #
+  [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+
+  alias start_sshd="/usr/sbin/sshd -d"
+  alias start_sshd_ten_times="start_sshd && start_sshd && start_sshd && start_sshd && start_sshd && start_sshd && start_sshd && start_sshd "
+
+  export PATH=$PATH:~/repos_ruby/said/trunk
+  export PATH=$PATH:~/repos_ruby/misc
+  alias heyi="hey 192.168.25.2 inulab"
+  function svn() {
+    if [ $1 = "dil" ] ; then
+      command svn di $2 | diffcolor.rb | /usr/bin/less -RE
+    else
+      command svn $*
+    fi
+  }
+  alias ssh_terrsa='ssh -p 2000 219.23.140.27'
+  bindkey '^[[3~' backward-delete-char
+  bindkey '' backward-delete-char
+
+  # for lab machines
+  alias ssh_shapley="ssh inulab@192.168.25.221"
+  alias ssh_nash="ssh inulab@192.168.25.222"
+  alias ssh_gomory="ssh calculate@192.168.25.223"
+  alias ssh_matlab="ssh calculate@192.168.25.224"
+  export LESSCHARSET=utf-8
+  alias sr='TERM=kterm command screen -r ||TERM=kterm  command screen -AU'
+
+  ;; # }}}
+esac
+
+#alias ssh_shien='ssh 124.108.36.82'
+alias ssh_neumann='ssh 192.168.25.62'
+
+alias reload='exec zsh'
+alias screen='echo use sr'
+
+# VCS supports {{{
+function s() {
+  local -A result
+
+  result=`git status 2> /dev/null`
+  if [ "$result" ] ; then
+    echo $result
+    return
+  fi
+
+  svn status
+}
+function d() {
+  local -A result
+
+  result=`git status 2> /dev/null`
+  if [ "$result" ] ; then
+    result=`git diff --cached`
+    if [ "$result" ] ; then
+      git diff --cached --color | /usr/bin/less -RE
+    else
+      git diff --color | /usr/bin/less -RE
+    fi
+    return
+  fi
+
+  svn di | diffcolor.rb | /usr/bin/less -RE
+}
+function l() {
+  local -A result
+
+  result=`git status 2> /dev/null`
+  if [ "$result" ] ; then
+    if [ "$1" = "u" ]; then
+      git log -u --color
+    else
+      git l
+    fi
+    return
+  fi
+  echo '(loading...)'
+  svn log -v --limit 10 | /usr/bin/less -RE
+}
+# }}}
+
+alias gosh='rlwrap /opt/local/bin/gosh'
+alias js="js -e 'Function.prototype.toString = function() { return this() };' -i"
+
+# for cdd
+source ~/bin/cdd.zsh
+function chpwd() {
+  _reg_pwd_screennum
+}
+
+# for yarm
+source ~/bin/yarm.zsh
+
+export PATH=$PATH:~/coderepos/ruby/misc
+[ -d ~/Documents/uvn/repos_ruby/misc ] && export PATH=$PATH:~/Documents/uvn/repos_ruby/misc
+
+# http://subtech.g.hatena.ne.jp/secondlife/20080604/1212562182 {{{
+function cdf() {
+  local -a tmpparent; tmpparent=""
+  local -a filename; filename="${1}"
+  local -a file
+  local -a num; num=0
+  while [ $num -le 10 ]; do
+    tmpparent="${tmpparent}../"
+    file="${tmpparent}${filename}"
+    if [ -f "${file}" ] || [ -d "${file}" ]; then
+      cd ${tmpparent}
+      break
+    fi
+    num=$(($num + 1))
+  done
+}
+
+function cdrake() {
+  cdf "Rakefile"
+}
+# }}}
+
+if [ -e /Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine ]; then
+  export PATH=$PATH:/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine
+fi
+export PATH=$PATH:/usr/local/bin
+export PYTHONSTARTUP=/Users/ujihisa/.pythonrc.py
+alias pt=python
+
+function pasg() {
+  if [ -e ~/Documents/uvn/passwords.txt ] ; then
+    grep -5 -i $* ~/Documents/uvn/passwords.txt
+  else
+    grep -5 -i $* ~/passwords.txt
+  fi
+}
+
+function cady() { # {{{
+  local filename; filename=$1
+  local input; input=$2
+  local expect; expect=$3
+  local output;
+  if [ -e $input ]; then
+    output=`ruby $filename $input`
+  else
+    output=`echo $input | ruby $filename`
+  fi
+  if [ $output = $expect ]; then
+    echo "ok"
+  else
+    echo "ng"
+  fi
+} # }}}
+
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*?.(pdf|o)'
+
+# cho45 ~/
+expand-to-home-or-insert () {
+  if [ "$LBUFFER" = "" -o "$LBUFFER[-1]" = " " ]; then
+    LBUFFER+="~/"
+  else
+    zle self-insert
+  fi
+}
+zle -N expand-to-home-or-insert
+bindkey "\\"  expand-to-home-or-insert
+
+export PAGER='less'
+alias -g L="| $PAGER"
+alias -g G="| grep"
+alias -g T='| tail'
+alias -g H='| head'
+
+alias gl='git pull'
+alias pus='git push'
+alias c='git checkout'
+
+alias rakeg='growlnotify -n vim -m "rake started"; rake | growlnotify -n vim &'
+
+function git-v() {
+  git log | grep -e '^commit' | wc -l
+}
+
+alias b='git branch'
+alias rawvim='vim -u NONE -U NONE --noplugin'
+alias gauchedoc='info --vi-keys gauche-refe'
+alias pingg='ping google.com'
+
+# kana's nice tool
+function git-gol() {
+  for i in $(git log --pretty=oneline | head -n 10 | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
+}
+function git-gol-full() {
+  for i in $(git log --pretty=oneline | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
+}
+
+alias termtter='~/git/termtter/run_termtter.rb'
+# __END__  {{{1
+# vim: expandtab softtabstop=2 shiftwidth=2
+# vim: foldmethod=marker
+# vim: ft=zsh

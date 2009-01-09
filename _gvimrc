@@ -1,0 +1,5 @@
+set guifont=Osaka－等幅\ Ultra-Condensed\ 16
+colorscheme koehler
+set imactivatekey=s-space
+let $PATH=$HOME.'/bin:'.$PATH
+" vim:fenc=utf8

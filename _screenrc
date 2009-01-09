@@ -1,0 +1,11 @@
+defencoding utf8
+escape ^k^k
+defscrollback 10000
+
+hardstatus on
+#hardstatus alwayslastline "screen | %w | %u %= %m/%d %D %c"
+hardstatus alwayslastline "%{=b b}[%02c] %`%-w%{=b g}%n %t%{-}%+w"
+startup_message off
+autodetach on
+
+defkanji utf8
