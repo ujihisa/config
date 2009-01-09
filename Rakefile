@@ -5,7 +5,16 @@ def rm(f)
 end
 
 desc 'initialize task'
-task :initialize => [:symlink_file, :erb]
+task :initialize => [:symlink_dir, :symlink_file, :erb]
+
+task :symlink_dir do
+  %w[vim/ftplugin].each do |src|
+    dest = "~/.vim/#{src[/[^\/]+$/]}"
+    src, dest = File.expand_path(src), File.expand_path(dest)
+    rm dest
+    ln_s src, dest
+  end
+end
 
 task :symlink_file do
   FileList['_*'].each do |src|
