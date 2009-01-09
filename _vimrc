@@ -56,7 +56,9 @@ nnoremap sL <C-w>L
 nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
-nnoremap <Space>. :<C-u>new ~/git/dotfiles/vimrc<Cr>
+nnoremap <Space>. :<C-u>new ~/git/config/_vimrc<Cr>
+nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
+nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 nnoremap <Space>p :<C-u>setl wrap!<Cr>
 nnoremap <Space>h :help<space>
 nnoremap <Space>n :<C-u>new<space>
@@ -250,7 +252,8 @@ autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsol
 augroup MySomething
   autocmd!
   au BufRead,BufNewFile *.io setfiletype io
-  autocmd BufRead,BufNewFile *_spec.rb compiler rspec
+  autocmd BufRead,BufNewFile *_spec.rb setfiletype ruby.rspec
+
 
   " edn to end
   autocmd FileType ruby iabbrev edn end
