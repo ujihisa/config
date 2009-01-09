@@ -5,9 +5,9 @@ def rm(f)
 end
 
 desc 'initialize task'
-task :initialize => [:symlink, :erb]
+task :initialize => [:symlink_file, :erb]
 
-task :symlink do
+task :symlink_file do
   FileList['_*'].each do |src|
     next if /\.erb$/ =~ src
     dest = "#{ENV['HOME']}/.#{src[1..-1]}"
