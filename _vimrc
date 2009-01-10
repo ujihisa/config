@@ -62,7 +62,6 @@ nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 nnoremap <Space>p :<C-u>setl wrap!<Cr>
 nnoremap <Space>h :help<space>
 nnoremap <Space>n :<C-u>new<space>
-nnoremap <Space><Space> :<C-u>bn<Cr>
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
