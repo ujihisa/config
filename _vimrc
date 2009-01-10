@@ -436,7 +436,7 @@ command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 AlternateCommand lib Lib
 function! s:open_lib_and_corresponding_test(fname)
   execute 'tabnew lib/' . a:fname . '.rb'
-  execute 'vnew test/' . a:fname . '_test.rb'
+  execute 'vnew spec/' . a:fname . '_test.rb'
   execute "normal \<Plug>(quickrun)\<C-w>J\<C-w>7_"
 endfunction " }}}
 
