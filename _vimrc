@@ -323,10 +323,10 @@ augroup TeXeRuby
 augroup END
 
 " flymake/tex
-augroup FlymakeTex
-  autocmd!
-  autocmd BufWritePost *.tex silent !rake tex &>/dev/null &
-augroup END
+"augroup FlymakeTex
+"  autocmd!
+"  autocmd BufWritePost *.tex silent !rake tex &>/dev/null &
+"augroup END
 
 augroup MyTexImaps
   autocmd!
