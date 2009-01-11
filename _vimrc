@@ -252,7 +252,7 @@ autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsol
 augroup MySomething
   autocmd!
   au BufRead,BufNewFile *.io setfiletype io
-  autocmd BufRead,BufNewFile *_spec.rb setfiletype ruby.rspec
+  autocmd BufRead,BufNewFile *_spec.rb setl filetype=ruby.rspec
 
 
   " edn to end
