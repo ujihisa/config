@@ -328,27 +328,6 @@ augroup END
 "  autocmd BufWritePost *.tex silent !rake tex &>/dev/null &
 "augroup END
 
-augroup MyTexImaps
-  autocmd!
-  autocmd FileType tex imap <buffer> :i <A-i>
-  autocmd FileType tex imap <buffer> :l <A-l>
-  autocmd FileType tex imap <buffer> :j <C-j>
-  autocmd FileType tex imap <buffer> :5 <F5>
-  autocmd FileType tex inoremap <buffer> :d $
-  autocmd FileType tex inoremap <buffer> :p %
-  autocmd FileType tex inoremap <buffer> :h ^
-  autocmd FileType tex inoremap <buffer> :u _
-  autocmd FileType tex inoremap <buffer> :[ {
-  autocmd FileType tex inoremap <buffer> :] }
-  "autocmd FileType tex setl grepprg=grep\ -nH\ $*
-  "autocmd FileType tex setl makeprg=rake
-  autocmd FileType tex nnoremap <buffer> <Space>m
-        \ :<C-u>silent make %<<Cr>
-        \ :cwindow<Cr>
-        \ :redraw!<Cr>
-augroup END
-" }}}
-"
 let g:Tex_DefaultTargetFormat = 'dvi'
 if has('mac')
   let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
