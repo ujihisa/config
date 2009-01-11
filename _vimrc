@@ -308,9 +308,6 @@ nnoremap <Space>gc :<C-u>CD<Cr>:GitCommit<Enter>
 " TeX Supports {{{
 
 " LaTeX-Suite
-let g:Tex_ViewRule_dvi = ''
-let g:Tex_ViewRule_ps  = ''
-let g:Tex_ViewRule_pdf = 'open'
 let g:Tex_SmartKeyQuote = 1
 
 " beamer.tex support
