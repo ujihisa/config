@@ -1,7 +1,7 @@
-if exists("b:did_tex_ujihisa_ftplugin") " {{{
+if exists("b:did_ruby_ujihisa_ftplugin") " {{{
   finish
 endif
-let b:did_tex_ujihisa_ftplugin = 1 " }}}
+let b:did_ruby_ujihisa_ftplugin = 1 " }}}
 
 " key mappings {{{
 imap <buffer> :i <A-i>

@@ -255,9 +255,6 @@ augroup MySomething
   autocmd BufRead,BufNewFile *_spec.rb setl filetype=ruby.rspec
 
 
-  " edn to end
-  autocmd FileType ruby iabbrev edn end
-
   " set filetype=twitter and then...
   autocmd FileType twitter inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#%') . '" >&/dev/null &'<Cr>o
 
