@@ -253,6 +253,7 @@ augroup MySomething
   autocmd!
   au BufRead,BufNewFile *.io setfiletype io
   autocmd BufRead,BufNewFile *_spec.rb setl filetype=ruby.rspec
+  autocmd BufRead,BufNewFile *.tex.erb setl filetype=tex.erb
 
 
   " set filetype=twitter and then...
