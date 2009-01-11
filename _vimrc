@@ -253,7 +253,7 @@ augroup MySomething
   autocmd!
   au BufRead,BufNewFile *.io setfiletype io
   autocmd BufRead,BufNewFile *_spec.rb setl filetype=ruby.rspec
-  autocmd BufRead,BufNewFile *.tex.erb setl filetype=tex.erb
+  autocmd BufRead,BufNewFile *.tex.erb setl filetype=tex.eruby
 
 
   " set filetype=twitter and then...
@@ -311,11 +311,6 @@ let g:Tex_SmartKeyQuote = 1
 " beamer.tex support
 let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
             \. 'subsection,subsubsection,paragraph'
-
-augroup TeXeRuby
-  autocmd!
-  autocmd BufRead,BufNewFile *.tex.erb setfiletype tex.eruby
-augroup END
 
 " flymake/tex
 "augroup FlymakeTex
