@@ -340,10 +340,29 @@ augroup MyTexImaps
   autocmd FileType tex inoremap <buffer> :u _
   autocmd FileType tex inoremap <buffer> :[ {
   autocmd FileType tex inoremap <buffer> :] }
-  autocmd FileType tex setl grepprg=grep\ -nH\ $*
-  autocmd FileType tex setl makeprg=rake
+  "autocmd FileType tex setl grepprg=grep\ -nH\ $*
+  "autocmd FileType tex setl makeprg=rake
+  autocmd FileType tex nnoremap <buffer> <Space>m
+        \ :<C-u>silent make %<<Cr>
+        \ :cwindow<Cr>
+        \ :redraw!<Cr>
 augroup END
 " }}}
+"
+let g:Tex_DefaultTargetFormat = 'dvi'
+if has('mac')
+  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
+  let g:Tex_ViewRule_dvi = 'qlmanage -p'
+else
+  " TODO: auto change encoding
+  let g:Tex_CompileRule_dvi = 'platex -kanji=euc -interaction=nonstopmode $*'
+  let g:Tex_ViewRule_dvi = 'gv'
+endif
+"let g:Tex_CompileRule_pdf = 'dvipdfmx'
+"let g:Tex_CompileRule_ps = 'dvipdfmx'
+"let g:Tex_ViewRule_pdf = 'open'
+"let g:Tex_ViewRule_ps  = ''
+
 
 augroup MyKeywordprg
   autocmd!
