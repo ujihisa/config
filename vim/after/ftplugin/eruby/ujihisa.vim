@@ -3,13 +3,17 @@ if exists("b:did_after_eruby_ujihisa_ftplugin") " {{{
 endif
 let b:did_after_eruby_ujihisa_ftplugin = 1 " }}}
 
+compiler eruby
+setl makeprg=erb\ -T\ -
+nnoremap <buffer> <Space>m :<C-u>make %<Cr>
+
 if expand('%:e:e') == 'tex.erb'
   nnoremap <buffer> <Space>m :<C-u>call <SID>make()<Cr>
-  function! s:make()
+
+  function! s:make() " {{{
     " erb -> tex
     let tex_file = expand('%:r') " a/b.tex.erb -> a/b.tex
     let tex_name = expand('%:t:r:r') " a/b.tex.erb -> b
-    compiler eruby
     silent make %
     cwindow
     if 0 " FIXME: If there are errors then
@@ -17,7 +21,7 @@ if expand('%:e:e') == 'tex.erb'
     endif
 
     " tex -> dvi
-    execute "silent !erb % > " . tex_file
+    execute "silent !erb -T - % > " . tex_file
     execute "new " . tex_file
     lcd %:h
     silent make %
@@ -33,7 +37,7 @@ if expand('%:e:e') == 'tex.erb'
     call delete(tex_name . '.aux')
     call delete(tex_name . '.log')
     call delete(tex_name . '.tex')
-  endfunction
+  endfunction " }}}
 endif
 
 " __END__  "{{{1
