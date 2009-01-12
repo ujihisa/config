@@ -7,18 +7,27 @@ if expand('%:e:e') == 'tex.erb'
   nnoremap <buffer> <Space>m :<C-u>call <SID>make()<Cr>
   function! s:make()
     " erb -> tex
-    let tex_file = expand('%:t:r')
+    let tex_file = expand('%:r')
+    let tex_name = expand('%:r:r')
     compiler eruby
     silent make %
     redraw!
     cwindow
+    if 0 " FIXME: If there are errors then
+      return
+    endif
 
-    " tex
+    " tex -> dvi
     execute "silent !erb % > " . tex_file
     execute "new " . tex_file
     silent make %
     redraw!
     cwindow
+
+    " remove deadwoods
+    execute "!rm " . tex_name . ".aux"
+    execute "!rm " . tex_name . ".log"
+    execute "!rm " . tex_name . ".tex"
   endfunction
 endif
 
