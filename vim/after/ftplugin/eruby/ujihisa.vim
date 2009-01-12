@@ -16,7 +16,7 @@ if expand('%:e:e') == 'tex.erb'
     let tex_name = expand('%:t:r:r') " a/b.tex.erb -> b
     silent make %
     cwindow
-    if 0 " FIXME: If there are errors then
+    if !empty(getqflist())
       return
     endif
 
