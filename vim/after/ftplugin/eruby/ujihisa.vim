@@ -4,17 +4,7 @@ endif
 let b:did_after_eruby_ujihisa_ftplugin = 1 " }}}
 
 if expand('%:e:e') == 'tex.erb'
-  "setl makeprg='platex -kanji=utf8 -interaction=nonstopmode $*'
-  "if has('mac')
-  "  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
-  "  let g:Tex_ViewRule_dvi = 'qlmanage -p'
-  "else
-  "  " TODO: auto change encoding
-  "  let g:Tex_CompileRule_dvi = 'platex -kanji=euc -interaction=nonstopmode $*'
-  "  let g:Tex_ViewRule_dvi = 'gv'
-  "endif
-  "setl makeprg=erb\ $*\ >\ tmp.tex\ &&\ platex\ -kanji=utf8\ -interaction=nonstopmode\ tmp
-
+  nnoremap <buffer> <Space>m :<C-u>call <SID>make()<Cr>
   function! s:make()
     " erb -> tex
     let tex_file = expand('%:t:r')
@@ -29,9 +19,7 @@ if expand('%:e:e') == 'tex.erb'
     silent make %
     redraw!
     cwindow
-    return
   endfunction
-  nnoremap <buffer> <Space>m :<C-u>call <SID>make()<Cr>
 endif
 
 " __END__  "{{{1
