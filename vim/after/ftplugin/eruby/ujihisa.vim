@@ -29,6 +29,7 @@ if expand('%:e:e') == 'tex.erb'
     execute "new " . tex_file
     lcd %:h
     silent make %
+    setlocal autoread
     setlocal bufhidden=unload
     setlocal nobuflisted
     setlocal buftype=nofile
