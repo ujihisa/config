@@ -5,10 +5,14 @@ let b:did_after_eruby_ujihisa_ftplugin = 1 " }}}
 
 compiler eruby
 setl makeprg=erb\ -T\ -
-nnoremap <buffer> <Space>m :<C-u>make %<Cr>
+nnoremap <buffer> <Space>m
+      \ :<C-u>write<Cr>
+      \ :<C-u>make %<Cr>
 
 if expand('%:e:e') == 'tex.erb'
-  nnoremap <buffer> <Space>m :<C-u>call <SID>make()<Cr>
+  nnoremap <buffer> <Space>m
+        \ :<C-u>write<Cr>
+        \ :<C-u>call <SID>make()<Cr>
 
   function! s:make() " {{{
     " erb -> tex
