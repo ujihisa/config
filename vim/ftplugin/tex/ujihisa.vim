@@ -21,8 +21,10 @@ inoremap <buffer> :] }
 
 nnoremap <buffer> <Space>m :<C-u>Make<Cr>
 command! Make call s:make()
+
+" private functions {{{
 function! s:make()
-  let original_fenc = &fileencoding
+  let original_fenc = s:file_encoding()
   if !has('mac')
     set fenc=ujis
     write!
@@ -37,6 +39,14 @@ function! s:make()
     write!
   endif
 endfunction
+
+function! s:file_encoding()
+  if empty(&fileencoding)
+    return &encoding
+  endif
+  return &fileencoding
+endfunction
+" }}}
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
