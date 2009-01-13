@@ -45,10 +45,16 @@ function! s:make()
     write!
   endif
 
+  " dvi -> pdf
+  "if filereadable(expand('%:r') . '.dvi')
+  if empty(filter(getqflist(), 'v:val.valid'))
+    silent! dvipdfmx %:r
+  endif
+
   " remove deadwoods
   let basename = expand('%:r')
   for i in split(expand('*'), "\n")
-    if i =~ basename && i != basename . '.tex' && i != basename . '.dvi'
+    if i =~ basename && i != basename . '.tex' && i != basename . '.pdf'
       call delete(i)
     endif
   endfor
