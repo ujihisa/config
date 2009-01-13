@@ -288,13 +288,13 @@ nmap <Space>R <Plug>(quickrun)<C-w>p
 
 " for git-vim (motemen) {{{
 let g:git_command_edit = 'rightbelow vnew'
-nnoremap <Space>gd :<C-u>CD<Cr>:GitDiff --cached<Enter>
-nnoremap <Space>gD :<C-u>CD<Cr>:GitDiff<Enter>
-nnoremap <Space>gs :<C-u>CD<Cr>:GitStatus<Enter>
-nnoremap <Space>gl :<C-u>CD<Cr>:GitLog<Enter>
-nnoremap <Space>ga :<C-u>CD<Cr>:GitAdd<Enter>
-nnoremap <Space>gA :<C-u>CD<Cr>:GitAdd <cfile><Enter>
-nnoremap <Space>gc :<C-u>CD<Cr>:GitCommit<Enter>
+nnoremap <Space>gd :<C-u>GitDiff --cached<Enter>
+nnoremap <Space>gD :<C-u>GitDiff<Enter>
+nnoremap <Space>gs :<C-u>GitStatus<Enter>
+nnoremap <Space>gl :<C-u>GitLog<Enter>
+nnoremap <Space>ga :<C-u>GitAdd<Enter>
+nnoremap <Space>gA :<C-u>GitAdd <cfile><Enter>
+nnoremap <Space>gc :<C-u>GitCommit<Enter>
 " }}}
 
 " F5 to --
