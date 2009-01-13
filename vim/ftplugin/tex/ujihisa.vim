@@ -46,9 +46,10 @@ function! s:make()
   endif
 
   " dvi -> pdf
-  "if filereadable(expand('%:r') . '.dvi')
-  if empty(filter(getqflist(), 'v:val.valid'))
-    silent! dvipdfmx %:r
+  "if empty(filter(getqflist(), 'v:val.valid'))
+  if filereadable(expand('%:r') . '.dvi')
+    silent ! dvipdfmx %:r
+    redraw!
   endif
 
   " remove deadwoods
