@@ -54,7 +54,10 @@ function! s:make()
   " remove deadwoods
   let basename = expand('%:r')
   for i in split(expand('*'), "\n")
-    if i =~ basename && i != basename . '.tex' && i != basename . '.pdf'
+    if i =~ basename &&
+          \ i != basename . '.tex' &&
+          \ i != basename . '.pdf' &&
+          \ i != basename . '.tex.erb'
       call delete(i)
     endif
   endfor
