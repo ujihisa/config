@@ -19,10 +19,24 @@ inoremap <buffer> :] }
 "setl grepprg=grep\ -nH\ $*
 "setl makeprg=rake
 
-nnoremap <buffer> <Space>m
-\ :<C-u>silent make %<<Cr>
-\ :cwindow<Cr>
-\ :redraw!<Cr>
+nnoremap <buffer> <Space>m :<C-u>Make<Cr>
+command! Make call s:make()
+function! s:make()
+  let original_fenc = &fileencoding
+  if !has('mac')
+    set fenc=ujis
+    write!
+  endif
+
+  silent make %<
+  cwindow
+  redraw!
+
+  if !has('mac')
+    execute "set fenc=" . original_fenc
+    write!
+  endif
+endfunction
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
