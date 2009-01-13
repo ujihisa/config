@@ -40,16 +40,20 @@ function! s:make()
     wincmd p
   endif
 
-  execute "lcd " . current_dir
-
   if !has('mac')
     execute "set fenc=" . original_fenc
     write!
   endif
 
   " remove deadwoods
-  call delete(expand('%:r') . '.aux')
-  call delete(expand('%:r') . '.log')
+  let basename = expand('%:r')
+  for i in split(expand('*'), "\n")
+    if i =~ basename && i != basename . '.tex' && i != basename . '.dvi'
+      call delete(i)
+    endif
+  endfor
+
+  execute "lcd " . current_dir
 endfunction
 
 function! s:file_encoding()
