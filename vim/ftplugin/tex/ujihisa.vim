@@ -34,6 +34,10 @@ function! s:make()
   cwindow
   redraw!
 
+  if !empty(getqflist())
+    wincmd p
+  endif
+
   if !has('mac')
     execute "set fenc=" . original_fenc
     write!
