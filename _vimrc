@@ -331,7 +331,7 @@ endif
 "let g:Tex_CompileRule_ps = 'dvipdfmx'
 "let g:Tex_ViewRule_pdf = 'open'
 "let g:Tex_ViewRule_ps  = ''
-
+" }}}
 
 augroup MyKeywordprg
   autocmd!
@@ -432,6 +432,34 @@ function! CDB()
   let b:old_dir = tmp
 endfunction
 
+" kana's tabpagecd {{{
+let s:TRUE = 1
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+command! -complete=customlist,s:complete_cdpath -nargs=+ CD  TabpageCD <args>
+function! s:complete_cdpath(arglead, cmdline, cursorpos)
+  return split(globpath(&cdpath,
+  \                     join(split(a:cmdline, '\s', s:TRUE)[1:], ' ') . '*/'),
+  \            "\n")
+endfunction
+
+AlternateCommand cd  CD
+" TabpageCD - wrapper of :cd to keep cwd for each tabpage  "{{{2
+
+command! -nargs=? TabpageCD
+\   execute 'cd' fnameescape(<q-args>)
+\ | let t:cwd = getcwd()
+
+autocmd MyAutoCmd TabEnter *
+\   if !exists('t:cwd')
+\ |   let t:cwd = getcwd()
+\ | endif
+\ | execute 'cd' fnameescape(t:cwd)
+" }}}
+" }}}
+"
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 AlternateCommand lib Lib
