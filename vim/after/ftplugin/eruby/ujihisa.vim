@@ -27,7 +27,7 @@ if expand('%:e:e') == 'tex.erb'
     " tex -> dvi
     execute "silent !erb -T - % > " . tex_file
     execute "new " . tex_file
-    if 1 " FIXME: if command Make exists
+    if exists(':Make')
       Make
       setlocal buftype=nowrite
       call delete(tex_file)
