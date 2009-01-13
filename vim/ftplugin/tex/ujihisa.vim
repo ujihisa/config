@@ -22,6 +22,10 @@ inoremap <buffer> :] }
 nnoremap <buffer> <Space>m :<C-u>Make<Cr>
 command! Make call s:make()
 command! Pdf execute '!evince ' . expand('%:r:r') . '.pdf'
+function! DotComma()
+  %s/、/, /g
+  %s/。/. /g
+endfunction
 
 " private functions {{{
 function! s:make()
@@ -78,3 +82,4 @@ endfunction
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
+" vim: fenc=utf8
