@@ -417,7 +417,20 @@ endfunction " }}}
 nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
 
 " via guyon
-command! CD execute ":lcd " . expand("%:p:h")
+"command! CD execute ":lcd " . expand("%:p:h")
+
+" shell-like guyon cd
+command! CD call CD()
+function! CD()
+  let b:old_dir = getcwd()
+  execute "lcd " . expand("%:p:h")
+endfunction
+command! CDB call CDB()
+function! CDB()
+  let tmp = getcwd()
+  execute "lcd " . b:old_dir
+  let b:old_dir = tmp
+endfunction
 
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
