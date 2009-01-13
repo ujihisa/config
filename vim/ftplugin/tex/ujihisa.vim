@@ -1,7 +1,7 @@
-if exists("b:did_ruby_ujihisa_ftplugin") " {{{
+if exists("b:did_tex_ujihisa_ftplugin") " {{{
   finish
 endif
-let b:did_ruby_ujihisa_ftplugin = 1 " }}}
+let b:did_tex_ujihisa_ftplugin = 1 " }}}
 
 " key mappings {{{
 imap <buffer> :i <A-i>
@@ -24,12 +24,14 @@ command! Make call s:make()
 
 " private functions {{{
 function! s:make()
+  let current_dir = getcwd()
   let original_fenc = s:file_encoding()
   if !has('mac')
     set fenc=ujis
     write!
   endif
 
+  lcd %:h
   silent make %<
   cwindow
   redraw!
@@ -38,10 +40,16 @@ function! s:make()
     wincmd p
   endif
 
+  execute "lcd " . current_dir
+
   if !has('mac')
     execute "set fenc=" . original_fenc
     write!
   endif
+
+  " remove deadwoods
+  call delete(expand('%:r') . '.aux')
+  call delete(expand('%:r') . '.log')
 endfunction
 
 function! s:file_encoding()
