@@ -252,11 +252,9 @@ autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsol
 augroup MySomething
   autocmd!
   au BufRead,BufNewFile *.io setfiletype io
-  autocmd BufRead,BufNewFile *_spec.rb setfiletype ruby.rspec
+  autocmd BufRead,BufNewFile *_spec.rb setl filetype=ruby.rspec
+  autocmd BufRead,BufNewFile *.tex.erb setl filetype=tex.eruby
 
-
-  " edn to end
-  autocmd FileType ruby iabbrev edn end
 
   " set filetype=twitter and then...
   autocmd FileType twitter inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#%') . '" >&/dev/null &'<Cr>o
@@ -308,19 +306,11 @@ nnoremap <Space>gc :<C-u>CD<Cr>:GitCommit<Enter>
 " TeX Supports {{{
 
 " LaTeX-Suite
-let g:Tex_ViewRule_dvi = ''
-let g:Tex_ViewRule_ps  = ''
-let g:Tex_ViewRule_pdf = 'open'
 let g:Tex_SmartKeyQuote = 1
 
 " beamer.tex support
 let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
             \. 'subsection,subsubsection,paragraph'
-
-augroup TeXeRuby
-  autocmd!
-  autocmd BufRead,BufNewFile *.tex.erb setfiletype tex.eruby
-augroup END
 
 " flymake/tex
 "augroup FlymakeTex
@@ -328,22 +318,20 @@ augroup END
 "  autocmd BufWritePost *.tex silent !rake tex &>/dev/null &
 "augroup END
 
-augroup MyTexImaps
-  autocmd!
-  autocmd FileType tex imap <buffer> :i <A-i>
-  autocmd FileType tex imap <buffer> :l <A-l>
-  autocmd FileType tex imap <buffer> :j <C-j>
-  autocmd FileType tex imap <buffer> :5 <F5>
-  autocmd FileType tex inoremap <buffer> :d $
-  autocmd FileType tex inoremap <buffer> :p %
-  autocmd FileType tex inoremap <buffer> :h ^
-  autocmd FileType tex inoremap <buffer> :u _
-  autocmd FileType tex inoremap <buffer> :[ {
-  autocmd FileType tex inoremap <buffer> :] }
-  autocmd FileType tex setl grepprg=grep\ -nH\ $*
-  autocmd FileType tex setl makeprg=rake
-augroup END
-" }}}
+let g:Tex_DefaultTargetFormat = 'dvi'
+if has('mac')
+  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
+  let g:Tex_ViewRule_dvi = 'qlmanage -p'
+else
+  " TODO: auto change encoding
+  let g:Tex_CompileRule_dvi = 'platex -kanji=euc -interaction=nonstopmode $*'
+  let g:Tex_ViewRule_dvi = 'gv'
+endif
+"let g:Tex_CompileRule_pdf = 'dvipdfmx'
+"let g:Tex_CompileRule_ps = 'dvipdfmx'
+"let g:Tex_ViewRule_pdf = 'open'
+"let g:Tex_ViewRule_ps  = ''
+
 
 augroup MyKeywordprg
   autocmd!
