@@ -27,16 +27,22 @@ if expand('%:e:e') == 'tex.erb'
     " tex -> dvi
     execute "silent !erb -T - % > " . tex_file
     execute "new " . tex_file
-    lcd %:h
-    silent make %
-    setlocal buftype=nowrite
-    redraw!
-    cwindow
+    if 1 " FIXME: if command Make exists
+      Make
+      setlocal buftype=nowrite
+      call delete(tex_file)
+    else
+      lcd %:h
+      silent make %
+      setlocal buftype=nowrite
+      redraw!
+      cwindow
 
-    " remove deadwoods
-    call delete(tex_name . '.aux')
-    call delete(tex_name . '.log')
-    call delete(tex_name . '.tex')
+      " remove deadwoods
+      call delete(tex_name . '.aux')
+      call delete(tex_name . '.log')
+      call delete(tex_name . '.tex')
+    endif
   endfunction " }}}
 endif
 
