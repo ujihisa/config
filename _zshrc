@@ -151,6 +151,7 @@ linux*|cygwin*) # LINUX {{{
   export PATH=$PATH:/var/lib/gems/1.8/bin
   export PATH=$PATH:~/bin
   export PATH=$PATH:/sbin
+  export PATH=/opt/ptexlive/bin/:$PATH
   export GIT_PAGER='less -RE'
   ## Environment variable configuration
   #
