@@ -324,7 +324,7 @@ if has('mac')
   let g:Tex_ViewRule_dvi = 'qlmanage -p'
 else
   " TODO: auto change encoding
-  let g:Tex_CompileRule_dvi = 'platex -kanji=euc -interaction=nonstopmode $*'
+  let g:Tex_CompileRule_dvi = '/opt/ptexlive/bin/platex -kanji=utf8 -interaction=nonstopmode $*'
   let g:Tex_ViewRule_dvi = 'gv'
 endif
 "let g:Tex_CompileRule_pdf = 'dvipdfmx'
