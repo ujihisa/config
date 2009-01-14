@@ -86,7 +86,7 @@ nnoremap cc zc
 
 inoremap <Tab> <C-n>
 nnoremap <Space>s :setfiletype<Space>
-nnoremap <Space>v :new ~/.vim/
+nnoremap <Space>v :new ~/git/config/vim/
 nnoremap <Space>I $i
 nnoremap <Space>C $C
 nnoremap X ^x
