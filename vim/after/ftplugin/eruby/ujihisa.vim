@@ -4,7 +4,7 @@ endif
 let b:did_after_eruby_ujihisa_ftplugin = 1 " }}}
 
 compiler eruby
-setl makeprg=erb\ -T\ -
+setl makeprg=erb\ -P\ -T\ -
 nnoremap <buffer> <Space>m
       \ :<C-u>write<Cr>
       \ :<C-u>make %<Cr>
