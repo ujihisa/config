@@ -72,10 +72,7 @@ function! s:make()
 endfunction
 
 function! s:file_encoding()
-  if empty(&fileencoding)
-    return &encoding
-  endif
-  return &fileencoding
+  return &fenc!=''?&fenc:&enc
 endfunction
 " }}}
 
