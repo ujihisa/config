@@ -25,7 +25,7 @@ if expand('%:e:e') == 'tex.erb'
     endif
 
     " tex -> dvi
-    execute "silent !erb -T - % > " . tex_file
+    execute "silent ! " . &makeprg . " > " . tex_file
     execute "new " . tex_file
     if exists(':Make')
       Make
