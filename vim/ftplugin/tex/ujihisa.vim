@@ -30,11 +30,6 @@ endfunction
 " private functions {{{
 function! s:make()
   let current_dir = getcwd()
-  let original_fenc = s:file_encoding()
-  if !has('mac')
-    set fenc=ujis
-    write!
-  endif
 
   lcd %:h
   silent make %<
@@ -43,11 +38,6 @@ function! s:make()
 
   if !empty(getqflist())
     wincmd p
-  endif
-
-  if !has('mac')
-    execute "set fenc=" . original_fenc
-    write!
   endif
 
   " dvi -> pdf
@@ -69,10 +59,6 @@ function! s:make()
   endfor
 
   execute "lcd " . current_dir
-endfunction
-
-function! s:file_encoding()
-  return &fenc!=''?&fenc:&enc
 endfunction
 " }}}
 
