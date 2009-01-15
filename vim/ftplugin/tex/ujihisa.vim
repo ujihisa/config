@@ -24,7 +24,7 @@ command! Make call s:make()
 if has('mac')
   command! Pdf execute '!open ' . expand('%:r:r') . '.pdf &'
 else
-  command! Pdf execute '!evince ' . expand('%:r:r') . '.pdf &'
+  command! Pdf execute '!acroread ' . expand('%:r:r') . '.pdf &'
 endif
 function! DotComma()
   %s/、/, /g
@@ -34,15 +34,14 @@ endfunction
 " private functions {{{
 function! s:make()
   let current_dir = getcwd()
+  let current_winnr = bufwinnr(bufname('.'))
 
   lcd %:h
   silent make %<
   cwindow
   redraw!
 
-  if !empty(getqflist())
-    wincmd p
-  endif
+  execute current_winnr . ' wincmd w'
 
   " dvi -> pdf
   "if empty(filter(getqflist(), 'v:val.valid'))
