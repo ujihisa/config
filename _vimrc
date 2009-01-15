@@ -320,7 +320,7 @@ let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
 
 let g:Tex_DefaultTargetFormat = 'dvi'
 if has('mac')
-  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
+  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $* &>/dev/null; platex -kanji=utf8 -interaction=nonstopmode $*'
   let g:Tex_ViewRule_dvi = 'qlmanage -p'
 else
   " TODO: auto change encoding
