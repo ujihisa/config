@@ -21,7 +21,11 @@ inoremap <buffer> :] }
 
 nnoremap <buffer> <Space>m :<C-u>Make<Cr>
 command! Make call s:make()
-command! Pdf execute '!evince ' . expand('%:r:r') . '.pdf &'
+if has('mac')
+  command! Pdf execute '!open ' . expand('%:r:r') . '.pdf &'
+else
+  command! Pdf execute '!evince ' . expand('%:r:r') . '.pdf &'
+endif
 function! DotComma()
   %s/、/, /g
   %s/。/. /g
