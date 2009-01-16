@@ -26,6 +26,8 @@ if has('mac')
 else
   command! Pdf execute '!acroread ' . expand('%:r:r') . '.pdf &'
 endif
+AlternateCommand pdf Pdf
+
 function! DotComma()
   %s/、/, /g
   %s/。/. /g
