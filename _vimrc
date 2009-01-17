@@ -131,7 +131,7 @@ endfunction " }}}
 
 augroup MyVim
   autocmd!
-  autocmd FileType vim nnoremap gs :source %<Cr>
+  autocmd FileType vim nnoremap <buffer> gs :source %<Cr>
 augroup END
 
 command! Big wincmd _ | wincmd |
