@@ -507,6 +507,7 @@ function git-gol-full() {
 }
 
 alias termtter='~/git/termtter/run_termtter.rb'
+alias kill_termtter='~/git/termtter/bin/kill_termtter'
 
 # kana's prompt git branch {{{
 function prompt-git-head-name() {
