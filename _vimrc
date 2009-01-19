@@ -41,6 +41,9 @@ nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
+omap <Space>p %
+nmap <Space>p %
+
 nnoremap vv <C-v>
 nnoremap ]p p`[=`]
 
@@ -59,7 +62,6 @@ nnoremap <Space>Q :<C-u>quit!<Return>
 nnoremap <Space>. :<C-u>new ~/git/config/_vimrc<Cr>
 nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
 nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
-nnoremap <Space>p :<C-u>setl wrap!<Cr>
 nnoremap <Space>h :help<space>
 nnoremap <Space>n :<C-u>new<space>
 nnoremap <Space>] <C-w>]
