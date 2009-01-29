@@ -509,6 +509,13 @@ function git-gol-full() {
 alias termtter='~/git/termtter/run_termtter.rb'
 alias kill_termtter='~/git/termtter/bin/kill_termtter'
 
+function lprweb() {
+  xulrunner-1.9 /tmp/mozilla2ps/application.ini $1 /tmp/lprweb.ps \
+    -margins 0.25 -papername A4 -bgcolors true -bgimages true
+  lpr /tmp/lprweb.ps
+  rm /tmp/lprweb.ps
+}
+
 # kana's prompt git branch {{{
 function prompt-git-head-name() {
   local git_dir="$(git rev-parse --git-dir 2>/dev/null)"
