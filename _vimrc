@@ -308,7 +308,7 @@ nnoremap <Space>gc :<C-u>GitCommit<Enter>
 " TeX Supports {{{
 
 " LaTeX-Suite
-let g:Tex_SmartKeyQuote = 1
+let g:Tex_SmartKeyQuote = 0
 
 " beamer.tex support
 let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
