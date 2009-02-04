@@ -520,6 +520,14 @@ augroup END
 
 command! -nargs=0 LeadUnderscores %s/^\s*/\=repeat('_', strlen(submatch(0)))/g
 
+" replace v_p {{{
+vnoremap p :<C-u>call <SID>yank_paste_without_yanking()<CR>
+function! s:yank_paste_without_yanking()
+  let a = @"
+  normal! gvp
+  let @" = a
+endfunction " }}}
+
 " smartword {{{
 map w  <Plug>(smartword-w)
 map b  <Plug>(smartword-b)
