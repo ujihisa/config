@@ -16,3 +16,7 @@ function! s:make()
   redraw!
   cwindow
 endfunction
+
+if exists('b:quickrun_command')
+  let b:quickrun_command = 'spec'
+endif
