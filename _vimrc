@@ -321,18 +321,16 @@ let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
 "augroup END
 
 let g:Tex_DefaultTargetFormat = 'dvi'
+let g:Tex_FormatDependency_pdf = 'bib,dvi'
+let g:Tex_CompileRule_bib = 'bibtex $*.aux'
+let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
 if has('mac')
-  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $* &>/dev/null; platex -kanji=utf8 -interaction=nonstopmode $*'
+  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
   let g:Tex_ViewRule_dvi = 'qlmanage -p'
 else
-  " TODO: auto change encoding
-  let g:Tex_CompileRule_dvi = '/opt/ptexlive/bin/platex -kanji=utf8 -interaction=nonstopmode $* &>/dev/null; /opt/ptexlive/bin/platex -kanji=utf8 -interaction=nonstopmode $*'
+  let g:Tex_CompileRule_dvi = '/opt/ptexlive/bin/platex -kanji=utf8 -interaction=nonstopmode $*'
   let g:Tex_ViewRule_dvi = 'gv'
 endif
-"let g:Tex_CompileRule_pdf = 'dvipdfmx'
-"let g:Tex_CompileRule_ps = 'dvipdfmx'
-"let g:Tex_ViewRule_pdf = 'open'
-"let g:Tex_ViewRule_ps  = ''
 " }}}
 
 augroup MyKeywordprg
