@@ -20,7 +20,7 @@ inoremap <buffer> :] }
 "setl makeprg=rake
 
 "nnoremap <buffer> <Space>m :<C-u>Make<Cr>
-nnoremap <buffer> <Space>m <Plug>Tex_Compile
+nmap <buffer> <Space>m <Plug>Tex_Compile
 command! Make call s:make()
 if has('mac')
   command! Pdf execute '!open ' . expand('%:r:r') . '.pdf &'
