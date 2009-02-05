@@ -326,10 +326,10 @@ let g:Tex_CompileRule_bib = 'bibtex $*.aux'
 let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
 if has('mac')
   let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
-  let g:Tex_ViewRule_dvi = 'qlmanage -p'
+  let g:Tex_ViewRule_pdf = 'open'
 else
   let g:Tex_CompileRule_dvi = '/opt/ptexlive/bin/platex -kanji=utf8 -interaction=nonstopmode $*'
-  let g:Tex_ViewRule_dvi = 'gv'
+  let g:Tex_ViewRule_pdf = 'acroread'
 endif
 " }}}
 
