@@ -320,7 +320,7 @@ let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
 "  autocmd BufWritePost *.tex silent !rake tex &>/dev/null &
 "augroup END
 
-let g:Tex_DefaultTargetFormat = 'dvi'
+let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_FormatDependency_pdf = 'bib,dvi'
 let g:Tex_CompileRule_bib = 'bibtex $*.aux'
 let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
