@@ -31,7 +31,9 @@ AlternateCommand pdf Pdf
 function! DotComma()
   %s/、/, /g
   %s/。/. /g
+  %s/ $//g
 endfunction
+command! -nargs=0 DotComma call DotComma()
 
 " private functions {{{
 function! s:make()
