@@ -27,22 +27,26 @@ if expand('%:e:e') == 'tex.erb'
     " tex -> dvi
     execute "silent ! " . &makeprg . ' ' . expand('%') . ' > ' . tex_file
     execute "new " . tex_file
-    if exists(':Make')
-      Make
-      setlocal buftype=nowrite
-      call delete(tex_file)
-    else
-      lcd %:h
-      silent make %
-      setlocal buftype=nowrite
-      redraw!
-      cwindow
+    exe "normal \<Plug>Tex_Compile"
+    "
+    " The below code is obsolete.
+    "
+    "if exists(':Make')
+    "  Make
+    "  setlocal buftype=nowrite
+    "  call delete(tex_file)
+    "else
+    "  lcd %:h
+    "  silent make %
+    "  setlocal buftype=nowrite
+    "  redraw!
+    "  cwindow
 
-      " remove deadwoods
-      call delete(tex_name . '.aux')
-      call delete(tex_name . '.log')
-      call delete(tex_name . '.tex')
-    endif
+    "  " remove deadwoods
+    "  call delete(tex_name . '.aux')
+    "  call delete(tex_name . '.log')
+    "  call delete(tex_name . '.tex')
+    "endif
   endfunction " }}}
 endif
 
