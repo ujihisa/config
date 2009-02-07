@@ -7,7 +7,7 @@ let b:did_ruby_ujihisa_ftplugin = 1 " }}}
 iabbrev edn end
 
 inoremap <buffer> <C-q> #{
-inoremap <expr> {  smartchr#one_of('{', '#{', '{{{')
+inoremap <expr> {  smartchr#loop('{', '#{', '{{{')
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
