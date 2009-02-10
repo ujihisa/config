@@ -20,7 +20,12 @@ inoremap <buffer> :] }
 "setl makeprg=rake
 
 "nnoremap <buffer> <Space>m :<C-u>Make<Cr>
-nmap <buffer> <Space>m <Plug>Tex_Compile
+
+nmap <buffer> <Space>m :<C-u>exe "normal \<Plug>Tex_Compile"<Cr>
+" <Space>m compiles tex. 
+"   nmap <buffer> <Space>m <Plug>Tex_Compile
+" Doesn't work well in bibtex.
+
 command! Make call s:make()
 if has('mac')
   command! Pdf execute '!open ' . expand('%:r:r') . '.pdf &'
