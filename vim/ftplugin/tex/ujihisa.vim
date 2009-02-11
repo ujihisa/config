@@ -28,9 +28,10 @@ nmap <buffer> <Space>m :<C-u>exe "normal \<Plug>Tex_Compile"<Cr>
 
 command! Make call s:make()
 if has('mac')
-  command! Pdf execute '!open ' . expand('%:r:r') . '.pdf &'
+  command! Pdf execute 'silent !open ' . expand('%:r:r') . '.pdf &'
 else
-  command! Pdf execute '!acroread ' . expand('%:r:r') . '.pdf &'
+  command! Pdf  execute 'silent !evince ' . expand('%:r:r') . '.pdf &'
+  command! Pdf2 execute 'silent !acroread ' . expand('%:r:r') . '.pdf &'
 endif
 AlternateCommand pdf Pdf
 
