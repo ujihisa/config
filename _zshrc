@@ -346,6 +346,7 @@ esac
 
 #alias ssh_shien='ssh 124.108.36.82'
 alias ssh_neumann='ssh 192.168.25.62'
+alias ssh_slicehost='ssh 67.23.4.19'
 
 alias reload='exec zsh'
 alias screen='echo use sr'
