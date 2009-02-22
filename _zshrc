@@ -339,7 +339,8 @@ linux*|cygwin*) # LINUX {{{
   alias ssh_gomory="ssh calculate@192.168.25.223"
   alias ssh_matlab="ssh calculate@192.168.25.224"
   export LESSCHARSET=utf-8
-  alias sr='TERM=kterm command screen -r ||TERM=kterm  command screen -AU'
+  #alias sr='TERM=kterm command screen -r ||TERM=kterm  command screen -AU'
+  alias sr='command screen -r || command screen -AU'
 
   ;; # }}}
 esac
