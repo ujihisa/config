@@ -500,6 +500,8 @@ alias rawvim='vim -u NONE -U NONE --noplugin'
 alias gauchedoc='info --vi-keys gauche-refe'
 alias pingg='ping google.com'
 
+alias gsrd='git svn rebase && git svn dcommit'
+
 # kana's nice tool
 function git-gol() {
   for i in $(git log --pretty=oneline | head -n 10 | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
