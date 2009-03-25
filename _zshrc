@@ -397,6 +397,7 @@ function l() {
 }
 # }}}
 
+alias mysqld_start='sudo /opt/local/share/mysql5/mysql/mysql.server start'
 alias gosh='rlwrap /opt/local/bin/gosh'
 alias js="js -e 'Function.prototype.toString = function() { return this() };' -i"
 
