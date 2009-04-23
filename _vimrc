@@ -47,10 +47,10 @@ nmap <Space>p %
 nnoremap vv <C-v>
 nnoremap ]p p`[=`]
 
-nnoremap sh <C-w>h
+nnoremap sh <C-w>h<C-w>80\|
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
-nnoremap sl <C-w>l
+nnoremap sl <C-w>l<C-w>80\|
 nnoremap sH <C-w>H
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
