@@ -536,6 +536,17 @@ noremap B  b
 noremap E  e
 noremap gE ge
 " }}}
+
+" Require secret password file
+source ~/.vimrc_secret
+" This file should let following variables:
+"   * For blogger.vim
+"     g:Blog_URI
+"     g:Blog_ID
+"     g:Gmail_Account
+"     g:Gmail_Password
+"     g:Blog_Use_Markdown
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
