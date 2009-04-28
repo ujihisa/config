@@ -1,0 +1,1 @@
+/Users/ujihisa/git/quickrun/quickrun.vim
