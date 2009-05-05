@@ -59,7 +59,7 @@ nnoremap sL <C-w>L
 nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
-nnoremap <Space>. :<C-u>new ~/git/config/_vimrc<Cr>
+nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
 nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
 nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 nnoremap <Space>h :help<space>
@@ -98,6 +98,10 @@ nnoremap cp Pjdd
 
 
 "}}}
+
+" My commands
+command! -nargs=0 OpenVimrcTab tabnew ~/git/config/_vimrc | TabpageCD ~/git/config
+
 " kana's AlternateCommand {{{
 command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
 function! s:cmd_AlternateCommand(args)
