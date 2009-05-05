@@ -60,6 +60,7 @@ nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
 nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
+nnoremap <Space>ort :<C-u>OpenRubyspecTab<Cr>
 nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
 nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 nnoremap <Space>h :help<space>
@@ -101,6 +102,7 @@ nnoremap cp Pjdd
 
 " My commands
 command! -nargs=0 OpenVimrcTab tabnew ~/git/config/_vimrc | TabpageCD ~/git/config
+command! -nargs=0 OpenRubyspecTab tabnew ~/git/ruby-trunk/spec/rubyspec/ | TabpageCD ~/git/ruby-trunk/spec/rubyspec/
 
 " kana's AlternateCommand {{{
 command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
