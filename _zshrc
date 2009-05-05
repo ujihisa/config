@@ -142,7 +142,7 @@ freebsd*|darwin*) # OSX {{{
   bindkey '^P' history-beginning-search-forward-end
   bindkey '^F' history-incremental-search-backward
 
-  export __CF_USER_TEXT_ENCODING='0x1F5:0x08000100:14'
+  export __CF_USER_TEXT_ENCODING='0x1F6:0x08000100:14'
 
   ;; # }}}
 linux*|cygwin*) # LINUX {{{
