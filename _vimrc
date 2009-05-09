@@ -273,6 +273,11 @@ augroup MySomething
   autocmd FileType spamspam inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#') . '" >&/dev/null &'<Cr>:<C-u>MixiEcho<Cr>o
 augroup END
 
+augroup RubyTrunk
+  autocmd!
+  autocmd BufRead,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
+augroup END
+
 " irb
 augroup MyIRB
   autocmd!
