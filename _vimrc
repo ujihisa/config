@@ -278,6 +278,11 @@ augroup RubyTrunk
   autocmd BufRead,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
 augroup END
 
+augroup RubySpec
+  autocmd!
+  autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*_spec.rb let b:quickrun_command = '~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby'
+augroup END
+
 " irb
 augroup MyIRB
   autocmd!
