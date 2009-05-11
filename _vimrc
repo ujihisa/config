@@ -103,6 +103,7 @@ nnoremap cp Pjdd
 " My commands
 command! -nargs=0 OpenVimrcTab tabnew ~/git/config/_vimrc | TabpageCD ~/git/config
 command! -nargs=0 OpenRubyspecTab tabnew ~/git/ruby-trunk/spec/rubyspec/ | TabpageCD ~/git/ruby-trunk/spec/rubyspec/
+command! -nargs=0 OpenMarkdown !open ~/Documents/markdown.webarchive
 
 " kana's AlternateCommand {{{
 command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
