@@ -521,6 +521,11 @@ function lprweb() {
   rm /tmp/lprweb.ps
 }
 
+function githubinitial() {
+  git config --add branch.master.remote origin
+  git config --add branch.master.merge refs/heads/master
+}
+
 # kana's prompt git branch {{{
 function prompt-git-head-name() {
   local git_dir="$(git rev-parse --git-dir 2>/dev/null)"
