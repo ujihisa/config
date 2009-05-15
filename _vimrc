@@ -316,6 +316,7 @@ nnoremap <Space>gL :<C-u>GitLog -u<Enter>
 nnoremap <Space>ga :<C-u>GitAdd<Enter>
 nnoremap <Space>gA :<C-u>GitAdd <cfile><Enter>
 nnoremap <Space>gc :<C-u>GitCommit<Enter>
+nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
 " }}}
 
