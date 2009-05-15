@@ -277,6 +277,7 @@ augroup END
 augroup RubyTrunk
   autocmd!
   autocmd BufRead,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
+  autocmd BufRead,BufNewFile ~/git/ruby-trunk/*.y setl ts=8 noexpandtab
 augroup END
 
 augroup RubySpec
@@ -563,6 +564,14 @@ source ~/.vimrc_secret
 "     g:Gmail_Account
 "     g:Gmail_Password
 "     g:Blog_Use_Markdown
+
+" Markdown {{{
+"   http://plasticboy.com/markdown-vim-mode/
+augroup markdown
+  autocmd!
+  autocmd! BufRead,BufNewFile *.mkd   setfiletype mkd
+  autocmd! BufRead,BufNewFile *.md   setfiletype mkd
+augroup END
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
