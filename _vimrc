@@ -94,7 +94,7 @@ nnoremap <Space>I $i
 nnoremap <Space>C $C
 nnoremap X ^x
 nnoremap cp Pjdd
-
+nnoremap Q <nop>
 
 
 
@@ -561,12 +561,11 @@ noremap gE ge
 " Require secret password file
 source ~/.vimrc_secret
 " This file should let following variables:
-"   * For blogger.vim
-"     g:Blog_URI
-"     g:Blog_ID
-"     g:Gmail_Account
-"     g:Gmail_Password
-"     g:Blog_Use_Markdown
+" Blogger.vim
+"   * g:blogger_blogid
+"   * g:blogger_email
+"   * g:blogger_pass
+
 
 " Markdown {{{
 "   http://plasticboy.com/markdown-vim-mode/
