@@ -575,6 +575,11 @@ augroup markdown
   autocmd! BufRead,BufNewFile *.md   setfiletype mkd
 augroup END
 
+" XML completion {{{
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap </ </<C-x><C-o>
+augroup END
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
