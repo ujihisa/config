@@ -571,8 +571,8 @@ source ~/.vimrc_secret
 "   http://plasticboy.com/markdown-vim-mode/
 augroup markdown
   autocmd!
-  autocmd! BufRead,BufNewFile *.mkd   setfiletype mkd
-  autocmd! BufRead,BufNewFile *.md   setfiletype mkd
+  autocmd BufRead,BufNewFile *.mkd   setfiletype mkd
+  autocmd BufRead,BufNewFile *.md   setfiletype mkd
 augroup END
 
 " XML, HTML completion {{{
