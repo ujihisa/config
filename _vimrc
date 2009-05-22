@@ -581,6 +581,11 @@ augroup MyXML
   autocmd Filetype xml inoremap </ </<C-x><C-o>
   autocmd Filetype html inoremap </ </<C-x><C-o>
 augroup END
+
+" Rename (See Vim Hacks #?? {{{
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+ 
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
