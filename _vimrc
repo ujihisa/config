@@ -574,6 +574,7 @@ augroup markdown
   autocmd BufRead,BufNewFile *.mkd   setfiletype mkd
   autocmd BufRead,BufNewFile *.md   setfiletype mkd
 augroup END
+" }}}
 
 " XML, HTML completion {{{
 augroup MyXML
@@ -581,11 +582,25 @@ augroup MyXML
   autocmd Filetype xml inoremap </ </<C-x><C-o>
   autocmd Filetype html inoremap </ </<C-x><C-o>
 augroup END
+" }}}
 
 " Rename (See Vim Hacks #?? {{{
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+" }}}
  
 
+" C/C++ semicolon support
+function! s:smartsemicolon()
+  let s = getline('.')
+  if s != "" && match(s, '\s\|.*[;({},]$')
+    normal! a;
+  endif
+endfunction
+augroup MyCSemicolon
+  autocmd!
+  autocmd Filetype c inoremap <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
