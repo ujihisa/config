@@ -282,7 +282,8 @@ augroup END
 
 augroup RubySpec
   autocmd!
-  autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb let b:quickrun_command = '~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby -I ~/git/ruby-trunk/ruby/.ext/i386-darwin9.6.0 -I ~/git/ruby-trunk/lib'
+  "autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb let b:quickrun_command = '~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby -I ~/git/ruby-trunk/ruby/.ext/i386-darwin9.7.0 -I ~/git/ruby-trunk/lib'
+  autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb let b:quickrun_command = '~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
 augroup END
 
 " irb
@@ -589,7 +590,7 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
  
 
-" C/C++ semicolon support
+" C/C++ semicolon support {{{
 function! s:smartsemicolon()
   let s = getline('.')
   if s != "" && match(s, '#.*\|.*//.*\|/\*\|\*/\|\s*$\|.*[;({},]$')
@@ -598,8 +599,17 @@ function! s:smartsemicolon()
 endfunction
 augroup MyCSemicolon
   autocmd!
-  autocmd Filetype c inoremap <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
-  autocmd Filetype cpp inoremap <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+  autocmd Filetype c inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+  autocmd Filetype cpp inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+augroup END
+" }}}
+
+" C/C++ compiler {{{
+"   with c.vim
+augroup MyCompiler
+  autocmd!
+  autocmd Filetype c nmap <buffer> <Space>m \rc
+  autocmd Filetype cpp nmap <buffer> <Space>m \rc
 augroup END
 " }}}
 " __END__  "{{{1
