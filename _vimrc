@@ -592,7 +592,7 @@ command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " C/C++ semicolon support
 function! s:smartsemicolon()
   let s = getline('.')
-  if s != "" && match(s, '#.*\|.*//.*\|/\*\|\*/\|\s\|.*[;({},]$')
+  if s != "" && match(s, '#.*\|.*//.*\|/\*\|\*/\|\s*$\|.*[;({},]$')
     normal! a;
   endif
 endfunction
