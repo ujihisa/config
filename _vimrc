@@ -47,14 +47,14 @@ nmap <Space>p %
 nnoremap vv <C-v>
 nnoremap ]p p`[=`]
 
-nnoremap sh <C-w>h<C-w>80\|
+nnoremap sh <C-w>h<C-w>84\|
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
-nnoremap sl <C-w>l<C-w>80\|
-nnoremap sH <C-w>H
+nnoremap sl <C-w>l<C-w>84\|
+nnoremap sH <C-w>H<C-w>84\|
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
-nnoremap sL <C-w>L
+nnoremap sL <C-w>L<C-w>84\|
 
 nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
