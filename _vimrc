@@ -605,11 +605,20 @@ augroup END
 " }}}
 
 " C/C++ compiler {{{
-"   with c.vim
 augroup MyCompiler
   autocmd!
-  autocmd Filetype c nmap <buffer> <Space>m \rc
-  autocmd Filetype cpp nmap <buffer> <Space>m \rc
+
+  " run save&compile
+  autocmd Filetype c compiler gcc
+  autocmd Filetype cpp compiler gcc
+  autocmd Filetype c setl makeprg=gcc\ -Wall\ %\ -o\ %:r.o
+  autocmd Filetype cpp setl makeprg=g++\ -Wall\ %\ -o\ %:r.o
+  autocmd Filetype c nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
+  autocmd Filetype cpp nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
+
+  " run splint
+  autocmd Filetype c nmap <buffer> <Space>M :<C-u>!splint %<Cr>
+  autocmd Filetype cpp nmap <buffer> <Space>M :<C-u>!splint %<Cr>
 augroup END
 " }}}
 " __END__  "{{{1
