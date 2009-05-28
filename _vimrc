@@ -283,7 +283,7 @@ augroup END
 augroup RubySpec
   autocmd!
   "autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb let b:quickrun_command = '~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby -I ~/git/ruby-trunk/ruby/.ext/i386-darwin9.7.0 -I ~/git/ruby-trunk/lib'
-  autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb let b:quickrun_command = '~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
+  autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb let b:quickrun_command = '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
 augroup END
 
 " irb
