@@ -602,8 +602,14 @@ function! s:smartsemicolon()
 endfunction
 augroup MyCSemicolon
   autocmd!
-  autocmd Filetype c inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
-  autocmd Filetype cpp inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+  "autocmd Filetype c inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+  "autocmd Filetype cpp inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+
+  autocmd FileType c inoremap <buffer> : ;
+  autocmd FileType c inoremap <buffer> ; :
+
+  autocmd FileType cpp inoremap <buffer> : ;
+  autocmd FileType cpp inoremap <buffer> ; :
 augroup END
 " }}}
 
