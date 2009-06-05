@@ -486,7 +486,7 @@ alias -g G="| grep"
 alias -g T='| tail'
 alias -g H='| head'
 
-alias gl='git pull'
+alias gl='git pull --rebase'
 alias pus='git push'
 alias c='git checkout'
 
