@@ -101,21 +101,6 @@ freebsd*|darwin*) # OSX {{{
   # alias r18='/Users/ujihisa/Documents/uvn/workshops/ruby/18'
   # export HREF_DATADIR='/usr/local/src/href-0.3.3'
 
-  # svk wrapper
-  #   svk pushv PATH
-  #   => svk push PATH --verbatim
-  #   svk dil FILE
-  #   => svk di FILE | diffcolor.rb | lv -c
-  function svk() {
-    if [ $1 = "pushv" ] ; then
-      echo svk push $2 --verbatim
-      command svk push $2 --verbatim
-    elif [ $1 = "dil" ] ; then
-      command svk di $2 | diffcolor.rb | /usr/bin/less -RE
-    else
-      command svk $*
-    fi
-  }
   function svn() {
     if [ $1 = "dil" ] ; then
       command svn di $2 | diffcolor.rb | /usr/bin/less -RE
