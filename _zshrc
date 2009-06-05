@@ -521,6 +521,10 @@ function rubyup() {
   git pull --rebase
   cd $now
 }
+function mspecci() {
+  rt=~/git/ruby-trunk
+  /usr/bin/ruby ${rt}/spec/mspec/bin/mspec ci -t ${rt}/ruby19/bin/ruby
+}
 
 # kana's prompt git branch {{{
 function prompt-git-head-name() {
