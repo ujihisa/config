@@ -154,10 +154,12 @@ AlternateCommand vsp SplitNicely
 nnoremap <silent> <Space>ff :<C-u>FuzzyFinderFile<Cr>
 nnoremap <silent> <Space>fm :<C-u>FuzzyFinderMruFile<Cr>
 nnoremap <silent> <Space>fr :<C-u>FuzzyFinderBuffer<Cr>
-let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
-let g:FuzzyFinderOptions.Base.key_open = '<C-j>'
-let g:FuzzyFinderOptions.Base.key_open_split = '<Space>'
-let g:FuzzyFinderOptions.Base.key_open_vsplit = '<CR>'
+if !exists('g:FuzzyFinderOptions')
+  let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
+  let g:FuzzyFinderOptions.Base.key_open = '<C-j>'
+  let g:FuzzyFinderOptions.Base.key_open_split = '<Space>'
+  let g:FuzzyFinderOptions.Base.key_open_vsplit = '<CR>'
+endif
 " }}}
 
 
