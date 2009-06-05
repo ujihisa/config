@@ -204,7 +204,7 @@ command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <l
 "let git_diff_spawn_mode=1
 augroup MyGit
   autocmd!
-  autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=git
+  autocmd BufWinEnter,BufNewFile COMMIT_EDITMSG set filetype=git
 augroup END
 let g:git_diff_spawn_mode = 2
 
@@ -262,9 +262,9 @@ autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsol
 
 augroup MySomething
   autocmd!
-  au BufRead,BufNewFile *.io setfiletype io
-  autocmd BufRead,BufNewFile *_spec.rb setl filetype=ruby.rspec
-  autocmd BufRead,BufNewFile *.tex.erb setl filetype=tex.eruby
+  autocmd BufWinEnter,BufNewFile *.io setfiletype io
+  autocmd BufWinEnter,BufNewFile *_spec.rb setl filetype=ruby.rspec
+  autocmd BufWinEnter,BufNewFile *.tex.erb setl filetype=tex.eruby
 
 
   " set filetype=twitter and then...
@@ -278,13 +278,13 @@ augroup END
 
 augroup RubyTrunk
   autocmd!
-  autocmd BufRead,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
-  autocmd BufRead,BufNewFile ~/git/ruby-trunk/*.y setl ts=8 noexpandtab
+  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
+  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.y setl ts=8 noexpandtab
 augroup END
 
 augroup RubySpec
   autocmd!
-  autocmd BufRead,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb
+  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb
         \ let b:quickrun_command =
         \ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
 augroup END
@@ -575,8 +575,8 @@ source ~/.vimrc_secret
 "   http://plasticboy.com/markdown-vim-mode/
 augroup markdown
   autocmd!
-  autocmd BufRead,BufNewFile *.mkd   setfiletype mkd
-  autocmd BufRead,BufNewFile *.md   setfiletype mkd
+  autocmd BufWinEnter,BufNewFile *.mkd   setfiletype mkd
+  autocmd BufWinEnter,BufNewFile *.md   setfiletype mkd
 augroup END
 " }}}
 
