@@ -624,6 +624,34 @@ augroup MyCompiler
   autocmd Filetype cpp nmap <buffer> <Space>M :<C-u>!splint %<Cr>
 augroup END
 " }}}
+
+" vimshell supports {{{
+let g:VimShell_EnableInteractive = 1
+" }}}
+
+" mspec/rubyspec supports {{{
+function! DoMspec()
+  new
+  read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby #
+
+  call append(line('$'), '--------------------------------------------------------------')
+  normal G
+  read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/rubies/bin/ruby191 #
+
+  call append(line('$'), '--------------------------------------------------------------')
+  normal G
+  read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/rubies/bin/ruby187 #
+
+  call append(line('$'), '--------------------------------------------------------------')
+  normal G
+  read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t /opt/local/bin/ruby #
+
+  call append(line('$'), '--------------------------------------------------------------')
+  normal G
+  read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t /usr/bin/ruby #
+endfunction
+" }}}
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
