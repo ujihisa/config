@@ -424,6 +424,7 @@ if [ -e /Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEn
   export PATH=$PATH:/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine
 fi
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:~/rubies/bin
 export PYTHONSTARTUP=/Users/ujihisa/.pythonrc.py
 alias pt=python
 
