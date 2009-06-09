@@ -78,8 +78,8 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 
 "nnoremap <Space>a  <Nop>
-nnoremap <Space>an  :<C-u>tabnew<CR>
-nnoremap <Space>ac  :<C-u>tabclose<CR>
+nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
+"nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 nnoremap <Space>ak  gT
 
@@ -89,6 +89,7 @@ nnoremap cc zc
 
 inoremap <Tab> <C-n>
 nnoremap <Space>s :setfiletype<Space>
+nnoremap <Space>b :w blogger:create
 nnoremap <Space>v :new ~/git/config/vim/
 nnoremap <Space>I $i
 nnoremap <Space>C $C
@@ -280,6 +281,7 @@ augroup RubyTrunk
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.y setl ts=8 noexpandtab
+  autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
 augroup END
 
 augroup RubySpec
