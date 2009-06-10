@@ -397,6 +397,8 @@ source ~/bin/yarm.zsh
 
 export PATH=$PATH:~/coderepos/ruby/misc
 [ -d ~/Documents/uvn/repos_ruby/misc ] && export PATH=$PATH:~/Documents/uvn/repos_ruby/misc
+export PATH=~/.gem/ruby/1.8/bin:$PATH
+export PATH=~/.gem/ruby/1.9/bin:$PATH
 
 # http://subtech.g.hatena.ne.jp/secondlife/20080604/1212562182 {{{
 function cdf() {
@@ -579,6 +581,16 @@ function prompt-git-head-name() {
   echo " [$head_name$additional_info]"
   return 0
 } # }}}
+
+# sudo gem wrapper {{{
+function sudo() {
+  if [ $1 = "gem" ]; then
+    echo "Use gem without sudo!"
+  else
+    command sudo $*
+  fi
+}
+# }}}
 # __END__  {{{1
 # vim: expandtab softtabstop=2 shiftwidth=2
 # vim: foldmethod=marker
