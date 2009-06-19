@@ -318,7 +318,7 @@ nnoremap <Space>gd :<C-u>GitDiff --cached<Enter>
 nnoremap <Space>gD :<C-u>GitDiff<Enter>
 nnoremap <Space>gs :<C-u>GitStatus<Enter>
 nnoremap <Space>gl :<C-u>GitLog<Enter>
-nnoremap <Space>gL :<C-u>GitLog -u<Enter>
+nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
 nnoremap <Space>ga :<C-u>GitAdd<Enter>
 nnoremap <Space>gA :<C-u>GitAdd <cfile><Enter>
 nnoremap <Space>gc :<C-u>GitCommit<Enter>
