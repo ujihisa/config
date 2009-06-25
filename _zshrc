@@ -338,6 +338,8 @@ alias reload='exec zsh'
 alias screen='echo use sr'
 
 # VCS supports {{{
+alias gss='git stash save'
+alias gsp='git stash pop'
 function s() {
   local -A result
 
