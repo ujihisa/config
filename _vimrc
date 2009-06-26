@@ -28,6 +28,7 @@ set autoread
 set title
 set backspace=indent,eol,start
 set modeline
+set noequalalways " http://vim-users.jp/2009/06/hack31/
 
 
 
@@ -63,15 +64,14 @@ nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
 nnoremap <Space>ort :<C-u>OpenRubyspecTab<Cr>
 nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
 nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
-nnoremap <Space>h :help<space>
-nnoremap <Space>n :<C-u>new<space>
+"nnoremap <Space>h :help<space>
+"nnoremap <Space>n :<C-u>new<space>
 nnoremap <Space>] <C-w>]
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
 inoremap <C-t> 「」<left>
 inoremap <C-t><C-t> 【】<left>
-nnoremap ち a
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 cnoremap <C-h> <Left>
@@ -96,6 +96,8 @@ nnoremap <Space>C $C
 nnoremap X ^x
 nnoremap cp Pjdd
 nnoremap Q <nop>
+
+nnoremap // /^
 
 
 
@@ -137,19 +139,20 @@ function! s:split_nicely()
   else
     split
   endif
-endfunction " }}}
+endfunction
+
+AlternateCommand sp  SplitNicely
+AlternateCommand vsp SplitNicely
+" }}}
 
 augroup MyVim
   autocmd!
-  autocmd FileType vim nnoremap <buffer> gs :source %<Cr>
+  autocmd FileType vim nnoremap <buffer> gs :<C-u>source %<Cr>
 augroup END
 
 command! Big wincmd _ | wincmd |
 AlternateCommand big Big
 AlternateCommand man Man
-
-AlternateCommand sp  SplitNicely
-AlternateCommand vsp SplitNicely
 
 " fuzzyfinder {{{
 nnoremap <silent> <Space>ff :<C-u>FuzzyFinderFile<Cr>
@@ -271,10 +274,10 @@ augroup MySomething
   " set filetype=twitter and then...
   autocmd FileType twitter inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#%') . '" >&/dev/null &'<Cr>o
 
-  autocmd FileType mixiim inoremap <buffer> <CR> <Esc>2GdG:<C-u>MixiEchoGet<Cr>ddO
-  autocmd FileType mixispam inoremap <buffer> <Cr> <Esc>:<C-u>MixiEcho<Cr>o
+  "autocmd FileType mixiim inoremap <buffer> <CR> <Esc>2GdG:<C-u>MixiEchoGet<Cr>ddO
+  "autocmd FileType mixispam inoremap <buffer> <Cr> <Esc>:<C-u>MixiEcho<Cr>o
 
-  autocmd FileType spamspam inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#') . '" >&/dev/null &'<Cr>:<C-u>MixiEcho<Cr>o
+  "autocmd FileType spamspam inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#') . '" >&/dev/null &'<Cr>:<C-u>MixiEcho<Cr>o
 augroup END
 
 augroup RubyTrunk
@@ -446,7 +449,7 @@ nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
 " via guyon
 "command! CD execute ":lcd " . expand("%:p:h")
 
-" shell-like guyon cd
+" shell-like guyon cd {{{
 command! CD call CD()
 function! CD()
   let b:old_dir = getcwd()
@@ -457,7 +460,7 @@ function! CDB()
   let tmp = getcwd()
   execute "lcd " . b:old_dir
   let b:old_dir = tmp
-endfunction
+endfunction " }}}
 
 " kana's tabpagecd {{{
 let s:TRUE = 1
