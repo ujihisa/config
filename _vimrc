@@ -48,14 +48,19 @@ nmap <Space>p %
 nnoremap vv <C-v>
 nnoremap ]p p`[=`]
 
-nnoremap sh <C-w>h<C-w>84\|
+nnoremap sh <C-w>h:call <SID>good_width()<Cr>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
-nnoremap sl <C-w>l<C-w>84\|
-nnoremap sH <C-w>H<C-w>84\|
+nnoremap sl <C-w>l:call <SID>good_width()<Cr>
+nnoremap sH <C-w>H:call <SID>good_width()<Cr>
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
-nnoremap sL <C-w>L<C-w>84\|
+nnoremap sL <C-w>L:call <SID>good_width()<Cr>
+function! s:good_width()
+  if winwidth(0) < 84
+    vertical resize 84
+  endif
+endfunction
 
 nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
