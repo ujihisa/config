@@ -107,6 +107,7 @@ nnoremap // /^
 command! -nargs=0 OpenVimrcTab tabnew ~/git/config/_vimrc | TabpageCD ~/git/config
 command! -nargs=0 OpenRubyspecTab tabnew ~/git/ruby-trunk/spec/rubyspec/ | TabpageCD ~/git/ruby-trunk/spec/rubyspec/
 command! -nargs=0 OpenMarkdown !open ~/Documents/markdown.webarchive
+command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
 
 " kana's AlternateCommand {{{
 command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
@@ -663,6 +664,7 @@ function! DoMspec()
 endfunction
 " }}}
 
+let g:VimShell_UsePopen2 = 0
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
