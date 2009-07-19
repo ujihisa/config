@@ -28,6 +28,8 @@ freebsd*|darwin*) # OSX {{{
   export PATH=/opt/local/bin:/opt/local/sbin:$PATH
   export PATH=$PATH:~/Documents/uvn/repos_ruby/said/trunk
   export MANPATH=/opt/local/man:$MANPATH
+  export PATH=$PATH:~/appengine-java-sdk-1.2.1/bin
+  export PATH=$PATH:~/android-sdk-mac_x86-1.5_r2/tools/
   alias sr='command screen -r || command screen -AU vim'
 
   autoload -U compinit
