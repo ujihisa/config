@@ -297,7 +297,8 @@ augroup RubySpec
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb
         \ let b:quickrun_command =
-        \ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
+        \ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/rubies/bin/ruby192'
+        "\ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
 augroup END
 
 " irb
@@ -582,15 +583,6 @@ source ~/.vimrc_secret
 "   * g:blogger_pass
 
 
-" Markdown {{{
-"   http://plasticboy.com/markdown-vim-mode/
-augroup markdown
-  autocmd!
-  autocmd BufWinEnter,BufNewFile *.mkd   setfiletype mkd
-  autocmd BufWinEnter,BufNewFile *.md   setfiletype mkd
-augroup END
-" }}}
-
 " XML, HTML completion {{{
 augroup MyXML
   autocmd!
@@ -674,6 +666,12 @@ endfunction
 " }}}
 
 let g:VimShell_UsePopen2 = 0
+
+" capslock.vim {{{
+imap <C-a> <C-O><Plug>CapsLockToggle
+"set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
+" }}}
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
