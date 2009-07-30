@@ -42,6 +42,8 @@ nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
+nnoremap O o<Esc>
+
 omap <Space>p %
 nmap <Space>p %
 
