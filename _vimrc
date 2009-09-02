@@ -42,7 +42,7 @@ nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
-nnoremap O o<Esc>
+nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 omap <Space>p %
 nmap <Space>p %
@@ -105,7 +105,7 @@ nnoremap cp Pjdd
 nnoremap Q <nop>
 
 nnoremap // /^
-
+nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
 
 "}}}
@@ -178,7 +178,7 @@ endif
 " smartchr
 augroup MySmartchr
   autocmd!
-  autocmd FileType javascript inoremap <expr> \  smartchr#one_of('function(', '\')
+  autocmd FileType javascript inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
 augroup END
 
 if has('mac') " {{{
@@ -310,7 +310,7 @@ augroup MyIRB
 augroup END
 nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
 
-" quickrun
+" quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 nmap <Space>r  <Plug>(quickrun)
 nmap <Space>R <Plug>(quickrun)<C-w>p
@@ -322,6 +322,17 @@ nmap <Space>R <Plug>(quickrun)<C-w>p
 "   execute "normal <C-w>p"
 "   q!
 " endfunction
+" }}}
+
+" quickrun for thinca {{{
+nmap <Space>r :<C-u>QuickRun<Cr>
+
+if !exists('g:QuickRunConfig')
+  let g:QuickRunConfig = {}
+endif
+let g:QuickRunConfig.haskell = {'command': 'runhugs'}
+" }}}
+
 
 
 " for git-vim (motemen) {{{

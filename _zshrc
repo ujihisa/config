@@ -1,3 +1,4 @@
+alias ssh_kami='ssh ujihisa@72.55.171.57'
 # labp :: Boolean {{{
 function labp() {
   [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
@@ -360,9 +361,9 @@ function d() {
   if [ "$result" ] ; then
     result=`git diff --cached`
     if [ "$result" ] ; then
-      git diff --cached --color | /usr/bin/less -RE
+      git diff --cached --color --color-words | /usr/bin/less -RE
     else
-      git diff --color | /usr/bin/less -RE
+      git diff --color --color-words | /usr/bin/less -RE
     fi
     return
   fi
@@ -403,6 +404,7 @@ export PATH=$PATH:~/coderepos/ruby/misc
 [ -d ~/Documents/uvn/repos_ruby/misc ] && export PATH=$PATH:~/Documents/uvn/repos_ruby/misc
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
+export PATH=~/.cabal/bin:$PATH
 
 # http://subtech.g.hatena.ne.jp/secondlife/20080604/1212562182 {{{
 function cdf() {
