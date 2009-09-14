@@ -1,1 +1,1 @@
-/Users/ujihisa/git/quickrun/quickrun.vim
+/Users/ujihisa/git/quickrun/plugin/quickrun.vim

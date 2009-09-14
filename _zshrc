@@ -601,3 +601,4 @@ function sudo() {
 # vim: expandtab softtabstop=2 shiftwidth=2
 # vim: foldmethod=marker
 # vim: ft=zsh
+if [ -s ~/.rvm/scripts/rvm ] ; then source ~/.rvm/scripts/rvm ; fi

@@ -1,4 +1,4 @@
-command Quicklook :call <SID>QuicklookStart()
+command! Quicklook :call <SID>QuicklookStart()
 
 function! s:QuicklookStart()
   ruby quicklook_run
@@ -31,3 +31,12 @@ def quicklook_run
   end
 end
 EOF
+
+"
+command! Quicklook2 :call Quicklook2()
+nnoremap ( :<C-u>Quicklook2<Cr>
+
+function! Quicklook2()
+  echo expand('<cfile>')
+endfunction
+" this is a pen ./a.jpg
