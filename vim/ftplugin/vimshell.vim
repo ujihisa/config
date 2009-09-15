@@ -1,0 +1,1 @@
+/Users/ujihisa/git/vimshell/ftplugin/vimshell.vim
