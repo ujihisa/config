@@ -110,6 +110,11 @@ nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
 "}}}
 
+" Neocomplecache {{{
+let g:NeoComplCache_EnableAtStartup = 1
+inoremap <expr><silent><C-y> neocomplcache#undo_completion()
+" }}}
+
 " My commands
 command! -nargs=0 OpenVimrcTab tabnew ~/git/config/_vimrc | TabpageCD ~/git/config
 command! -nargs=0 OpenRubyspecTab tabnew ~/git/ruby-trunk/spec/rubyspec/ | TabpageCD ~/git/ruby-trunk/spec/rubyspec/
