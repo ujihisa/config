@@ -83,11 +83,16 @@ inoremap <C-h> <left>
 inoremap <C-l> <right>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+inoremap <C-u>  <C-g>u<C-u>
+inoremap <C-w>  <C-g>u<C-w>
 
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
-nnoremap <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
+nnoremap <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
 
 nnoremap Y y$
@@ -107,12 +112,21 @@ nnoremap Q <nop>
 nnoremap // /^
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
 
 "}}}
 
+" http://vim-users.jp/2009/11/hack96/
+autocmd FileType *
+\   if &l:omnifunc == ''
+\ |   setlocal omnifunc=syntaxcomplete#Complete
+\ | endif
+
 " Neocomplecache {{{
-let g:NeoComplCache_EnableAtStartup = 1
-inoremap <expr><silent><C-y> neocomplcache#undo_completion()
+let g:NeoComplCache_EnableAtStartup = 0
+"inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 " }}}
 
 " My commands
@@ -317,8 +331,8 @@ nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
 
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
-nmap <Space>r  <Plug>(quickrun)
-nmap <Space>R <Plug>(quickrun)<C-w>p
+let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
+map <Space>r  <Plug>(quickrun)
 " function! Quickrun_open_test_window()
 "   new
 "   setfiletype ruby
@@ -332,10 +346,10 @@ nmap <Space>R <Plug>(quickrun)<C-w>p
 " quickrun for thinca {{{
 nmap <Space>r :<C-u>QuickRun<Cr>
 
-if !exists('g:QuickRunConfig')
-  let g:QuickRunConfig = {}
+if !exists('g:quickrun_config')
+  let g:quickrun_config = {}
 endif
-let g:QuickRunConfig.haskell = {'command': 'runhugs'}
+let g:quickrun_config.haskell = {'command': 'runhugs'}
 " }}}
 
 
