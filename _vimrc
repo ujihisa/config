@@ -349,7 +349,11 @@ nmap <Space>r :<C-u>QuickRun<Cr>
 if !exists('g:quickrun_config')
   let g:quickrun_config = {}
 endif
-let g:quickrun_config.haskell = {'command': 'runhugs'}
+let g:quickrun_config.haskell = {'command': 'runghc'}
+"let g:quickrun_config.go = {
+"\    'command': '8g',
+"\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
+"\  }
 " }}}
 
 
@@ -501,7 +505,7 @@ function! CDB()
   let b:old_dir = tmp
 endfunction " }}}
 
-" kana's tabpagecd {{{
+" kana's tabpagecd with my fix {{{
 let s:TRUE = 1
 augroup MyAutoCmd
   autocmd!
@@ -520,13 +524,14 @@ AlternateCommand cd  CD
 command! -nargs=? TabpageCD
 \   execute 'cd' fnameescape(<q-args>)
 \ | let t:cwd = getcwd()
+\ | e .
 
 autocmd MyAutoCmd TabEnter *
 \   if !exists('t:cwd')
 \ |   let t:cwd = getcwd()
 \ | endif
 \ | execute 'cd' fnameescape(t:cwd)
-" }}}
+" 2}}}
 " }}}
 "
 " open lib and corresponding test at a new tab {{{
