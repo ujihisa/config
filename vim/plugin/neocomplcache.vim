@@ -1,0 +1,1 @@
+/Users/ujihisa/git/neocomplcache/plugin/neocomplcache.vim

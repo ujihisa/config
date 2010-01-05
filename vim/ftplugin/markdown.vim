@@ -1,0 +1,1 @@
+/Users/ujihisa/git/vim-markdown/ftplugin/markdown.vim
