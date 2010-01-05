@@ -1,8 +1,8 @@
 alias ssh_kami='ssh ujihisa@72.55.171.57'
 # labp :: Boolean {{{
-function labp() {
-  [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
-}
+#function labp() {
+#  [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
+#}
 # }}}
 case "${OSTYPE}" in
 freebsd*|darwin*) # OSX {{{
@@ -83,11 +83,11 @@ freebsd*|darwin*) # OSX {{{
   #PS1=$'%{\e]2;[%n@%m:%~]\a'$'\e]1;%%: %~\a%}'$'%{\e[00;04;32m%}%~%{\e[00m%}\n[%{\e[$00;37m%}%n@%m${WINDOW:+":$WINDOW"}%{\e[00m%}]# '
 
   #PS1=$'%{\e]2;[%n@%m:%~]\a'$'\e]1;%%: %~\a%}'$'%{\e[00;04;32m%}%~%{\e[00m%}\n%{\e[00;32m%}[%n@%m%{\e[00;32m%}]$ '
-  if labp; then
-    PS1=$'%{\e[00;00;32m%}%~%{\e[00m%}\n%{\e[00;04;32m%}[%n@%m]%{\e[00;00;32m%}%% '
-  else
+  #if labp; then
+  #  PS1=$'%{\e[00;00;32m%}%~%{\e[00m%}\n%{\e[00;04;32m%}[%n@%m]%{\e[00;00;32m%}%% '
+  #else
     PS1=$'%{\e[00;00;32m%}%~%{\e[00m%}\n%{\e[00;04;32m%}[%n@%m]%{\e[00;00;32m%}$ '
-  fi
+  #fi
 
 
   RPS1=$'%{\e[00;04;32m%}[%D{%H}:%D{%M}:%D{%S}]%{\e[00m%}'
@@ -333,9 +333,18 @@ linux*|cygwin*) # LINUX {{{
   ;; # }}}
 esac
 
+function safaritab() {
+  # http://www.tuaw.com/2008/09/08/terminal-tips-force-safari-to-open-all-links-in-new-tab/
+  # Give me true or false.
+  # Default behavior is "false"
+  defaults write com.apple.Safari TargetedClicksCreateTabs -bool $1
+  echo "restart Safari"
+}
+
 #alias ssh_shien='ssh 124.108.36.82'
 alias ssh_neumann='ssh 192.168.25.62'
 alias ssh_slicehost='ssh 67.23.4.19'
+alias ssh_vmware='ssh 192.168.183.128'
 
 alias reload='exec zsh'
 alias screen='echo use sr'
@@ -376,7 +385,8 @@ function l() {
   result=`git status 2> /dev/null`
   if [ "$result" ] ; then
     if [ "$1" = "u" ]; then
-      git log -u --color
+      #git log -u --color
+      git log -p --stat
     else
       git l
     fi
@@ -405,6 +415,10 @@ export PATH=$PATH:~/coderepos/ruby/misc
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
+export PATH=~/src/javacc-5.0/bin:$PATH
+export PATH=~/src/llvm/usr/bin:$PATH
+#export PATH=~/src/llvm-old/usr/bin:$PATH
+export PATH=~/git/cbc/usr/bin:$PATH
 
 # http://subtech.g.hatena.ne.jp/secondlife/20080604/1212562182 {{{
 function cdf() {
@@ -479,6 +493,8 @@ alias -g L="| $PAGER"
 alias -g G="| grep"
 alias -g T='| tail'
 alias -g H='| head'
+alias -g F="| few"
+alias -g P="| pbcopy"
 
 alias gl='git pull --rebase'
 alias pus='git push'
@@ -505,8 +521,8 @@ function git-gol-full() {
   for i in $(git log --pretty=oneline | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
 }
 
-alias termtter='~/git/termtter/run_termtter.rb'
-alias kill_termtter='~/git/termtter/bin/kill_termtter'
+alias termtter='~/git/termtter/bin/termtter.rb'
+#alias kill_termtter='~/git/termtter/bin/kill_termtter'
 
 function lprweb() {
   xulrunner-1.9 /tmp/mozilla2ps/application.ini $1 /tmp/lprweb.ps \
@@ -530,9 +546,11 @@ function rubyup() {
   git pull --rebase
   cd $now
 }
+
 function mspecci() {
   rt=~/git/ruby-trunk
-  /usr/bin/ruby ${rt}/spec/mspec/bin/mspec ci -t ${rt}/ruby19/bin/ruby
+  #/usr/bin/ruby ${rt}/spec/mspec/bin/mspec ci -t ${rt}/ruby19/bin/ruby
+  /usr/bin/ruby ${rt}/spec/mspec/bin/mspec ci -t ~/rubies/bin/ruby192 -fs
 }
 
 # kana's prompt git branch {{{
@@ -597,6 +615,7 @@ function sudo() {
   fi
 }
 # }}}
+
 # __END__  {{{1
 # vim: expandtab softtabstop=2 shiftwidth=2
 # vim: foldmethod=marker
