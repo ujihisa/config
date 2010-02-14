@@ -34,7 +34,7 @@ EOF
 
 "
 command! Quicklook2 :call Quicklook2()
-nnoremap ( :<C-u>Quicklook2<Cr>
+"nnoremap ( :<C-u>Quicklook2<Cr>
 
 function! Quicklook2()
   echo expand('<cfile>')
