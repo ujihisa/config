@@ -1,4 +1,6 @@
 alias ssh_kami='ssh ujihisa@72.55.171.57'
+alias ssh_devkami='ssh dev01.kamilabo.jp'
+alias ssh_kamidev2='ssh dev02.kamilabo.jp' # This async is intentional for compl
 # labp :: Boolean {{{
 #function labp() {
 #  [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
@@ -31,7 +33,8 @@ freebsd*|darwin*) # OSX {{{
   export MANPATH=/opt/local/man:$MANPATH
   export PATH=$PATH:~/appengine-java-sdk-1.2.1/bin
   export PATH=$PATH:~/android-sdk-mac_x86-1.5_r2/tools/
-  alias sr='command screen -r || command screen -AU vim'
+  export PATH=$PATH:~/git/termtter/bin
+  alias sr='command screen -r || command screen -AU'
 
   autoload -U compinit
   compinit
@@ -419,6 +422,7 @@ export PATH=~/src/javacc-5.0/bin:$PATH
 export PATH=~/src/llvm/usr/bin:$PATH
 #export PATH=~/src/llvm-old/usr/bin:$PATH
 export PATH=~/git/cbc/usr/bin:$PATH
+export PATH=~/git/epitaph/bin:$PATH
 
 # http://subtech.g.hatena.ne.jp/secondlife/20080604/1212562182 {{{
 function cdf() {
@@ -493,7 +497,7 @@ alias -g L="| $PAGER"
 alias -g G="| grep"
 alias -g T='| tail'
 alias -g H='| head'
-alias -g F="| few"
+alias -g F="| few192"
 alias -g P="| pbcopy"
 
 alias gl='git pull --rebase'
@@ -520,9 +524,6 @@ function git-gol() {
 function git-gol-full() {
   for i in $(git log --pretty=oneline | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
 }
-
-alias termtter='~/git/termtter/bin/termtter.rb'
-#alias kill_termtter='~/git/termtter/bin/kill_termtter'
 
 function lprweb() {
   xulrunner-1.9 /tmp/mozilla2ps/application.ini $1 /tmp/lprweb.ps \
