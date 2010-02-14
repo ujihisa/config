@@ -1,3 +1,10 @@
+" pathogen {{{
+" http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
+runtime! autoload/pathogen.vim
+if exists('g:loaded_pathogen')
+  call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
+end
+" }}}
 " settings {{{
 filetype plugin indent on
 set encoding=utf-8
@@ -164,13 +171,6 @@ endif
 
 nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
 nnoremap <Cr> :<C-u>call <SID>tagjump_or_cr()<Cr>
-" }}}
-" pathogen {{{
-" http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-runtime! autoload/pathogen.vim
-if exists('g:loaded_pathogen')
-  call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
-end
 " }}}
 " {{{ thinca/poslist.vim
 nmap <C-o> <Plug>(poslist_prev)
