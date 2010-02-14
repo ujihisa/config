@@ -1,1 +1,0 @@
-/Users/ujihisa/git/vimshell/plugin/vimshell.vim
