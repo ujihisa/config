@@ -1,5 +1,35 @@
-set guifont=Osaka－等幅\ Ultra-Condensed\ 16
-colorscheme koehler
-set imactivatekey=s-space
-let $PATH=$HOME.'/bin:'.$PATH
+"set guifont=Osaka－等幅\ Ultra-Condensed\ 16
+"colorscheme koehler
+"set imactivatekey=s-space
+"let $PATH=$HOME.'/bin:'.$PATH
 " vim:fenc=utf8
+
+
+colorscheme macvim
+set guioptions-=e
+hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
+hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
+hi Folded guibg=NONE guifg=GRAY ctermfg=0
+set guifont=Andale\ Mono:h14
+set transparency=10
+
+" http://vim-users.jp/2010/01/hack120/ {{{
+let g:save_window_file = expand('~/.vimwinpos')
+augroup SaveWindow
+  autocmd!
+  autocmd VimLeavePre * call s:save_window()
+  function! s:save_window()
+    let options = [
+      \ 'set columns=' . &columns,
+      \ 'set lines=' . &lines,
+      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+      \ ]
+    call writefile(options, g:save_window_file)
+  endfunction
+augroup END
+
+if filereadable(g:save_window_file)
+  execute 'source' g:save_window_file
+endif
+" }}}
+" vim: foldmethod=marker

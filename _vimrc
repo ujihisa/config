@@ -36,6 +36,7 @@ set noequalalways " http://vim-users.jp/2009/06/hack31/
 " }}}
 " mappings {{{
 "let mapleader=" "
+
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 nnoremap / :<C-u>set hlsearch<Return>/
 nnoremap ? :<C-u>set hlsearch<Return>?
@@ -43,6 +44,8 @@ nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
 nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+
+nnoremap <Space>c :<C-u>!wc %<Cr>
 
 omap <Space>p %
 nmap <Space>p %
@@ -100,7 +103,13 @@ nnoremap co zo
 nnoremap cc zc
 
 inoremap <Tab> <C-n>
-nnoremap <Space>s :setfiletype<Space>
+
+nnoremap <Space>s :<C-u>SetFiletype<Space>
+"nnoremap <Space>s :setfiletype<Space>
+nnoremap <Space>sr :<C-u>SetFiletype ruby<Cr>
+nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
+nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
+
 nnoremap <Space>b :w blogger:create
 nnoremap <Space>v :new ~/git/config/vim/
 nnoremap <Space>I $i
@@ -115,26 +124,102 @@ nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
-
 "}}}
+" tag opens in a new window {{{
+if 0 " if you want to use gtags
+  function! s:tagjump_in_new_window()
+    if filereadable("GTAGS")
+      sp
+      GtagsCursor
+    else
+      execute "normal! \<C-w>\<C-]>"
+    endif
+  endfunction
 
-" http://vim-users.jp/2009/11/hack96/
+  function! s:tagjump_or_cr()
+    if bufname('%') == '[Command Line]'
+      execute "normal! \<Cr>"
+    else
+      if filereadable("GTAGS")
+        GtagsCursor
+      else
+        execute "normal! \<C-]>"
+      endif
+    endif
+  endfunction
+  let Gtags_OpenQuickfixWindow = 0
+else
+  function! s:tagjump_in_new_window()
+    execute "normal! \<C-w>\<C-]>"
+  endfunction
+
+  function! s:tagjump_or_cr()
+    if bufname('%') == '[Command Line]'
+      execute "normal! \<Cr>"
+    else
+      execute "normal! \<C-]>"
+    endif
+  endfunction
+endif
+
+nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
+nnoremap <Cr> :<C-u>call <SID>tagjump_or_cr()<Cr>
+" }}}
+" pathogen {{{
+" http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
+runtime! autoload/pathogen.vim
+if exists('g:loaded_pathogen')
+  call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
+end
+" }}}
+" {{{ thinca/poslist.vim
+nmap <C-o> <Plug>(poslist_prev)
+nmap <C-i> <Plug>(poslist_next)
+" }}}
+" MacBook Battery http://d.hatena.ne.jp/lurker/20060801/1154443551 {{{
+command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
+" }}}
+" Backslashes in the commands :e and :cd are ~/ {{{
+function! HomedirOrBackslash()
+  if getcmdtype() == ':'
+    for i in split('e ! r! cd CD new vnew', ' ')
+      if getcmdline() =~# printf('^%s ', i)
+        return '~/'
+      endif
+    endfor
+  endif
+  return '\'
+endfunction
+cnoremap <expr> <Bslash> HomedirOrBackslash()
+" }}}
+" http://vim-users.jp/2009/11/hack96/ {{{
 autocmd FileType *
 \   if &l:omnifunc == ''
 \ |   setlocal omnifunc=syntaxcomplete#Complete
 \ | endif
 
+"}}}
+" remote {{{
+command! -nargs=1 RunOnVm !run_on_vm <args> %
+" }}}
 " Neocomplecache {{{
 let g:NeoComplCache_EnableAtStartup = 0
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 " }}}
+function! OpenVimrcTab() " {{{
+  tabnew
+  TabpageCD ~/git/config
+  edit ~/git/config/_vimrc
+endfunction
 
-" My commands
-command! -nargs=0 OpenVimrcTab tabnew ~/git/config/_vimrc | TabpageCD ~/git/config
+" }}}
+" My commands {{{
+command! -nargs=0 OpenVimrcTab call OpenVimrcTab()
 command! -nargs=0 OpenRubyspecTab tabnew ~/git/ruby-trunk/spec/rubyspec/ | TabpageCD ~/git/ruby-trunk/spec/rubyspec/
-command! -nargs=0 OpenMarkdown !open ~/Documents/markdown.webarchive
 command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
+command! -nargs=0 Ctags !ctags -R
 
+" }}}
 " kana's AlternateCommand {{{
 command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
 function! s:cmd_AlternateCommand(args)
@@ -171,16 +256,20 @@ endfunction
 AlternateCommand sp  SplitNicely
 AlternateCommand vsp SplitNicely
 " }}}
-
-augroup MyVim
+augroup MyVim " {{{
   autocmd!
-  autocmd FileType vim nnoremap <buffer> gs :<C-u>source %<Cr>
+  if has('gui_running')
+    autocmd FileType vim nnoremap <buffer> gs :<C-u>source %<Cr>:source $MYGVIMRC<Cr>
+  else
+    autocmd FileType vim nnoremap <buffer> gs :<C-u>source %<Cr>
+  endif
 augroup END
-
+" }}}
+" {{{
 command! Big wincmd _ | wincmd |
 AlternateCommand big Big
 AlternateCommand man Man
-
+" }}}
 " fuzzyfinder {{{
 nnoremap <silent> <Space>ff :<C-u>FuzzyFinderFile<Cr>
 nnoremap <silent> <Space>fm :<C-u>FuzzyFinderMruFile<Cr>
@@ -192,14 +281,12 @@ if !exists('g:FuzzyFinderOptions')
   let g:FuzzyFinderOptions.Base.key_open_vsplit = '<CR>'
 endif
 " }}}
-
-
-" smartchr
-augroup MySmartchr
+augroup MySmartchr " {{{
   autocmd!
   autocmd FileType javascript inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
 augroup END
 
+" }}}
 if has('mac') " {{{
   " Option+Arrow keys
   set <xRight>=OC
@@ -225,12 +312,10 @@ if has('mac') " {{{
   nnoremap [B[B <C-w>j
   nnoremap [A[A <C-w>k
 endif " }}}
-
 "set formatoptions=tcq
-
-" motemen's
+" motemen's something like quickrun {{{
 command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <line1>, <line2>)) | write | source % | bwipeout
-
+" }}}
 " http://subtech.g.hatena.ne.jp/secondlife/20080603/1212489817
 "let git_diff_spawn_mode=1
 augroup MyGit
@@ -239,12 +324,12 @@ augroup MyGit
 augroup END
 let g:git_diff_spawn_mode = 2
 
-command! GitGol call s:git_gol()
+command! GitGol call s:git_gol() " {{{
 function! s:git_gol()
   vnew
   read!for i in $(git log --pretty=oneline | head -n 10 | cut -d ' ' -f 1); do git show $i --color-words; done
 endfunction
-
+" }}}
 " motemen's escape sequence {{{
 function! HighlightConsoleCodes()
     0
@@ -289,9 +374,7 @@ endfunction
 autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsoleCodes() | set buftype=nofile nomodifiable | endif
 " `:set modifiable | undo | syntax clear' to revert
 " }}}
-
-
-augroup MySomething
+augroup MySomething " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile *.io setfiletype io
   autocmd BufWinEnter,BufNewFile *_spec.rb setl filetype=ruby.rspec
@@ -306,22 +389,27 @@ augroup MySomething
 
   "autocmd FileType spamspam inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#') . '" >&/dev/null &'<Cr>:<C-u>MixiEcho<Cr>o
 augroup END
-
-augroup RubyTrunk
+" }}}
+augroup RubyTrunk " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.y setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
 augroup END
-
-augroup RubySpec
+" }}}
+augroup DrEnglish " {{{
   autocmd!
-  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb
-        \ let b:quickrun_command =
-        \ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/rubies/bin/ruby192'
-        "\ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
+  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt setl spell
 augroup END
-
+" }}}
+"augroup RubySpec " {{{
+"  autocmd!
+"  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb
+"        \ let b:quickrun_command =
+"        \ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/rubies/bin/ruby192'
+"        "\ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
+"augroup END
+" }}}
 " irb
 augroup MyIRB
   autocmd!
@@ -332,7 +420,9 @@ nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
-map <Space>r  <Plug>(quickrun)
+"map <Space>r  <Plug>(quickrun)
+map <Space>r :<C-u>QuickRun<Cr>
+
 " function! Quickrun_open_test_window()
 "   new
 "   setfiletype ruby
@@ -344,12 +434,24 @@ map <Space>r  <Plug>(quickrun)
 " }}}
 
 " quickrun for thinca {{{
-nmap <Space>r :<C-u>QuickRun<Cr>
+"nmap <Space>r :<C-u>QuickRun<Cr>
 
-if !exists('g:quickrun_config')
-  let g:quickrun_config = {}
+"if !exists('g:quickrun_config')
+"  let g:quickrun_config = {}
+"endif
+let g:quickrun_config = {}
+if has('clientserver')
+  let g:quickrun_config['*'] = {'runmode': 'async:remote'}
+else
+  let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
 endif
 let g:quickrun_config.haskell = {'command': 'runghc'}
+let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
+let g:quickrun_config['ruby.rspec'] = {'command': 'spec'}
+let g:quickrun_config.textile = {
+      \ 'command': 'redcloth',
+      \ 'tempfile': '{tempname()}.textile',
+      \ 'exec': ['%c %s > %s:p:r.html', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'] }
 "let g:quickrun_config.go = {
 "\    'command': '8g',
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
@@ -489,9 +591,6 @@ endfunction " }}}
 " <space>ao move current buffer into a new tab.
 nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
 
-" via guyon
-"command! CD execute ":lcd " . expand("%:p:h")
-
 " shell-like guyon cd {{{
 command! CD call CD()
 function! CD()
@@ -562,8 +661,7 @@ highlight TabLineFill ctermfg=0
 
 
 " }}}
-
-command! LeftSpace call s:left_space()
+command! LeftSpace call s:left_space() " {{{
 function! s:left_space()
   let bufname = printf('[leftspace:%s]', tabpagenr())
   let bufnr = bufnr(bufname)  " FIXME: escape.
@@ -582,7 +680,8 @@ function! s:left_space()
   endif
 endfunction
 AlternateCommand leftspace LeftSpace
-
+" }}}
+" Say supports {{{
 command! Say silent execute '!say "' . escape(getline('.'), '"') . '" &>/dev/null &'
 augroup SayCurrentLine
   autocmd!
@@ -590,8 +689,19 @@ augroup SayCurrentLine
   autocmd FileType say nnoremap <buffer> k k:Say<Cr>
 augroup END
 
+" }}}
+" Substitute all spaces for indentation to underlines {{{
+"
+" before:
+"   def aaa
+"     hi
+"   end
+" after:
+"   def aaa
+"   __hi
+"   end
 command! -nargs=0 LeadUnderscores %s/^\s*/\=repeat('_', strlen(submatch(0)))/g
-
+" }}}
 " replace v_p {{{
 vnoremap p :<C-u>call <SID>yank_paste_without_yanking()<CR>
 function! s:yank_paste_without_yanking()
@@ -599,8 +709,17 @@ function! s:yank_paste_without_yanking()
   normal! gvp
   let @" = a
 endfunction " }}}
-
 " smartword {{{
+
+" First, map dummy key mappings for people who don't have smartword plugin.
+if !exists('g:loaded_smartword')
+  nnoremap <Plug>(smartword-w) w
+  nnoremap <Plug>(smartword-b) b
+  nnoremap <Plug>(smartword-e) e
+  nnoremap <Plug>(smartword-ge) ge
+endif
+
+" Second, map key mappings for smartword
 map w  <Plug>(smartword-w)
 map b  <Plug>(smartword-b)
 map e  <Plug>(smartword-e)
@@ -609,50 +728,47 @@ noremap W  w
 noremap B  b
 noremap E  e
 noremap gE ge
-" }}}
 
-" Require secret password file
-source ~/.vimrc_secret
+" }}}
+" Require secret password file {{{
+if filereadable(expand('~/.vimrc_secret'))
+  source ~/.vimrc_secret
+endif
 " This file should let following variables:
 " Blogger.vim
 "   * g:blogger_blogid
 "   * g:blogger_email
 "   * g:blogger_pass
-
-
-" XML, HTML completion {{{
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-augroup END
 " }}}
-
+" XML, HTML completion {{{
+"augroup MyXML
+"  autocmd!
+"  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+"  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+"augroup END
+" }}}
 " Rename (See Vim Hacks #?? {{{
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
- 
-
 " C/C++ semicolon support {{{
-function! s:smartsemicolon()
-  let s = getline('.')
-  if s != "" && match(s, '#.*\|.*//.*\|/\*\|\*/\|\s*$\|.*[;({},]$')
-    normal! a;
-  endif
-endfunction
-augroup MyCSemicolon
-  autocmd!
-  "autocmd Filetype c inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
-  "autocmd Filetype cpp inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
-
-  autocmd FileType c inoremap <buffer> : ;
-  autocmd FileType c inoremap <buffer> ; :
-
-  autocmd FileType cpp inoremap <buffer> : ;
-  autocmd FileType cpp inoremap <buffer> ; :
-augroup END
+"function! s:smartsemicolon()
+"  let s = getline('.')
+"  if s != "" && match(s, '#.*\|.*//.*\|/\*\|\*/\|\s*$\|.*[;({},]$')
+"    normal! a;
+"  endif
+"endfunction
+"augroup MyCSemicolon
+"  autocmd!
+"  "autocmd Filetype c inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+"  "autocmd Filetype cpp inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
+"
+"  autocmd FileType c inoremap <buffer> : ;
+"  autocmd FileType c inoremap <buffer> ; :
+"
+"  autocmd FileType cpp inoremap <buffer> : ;
+"  autocmd FileType cpp inoremap <buffer> ; :
+"augroup END
 " }}}
-
 " C/C++ compiler {{{
 augroup MyCompiler
   autocmd!
@@ -670,7 +786,6 @@ augroup MyCompiler
   autocmd Filetype cpp nmap <buffer> <Space>M :<C-u>!splint %<Cr>
 augroup END
 " }}}
-
 " vimshell supports {{{
 let g:VimShell_EnableInteractive = 1
 let g:Interactive_EscapeColors = [
@@ -678,7 +793,6 @@ let g:Interactive_EscapeColors = [
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
 " }}}
-
 " mspec/rubyspec supports {{{
 function! DoMspec()
   new
@@ -701,14 +815,11 @@ function! DoMspec()
   read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t /usr/bin/ruby #
 endfunction
 " }}}
-
 let g:VimShell_UsePopen2 = 0
-
 " capslock.vim {{{
 imap <C-a> <C-O><Plug>CapsLockToggle
 "set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
 " }}}
-
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
