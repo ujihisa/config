@@ -5,12 +5,14 @@
 " vim:fenc=utf8
 
 
-colorscheme macvim
+"colorscheme macvim
+colorscheme mrkn256
+
 set guioptions-=e
-hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
-hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
+"hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
+"hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
-set guifont=Andale\ Mono:h14
+"set guifont=Andale\ Mono:h14
 set transparency=10
 
 " http://vim-users.jp/2010/01/hack120/ {{{

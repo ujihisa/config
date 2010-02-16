@@ -265,7 +265,7 @@ augroup MyVim " {{{
   endif
 augroup END
 " }}}
-" {{{
+" Big and Man {{{
 command! Big wincmd _ | wincmd |
 AlternateCommand big Big
 AlternateCommand man Man
@@ -432,7 +432,6 @@ map <Space>r :<C-u>QuickRun<Cr>
 "   q!
 " endfunction
 " }}}
-
 " quickrun for thinca {{{
 "nmap <Space>r :<C-u>QuickRun<Cr>
 
@@ -457,9 +456,6 @@ let g:quickrun_config.textile = {
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
 "\  }
 " }}}
-
-
-
 " for git-vim (motemen) {{{
 let g:git_command_edit = 'rightbelow vnew'
 nnoremap <Space>gd :<C-u>GitDiff --cached<Enter>
@@ -473,13 +469,11 @@ nnoremap <Space>gc :<C-u>GitCommit<Enter>
 nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
 " }}}
-
 " F5 to --
 "augroup LatexSuite
 "  au LatexSuite User LatexSuiteFileType
 "   \ imap <silent> <buffer> -- <Plug>Tex_FastEnvironmentInsert
 "augroup END
-
 " TeX Supports {{{
 
 " LaTeX-Suite
@@ -507,7 +501,6 @@ else
   let g:Tex_ViewRule_pdf = 'acroread'
 endif
 " }}}
-
 augroup MyKeywordprg
   autocmd!
   autocmd FileType twitter setl keywordprg=dictionary
@@ -534,7 +527,6 @@ endfunction
 vnoremap <silent> <space>e :call <SID>HtmlEscape()<CR>
 vnoremap <silent> <space>ue :call <SID>HtmlUnEscape()<CR>
 " }}}
-
 " for quicklaunch {{{
 let g:quicklaunch_commands = [
       \   'ls',
@@ -553,7 +545,6 @@ for i in range(10)
 endfor
 silent! nmap <unique> <Space>l  <Plug>(quicklaunch-list)
 " }}}
-
 " kana's useful tab function {{{
 function! s:move_window_into_tab_page(target_tabpagenr)
   " Move the current window into a:target_tabpagenr.
@@ -587,10 +578,8 @@ function! s:move_window_into_tab_page(target_tabpagenr)
 
   execute target_tabpagenr 'tabnext'
 endfunction " }}}
-
 " <space>ao move current buffer into a new tab.
 nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
-
 " shell-like guyon cd {{{
 command! CD call CD()
 function! CD()
@@ -603,7 +592,6 @@ function! CDB()
   execute "lcd " . b:old_dir
   let b:old_dir = tmp
 endfunction " }}}
-
 " kana's tabpagecd with my fix {{{
 let s:TRUE = 1
 augroup MyAutoCmd
@@ -632,7 +620,6 @@ autocmd MyAutoCmd TabEnter *
 \ | execute 'cd' fnameescape(t:cwd)
 " 2}}}
 " }}}
-"
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 AlternateCommand lib Lib
@@ -641,12 +628,10 @@ function! s:open_lib_and_corresponding_test(fname)
   execute 'vnew spec/' . a:fname . '_test.rb'
   execute "normal \<Plug>(quickrun)\<C-w>J\<C-w>7_"
 endfunction " }}}
-
 " for textobj-indent
 omap ii ii<C-o>
 
 let g:gist_clip_command = 'pbcopy'
-
 " color {{{
 colorscheme desert
 highlight Cursor ctermbg=black
@@ -710,24 +695,16 @@ function! s:yank_paste_without_yanking()
   let @" = a
 endfunction " }}}
 " smartword {{{
-
-" First, map dummy key mappings for people who don't have smartword plugin.
-if !exists('g:loaded_smartword')
-  nnoremap <Plug>(smartword-w) w
-  nnoremap <Plug>(smartword-b) b
-  nnoremap <Plug>(smartword-e) e
-  nnoremap <Plug>(smartword-ge) ge
+if exists('*smartword#move') " It's a little bit tricky.
+  map w  <Plug>(smartword-w)
+  map b  <Plug>(smartword-b)
+  map e  <Plug>(smartword-e)
+  map ge  <Plug>(smartword-ge)
+  noremap W  w
+  noremap B  b
+  noremap E  e
+  noremap gE ge
 endif
-
-" Second, map key mappings for smartword
-map w  <Plug>(smartword-w)
-map b  <Plug>(smartword-b)
-map e  <Plug>(smartword-e)
-map ge  <Plug>(smartword-ge)
-noremap W  w
-noremap B  b
-noremap E  e
-noremap gE ge
 
 " }}}
 " Require secret password file {{{
