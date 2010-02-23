@@ -3,20 +3,28 @@ if exists("b:did_ruby_ujihisa_ftplugin") " {{{
 endif
 let b:did_ruby_ujihisa_ftplugin = 1 " }}}
 
-" edn to end
-iabbrev edn end
 " quickrun wrapper {{{
-function! QuickrunForRuby()
-  if expand('%:p') =~# '/lib/[^./]*.rb'
-    let a = substitute(expand('%:p'), 'lib', 'spec', '')
-    let a = substitute(a, '.rb', '_spec.rb', '')
-    write
-    execute "QuickRun -exec 'spec192 " . a . "' -running_mark ':-) <" . a . ">'"
-  else
-    QuickRun
-  endif
-endfunction
-nnoremap <buffer> <Space>r :<C-u>call QuickrunForRuby()<Cr>
+"function! QuickrunForRuby()
+"  if expand('%:p') =~# '/lib/[^./]*.rb'
+"    let a = substitute(expand('%:p'), 'lib', 'spec', '')
+"    let a = substitute(a, '.rb', '_spec.rb', '')
+"    write
+"    execute "QuickRun -exec 'spec192 " . a . "' -running_mark ':-) <" . a . ">'"
+"  else
+"    QuickRun
+"  endif
+"endfunction
+"nnoremap <buffer> <Space>r :<C-u>call QuickrunForRuby()<Cr>
+
+
+if expand('%:p') =~# '/lib/[^./]*.rb$'
+  let b:spec = expand('%:p:s?/lib/?/spec/?:s?.rb$?_spec.rb?')
+  let b:quickrun_config = {
+        \ 'exec': 'spec192 {b:spec}',
+        \ 'running_mark': ':-) <' . b:spec . '>',
+        \ }
+endif
+
 
 " }}}
 inoremap <expr> <buffer> {  smartchr#loop('{', '#{', '{{{')
