@@ -36,13 +36,14 @@ set title
 set backspace=indent,eol,start
 set modeline
 set noequalalways " http://vim-users.jp/2009/06/hack31/
-
+set t_Co=256
 
 
 
 " }}}
 " mappings {{{
 "let mapleader=" "
+let maplocalleader=' '
 
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 nnoremap / :<C-u>set hlsearch<Return>/
@@ -50,7 +51,7 @@ nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
-nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+"nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 nnoremap <Space>c :<C-u>!wc %<Cr>
 
@@ -100,16 +101,19 @@ inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
 "nnoremap <Space>a  <Nop>
+nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+nnoremap <F10>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
+nnoremap <F9>       gT
 
 nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
 
-inoremap <Tab> <C-n>
+inoremap <Tab> <C-p>
 
 nnoremap <Space>s :<C-u>SetFiletype<Space>
 "nnoremap <Space>s :setfiletype<Space>
@@ -118,7 +122,7 @@ nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
 nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
 
 nnoremap <Space>b :w blogger:create
-nnoremap <Space>v :new ~/git/config/vim/
+let g:blogger_gist = 1
 nnoremap <Space>I $i
 nnoremap <Space>C $C
 nnoremap X ^x
@@ -128,10 +132,34 @@ nnoremap Q <nop>
 nnoremap // /^
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
+nnoremap <Space>n :<C-u>new<Cr>
+
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
 "}}}
+" Cr in Insert Mode always means newline {{{
+function! CrInInsertModeAlwaysMeansNewline()
+  let a = (exists('b:did_indent') ? "\<C-f>" : "") . "\<CR>X\<BS>"
+  return pumvisible() ? neocomplcache#close_popup() . a : a
+endfunction
+"inoremap <expr> <CR> pumvisible() ? neocomplcache#close_popup()."\<C-f>\<CR>X\<BS>" : "\<C-f>\<CR>X\<BS>"
+inoremap <expr> <CR> CrInInsertModeAlwaysMeansNewline()
+" }}}
+" Flip Arguments {{{
+"   f(a, b) to f(b, a) when your cursol is on '('.
+function! FlipArguments()
+  normal! y%
+  let @" = split(system('flipper "' . @" . '"'), "\n")[0]
+  execute "normal! %p\<C-o>d%"
+endfunction
+nnoremap <space>flip :<C-u>call FlipArguments()<Cr>
+" }}}
+" vimshell {{{
+nnoremap <Space>v :<C-u>new<Cr>:VimShell<Cr>
+nnoremap <Space>V :<C-u>vnew<Cr>:VimShell<Cr>
+let g:VimShell_UserPrompt = 'fnamemodify(getcwd(), ":~")'
+" }}}
 " tag opens in a new window {{{
 if 0 " if you want to use gtags
   function! s:tagjump_in_new_window()
@@ -180,17 +208,21 @@ nmap <C-i> <Plug>(poslist_next)
 command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
 " }}}
 " Backslashes in the commands :e and :cd are ~/ {{{
-function! HomedirOrBackslash()
-  if getcmdtype() == ':'
-    for i in split('e ! r! cd CD new vnew', ' ')
-      if getcmdline() =~# printf('^%s ', i)
-        return '~/'
-      endif
-    endfor
-  endif
-  return '\'
-endfunction
-cnoremap <expr> <Bslash> HomedirOrBackslash()
+"function! HomedirOrBackslash()
+"  if getcmdtype() == ':'
+"    for i in split('e cd CD new vnew so', ' ')
+"      if getcmdline() =~# printf('^%s ', i)
+"        return '~/'
+"      endif
+"    endfor
+"    if getcmdline() =~# '^?\?!'
+"      return '~/'
+"    endif
+"  endif
+"  return '\'
+"endfunction
+"cnoremap <expr> <Bslash> HomedirOrBackslash()
+cnoremap <expr> \  smartchr#one_of('~/', '\')
 " }}}
 " http://vim-users.jp/2009/11/hack96/ {{{
 autocmd FileType *
@@ -203,8 +235,17 @@ autocmd FileType *
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
 " Neocomplecache {{{
-let g:NeoComplCache_EnableAtStartup = 0
+let g:NeoComplCache_EnableAtStartup = 1
+cnoreabbrev ne NeoComplCacheEnable
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
+if !exists('g:NeoComplCache_OmniPatterns')
+  let g:NeoComplCache_OmniPatterns = {}
+endif
+" below is the copy from ruby's.
+let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
+let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
+
+
 " }}}
 function! OpenVimrcTab() " {{{
   tabnew
@@ -400,6 +441,7 @@ augroup END
 augroup DrEnglish " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt setl spell
+  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt nnoremap <buffer> <Space>y 3G"+yG
 augroup END
 " }}}
 "augroup RubySpec " {{{
@@ -439,12 +481,12 @@ map <Space>r :<C-u>QuickRun<Cr>
 "  let g:quickrun_config = {}
 "endif
 let g:quickrun_config = {}
-if has('clientserver')
-  let g:quickrun_config['*'] = {'runmode': 'async:remote'}
-else
-  let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
-endif
-let g:quickrun_config.haskell = {'command': 'runghc'}
+"let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
+let g:quickrun_config['*'] = {'runmode': 'simple'}
+let g:quickrun_config.haskell = {
+      \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
+      \ 'tempfile': '{tempname()}.hs',
+      \ 'exec': ['%c %s -o %s:p:r', '%s:p:r', 'rm %s:p:r'] }
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
 let g:quickrun_config['ruby.rspec'] = {'command': 'spec'}
 let g:quickrun_config.textile = {
@@ -796,6 +838,59 @@ let g:VimShell_UsePopen2 = 0
 " capslock.vim {{{
 imap <C-a> <C-O><Plug>CapsLockToggle
 "set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
+" }}}
+" PATH {{{
+let $PATH="/Users/ujihisa/git/mdv:".$PATH
+" }}}
+" Haskell Tag {{{
+" see also: ~/bin/update-cabal-tags
+set tag+=~/.cabal/tags
+" }}}
+" thinca vim development environment {{{
+" http://d.hatena.ne.jp/thinca/20100216/1266294717
+" Load settings for each location.
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('vimrc_local.vim', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
+
+
+if exists('g:loaded_vimrc') && g:loaded_vimrc == 0
+  call s:vimrc_local(getcwd())
+endif
+let g:loaded_vimrc = 1
+
+" }}}
+" ] for completion (dirty hack) {{{
+" see also: hack #135
+"augroup CloseOrCompl
+"  autocmd!
+"  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt inoremap <buffer> <expr> ] CloseOrCompl()
+"augroup END
+
+inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : "\<C-n>"
+" inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+" }}}
+" Open junk file. by Shougo "{{{
+command! -nargs=0 JunkFile call s:open_junk_file()
+function! s:open_junk_file()
+  let l:junk_dir = $HOME . '/.Trash/vim_junk'. strftime('/%Y/%m')
+  if !isdirectory(l:junk_dir)
+    call mkdir(l:junk_dir, 'p')
+  endif
+  let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d-%H%M%S.'))
+  if l:filename != ''
+    execute 'edit ' . l:filename
+  endif
+endfunction
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
