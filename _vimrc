@@ -37,6 +37,8 @@ set backspace=indent,eol,start
 set modeline
 set noequalalways " http://vim-users.jp/2009/06/hack31/
 set t_Co=256
+" http://vim-users.jp/2009/06/hack32/
+set directory-=.
 
 
 
@@ -54,6 +56,8 @@ nnoremap # :<C-u>set hlsearch<Return>#
 "nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 nnoremap <Space>c :<C-u>!wc %<Cr>
+
+nnoremap - :<C-u>e %:h<Cr>
 
 omap <Space>p %
 nmap <Space>p %
@@ -79,7 +83,6 @@ nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
 nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
-nnoremap <Space>ort :<C-u>OpenRubyspecTab<Cr>
 nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
 nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 "nnoremap <Space>h :help<space>
@@ -236,6 +239,7 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
 " Neocomplecache {{{
 let g:NeoComplCache_EnableAtStartup = 1
+let g:NeoComplCache_EnableQuickMatch = 0
 cnoreabbrev ne NeoComplCacheEnable
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 if !exists('g:NeoComplCache_OmniPatterns')
@@ -256,7 +260,6 @@ endfunction
 " }}}
 " My commands {{{
 command! -nargs=0 OpenVimrcTab call OpenVimrcTab()
-command! -nargs=0 OpenRubyspecTab tabnew ~/git/ruby-trunk/spec/rubyspec/ | TabpageCD ~/git/ruby-trunk/spec/rubyspec/
 command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
 command! -nargs=0 Ctags !ctags -R
 
@@ -433,8 +436,8 @@ augroup END
 " }}}
 augroup RubyTrunk " {{{
   autocmd!
-  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.c setl ts=8 noexpandtab
-  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/*.y setl ts=8 noexpandtab
+  autocmd BufWinEnter,BufNewFile ~/git/ruby/*.c setl ts=8 noexpandtab
+  autocmd BufWinEnter,BufNewFile ~/git/ruby/*.y setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
 augroup END
 " }}}
@@ -743,10 +746,11 @@ if exists('*smartword#move') " It's a little bit tricky.
   map e  <Plug>(smartword-e)
   map ge  <Plug>(smartword-ge)
   noremap W  w
-  noremap B  b
+  "noremap B  b
   noremap E  e
   noremap gE ge
 endif
+nnoremap B :<C-u>edit %:h<Cr>
 
 " }}}
 " Require secret password file {{{
@@ -875,8 +879,11 @@ let g:loaded_vimrc = 1
 "  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt inoremap <buffer> <expr> ] CloseOrCompl()
 "augroup END
 
-inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : "\<C-n>"
+"inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : "\<C-n>"
 " inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
+" }}}
+" = for completion {{{
+inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 " }}}
 " Open junk file. by Shougo "{{{
 command! -nargs=0 JunkFile call s:open_junk_file()

@@ -1,6 +1,10 @@
-alias ssh_kami='ssh ujihisa@72.55.171.57'
-alias ssh_devkami='ssh dev01.kamilabo.jp'
-alias ssh_kamidev2='ssh dev02.kamilabo.jp' # This async is intentional for compl
+alias macvim='open /Users/ujihisa/src/MacVim-snapshot-49/MacVim.app'
+alias ssh_hootsuite='ssh uji@dev.hootsuitemedia.com'
+alias ssh_virtualbox='ssh -p 2222 localhost'
+#alias ssh_kami='ssh ujihisa@72.55.171.57'
+#alias ssh_devkami='ssh dev01.kamilabo.jp'
+#alias ssh_kamidev2='ssh dev02.kamilabo.jp' # This async is intentional for compl
+alias al='~/.cabal/bin/cabal'
 # labp :: Boolean {{{
 #function labp() {
 #  [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
@@ -34,6 +38,7 @@ freebsd*|darwin*) # OSX {{{
   export PATH=$PATH:~/appengine-java-sdk-1.2.1/bin
   export PATH=$PATH:~/android-sdk-mac_x86-1.5_r2/tools/
   export PATH=$PATH:~/git/termtter/bin
+  export PATH=$PATH:~/.gem/ruby/1.9.1/bin
   alias sr='command screen -r || command screen -AU'
 
   autoload -U compinit
@@ -47,7 +52,7 @@ freebsd*|darwin*) # OSX {{{
   export EDITOR='/opt/local/bin/vim'
   bindkey -v
 
-  export PATH=~/bin:$PATH:/Users/ujihisa/Documents/rrm/bitclust/bin
+  #export PATH=~/bin:$PATH:/Users/ujihisa/Documents/rrm/bitclust/bin
   export PATH=$PATH:~/Documents/rrm/bitclust/tools
   export PATH=$PATH:~/bin/scala-2.6.0-final/
 
@@ -402,6 +407,7 @@ function l() {
 
 alias mysqld_start='sudo /opt/local/share/mysql5/mysql/mysql.server start'
 alias gosh='rlwrap /opt/local/bin/gosh'
+alias ghci='rlwrap --always-readline ghci'
 alias js="js -e 'Function.prototype.toString = function() { return this() };' -i"
 
 # for cdd
@@ -451,6 +457,7 @@ if [ -e /Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEn
 fi
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/rubies/bin
+export PATH=$PATH:~/git/rubinius/local/bin
 export PYTHONSTARTUP=/Users/ujihisa/.pythonrc.py
 alias pt=python
 
@@ -497,7 +504,7 @@ alias -g L="| $PAGER"
 alias -g G="| grep"
 alias -g T='| tail'
 alias -g H='| head'
-alias -g F="| few192"
+alias -g F="| ruby193 /Users/ujihisa/git/few/bin/few"
 alias -g P="| pbcopy"
 
 alias gl='git pull --rebase'
