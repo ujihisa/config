@@ -74,8 +74,9 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L:call <SID>good_width()<Cr>
 function! s:good_width()
-  if winwidth(0) < 84
-    vertical resize 84
+  let size = 120
+  if winwidth(0) < size
+    execute "vertical resize" size
   endif
 endfunction
 
@@ -103,6 +104,9 @@ cnoremap <C-n> <Down>
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
+inoremap <M-BS> <C-w>
+cnoremap <M-BS> <C-w>
+
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
@@ -121,11 +125,13 @@ inoremap <Tab> <C-p>
 nnoremap <Space>s :<C-u>SetFiletype<Space>
 "nnoremap <Space>s :setfiletype<Space>
 nnoremap <Space>sr :<C-u>SetFiletype ruby<Cr>
-nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
-nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
+"nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
+"nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
+"nnoremap <Space>sj :<C-u>SetFiletype javascript<Cr>
+nnoremap <Space>sp :<C-u>SetFiletype php<Cr>i<?php<Cr>?><esc>O
 
 nnoremap <Space>b :w blogger:create
-let g:blogger_gist = 1
+let g:blogger_gist = 0
 nnoremap <Space>I $i
 nnoremap <Space>C $C
 nnoremap X ^x
@@ -161,7 +167,8 @@ nnoremap <space>flip :<C-u>call FlipArguments()<Cr>
 " vimshell {{{
 nnoremap <Space>v :<C-u>new<Cr>:VimShell<Cr>
 nnoremap <Space>V :<C-u>vnew<Cr>:VimShell<Cr>
-let g:VimShell_UserPrompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_prompt =  '$ '
 " }}}
 " tag opens in a new window {{{
 if 0 " if you want to use gtags
@@ -225,7 +232,8 @@ command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
 "  return '\'
 "endfunction
 "cnoremap <expr> <Bslash> HomedirOrBackslash()
-cnoremap <expr> \  smartchr#one_of('~/', '\')
+
+"cnoremap <expr> \  smartchr#one_of('~/', '\')
 " }}}
 " http://vim-users.jp/2009/11/hack96/ {{{
 autocmd FileType *
@@ -238,9 +246,9 @@ autocmd FileType *
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
 " Neocomplecache {{{
-let g:NeoComplCache_EnableAtStartup = 1
-let g:NeoComplCache_EnableQuickMatch = 0
-cnoreabbrev ne NeoComplCacheEnable
+let g:neocomplcache_enable_at_startup = 1
+"let g:NeoComplCache_EnableQuickMatch = 0
+"cnoreabbrev ne NeoComplCacheEnable
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 if !exists('g:NeoComplCache_OmniPatterns')
   let g:NeoComplCache_OmniPatterns = {}
@@ -248,7 +256,22 @@ endif
 " below is the copy from ruby's.
 let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
 let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
+let g:neocomplcache_manual_completion_length = 2
 
+" }}}
+" thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
+" Load settings for eacy location.
+augroup vimrc-local
+  autocmd!
+  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
 
 " }}}
 function! OpenVimrcTab() " {{{
@@ -267,6 +290,7 @@ command! -nargs=0 Ctags !ctags -R
 " kana's AlternateCommand {{{
 command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
 function! s:cmd_AlternateCommand(args)
+  call s:ujihisa_AlternateCommand(a:args)
   let buffer_p = (a:args[0] ==? '<buffer>')
   let original_name = a:args[buffer_p ? 1 : 0]
   let alternate_name = a:args[buffer_p ? 2 : 1]
@@ -287,7 +311,12 @@ function! s:cmd_AlternateCommand(args)
     \ '?' ('"' . alternate_name . '"')
     \ ':' ('"' . lhs . '"')
   endfor
-endfunction "}}}
+endfunction
+
+function! s:ujihisa_AlternateCommand(args)
+  execute "inoreabbrev" a:args[0] a:args[1]
+endfunction
+"}}}
 command! SplitNicely  call s:split_nicely() " {{{
 function! s:split_nicely()
   if 80*2 * 15/16 <= winwidth(0)  " FIXME: threshold customization
@@ -297,8 +326,17 @@ function! s:split_nicely()
   endif
 endfunction
 
-AlternateCommand sp  SplitNicely
-AlternateCommand vsp SplitNicely
+"AlternateCommand sp  SplitNicely
+"AlternateCommand vsp SplitNicely
+" }}}
+" rak {{{
+command! -nargs=* Rak call Rak("<args>")
+function Rak(args)
+  new
+  execute "r!rak --nocolour" a:args
+  nnoremap <buffer> o :<C-u>sp<Cr>gf
+endfunction
+AlternateCommand rak Rak
 " }}}
 augroup MyVim " {{{
   autocmd!
@@ -357,9 +395,6 @@ if has('mac') " {{{
   nnoremap [A[A <C-w>k
 endif " }}}
 "set formatoptions=tcq
-" motemen's something like quickrun {{{
-command! -range=% Source split `=tempname()` | call append(0, getbufline('#', <line1>, <line2>)) | write | source % | bwipeout
-" }}}
 " http://subtech.g.hatena.ne.jp/secondlife/20080603/1212489817
 "let git_diff_spawn_mode=1
 augroup MyGit
@@ -465,8 +500,8 @@ nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
-"map <Space>r  <Plug>(quickrun)
-map <Space>r :<C-u>QuickRun<Cr>
+map <Space>r  <Plug>(quickrun)
+"map <Space>r :<C-u>QuickRun<Cr>
 
 " function! Quickrun_open_test_window()
 "   new
@@ -485,11 +520,12 @@ map <Space>r :<C-u>QuickRun<Cr>
 "endif
 let g:quickrun_config = {}
 "let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
-let g:quickrun_config['*'] = {'runmode': 'simple'}
+let g:quickrun_config['*'] = {'runmode': 'simple', 'split': 'below'}
 let g:quickrun_config.haskell = {
       \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
       \ 'tempfile': '{tempname()}.hs',
       \ 'exec': ['%c %s -o %s:p:r', '%s:p:r', 'rm %s:p:r'] }
+let g:quickrun_config.haskell = {'command': 'runghc'}
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
 let g:quickrun_config['ruby.rspec'] = {'command': 'spec'}
 let g:quickrun_config.textile = {
@@ -501,10 +537,20 @@ let g:quickrun_config.textile = {
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
 "\  }
 " }}}
+let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
+let g:clj_highlight_builtins=1
+" filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
+augroup FiletypeAliases
+  autocmd!
+  autocmd FileType js set filetype=javascript
+  autocmd FileType cf set filetype=coffee
+augroup END
+
+" }}}
 " for git-vim (motemen) {{{
-let g:git_command_edit = 'rightbelow vnew'
-nnoremap <Space>gd :<C-u>GitDiff --cached<Enter>
-nnoremap <Space>gD :<C-u>GitDiff<Enter>
+"let g:git_command_edit = 'rightbelow vnew'
+nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
+nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter>
 nnoremap <Space>gs :<C-u>GitStatus<Enter>
 nnoremap <Space>gl :<C-u>GitLog<Enter>
 nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
@@ -574,13 +620,13 @@ vnoremap <silent> <space>ue :call <SID>HtmlUnEscape()<CR>
 " }}}
 " for quicklaunch {{{
 let g:quicklaunch_commands = [
+      \   'ruby193 launch.rb',
       \   'ls',
       \   'ls -a',
       \   'ls -l',
       \   'ruby check_gmail.rb',
       \   'twitter timeline',
       \   'port outdated',
-      \   '',
       \   '',
       \   '',
       \   'tail -n 30 ~/.zsh_history'
@@ -816,6 +862,7 @@ let g:Interactive_EscapeColors = [
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
 " }}}
+let g:vimshell_split_command = 'split'
 " mspec/rubyspec supports {{{
 function! DoMspec()
   new
@@ -898,6 +945,56 @@ function! s:open_junk_file()
   endif
 endfunction
 
+" }}}
+" No Command-line window by Shougo http://vim-users.jp/2010/07/hack161/ {{{
+nnoremap <sid>(command-line-enter) q:
+xnoremap <sid>(command-line-enter) q:
+nnoremap <sid>(command-line-norange) q:<C-u>
+
+nmap :  <sid>(command-line-enter)
+xmap :  <sid>(command-line-enter)
+
+" I added
+nnoremap q: q:<Esc>
+
+autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin()
+  nnoremap <buffer> q :<C-u>quit<CR>
+  nnoremap <buffer> <TAB> :<C-u>quit<CR>
+  inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+  inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  "I added
+  inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+
+  " Completion.
+  inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  startinsert!
+endfunction
+" }}}
+" load PATH from ~/.zshrc {{{
+function! LoadPathFromZshrc()
+  for cmd in split(system("~/bin/loadpathfromzshrc"), "\n")
+    execute cmd
+  endfor
+endfunction
+call LoadPathFromZshrc()
+" }}}
+" sync server {{{
+function! SyncHootsuite(branch)
+  let command_body = 'rsync -auvz --exclude=.git --exclude=core/conf/conf.php --exclude=*.coffee --exclude=tags'
+  let command_arg = printf('-e ssh /Users/ujihisa/hs/trunk/ "uji@dev.hootsuitemedia.com:~/project/hootsuite/codes/%s/"', a:branch)
+  execute '!' command_body command_arg
+  "!~/bin/moz-reload
+endfunction
+command! -nargs=0 SyncHootsuite call SyncHootsuite('trunk')
+
+augroup HootSuite " {{{
+  autocmd!
+  autocmd BufWinEnter,BufNewFile ~/hs/* nnoremap <buffer> <space>m :<C-u>SyncHootsuite<Cr>
+augroup END " }}}
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
