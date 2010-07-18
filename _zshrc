@@ -1,10 +1,57 @@
-alias macvim='open /Users/ujihisa/src/MacVim-snapshot-49/MacVim.app'
+# command aliases {{{
+#alias macvim='open /Users/ujihisa/src/MacVim-snapshot-49/MacVim.app'
+#alias macvim='open /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app'
+alias al='~/.cabal/bin/cabal'
+alias reload='exec zsh'
+alias screen='echo use sr'
+
+alias mysqld_start='sudo /opt/local/share/mysql5/mysql/mysql.server start'
+alias gosh='rlwrap /opt/local/bin/gosh'
+alias ghci='rlwrap --always-readline ghci'
+alias js="js -e 'Function.prototype.toString = function() { return this() };' -i"
+
+alias gl='git pull --rebase'
+alias pus='git push'
+alias c='git checkout'
+alias b='git branch'
+alias gsrd='git svn rebase && git svn dcommit'
+
+alias rakeg='growlnotify -n vim -m "rake started"; rake | growlnotify -n vim &'
+alias rawvim='vim -u NONE -U NONE --noplugin'
+alias gauchedoc='info --vi-keys gauche-refe'
+alias pingg='ping google.com'
+
+# }}}
+
+# ssh aliases {{{
 alias ssh_hootsuite='ssh uji@dev.hootsuitemedia.com'
 alias ssh_virtualbox='ssh -p 2222 localhost'
 #alias ssh_kami='ssh ujihisa@72.55.171.57'
 #alias ssh_devkami='ssh dev01.kamilabo.jp'
 #alias ssh_kamidev2='ssh dev02.kamilabo.jp' # This async is intentional for compl
-alias al='~/.cabal/bin/cabal'
+#alias ssh_terrsa_in='ssh 192.168.1.22'
+#alias ssh_think_in='ssh 192.168.1.21'
+#alias ssh_necma_in='ssh 192.168.1.20'
+#alias ssh_terrsa_out='ssh -p 2000 219.23.140.27'
+#alias ssh_ikomastation_in='ssh 192.168.1.12'
+#alias ssh_ikomastation_out='ssh 218.183.125.77'
+#alias ssh_sharestyle='ssh sharestyle.com'
+#alias ssh_sanjone_in_home='ssh -p 2022 192.168.1.20'
+#alias ssh_sanjone_in_lab='ssh 192.168.25.5'
+#alias ssh_sanjone_out='ssh -p 2022 219.23.140.27'
+#alias ssh_terrsa='ssh -p 2000 219.23.140.27'
+# for lab machines
+# alias ssh_shapley="ssh inulab@192.168.25.221"
+# alias ssh_nash="ssh inulab@192.168.25.222"
+# alias ssh_gomory="ssh calculate@192.168.25.223"
+# alias ssh_matlab="ssh calculate@192.168.25.224"
+#alias ssh_shien='ssh 124.108.36.82'
+#alias ssh_neumann='ssh 192.168.25.62'
+#alias ssh_slicehost='ssh 67.23.4.19'
+#alias ssh_vmware='ssh 192.168.183.128'
+# }}}
+
+export PATH=$PATH:~/bin/
 # labp :: Boolean {{{
 #function labp() {
 #  [ `ifconfig | grep 192.168.25 | wc -l` != 0 ]
@@ -33,12 +80,7 @@ freebsd*|darwin*) # OSX {{{
   alias mysql='mysql5'
   alias lv='lv -c'
   export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-  export PATH=$PATH:~/Documents/uvn/repos_ruby/said/trunk
   export MANPATH=/opt/local/man:$MANPATH
-  export PATH=$PATH:~/appengine-java-sdk-1.2.1/bin
-  export PATH=$PATH:~/android-sdk-mac_x86-1.5_r2/tools/
-  export PATH=$PATH:~/git/termtter/bin
-  export PATH=$PATH:~/.gem/ruby/1.9.1/bin
   alias sr='command screen -r || command screen -AU'
 
   autoload -U compinit
@@ -51,10 +93,6 @@ freebsd*|darwin*) # OSX {{{
 
   export EDITOR='/opt/local/bin/vim'
   bindkey -v
-
-  #export PATH=~/bin:$PATH:/Users/ujihisa/Documents/rrm/bitclust/bin
-  export PATH=$PATH:~/Documents/rrm/bitclust/tools
-  export PATH=$PATH:~/bin/scala-2.6.0-final/
 
   alias gnuplot="/Applications/MacPorts/AquaTerm.app/Contents/MacOS/AquaTerm &; gnuplot"
 
@@ -120,17 +158,6 @@ freebsd*|darwin*) # OSX {{{
     fi
   }
 
-  alias ssh_terrsa_in='ssh 192.168.1.22'
-  alias ssh_think_in='ssh 192.168.1.21'
-  alias ssh_necma_in='ssh 192.168.1.20'
-  alias ssh_terrsa_out='ssh -p 2000 219.23.140.27'
-  alias ssh_ikomastation_in='ssh 192.168.1.12'
-  alias ssh_ikomastation_out='ssh 218.183.125.77'
-  alias ssh_sharestyle='ssh sharestyle.com'
-  alias ssh_sanjone_in_home='ssh -p 2022 192.168.1.20'
-  alias ssh_sanjone_in_lab='ssh 192.168.25.5'
-  alias ssh_sanjone_out='ssh -p 2022 219.23.140.27'
-
   autoload history-search-end
   zle -N history-beginning-search-backward-end history-search-end
   zle -N history-beginning-search-forward-end history-search-end
@@ -145,7 +172,6 @@ linux*|cygwin*) # LINUX {{{
   alias ls="ls --color"
   alias aptup="sudo aptitude update && sudo aptitude full-upgrade -y"
   export PATH=$PATH:/var/lib/gems/1.8/bin
-  export PATH=$PATH:~/bin
   export PATH=$PATH:/sbin
   export PATH=/opt/ptexlive/bin/:$PATH
   export GIT_PAGER='less -RE'
@@ -315,8 +341,8 @@ linux*|cygwin*) # LINUX {{{
   alias start_sshd="/usr/sbin/sshd -d"
   alias start_sshd_ten_times="start_sshd && start_sshd && start_sshd && start_sshd && start_sshd && start_sshd && start_sshd && start_sshd "
 
-  export PATH=$PATH:~/repos_ruby/said/trunk
-  export PATH=$PATH:~/repos_ruby/misc
+  #export PATH=$PATH:~/repos_ruby/said/trunk
+  #export PATH=$PATH:~/repos_ruby/misc
   alias heyi="hey 192.168.25.2 inulab"
   function svn() {
     if [ $1 = "dil" ] ; then
@@ -325,15 +351,9 @@ linux*|cygwin*) # LINUX {{{
       command svn $*
     fi
   }
-  alias ssh_terrsa='ssh -p 2000 219.23.140.27'
   bindkey '^[[3~' backward-delete-char
   bindkey '' backward-delete-char
 
-  # for lab machines
-  alias ssh_shapley="ssh inulab@192.168.25.221"
-  alias ssh_nash="ssh inulab@192.168.25.222"
-  alias ssh_gomory="ssh calculate@192.168.25.223"
-  alias ssh_matlab="ssh calculate@192.168.25.224"
   export LESSCHARSET=utf-8
   #alias sr='TERM=kterm command screen -r ||TERM=kterm  command screen -AU'
   alias sr='command screen -r || command screen -AU'
@@ -348,14 +368,6 @@ function safaritab() {
   defaults write com.apple.Safari TargetedClicksCreateTabs -bool $1
   echo "restart Safari"
 }
-
-#alias ssh_shien='ssh 124.108.36.82'
-alias ssh_neumann='ssh 192.168.25.62'
-alias ssh_slicehost='ssh 67.23.4.19'
-alias ssh_vmware='ssh 192.168.183.128'
-
-alias reload='exec zsh'
-alias screen='echo use sr'
 
 # VCS supports {{{
 alias gss='git stash save'
@@ -378,9 +390,9 @@ function d() {
   if [ "$result" ] ; then
     result=`git diff --cached`
     if [ "$result" ] ; then
-      git diff --cached --color --color-words | /usr/bin/less -RE
+      git diff --no-prefix --cached --color --color-words | /usr/bin/less -RE
     else
-      git diff --color --color-words | /usr/bin/less -RE
+      git diff --no-prefix --color --color-words | /usr/bin/less -RE
     fi
     return
   fi
@@ -405,11 +417,6 @@ function l() {
 }
 # }}}
 
-alias mysqld_start='sudo /opt/local/share/mysql5/mysql/mysql.server start'
-alias gosh='rlwrap /opt/local/bin/gosh'
-alias ghci='rlwrap --always-readline ghci'
-alias js="js -e 'Function.prototype.toString = function() { return this() };' -i"
-
 # for cdd
 source ~/bin/cdd.zsh
 function chpwd() {
@@ -419,45 +426,30 @@ function chpwd() {
 # for yarm
 source ~/bin/yarm.zsh
 
-export PATH=$PATH:~/coderepos/ruby/misc
-[ -d ~/Documents/uvn/repos_ruby/misc ] && export PATH=$PATH:~/Documents/uvn/repos_ruby/misc
+#export PATH=$PATH:~/coderepos/ruby/misc
+#[ -d ~/Documents/uvn/repos_ruby/misc ] && export PATH=$PATH:~/Documents/uvn/repos_ruby/misc
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
 export PATH=~/src/javacc-5.0/bin:$PATH
 export PATH=~/src/llvm/usr/bin:$PATH
-#export PATH=~/src/llvm-old/usr/bin:$PATH
 export PATH=~/git/cbc/usr/bin:$PATH
 export PATH=~/git/epitaph/bin:$PATH
-
-# http://subtech.g.hatena.ne.jp/secondlife/20080604/1212562182 {{{
-function cdf() {
-  local -a tmpparent; tmpparent=""
-  local -a filename; filename="${1}"
-  local -a file
-  local -a num; num=0
-  while [ $num -le 10 ]; do
-    tmpparent="${tmpparent}../"
-    file="${tmpparent}${filename}"
-    if [ -f "${file}" ] || [ -d "${file}" ]; then
-      cd ${tmpparent}
-      break
-    fi
-    num=$(($num + 1))
-  done
-}
-
-function cdrake() {
-  cdf "Rakefile"
-}
-# }}}
+export PATH=$PATH:~/appengine-java-sdk-1.2.1/bin
+export PATH=$PATH:~/android-sdk-mac_x86-1.5_r2/tools/
+export PATH=$PATH:~/git/termtter/bin
+export PATH=$PATH:~/.gem/ruby/1.9.1/bin
+export PATH=$PATH:~/bin/scala-2.6.0-final/
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:~/rubies/bin
+export PATH=$PATH:~/git/rubinius/local/bin
+export PATH=$PATH:~/git/node/local/bin
+export PATH=$PATH:~/git/coffee-script/local/bin
 
 if [ -e /Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine ]; then
   export PATH=$PATH:/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine
 fi
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:~/rubies/bin
-export PATH=$PATH:~/git/rubinius/local/bin
+
 export PYTHONSTARTUP=/Users/ujihisa/.pythonrc.py
 alias pt=python
 
@@ -506,23 +498,6 @@ alias -g T='| tail'
 alias -g H='| head'
 alias -g F="| ruby193 /Users/ujihisa/git/few/bin/few"
 alias -g P="| pbcopy"
-
-alias gl='git pull --rebase'
-alias pus='git push'
-alias c='git checkout'
-
-alias rakeg='growlnotify -n vim -m "rake started"; rake | growlnotify -n vim &'
-
-function git-v() {
-  git log | grep -e '^commit' | wc -l
-}
-
-alias b='git branch'
-alias rawvim='vim -u NONE -U NONE --noplugin'
-alias gauchedoc='info --vi-keys gauche-refe'
-alias pingg='ping google.com'
-
-alias gsrd='git svn rebase && git svn dcommit'
 
 # kana's nice tool
 function git-gol() {

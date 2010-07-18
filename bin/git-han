@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+def GitHan(*a)
+  GitHan.new(*a)
+end
+
+class GitHan
+  def initialize(args)
+    @args = args.dup
+    if @args.delete '-h'
+      @mode = :help
+    else
+      @mode = :run
+    end
+  end
+
+  def recent
+    help "shows git-log of the latest git-pull
+      git han recent
+      git han recent -u"
+    run do
+      if @args.grep('-u').none?
+        s "git log -u HEAD@{1}..HEAD --reverse"
+      else
+        s "git log    HEAD@{1}..HEAD --reverse"
+      end
+    end
+  end
+
+  private
+
+  def s(o)
+    system o
+  end
+
+  def help(msg)
+    c = caller.first[/`(.*?)'/, 1]
+    puts "git han #{c}: #{msg}" if @mode == :help
+  end
+
+  def run
+    yield if @mode == :run
+  end
+end
+
+if $0 == __FILE__
+  case ARGV.shift.to_sym
+  when :recent
+    GitHan(ARGV).recent
+  else
+    p ARGV
+  end
+end
+
+# vim: ft=ruby
