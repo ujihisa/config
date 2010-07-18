@@ -1,1 +1,0 @@
-/Users/ujihisa/git/git-vim/plugin/git.vim

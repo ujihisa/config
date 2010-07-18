@@ -1,1 +1,0 @@
-/Users/ujihisa/git/vim-kami/kami.vim
