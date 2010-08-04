@@ -39,7 +39,14 @@ set noequalalways " http://vim-users.jp/2009/06/hack31/
 set t_Co=256
 " http://vim-users.jp/2009/06/hack32/
 set directory-=.
-
+" http://vim-users.jp/2010/07/hack162/
+if has('persistent_undo')
+  set undodir=~/.vimundo
+  augroup vimrc-undofile
+    autocmd!
+    autocmd BufReadPre ~/* setlocal undofile
+  augroup END
+endif
 
 
 " }}}
@@ -69,10 +76,10 @@ nnoremap sh <C-w>h:call <SID>good_width()<Cr>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l:call <SID>good_width()<Cr>
-nnoremap sH <C-w>H:call <SID>good_width()<Cr>
+nnoremap H <C-w>H:call <SID>good_width()<Cr>
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
-nnoremap sL <C-w>L:call <SID>good_width()<Cr>
+nnoremap L <C-w>L:call <SID>good_width()<Cr>
 function! s:good_width()
   let size = 120
   if winwidth(0) < size
@@ -128,7 +135,8 @@ nnoremap <Space>sr :<C-u>SetFiletype ruby<Cr>
 "nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
 "nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
 "nnoremap <Space>sj :<C-u>SetFiletype javascript<Cr>
-nnoremap <Space>sp :<C-u>SetFiletype php<Cr>i<?php<Cr>?><esc>O
+nnoremap <Space>spp :<C-u>SetFiletype php<Cr>i<?php<Cr>?><esc>O
+nnoremap <Space>spn :<C-u>SetFiletype python<Cr>
 
 nnoremap <Space>b :w blogger:create
 let g:blogger_gist = 0
@@ -149,7 +157,8 @@ vnoremap > >gv
 "}}}
 " Cr in Insert Mode always means newline {{{
 function! CrInInsertModeAlwaysMeansNewline()
-  let a = (exists('b:did_indent') ? "\<C-f>" : "") . "\<CR>X\<BS>"
+  "let a = (exists('b:did_indent') ? "\<C-f>" : "") . "\<CR>X\<BS>"
+  let a = "\<CR>X\<BS>"
   return pumvisible() ? neocomplcache#close_popup() . a : a
 endfunction
 "inoremap <expr> <CR> pumvisible() ? neocomplcache#close_popup()."\<C-f>\<CR>X\<BS>" : "\<C-f>\<CR>X\<BS>"
@@ -287,36 +296,6 @@ command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
 command! -nargs=0 Ctags !ctags -R
 
 " }}}
-" kana's AlternateCommand {{{
-command! -nargs=* AlternateCommand  call s:cmd_AlternateCommand([<f-args>])
-function! s:cmd_AlternateCommand(args)
-  call s:ujihisa_AlternateCommand(a:args)
-  let buffer_p = (a:args[0] ==? '<buffer>')
-  let original_name = a:args[buffer_p ? 1 : 0]
-  let alternate_name = a:args[buffer_p ? 2 : 1]
-
-  if original_name =~ '\['
-    let [original_name_head, original_name_tail] = split(original_name, '[')
-    let original_name_tail = substitute(original_name_tail, '\]', '', '')
-  else
-    let original_name_head = original_name
-    let original_name_tail = ''
-  endif
-  let original_name_tail = ' ' . original_name_tail
-
-  for i in range(len(original_name_tail))
-    let lhs = original_name_head . original_name_tail[1:i]
-    execute 'cnoreabbrev <expr>' lhs
-    \ '(getcmdtype() == ":" && getcmdline() ==# "' . lhs  . '")'
-    \ '?' ('"' . alternate_name . '"')
-    \ ':' ('"' . lhs . '"')
-  endfor
-endfunction
-
-function! s:ujihisa_AlternateCommand(args)
-  execute "inoreabbrev" a:args[0] a:args[1]
-endfunction
-"}}}
 command! SplitNicely  call s:split_nicely() " {{{
 function! s:split_nicely()
   if 80*2 * 15/16 <= winwidth(0)  " FIXME: threshold customization
@@ -326,8 +305,6 @@ function! s:split_nicely()
   endif
 endfunction
 
-"AlternateCommand sp  SplitNicely
-"AlternateCommand vsp SplitNicely
 " }}}
 " rak {{{
 command! -nargs=* Rak call Rak("<args>")
@@ -336,7 +313,14 @@ function Rak(args)
   execute "r!rak --nocolour" a:args
   nnoremap <buffer> o :<C-u>sp<Cr>gf
 endfunction
-AlternateCommand rak Rak
+
+call altercmd#load()
+command!
+\ -bar -nargs=+
+\ AlterCommandWrapper
+\ CAlterCommand <args> | AlterCommand <cmdwin> <args>
+
+AlterCommandWrapper rak Rak
 " }}}
 augroup MyVim " {{{
   autocmd!
@@ -349,8 +333,8 @@ augroup END
 " }}}
 " Big and Man {{{
 command! Big wincmd _ | wincmd |
-AlternateCommand big Big
-AlternateCommand man Man
+AlterCommandWrapper big Big
+AlterCommandWrapper man Man
 " }}}
 " fuzzyfinder {{{
 nnoremap <silent> <Space>ff :<C-u>FuzzyFinderFile<Cr>
@@ -520,7 +504,7 @@ map <Space>r  <Plug>(quickrun)
 "endif
 let g:quickrun_config = {}
 "let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
-let g:quickrun_config['*'] = {'runmode': 'simple', 'split': 'below'}
+let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below'}
 let g:quickrun_config.haskell = {
       \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
       \ 'tempfile': '{tempname()}.hs',
@@ -620,7 +604,7 @@ vnoremap <silent> <space>ue :call <SID>HtmlUnEscape()<CR>
 " }}}
 " for quicklaunch {{{
 let g:quicklaunch_commands = [
-      \   'ruby193 launch.rb',
+      \   'ruby launch.rb',
       \   'ls',
       \   'ls -a',
       \   'ls -l',
@@ -696,7 +680,7 @@ function! s:complete_cdpath(arglead, cmdline, cursorpos)
   \            "\n")
 endfunction
 
-AlternateCommand cd  CD
+AlterCommandWrapper cd  CD
 " TabpageCD - wrapper of :cd to keep cwd for each tabpage  "{{{2
 
 command! -nargs=? TabpageCD
@@ -713,7 +697,7 @@ autocmd MyAutoCmd TabEnter *
 " }}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
-AlternateCommand lib Lib
+AlterCommandWrapper lib Lib
 function! s:open_lib_and_corresponding_test(fname)
   execute 'tabnew lib/' . a:fname . '.rb'
   execute 'vnew spec/' . a:fname . '_test.rb'
@@ -755,7 +739,7 @@ function! s:left_space()
     wincmd p
   endif
 endfunction
-AlternateCommand leftspace LeftSpace
+AlterCommandWrapper leftspace LeftSpace
 " }}}
 " Say supports {{{
 command! Say silent execute '!say "' . escape(getline('.'), '"') . '" &>/dev/null &'
@@ -966,6 +950,7 @@ function! s:init_cmdwin()
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
   inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  inoremap <buffer><expr>: col('.') == 1 ? "!" : ":"
   inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
 
   " Completion.
@@ -975,27 +960,16 @@ function! s:init_cmdwin()
 endfunction
 " }}}
 " load PATH from ~/.zshrc {{{
-function! LoadPathFromZshrc()
-  for cmd in split(system("~/bin/loadpathfromzshrc"), "\n")
-    execute cmd
-  endfor
-endfunction
-call LoadPathFromZshrc()
+"function! LoadPathFromZshrc()
+"  for cmd in split(system("~/bin/loadpathfromzshrc"), "\n")
+"    execute cmd
+"  endfor
+"endfunction
+"call LoadPathFromZshrc()
 " }}}
-" sync server {{{
-function! SyncHootsuite(branch)
-  let command_body = 'rsync -auvz --exclude=.git --exclude=core/conf/conf.php --exclude=*.coffee --exclude=tags'
-  let command_arg = printf('-e ssh /Users/ujihisa/hs/trunk/ "uji@dev.hootsuitemedia.com:~/project/hootsuite/codes/%s/"', a:branch)
-  execute '!' command_body command_arg
-  "!~/bin/moz-reload
-endfunction
-command! -nargs=0 SyncHootsuite call SyncHootsuite('trunk')
 
-augroup HootSuite " {{{
-  autocmd!
-  autocmd BufWinEnter,BufNewFile ~/hs/* nnoremap <buffer> <space>m :<C-u>SyncHootsuite<Cr>
-augroup END " }}}
-" }}}
+" FIXME
+execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker

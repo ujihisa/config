@@ -20,7 +20,7 @@ let b:did_ruby_ujihisa_ftplugin = 1 " }}}
 if expand('%:p') =~# '/lib/[^./]*.rb$'
   let b:spec = expand('%:p:s?/lib/?/spec/?:s?.rb$?_spec.rb?')
   let b:quickrun_config = {
-        \ 'exec': 'spec192 {b:spec}',
+        \ 'exec': 'spec {b:spec}',
         \ 'running_mark': ':-) <' . b:spec . '>',
         \ }
 endif
