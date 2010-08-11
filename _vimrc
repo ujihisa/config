@@ -967,6 +967,9 @@ endfunction
 "endfunction
 "call LoadPathFromZshrc()
 " }}}
+" hitode909's Mac Screen Blackout {{{
+command! MacScreen silent !osascript -e 'tell application "System Events" to key code 28 using {command down, option down, control down}'
+" }}}
 
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
