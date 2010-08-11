@@ -427,7 +427,6 @@ function chpwd() {
 source ~/bin/yarm.zsh
 
 #export PATH=$PATH:~/coderepos/ruby/misc
-#[ -d ~/Documents/uvn/repos_ruby/misc ] && export PATH=$PATH:~/Documents/uvn/repos_ruby/misc
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
