@@ -139,6 +139,7 @@ nnoremap <Space>spp :<C-u>SetFiletype php<Cr>i<?php<Cr>?><esc>O
 nnoremap <Space>spn :<C-u>SetFiletype python<Cr>
 
 nnoremap <Space>b :w blogger:create
+let g:blogger_ruby_path = '/Users/ujihisa/git/ruby192/local/bin/ruby'
 let g:blogger_gist = 0
 nnoremap <Space>I $i
 nnoremap <Space>C $C
@@ -840,7 +841,9 @@ augroup MyCompiler
 augroup END
 " }}}
 " vimshell supports {{{
-let g:VimShell_EnableInteractive = 1
+if has('gui')
+  let g:VimShell_EnableInteractive = 1
+endif
 let g:Interactive_EscapeColors = [
       \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
@@ -955,6 +958,10 @@ function! s:init_cmdwin()
 
   " Completion.
   inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  " HootSuite
+  inoreabbrev <buffer> c: ./core/mvc/controllers/mobile/
+  inoreabbrev <buffer> v: ./core/mvc/views/mobile/
 
   startinsert!
 endfunction

@@ -91,7 +91,8 @@ freebsd*|darwin*) # OSX {{{
   autoload predict-on
   setopt complete_aliases # aliased ls needs if file/dir completions work
 
-  export EDITOR='/opt/local/bin/vim'
+  #export EDITOR='/opt/local/bin/vim'
+  export EDITOR='vim'
   bindkey -v
 
   alias gnuplot="/Applications/MacPorts/AquaTerm.app/Contents/MacOS/AquaTerm &; gnuplot"
@@ -426,6 +427,7 @@ function chpwd() {
 # for yarm
 source ~/bin/yarm.zsh
 
+# paths
 #export PATH=$PATH:~/coderepos/ruby/misc
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
@@ -442,9 +444,9 @@ export PATH=$PATH:~/bin/scala-2.6.0-final/
 export PATH=/usr/local/bin:$PATH:
 #export PATH=$PATH:~/rubies/bin
 #export PATH=~/git/ruby/local/bin:$PATH
-export PATH=~/git/ruby/187/bin:$PATH
-export PATH=~/git/ruby/192/bin:$PATH
-export PATH=~/git/ruby/193/bin:$PATH
+export PATH=~/git/ruby192/local/bin:$PATH
+export PATH=~/git/ruby193/local/bin:$PATH
+export PATH=~/git/ruby187/local/bin:$PATH
 export PATH=$PATH:~/git/rubinius/local/bin
 export PATH=$PATH:~/git/node/local/bin
 export PATH=$PATH:~/git/coffee-script/local/bin
@@ -494,12 +496,13 @@ expand-to-home-or-insert () {
 zle -N expand-to-home-or-insert
 bindkey "\\"  expand-to-home-or-insert
 
+export GIT_EDITOR=/usr/bin/vim
 export PAGER='less'
 alias -g L="| $PAGER"
 alias -g G="| grep"
 alias -g T='| tail'
 alias -g H='| head'
-alias -g F="| ruby193 /Users/ujihisa/git/few/bin/few"
+alias -g F="| ruby /Users/ujihisa/git/few/bin/few"
 alias -g P="| pbcopy"
 
 # kana's nice tool
