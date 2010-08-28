@@ -12,6 +12,7 @@ colorscheme mrkn256
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
 "set guifont=Andale\ Mono:h14
+set guifont=Inconsolata:h14
 set transparency=10
 set go-=eT
 set go-=r " no right-hand scrollbar at any time
