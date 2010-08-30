@@ -37,6 +37,7 @@ set backspace=indent,eol,start
 set modeline
 set noequalalways " http://vim-users.jp/2009/06/hack31/
 set t_Co=256
+set cmdheight=2
 " http://vim-users.jp/2009/06/hack32/
 set directory-=.
 " http://vim-users.jp/2010/07/hack162/
