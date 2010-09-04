@@ -136,7 +136,7 @@ nnoremap <Space>sr :<C-u>SetFiletype ruby<Cr>
 "nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
 "nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
 "nnoremap <Space>sj :<C-u>SetFiletype javascript<Cr>
-nnoremap <Space>spp :<C-u>SetFiletype php<Cr>i<?php<Cr>?><esc>O
+nnoremap <Space>spp :<C-u>SetFiletype php<Cr>i<?php<Cr>error_reporting(E_ERROR \| E_WARNING \| E_PARSE \| E_NOTICE \| E_STRICT);<Cr><esc>
 nnoremap <Space>spn :<C-u>SetFiletype python<Cr>
 
 nnoremap <Space>b :w blogger:create
