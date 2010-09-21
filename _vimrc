@@ -950,7 +950,7 @@ function! s:init_cmdwin()
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
   inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
-  inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang" : ":"
+  inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : ":"
   inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
 
   " Completion.
