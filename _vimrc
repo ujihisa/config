@@ -129,14 +129,13 @@ nnoremap cc zc
 
 inoremap <Tab> <C-p>
 
-nnoremap <Space>s :<C-u>SetFiletype<Space>
-"nnoremap <Space>s :setfiletype<Space>
-nnoremap <Space>sr :<C-u>SetFiletype ruby<Cr>
-"nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
-"nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
-"nnoremap <Space>sj :<C-u>SetFiletype javascript<Cr>
-nnoremap <Space>spp :<C-u>SetFiletype php<Cr>i<?php<Cr>?><esc>O
-nnoremap <Space>spn :<C-u>SetFiletype python<Cr>
+nnoremap <Space>s q:set filetype=
+nnoremap <Space>sr :<C-u>set filetype=ruby<Cr>
+"nnoremap <Space>sm :<C-u>set filetype=markdown<Cr>
+"nnoremap <Space>sh :<C-u>set filetype=haskell<Cr>
+"nnoremap <Space>sj :<C-u>set filetype=javascript<Cr>
+nnoremap <Space>spp :<C-u>set filetype=php<Cr>i<?php<Cr>?><esc>O
+nnoremap <Space>spn :<C-u>set filetype=python<Cr>
 
 nnoremap <Space>b :w blogger:create
 let g:blogger_ruby_path = '/Users/ujihisa/git/ruby192/local/bin/ruby'
