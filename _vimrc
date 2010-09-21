@@ -37,6 +37,7 @@ set backspace=indent,eol,start
 set modeline
 set noequalalways " http://vim-users.jp/2009/06/hack31/
 set t_Co=256
+set cmdheight=2
 " http://vim-users.jp/2009/06/hack32/
 set directory-=.
 " http://vim-users.jp/2010/07/hack162/
@@ -134,8 +135,15 @@ nnoremap <Space>sr :<C-u>set filetype=ruby<Cr>
 "nnoremap <Space>sm :<C-u>set filetype=markdown<Cr>
 "nnoremap <Space>sh :<C-u>set filetype=haskell<Cr>
 "nnoremap <Space>sj :<C-u>set filetype=javascript<Cr>
-nnoremap <Space>spp :<C-u>set filetype=php<Cr>i<?php<Cr>?><esc>O
+nnoremap <Space>spp :<C-u>set filetype=php<Cr>i<?php<Cr>error_reporting(E_ERROR \| E_WARNING \| E_PARSE \| E_NOTICE \| E_STRICT);<Cr><esc>
 nnoremap <Space>spn :<C-u>set filetype=python<Cr>
+nnoremap <Space>s :<C-u>SetFiletype<Space>
+"nnoremap <Space>s :setfiletype<Space>
+nnoremap <Space>sr :<C-u>SetFiletype ruby<Cr>
+"nnoremap <Space>sm :<C-u>SetFiletype markdown<Cr>
+"nnoremap <Space>sh :<C-u>SetFiletype haskell<Cr>
+"nnoremap <Space>sj :<C-u>SetFiletype javascript<Cr>
+nnoremap <Space>spn :<C-u>SetFiletype python<Cr>
 
 nnoremap <Space>b :w blogger:create
 let g:blogger_ruby_path = '/Users/ujihisa/git/ruby192/local/bin/ruby'
