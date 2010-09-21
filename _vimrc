@@ -441,8 +441,8 @@ autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsol
 augroup MySomething " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile *.io setfiletype io
-  autocmd BufWinEnter,BufNewFile *_spec.rb setl filetype=ruby.rspec
-  autocmd BufWinEnter,BufNewFile *.tex.erb setl filetype=tex.eruby
+  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+  autocmd BufWinEnter,BufNewFile *.tex.erb set filetype=tex.eruby
 
 
   " set filetype=twitter and then...
@@ -950,7 +950,7 @@ function! s:init_cmdwin()
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
   inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
-  inoremap <buffer><expr>: col('.') == 1 ? "!" : ":"
+  inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang" : ":"
   inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
 
   " Completion.
