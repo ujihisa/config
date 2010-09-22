@@ -155,6 +155,7 @@ nnoremap <Space>n :<C-u>new<Cr>
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
+
 "}}}
 " Cr in Insert Mode always means newline {{{
 function! CrInInsertModeAlwaysMeansNewline()
@@ -322,6 +323,12 @@ command!
 \ CAlterCommand <args> | AlterCommand <cmdwin> <args>
 
 AlterCommandWrapper rak Rak
+" }}}
+" unite {{{
+if globpath(&rtp, 'plugin/unite.vim') != ''
+  nnoremap <Space>u :<C-u>Unite file<Cr>
+  AlterCommandWrapper unite Unite
+endif
 " }}}
 augroup MyVim " {{{
   autocmd!
