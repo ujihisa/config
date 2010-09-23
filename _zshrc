@@ -1,7 +1,8 @@
 # command aliases {{{
 #alias macvim='open /Users/ujihisa/src/MacVim-snapshot-49/MacVim.app'
 #alias macvim='open /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app'
-alias al='~/.cabal/bin/cabal'
+#alias al='~/.cabal/bin/cabal'
+alias al=cabal
 alias reload='exec zsh'
 alias screen='echo use sr'
 
