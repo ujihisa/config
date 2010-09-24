@@ -326,7 +326,7 @@ AlterCommandWrapper rak Rak
 " }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
-  nnoremap <Space>u :<C-u>Unite file<Cr>i
+  nmap <Space>u :<C-u>Unite file<Cr>i
   AlterCommandWrapper unite Unite
 endif
 " }}}
