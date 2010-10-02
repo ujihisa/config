@@ -29,6 +29,6 @@ class Module
 end
 
 # :q as exit
-class Symbol; alias orig_inspect inspect; def inspect; self == :q ? exit : orig_inspect; end
+# class Symbol; alias orig_inspect inspect; def inspect; self == :q ? exit : orig_inspect; end
 
 # vim: ft=ruby
