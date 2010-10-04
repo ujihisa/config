@@ -951,6 +951,11 @@ xmap :  <sid>(command-line-enter)
 nnoremap q: q:<Esc>
 
 autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
+
+" Araxia__
+au CmdwinEnter * nnoremap <buffer> <CR> 0y$<C-c><C-c>:<C-r>"<CR>
+au CmdwinEnter * inoremap <buffer> <CR> <Esc>0y$<C-c><C-c>:<C-r>"<CR>
+
 function! s:init_cmdwin()
   nnoremap <buffer> q :<C-u>quit<CR>
   nnoremap <buffer> <TAB> :<C-u>quit<CR>
