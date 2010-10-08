@@ -432,6 +432,7 @@ source ~/bin/yarm.zsh
 #export PATH=$PATH:~/coderepos/ruby/misc
 export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
+export PATH=~/.gem/jruby/1.8/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
 export PATH=~/src/javacc-5.0/bin:$PATH
 export PATH=~/src/llvm/usr/bin:$PATH
