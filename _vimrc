@@ -48,6 +48,7 @@ if has('persistent_undo')
     autocmd BufReadPre ~/* setlocal undofile
   augroup END
 endif
+set equalalways
 
 
 " }}}
@@ -330,6 +331,8 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   "nmap si :<C-u>Unite file<Cr><Plug>(unite_insert_enter)
   AlterCommandWrapper unite Unite
 endif
+let g:unite_enable_start_insert = 1
+let g:unite_enable_split_vertically = 1
 " }}}
 augroup MyVim " {{{
   autocmd!
