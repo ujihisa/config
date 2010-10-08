@@ -336,6 +336,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
+let g:unite_source_file_mru_time_format = "(%x %r)"
 " }}}
 augroup MyVim " {{{
   autocmd!
