@@ -129,7 +129,10 @@ nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
 
-inoremap <Tab> <C-p>
+inoremap <expr><Tab> TabOrCompl()
+function! TabOrCompl()
+  return (col('.') == 1 || matchstr(getline('.'), '.', col('.')-2) == "\t") ? "\<C-q>\<Tab>" : "\<C-p>"
+endfunction
 
 nnoremap <Space>s q:set filetype=
 nnoremap <Space>sr :<C-u>set filetype=ruby<Cr>
