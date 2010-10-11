@@ -527,7 +527,7 @@ let g:quickrun_config.haskell = {
       \ 'exec': ['%c %s -o %s:p:r', '%s:p:r', 'rm %s:p:r'] }
 let g:quickrun_config.haskell = {'command': 'runghc'}
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
-let g:quickrun_config['ruby.rspec'] = {'command': 'spec -l %l'}
+let g:quickrun_config['ruby.rspec'] = {'command': "spec -l {line('.')}"}
 let g:quickrun_config.textile = {
       \ 'command': 'redcloth',
       \ 'tempfile': '{tempname()}.textile',

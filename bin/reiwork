@@ -2,6 +2,6 @@
 print 'ok? '
 exit unless gets.chomp == 'y'
 
-file = "com.apple.iWork09.plist"
+file = "/Library/Preferences/com.apple.iWork09.plist"
 puts "Deleting #{file}..."
 File.unlink file
