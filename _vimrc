@@ -959,9 +959,13 @@ nnoremap q: q:<Esc>
 
 autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
 
-" Araxia__
-au CmdwinEnter * nnoremap <buffer> <CR> 0y$<C-c><C-c>:<C-r>"<CR>
-au CmdwinEnter * inoremap <buffer> <CR> <Esc>0y$<C-c><C-c>:<C-r>"<CR>
+" MacVim is shit
+autocmd CmdwinEnter * nnoremap <buffer><expr> <Cr> CmdwinRun()
+autocmd CmdwinEnter * inoremap <buffer><expr> <Cr> CmdwinRun()
+function! CmdwinRun()
+  let a = getline(line('.'))
+  return "\<Esc>\<C-c>\<C-c>:" . a . "\<Cr>"
+endfunction
 
 function! s:init_cmdwin()
   nnoremap <buffer> q :<C-u>quit<CR>
