@@ -330,8 +330,7 @@ AlterCommandWrapper rak Rak
 " }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
-  nnoremap ss :<C-u>Unite file_rec<Cr>
-  "nmap si :<C-u>Unite file<Cr><Plug>(unite_insert_enter)
+  nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
   AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
