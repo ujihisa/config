@@ -335,7 +335,11 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
-let g:unite_source_file_mru_time_format = "(%x %r)"
+"let g:unite_source_file_mru_time_format = "(%x %r)"
+
+let g:unite_quick_match_table = {'a': 1, 'd': 3, 'e': 13, 'f': 4, 'g': 5, 'h': 6, 'i': 18, 'j': 7, 'k': 8, 'l': 9, 'o': 19, 'p': 20, 'q': 11, 'r': 14, 's': 2, 't': 15, 'u': 17, 'w': 12, 'y': 16, ':': 10}
+" in other words, it just swaps : and ;
+
 " }}}
 augroup MyVim " {{{
   autocmd!
