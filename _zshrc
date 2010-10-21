@@ -78,7 +78,6 @@ freebsd*|darwin*) # OSX {{{
   alias ..='cd .. && ls'
   alias ...='cd ../.. && ls'
   alias wget='wget --user-agent=Mozilla'
-  alias mysql='mysql5'
   alias lv='lv -c'
   export PATH=/opt/local/bin:/opt/local/sbin:$PATH
   export MANPATH=/opt/local/man:$MANPATH
