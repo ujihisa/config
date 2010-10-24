@@ -272,7 +272,7 @@ endif
 let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
 let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
 let g:neocomplcache_manual_completion_length = 2
-
+let g:neocomplcache_max_list = 200
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
