@@ -557,7 +557,11 @@ nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter>
 nnoremap <Space>gs :<C-u>GitStatus<Enter>
 nnoremap <Space>gl :<C-u>GitLog<Enter>
 nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
-nnoremap <Space>ga :<C-u>GitAdd<Enter>
+if globpath(&rtp, 'plugin/shadow.vim') != ''
+  nnoremap <Space>ga :<C-u>call GitAddBoth()
+else
+  nnoremap <Space>ga :<C-u>GitAdd<Enter>
+endif
 nnoremap <Space>gA :<C-u>GitAdd <cfile><Enter>
 nnoremap <Space>gc :<C-u>GitCommit<Enter>
 nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
