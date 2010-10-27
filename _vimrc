@@ -265,12 +265,12 @@ let g:neocomplcache_enable_at_startup = 1
 "let g:NeoComplCache_EnableQuickMatch = 0
 "cnoreabbrev ne NeoComplCacheEnable
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
-if !exists('g:NeoComplCache_OmniPatterns')
-  let g:NeoComplCache_OmniPatterns = {}
-endif
+"if !exists('g:NeoComplCache_OmniPatterns')
+"  let g:NeoComplCache_OmniPatterns = {}
+"endif
 " below is the copy from ruby's.
-let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
-let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
+"let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
+"let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
 let g:neocomplcache_manual_completion_length = 2
 let g:neocomplcache_max_list = 200
 " }}}
