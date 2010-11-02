@@ -803,7 +803,7 @@ if exists('*smartword#move') " It's a little bit tricky.
   noremap E  e
   noremap gE ge
 endif
-nnoremap B :<C-u>edit %:h<Cr>
+"nnoremap B :<C-u>edit %:h<Cr>
 
 " }}}
 " Require secret password file {{{
