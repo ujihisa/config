@@ -299,7 +299,15 @@ endfunction
 " My commands {{{
 command! -nargs=0 OpenVimrcTab call OpenVimrcTab()
 command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
-command! -nargs=0 Ctags !ctags -R
+command! -nargs=0 Ctags call Ctags()
+
+function! Ctags()
+  let cmdname = globpath(&rtp, 'plugin/vimproc.vim') != '' ? 'VimProcBang' : '!'
+  execute cmdname 'ctags -R'
+  if globpath(&rtp, 'plugin/unite.vim') != ''
+    NeoComplCacheCachingTags
+  endif
+endfunction
 
 " }}}
 command! SplitNicely  call s:split_nicely() " {{{
