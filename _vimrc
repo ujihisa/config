@@ -356,6 +356,7 @@ AlterCommandWrapper big Big
 AlterCommandWrapper man Man
 " }}}
 " fuzzyfinder {{{
+if 0
 nnoremap <silent> <Space>ff :<C-u>FuzzyFinderFile<Cr>
 nnoremap <silent> <Space>fm :<C-u>FuzzyFinderMruFile<Cr>
 nnoremap <silent> <Space>fr :<C-u>FuzzyFinderBuffer<Cr>
@@ -364,6 +365,7 @@ if !exists('g:FuzzyFinderOptions')
   let g:FuzzyFinderOptions.Base.key_open = '<C-j>'
   let g:FuzzyFinderOptions.Base.key_open_split = '<Space>'
   let g:FuzzyFinderOptions.Base.key_open_vsplit = '<CR>'
+endif
 endif
 " }}}
 augroup MySmartchr " {{{
@@ -1002,6 +1004,31 @@ endfunction
 "  endfor
 "endfunction
 "call LoadPathFromZshrc()
+" }}}
+" guifont changer {{{
+function! GuifontChanger()
+  if !exists('s:guifont_changer_index')
+    let s:guifont_changer_index = 0
+  else
+    let s:guifont_changer_index += 1
+  endif
+  if !exists('s:guifont_changer_list')
+    let s:guifont_changer_list = [
+          \ 'Inconsolata:h14',
+          \ 'Andale Mono:h14',
+          \ 'Handwriting - Dakota:h64',
+          \ 'Menlo:h13',
+          \ ]
+  endif
+  let font = s:guifont_changer_list[
+        \ s:guifont_changer_index % len(s:guifont_changer_list)]
+  let cmd = "set guifont=" . substitute(font, " ", "\\\\ ", 'g')
+  execute cmd
+  call WindowsizeMaximize13()
+  echo cmd " for some reason it doesn't show up...
+endfunction
+"command! -nargs=0 GuifontChanger call GuifontChanger()
+nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " }}}
 " hitode909's Mac Screen Blackout {{{
 command! MacScreen silent !osascript -e 'tell application "System Events" to key code 28 using {command down, option down, control down}'
