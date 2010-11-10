@@ -8,7 +8,7 @@ alias screen='echo use sr'
 
 alias mysqld_start='sudo /opt/local/share/mysql5/mysql/mysql.server start'
 alias gosh='rlwrap /opt/local/bin/gosh'
-alias ghci='rlwrap --always-readline ghci'
+#alias ghci='rlwrap --always-readline ghci'
 alias js="js -e 'Function.prototype.toString = function() { return this() };' -i"
 
 alias gl='git pull --rebase'

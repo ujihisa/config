@@ -299,7 +299,15 @@ endfunction
 " My commands {{{
 command! -nargs=0 OpenVimrcTab call OpenVimrcTab()
 command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
-command! -nargs=0 Ctags !ctags -R
+command! -nargs=0 Ctags call Ctags()
+
+function! Ctags()
+  let cmdname = globpath(&rtp, 'plugin/vimproc.vim') != '' ? 'VimProcBang' : '!'
+  execute cmdname 'ctags -R'
+  if globpath(&rtp, 'plugin/unite.vim') != ''
+    NeoComplCacheCachingTags
+  endif
+endfunction
 
 " }}}
 command! SplitNicely  call s:split_nicely() " {{{
@@ -337,7 +345,11 @@ let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
 "let g:unite_source_file_mru_time_format = "(%x %r)"
 
-let g:unite_quick_match_table = {'a': 1, 'd': 3, 'e': 13, 'f': 4, 'g': 5, 'h': 6, 'i': 18, 'j': 7, 'k': 8, 'l': 9, 'o': 19, 'p': 20, 'q': 11, 'r': 14, 's': 2, 't': 15, 'u': 17, 'w': 12, 'y': 16, ':': 10}
+let g:unite_quick_match_table = {
+      \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
+      \'q' : 11, 'w' : 12, 'e' : 13, 'r' : 14, 't' : 15, 'y' : 16, 'u' : 17, 'i' : 18, 'o' : 19, 'p' : 20,
+      \'1' : 21, '2' : 22, '3' : 23, '4' : 24, '5' : 25, '6' : 26, '7' : 27, '8' : 28, '9' : 29, '0' : 30,
+      \}
 " in other words, it just swaps : and ;
 
 " }}}
