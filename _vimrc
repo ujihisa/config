@@ -656,7 +656,7 @@ let g:quicklaunch_commands = [
 for i in range(10)
   execute "silent! nmap <unique> <Space>" . i . "  <Plug>(quicklaunch-" . i . ")"
 endfor
-silent! nmap <unique> <Space>l  <Plug>(quicklaunch-list)
+"silent! nmap <unique> <Space>l  <Plug>(quicklaunch-list)
 " }}}
 " kana's useful tab function {{{
 function! s:move_window_into_tab_page(target_tabpagenr)
