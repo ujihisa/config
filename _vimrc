@@ -1046,6 +1046,40 @@ nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " hitode909's Mac Screen Blackout {{{
 command! MacScreen silent !osascript -e 'tell application "System Events" to key code 28 using {command down, option down, control down}'
 " }}}
+" Swap window without moving cursor {{{
+" https://gist.github.com/654701
+"nmap <Space>j <SID>(swap-window-down-no-cursor-move)
+"nmap <Space>k <SID>(swap-window-up-no-cursor-move)
+nmap <Space>h <SID>(swap-window-left-no-cursor-move)
+nmap <Space>l <SID>(swap-window-right-no-cursor-move)
+
+nnoremap <SID>(swap-window-down-no-cursor-move) :<C-u>call <SID>swap_with_wincmd(v:count1, 'j')<CR>
+nnoremap <SID>(swap-window-up-no-cursor-move) :<C-u>call <SID>swap_with_wincmd(v:count1, 'k')<CR>
+nnoremap <SID>(swap-window-left-no-cursor-move) :<C-u>call <SID>swap_with_wincmd(v:count1, 'h')<CR>
+nnoremap <SID>(swap-window-right-no-cursor-move) :<C-u>call <SID>swap_with_wincmd(v:count1, 'l')<CR>
+
+function! s:swap_with_wincmd(n, dir)
+  let curwin = winnr()
+  execute a:n 'wincmd' a:dir
+  let targetwin = winnr()
+  wincmd p
+  call s:swap_window(curwin, targetwin)
+endfunction
+
+function! s:swap_window(curwin, targetwin)
+    let curbuf = winbufnr(a:curwin)
+    let targetbuf = winbufnr(a:targetwin)
+
+    if curbuf == targetbuf
+        " TODO: Swap also same buffer!
+    else
+        execute 'hide' targetbuf . 'buffer'
+        execute a:targetwin 'wincmd w'
+        execute curbuf 'buffer'
+        wincmd p    " Behave like <C-w>x ?
+    endif
+endfunction
+" }}}
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
