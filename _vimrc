@@ -339,6 +339,7 @@ AlterCommandWrapper rak Rak
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
+  nnoremap sc :<C-u>Unite colorscheme<Cr>
   AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
