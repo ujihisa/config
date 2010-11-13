@@ -19,6 +19,9 @@ set go-=r " no right-hand scrollbar at any time
 set go-=l " no left-hand scrollbar at any time
 set go+=c
 
+nnoremap <S-up> :<C-u>set transparency=10<Cr>
+nnoremap <S-down> :<C-u>set transparency=0<Cr>
+
 " http://vim-users.jp/2010/01/hack120/ {{{
 let g:save_window_file = expand('~/.vimwinpos')
 augroup SaveWindow
