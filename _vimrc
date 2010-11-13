@@ -1022,11 +1022,11 @@ function! GuifontChanger()
   endif
   if !exists('s:guifont_changer_list')
     let s:guifont_changer_list = [
+          \ 'Andale Mono:h14',
+          \ 'Menlo:h13',
           \ 'Inconsolata:h14',
           \ 'Handwriting - Dakota:h32',
-          \ 'Andale Mono:h14',
           \ 'Handwriting - Dakota:h64',
-          \ 'Menlo:h13',
           \ ]
   endif
   let font = s:guifont_changer_list[
