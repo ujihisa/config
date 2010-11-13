@@ -381,12 +381,6 @@ if !exists('g:FuzzyFinderOptions')
 endif
 endif
 " }}}
-augroup MySmartchr " {{{
-  autocmd!
-  autocmd FileType javascript inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
-augroup END
-
-" }}}
 if has('mac') " {{{
   " Option+Arrow keys
   set <xRight>=OC
@@ -998,7 +992,8 @@ function! s:init_cmdwin()
   "I added
   inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : ":"
-  inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+  "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+  inoremap <expr> \ pumvisible() ? neocomplcache#close_popup() : smartchr#one_of('~/', '\')
 
   " Completion.
   inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
