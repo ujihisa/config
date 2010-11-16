@@ -1042,6 +1042,10 @@ nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " hitode909's Mac Screen Blackout {{{
 command! MacScreen silent !osascript -e 'tell application "System Events" to key code 28 using {command down, option down, control down}'
 " }}}
+" few itself {{{
+command! -nargs=0 Few QuickRun ruby /Users/ujihisa/git/few/bin/few
+AlterCommandWrapper few Few
+" }}}
 " Swap window without moving cursor {{{
 " https://gist.github.com/654701
 "nmap <Space>j <SID>(swap-window-down-no-cursor-move)
@@ -1075,6 +1079,10 @@ function! s:swap_window(curwin, targetwin)
         wincmd p    " Behave like <C-w>x ?
     endif
 endfunction
+" }}}
+" copy the current file name {{{
+command! -nargs=0 CopyTheCurrentFileName let @+ = expand('%')
+AlterCommandWrapper copythecurrentfilename CopyTheCurrentFileName
 " }}}
 let g:shadow_debug = 1
 " FIXME
