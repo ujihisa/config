@@ -160,6 +160,10 @@ nnoremap <Space>n :<C-u>new<Cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" paste in insert mode is <C-o>p while paste in command-line mode is <C-r>".
+" it's confusing.
+cnoremap <C-o>p <C-r>"
+
 "}}}
 " Cr in Insert Mode always means newline {{{
 function! CrInInsertModeAlwaysMeansNewline()
