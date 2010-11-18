@@ -1096,7 +1096,7 @@ function! s:unite_source.gather_candidates(args, context)
         \ "~(-'_'-) goes right",
         \ "~(-'_'-) goes right and left",
         \ "~(-'_'-) goes right quickly",
-        \ "~(-'_'-) goes right then smile",
+        \ "~(-'_'-) skips right",
         \ "~(-'_'-)  -8(*'_'*) go right and left",
         \ "(=' .' ) ~w",
         \ ]
