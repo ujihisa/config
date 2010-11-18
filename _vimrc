@@ -1088,6 +1088,32 @@ endfunction
 command! -nargs=0 CopyTheCurrentFileName let @+ = expand('%')
 AlterCommandWrapper copythecurrentfilename CopyTheCurrentFileName
 " }}}
+" unite-neco {{{
+let s:unite_source = {'name': 'neco'}
+
+function! s:unite_source.gather_candidates(args, context)
+  let necos = [
+        \ "~(-'_'-) goes right",
+        \ "~(-'_'-) goes right and left",
+        \ "~(-'_'-) goes right quickly",
+        \ "~(-'_'-) goes right then smile",
+        \ "~(-'_'-)  -8(*'_'*) go right and left",
+        \ "(=' .' ) ~w",
+        \ ]
+  return map(necos, '{
+        \ "word": v:val,
+        \ "source": "neco",
+        \ "kind": "command",
+        \ "action__command": "Neco " . v:key,
+        \ }')
+endfunction
+
+"function! unite#sources#locate#define()
+"  return executable('locate') ? s:unite_source : []
+"endfunction
+call unite#define_source(s:unite_source)
+
+" }}}
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
