@@ -275,8 +275,11 @@ let g:neocomplcache_enable_at_startup = 1
 " below is the copy from ruby's.
 "let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
 "let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
-let g:neocomplcache_manual_completion_length = 2
+"let g:neocomplcache_manual_completion_length = 2
 let g:neocomplcache_max_list = 200
+let g:neocomplcache_max_keyword_width = 70
+"let g:neocomplcache_enable_smart_case = 1
+"let g:neocomplcache_enable_ignore_case = 0
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
