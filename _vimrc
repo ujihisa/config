@@ -348,9 +348,10 @@ AlterCommandWrapper rak Rak
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
+  nnoremap se :<C-u>Unite file_rec<Cr>
   nnoremap sc :<C-u>Unite colorscheme<Cr>
   nnoremap sf :<C-u>Unite font<Cr>
-  nnoremap su :<C-u>Unite<Space><C-x><C-v>
+  nnoremap su q:Unite<Space>
   AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
@@ -995,19 +996,18 @@ function! CmdwinRun()
 endfunction
 
 function! s:init_cmdwin()
-  nnoremap <buffer> q :<C-u>quit<CR>
-  nnoremap <buffer> <TAB> :<C-u>quit<CR>
   inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
   inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : ":"
+  inoremap <buffer><expr>: col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
   inoremap <buffer><expr> \ pumvisible() ? neocomplcache#close_popup() : smartchr#one_of('~/', '\')
 
   " Completion.
-  inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
   " HootSuite
   inoreabbrev <buffer> c: ./core/mvc/controllers/mobile/
