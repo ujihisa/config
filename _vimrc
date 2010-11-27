@@ -349,11 +349,13 @@ AlterCommandWrapper rak Rak
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
   nnoremap sc :<C-u>Unite colorscheme<Cr>
+  nnoremap sf :<C-u>Unite font<Cr>
+  nnoremap su :<C-u>Unite<Space><C-x><C-v>
   AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
-"let g:unite_source_file_mru_time_format = "(%x %r)"
+let g:unite_cd_command = 'CD'
 
 let g:unite_quick_match_table = {
       \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
