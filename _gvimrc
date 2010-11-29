@@ -14,7 +14,8 @@ hi Folded guibg=NONE guifg=GRAY ctermfg=0
 "set guifont=Andale\ Mono:h14
 set guifont=Inconsolata:h14
 set transparency=10
-set go-=eT
+"set go-=e
+set go-=T " no icons on the top of window
 set go-=r " no right-hand scrollbar at any time
 set go-=l " no left-hand scrollbar at any time
 set go+=c
@@ -47,5 +48,11 @@ function! WindowsizeMaximize13()
   set columns=1810
 endfunction
 command! WindowsizeMaximize13 call WindowsizeMaximize13()
+" }}}
+" macvim specific {{{
+if has('gui_running') && has('macvim')
+  nnoremap <SwipeLeft> gT
+  nnoremap <SwipeRight> gt
+endif
 " }}}
 " vim: foldmethod=marker
