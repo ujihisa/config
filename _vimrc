@@ -1147,6 +1147,16 @@ call unite#define_source(s:unite_source)
 "
 "call unite#define_source(s:unite_source)
 " }}}
+" for fast cycle {{{
+function! ForFastCycle()
+  Unite evalruby
+endfunction
+command -nargs=0 ForFastCycle call ForFastCycle()
+if 0
+  nnoremap <D-j> :<C-u>ForFastCycle<Cr>
+  nnoremap <D-k> :<C-u>qa!<Cr>
+endif
+" }}}
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
