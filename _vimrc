@@ -730,7 +730,6 @@ AlterCommandWrapper cd  CD
 command! -nargs=? TabpageCD
 \   execute 'cd' fnameescape(<q-args>)
 \ | let t:cwd = getcwd()
-\ | e .
 
 autocmd MyAutoCmd TabEnter *
 \   if !exists('t:cwd')
