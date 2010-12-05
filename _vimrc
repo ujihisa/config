@@ -889,6 +889,7 @@ let g:Interactive_EscapeColors = [
       \]
 " }}}
 let g:vimshell_split_command = 'split'
+let g:vimshell_cd_command = 'CD'
 " mspec/rubyspec supports {{{
 function! DoMspec()
   new
