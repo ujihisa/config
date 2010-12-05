@@ -184,8 +184,11 @@ endfunction
 nnoremap <space>flip :<C-u>call FlipArguments()<Cr>
 " }}}
 " vimshell {{{
-nnoremap <Space>v :<C-u>new<Cr>:VimShell<Cr>
-nnoremap <Space>V :<C-u>vnew<Cr>:VimShell<Cr>
+function! Unnamed()
+  return expand('%') != ''
+endfunction
+nnoremap <expr> <Space>v Unnamed() ? ":<C-u>new<Cr>:VimShell<Cr>" : ":<C-u>VimShell<Cr>"
+nnoremap <expr> <Space>V Unnamed() ? ":<C-u>vnew<Cr>:VimShell<Cr>" : ":<C-u>VimShell<Cr>"
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 " }}}
@@ -351,6 +354,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap se :<C-u>Unite file_rec<Cr>
   nnoremap sc :<C-u>Unite colorscheme<Cr>
   nnoremap sf :<C-u>Unite font<Cr>
+  nnoremap sr :<C-u>Unite rake<Cr>
   nnoremap su q:Unite<Space>
   AlterCommandWrapper unite Unite
 endif
