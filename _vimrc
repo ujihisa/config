@@ -3,6 +3,7 @@
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
   call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
+  call pathogen#helptags()
 end
 " }}}
 " settings {{{
@@ -1160,6 +1161,9 @@ if 0
   nnoremap <D-j> :<C-u>ForFastCycle<Cr>
   nnoremap <D-k> :<C-u>qa!<Cr>
 endif
+" }}}
+" Restart.vim {{{
+let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 " }}}
 let g:shadow_debug = 1
 " FIXME
