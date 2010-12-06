@@ -1165,9 +1165,6 @@ endif
 " Restart.vim {{{
 let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 " }}}
-" Restart.vim {{{
-let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
-" }}}
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
