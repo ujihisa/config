@@ -185,11 +185,11 @@ endfunction
 nnoremap <space>flip :<C-u>call FlipArguments()<Cr>
 " }}}
 " vimshell {{{
-function! Unnamed()
-  return expand('%') != ''
+function! EmptyBufferP()
+  return expand('%') == '' && !&modified
 endfunction
-nnoremap <expr> <Space>v Unnamed() ? ":<C-u>new<Cr>:VimShell<Cr>" : ":<C-u>VimShell<Cr>"
-nnoremap <expr> <Space>V Unnamed() ? ":<C-u>vnew<Cr>:VimShell<Cr>" : ":<C-u>VimShell<Cr>"
+nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
+nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 autocmd FileType vimshell
