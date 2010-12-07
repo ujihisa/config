@@ -192,6 +192,8 @@ nnoremap <expr> <Space>v Unnamed() ? ":<C-u>new<Cr>:VimShell<Cr>" : ":<C-u>VimSh
 nnoremap <expr> <Space>V Unnamed() ? ":<C-u>vnew<Cr>:VimShell<Cr>" : ":<C-u>VimShell<Cr>"
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
+autocmd FileType vimshell
+      \ imap <buffer> <BS>     <Plug>(vimshell_another_delete_backward_char)
 " }}}
 " tag opens in a new window {{{
 if 0 " if you want to use gtags
