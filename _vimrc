@@ -707,44 +707,67 @@ endfunction " }}}
 " <space>ao move current buffer into a new tab.
 nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
 " shell-like guyon cd {{{
-command! CD call CD()
-function! CD()
-  let b:old_dir = getcwd()
-  execute "lcd " . expand("%:p:h")
-endfunction
-command! CDB call CDB()
-function! CDB()
-  let tmp = getcwd()
-  execute "lcd " . b:old_dir
-  let b:old_dir = tmp
-endfunction " }}}
+"command! CD call CD()
+"function! CD()
+"  let b:old_dir = getcwd()
+"  execute "lcd " . expand("%:p:h")
+"endfunction
+"command! CDB call CDB()
+"function! CDB()
+"  let tmp = getcwd()
+"  execute "lcd " . b:old_dir
+"  let b:old_dir = tmp
+"endfunction " }}}
 " kana's tabpagecd with my fix {{{
-let s:TRUE = 1
-augroup MyAutoCmd
-  autocmd!
-augroup END
+"let s:TRUE = 1
+"augroup MyAutoCmd
+"  autocmd!
+"augroup END
+"
+"command! -complete=customlist,s:complete_cdpath -nargs=+ CD  TabpageCD <args>
+"function! s:complete_cdpath(arglead, cmdline, cursorpos)
+"  return split(globpath(&cdpath,
+"  \                     join(split(a:cmdline, '\s', s:TRUE)[1:], ' ') . '*/'),
+"  \            "\n")
+"endfunction
+"
+"AlterCommandWrapper cd  CD
+"" TabpageCD - wrapper of :cd to keep cwd for each tabpage
+"
+"command! -nargs=? TabpageCD
+"\   execute 'cd' fnameescape(<q-args>)
+"\ | let t:cwd = getcwd()
+"
+"autocmd MyAutoCmd TabEnter *
+"\   if !exists('t:cwd')
+"\ |   let t:cwd = getcwd()
+"\ | endif
+"\ | execute 'cd' fnameescape(t:cwd)
+" }}}
+" shougo's tabpagecd {{{
+" Each tab has current directory
+command! -bar -complete=dir -nargs=?
+      \   CD
+      \   TabpageCD <args>
+command! -bar -complete=dir -nargs=?
+      \   TabpageCD
+      \   execute 'cd' fnameescape(expand(<q-args>))
+      \   | let t:cwd = getcwd()
 
-command! -complete=customlist,s:complete_cdpath -nargs=+ CD  TabpageCD <args>
-function! s:complete_cdpath(arglead, cmdline, cursorpos)
-  return split(globpath(&cdpath,
-  \                     join(split(a:cmdline, '\s', s:TRUE)[1:], ' ') . '*/'),
-  \            "\n")
-endfunction
+autocmd TabEnter *
+      \   if exists('t:cwd') && !isdirectory(t:cwd)
+      \ |     unlet t:cwd
+      \ | endif
+    \ | if !exists('t:cwd')
+      \ |   let t:cwd = getcwd()
+      \ | endif
+    \ | execute 'cd' fnameescape(expand(t:cwd))
+
+" Exchange ':cd' to ':TabpageCD'.
+"cnoreabbrev <expr> cd (getcmdtype() == ':' && getcmdline() ==# 'cd') ? 'TabpageCD' : 'cd'
 
 AlterCommandWrapper cd  CD
-" TabpageCD - wrapper of :cd to keep cwd for each tabpage  "{{{2
-
-command! -nargs=? TabpageCD
-\   execute 'cd' fnameescape(<q-args>)
-\ | let t:cwd = getcwd()
-
-autocmd MyAutoCmd TabEnter *
-\   if !exists('t:cwd')
-\ |   let t:cwd = getcwd()
-\ | endif
-\ | execute 'cd' fnameescape(t:cwd)
-" 2}}}
-" }}}
+"}}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 AlterCommandWrapper lib Lib
@@ -992,7 +1015,7 @@ xmap :  <sid>(command-line-enter)
 " I added
 nnoremap q: q:<Esc>
 
-autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
+autocmd CmdwinEnter * call s:init_cmdwin()
 
 " MacVim is shit
 autocmd CmdwinEnter * nnoremap <buffer><expr> <Cr> CmdwinRun()
