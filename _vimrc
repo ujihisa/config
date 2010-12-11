@@ -780,6 +780,7 @@ autocmd TabEnter *
       \ | endif
       \ | execute 'colorscheme' t:colorscheme
 
+let g:unite_colorscheme_command = 'TabpageColorscheme'
 " }}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
