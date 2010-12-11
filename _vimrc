@@ -768,20 +768,6 @@ autocmd TabEnter *
 
 AlterCommandWrapper cd  CD
 "}}}
-" tabpage colorscheme {{{
-command! -bar -nargs=1
-      \   TabpageColorscheme
-      \   execute 'colorscheme' <q-args>
-      \   | let t:colorscheme = g:colors_name
-
-autocmd TabEnter *
-      \   if !exists('t:colorscheme')
-      \ |   let t:colorscheme = g:colors_name
-      \ | endif
-      \ | execute 'colorscheme' t:colorscheme
-
-let g:unite_colorscheme_command = 'TabpageColorscheme'
-" }}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 AlterCommandWrapper lib Lib
