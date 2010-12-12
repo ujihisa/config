@@ -84,7 +84,7 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap L <C-w>L:call <SID>good_width()<Cr>
 function! s:good_width()
-  let size = 120
+  let size = 84
   if winwidth(0) < size
     execute "vertical resize" size
   endif
@@ -207,7 +207,7 @@ if 0 " if you want to use gtags
   endfunction
 
   function! s:tagjump_or_cr()
-    if bufname('%') == '[Command Line]'
+    if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
       execute "normal! \<Cr>"
     else
       if filereadable("GTAGS")
@@ -224,7 +224,7 @@ else
   endfunction
 
   function! s:tagjump_or_cr()
-    if bufname('%') == '[Command Line]'
+    if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
       execute "normal! \<Cr>"
     else
       execute "normal! \<C-]>"

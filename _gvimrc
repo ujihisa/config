@@ -6,13 +6,14 @@
 
 
 "colorscheme macvim
-colorscheme mrkn256
+"colorscheme mrkn256
+colorscheme lucius
 
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
 "set guifont=Andale\ Mono:h14
-set guifont=Inconsolata:h14
+set guifont=Menlo:h16
 set transparency=10
 "set go-=e
 set go-=T " no icons on the top of window
