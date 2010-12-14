@@ -192,6 +192,7 @@ nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:
 nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
+let g:vimshell_split_command = 'vnew'
 autocmd FileType vimshell
       \ imap <buffer> <BS>     <Plug>(vimshell_another_delete_backward_char)
 " }}}
@@ -569,6 +570,11 @@ let g:quickrun_config.textile = {
 "\  }
 " }}}
 let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
+let g:quickrun_config['markdown'] = {
+\   'command': 'pandoc',
+\   'exec': ['%c -s -f markdown -t html -o %s:p:r.html %s', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'],
+\   'tempfile': '{tempname()}.md'
+\ }
 let g:clj_highlight_builtins=1
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
