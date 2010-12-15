@@ -1214,6 +1214,13 @@ let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
+" macvim proportional {{{
+function! Proportional()
+  set guifontwide=
+  set macproportionalfont
+endfunction
+command! -nargs=0 Proportional call Proportional()
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
