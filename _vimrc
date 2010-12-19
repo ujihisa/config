@@ -1227,7 +1227,7 @@ command! -count=1 -nargs=0 LastTwoDigitMove call LastTwoDigitMove(<count>)
 function! LastTwoDigitMove(bound)
   " for example when you are at line num 123 and typed 3gl
   "   getpos('.')[1] is 123
-  "   a:bound is 126
+  "   a:bound is 125
   "   the goal is 103
   let current = getpos('.')[1]
   let to = current / 100 * 100 + a:bound - current + 1
