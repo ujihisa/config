@@ -1233,7 +1233,7 @@ function! LastTwoDigitMove(bound)
   let to = current / 100 * 100 + a:bound - current + 1
   execute to
 endfunction
-nnoremap gl :LastTwoDigitMove<Cr>
+nnoremap <silent> gl :LastTwoDigitMove<Cr>
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
