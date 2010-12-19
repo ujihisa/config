@@ -356,9 +356,10 @@ AlterCommandWrapper rak Rak
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
   nnoremap se :<C-u>Unite file_rec<Cr>
-  nnoremap sc :<C-u>Unite colorscheme<Cr>
-  nnoremap sf :<C-u>Unite font<Cr>
-  nnoremap sr :<C-u>Unite rake<Cr>
+  nnoremap sc :<C-u>Unite colorscheme font<Cr>
+  nnoremap sf :<C-u>Unite file -default-action=split<Cr>
+  nnoremap sra :<C-u>Unite rake<Cr>
+  nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su q:Unite<Space>
   AlterCommandWrapper unite Unite
 endif
