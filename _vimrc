@@ -1221,6 +1221,20 @@ function! Proportional()
 endfunction
 command! -nargs=0 Proportional call Proportional()
 " }}}
+" last two digit move {{{
+" inspired by tavis' emacs voice line number movement feature
+command! -count=1 -nargs=0 LastTwoDigitMove call LastTwoDigitMove(<count>)
+function! LastTwoDigitMove(bound)
+  " for example when you are at line num 123 and typed 3gl
+  "   getpos('.')[1] is 123
+  "   a:bound is 126
+  "   the goal is 103
+  let current = getpos('.')[1]
+  let to = current / 100 * 100 + a:bound - current + 1
+  execute to
+endfunction
+nnoremap gl :LastTwoDigitMove<Cr>
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
