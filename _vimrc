@@ -54,7 +54,7 @@ if has('persistent_undo')
   augroup END
 endif
 set equalalways
-set updatetime 500
+set updatetime=500
 
 
 " }}}
@@ -1256,7 +1256,12 @@ let s:doc_dict = {
       \ 'filetypes' : {'haskell': 1},
       \ }
 function! s:doc_dict.search(cur_text)
-  let query = matchstr(a:cur_text, "[a-z][a-z0-9.'_]*$")
+  let tmp = matchlist(a:cur_text, "\\([a-z][a-z0-9.'_]*\\)\\s*$")
+  if len(tmp) == 2
+    let query = tmp[1]
+  else
+    return []
+  endif
   if mode() !=# 'i'
     echo a:cur_text
     let query .= neocomplcache#get_next_keyword()
@@ -1278,7 +1283,7 @@ function! s:hoogle(cur_text)
   endif
   return g:echodoc_hoogle_cache[a:cur_text]
 endfunction
-call echodoc#register('haskell', s:doc_dict)
+"call echodoc#register('haskell', s:doc_dict)
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
