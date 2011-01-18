@@ -54,6 +54,7 @@ if has('persistent_undo')
   augroup END
 endif
 set equalalways
+set updatetime 500
 
 
 " }}}
@@ -1245,6 +1246,39 @@ command! -nargs=0 Proportional call Proportional()
 " not it's not only two-digit
 command! -count=1 -nargs=0 GoToTheLine silent execute getpos('.')[1][:-len(v:count)-1] . v:count
 nnoremap <silent> gl :GoToTheLine<Cr>
+" }}}
+" echodoc {{{
+let g:echodoc_enable_at_startup = 1
+let g:echodoc_hoogle_cache = {}
+let s:doc_dict = {
+      \ 'name': 'haskell',
+      \ 'rank': 10,
+      \ 'filetypes' : {'haskell': 1},
+      \ }
+function! s:doc_dict.search(cur_text)
+  let query = matchstr(a:cur_text, "[a-z][a-z0-9.'_]*$")
+  if mode() !=# 'i'
+    echo a:cur_text
+    let query .= neocomplcache#get_next_keyword()
+  endif
+  echo query
+  if len(query) < 3
+    return []
+  endif
+  let the_type = s:hoogle(query)
+  if split(the_type, ' ')[1] == query
+    return [{'text': the_type}]
+  else
+    return []
+  endif
+endfunction
+function! s:hoogle(cur_text)
+  if !has_key(g:echodoc_hoogle_cache, a:cur_text)
+    let g:echodoc_hoogle_cache[a:cur_text] = split(neocomplcache#system('hoogle ' . a:cur_text), "\n")[0]
+  endif
+  return g:echodoc_hoogle_cache[a:cur_text]
+endfunction
+call echodoc#register('haskell', s:doc_dict)
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
