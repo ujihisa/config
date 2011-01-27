@@ -1290,7 +1290,6 @@ if filereadable(expand('~/git/rsense/bin/rsense'))
   let g:rsenseHome = expand('~/git/rsense')
   let g:rsenseUseOmniFunc = 1
 
-  "let g:NeoComplCache_EnableSkipCompletion = 0
   if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
   endif
