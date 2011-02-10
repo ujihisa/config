@@ -288,6 +288,8 @@ let g:neocomplcache_max_keyword_width = 70
 "let g:neocomplcache_enable_ignore_case = 0
 "let g:neocomplcache_text_mode_filetypes = {
 "      \ 'text': 0, 'help': 0, 'tex': 0, 'gitcommit': 0, 'nothing': 0}
+let g:neocomplcache_text_mode_filetypes = {}
+let g:neocomplcache_text_mode_filetypes.markdown = 1
 imap <C-l> <Plug>(neocomplcache_start_unite_complete)
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
