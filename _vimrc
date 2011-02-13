@@ -196,41 +196,40 @@ autocmd FileType vimshell
       \ imap <buffer> <BS>     <Plug>(vimshell_another_delete_backward_char)
 " }}}
 " tag opens in a new window {{{
-if 0 " if you want to use gtags
-  function! s:tagjump_in_new_window()
-    if filereadable("GTAGS")
-      sp
-      GtagsCursor
-    else
-      execute "normal! \<C-w>\<C-]>"
-    endif
-  endfunction
+"if 0 " if you want to use gtags
+"  function! s:tagjump_in_new_window()
+"    if filereadable("GTAGS")
+"      sp
+"      GtagsCursor
+"    else
+"      execute "normal! \<C-w>\<C-]>"
+"    endif
+"  endfunction
+"
+"  function! s:tagjump_or_cr()
+"    if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
+"      execute "normal! \<Cr>"
+"    else
+"      if filereadable("GTAGS")
+"        GtagsCursor
+"      else
+"        execute "normal! \<C-]>"
+"      endif
+"    endif
+"  endfunction
+"  let Gtags_OpenQuickfixWindow = 0
+"else
+function! s:tagjump_in_new_window()
+  execute "normal! \<C-w>\<C-]>"
+endfunction
 
-  function! s:tagjump_or_cr()
-    if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
-      execute "normal! \<Cr>"
-    else
-      if filereadable("GTAGS")
-        GtagsCursor
-      else
-        execute "normal! \<C-]>"
-      endif
-    endif
-  endfunction
-  let Gtags_OpenQuickfixWindow = 0
-else
-  function! s:tagjump_in_new_window()
-    execute "normal! \<C-w>\<C-]>"
-  endfunction
-
-  function! s:tagjump_or_cr()
-    if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
-      execute "normal! \<Cr>"
-    else
-      execute "normal! \<C-]>"
-    endif
-  endfunction
-endif
+function! s:tagjump_or_cr()
+  if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
+    execute "normal! \<Cr>"
+  else
+    execute "normal! \<C-]>"
+  endif
+endfunction
 
 nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
 nnoremap <Cr> :<C-u>call <SID>tagjump_or_cr()<Cr>
@@ -1283,9 +1282,9 @@ endfunction
 "call echodoc#register('haskell', s:doc_dict)
 " }}}
 " rsense {{{
+let g:rsenseUseOmniFunc = 1
 if filereadable(expand('~/git/rsense/bin/rsense'))
   let g:rsenseHome = expand('~/git/rsense')
-  let g:rsenseUseOmniFunc = 1
 
   if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
