@@ -365,7 +365,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
   nnoremap sra :<C-u>Unite rake<Cr>
-  nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
+  nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc ref/phpmanual -default-action=split<Cr>
   nnoremap su q:Unite<Space>
   AlterCommandWrapper unite Unite
 endif
@@ -1299,6 +1299,10 @@ endif
 " }}}
 " testing neco-ghc {{{
 nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
+" }}}
+" vim-ref {{{
+let g:ref_phpmanual_path = expand("~/src/php-chunked-xhtml/")
+let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-references %s' " charset is important
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
