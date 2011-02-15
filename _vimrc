@@ -222,7 +222,8 @@ autocmd FileType vimshell
 function! s:tagjump_in_new_window()
   "http://d.hatena.ne.jp/thinca/20110202
   "execute "normal! \<C-w>\<C-]>"
-  execute "Unite -immediately -no-start-insert -auto-preview -default-action=split tags:" . expand('<cword>')
+  "execute "Unite -immediately -no-start-insert -auto-preview -default-action=split tags:" . expand('<cword>')
+  UniteWithCursorWord -immediately -no-start-insert -auto-preview -default-action=split tag
 endfunction
 
 function! s:tagjump_or_cr()
@@ -232,7 +233,8 @@ function! s:tagjump_or_cr()
     "execute "normal! \<C-]>"
 
     "http://d.hatena.ne.jp/thinca/20110202
-    execute "Unite -immediately -no-start-insert -auto-preview tags:" . expand('<cword>')
+    "execute "Unite -immediately -no-start-insert -auto-preview tags:" . expand('<cword>')
+    UniteWithCursorWord -immediately -no-start-insert -auto-preview tag
   endif
 endfunction
 
