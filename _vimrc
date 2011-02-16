@@ -366,7 +366,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
   nnoremap sra :<C-u>Unite rake<Cr>
-  nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc ref/phpmanual -default-action=split<Cr>
+  nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su q:Unite<Space>
   AlterCommandWrapper unite Unite
 endif
