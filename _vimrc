@@ -561,7 +561,7 @@ map <Space>r  <Plug>(quickrun)
 "endif
 let g:quickrun_config = {}
 "let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
-let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below'}
+let g:quickrun_config._ = {'runmode': "async:remote:vimproc", 'split': 'below'}
 let g:quickrun_config.haskell = {
       \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
       \ 'tempfile': '{tempname()}.hs',
