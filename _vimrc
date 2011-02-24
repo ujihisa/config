@@ -72,7 +72,7 @@ nnoremap # :<C-u>set hlsearch<Return>#
 
 nnoremap <Space>c :<C-u>!wc %<Cr>
 
-nnoremap - :<C-u>e %:h<Cr>
+nnoremap -- :<C-u>e %:h<Cr>
 
 omap <Space>p %
 nmap <Space>p %
