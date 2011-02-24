@@ -76,6 +76,7 @@ nnoremap -- :<C-u>e %:h<Cr>
 
 omap <Space>p %
 nmap <Space>p %
+vmap <Space>p %
 
 nnoremap vv <C-v>
 nnoremap ]p p`[=`]
