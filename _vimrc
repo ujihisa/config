@@ -1305,6 +1305,15 @@ nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
 let g:ref_phpmanual_path = expand("~/src/php-chunked-xhtml/")
 let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-references %s' " charset is important
 " }}}
+" special git log viewer {{{
+function! s:git_log_viewer()
+  VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
+  set filetype=git-log.git-diff
+  set foldmethod=expr
+  set foldexpr=getline(v:lnum)!~'^commit'
+endfunction
+command! GitLogViewer call s:git_log_viewer()
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
