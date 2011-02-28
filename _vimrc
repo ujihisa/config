@@ -1309,8 +1309,8 @@ let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-re
 function! s:git_log_viewer()
   VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
   set filetype=git-log.git-diff
-  set foldmethod=expr
-  set foldexpr=getline(v:lnum)!~'^commit'
+  setl foldmethod=expr
+  setl foldexpr=getline(v:lnum)!~'^commit'
 endfunction
 command! GitLogViewer call s:git_log_viewer()
 " }}}
