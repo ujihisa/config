@@ -1307,6 +1307,7 @@ let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-re
 " }}}
 " special git log viewer {{{
 function! s:git_log_viewer()
+  vnew
   VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
   set filetype=git-log.git-diff
   setl foldmethod=expr
