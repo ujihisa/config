@@ -55,7 +55,7 @@ endfunction
 command! WindowsizeMaximize13 call WindowsizeMaximize13()
 " }}}
 " macvim specific {{{
-if has('gui_running') && has('macvim')
+if has('gui_macvim')
   nnoremap <SwipeLeft> gT
   nnoremap <SwipeRight> gt
   set fullscreen
