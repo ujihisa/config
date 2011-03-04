@@ -58,6 +58,7 @@ command! WindowsizeMaximize13 call WindowsizeMaximize13()
 if has('gui_running') && has('macvim')
   nnoremap <SwipeLeft> gT
   nnoremap <SwipeRight> gt
+  set fullscreen
 endif
 " }}}
 " vim: foldmethod=marker
