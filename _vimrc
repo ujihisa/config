@@ -668,21 +668,21 @@ vnoremap <silent> <space>e :call <SID>HtmlEscape()<CR>
 vnoremap <silent> <space>ue :call <SID>HtmlUnEscape()<CR>
 " }}}
 " for quicklaunch {{{
-let g:quicklaunch_commands = [
-      \   'ruby launch.rb',
-      \   'ls',
-      \   'ls -a',
-      \   'ls -l',
-      \   'ruby check_gmail.rb',
-      \   'twitter timeline',
-      \   'port outdated',
-      \   '',
-      \   '',
-      \   'tail -n 30 ~/.zsh_history'
-      \ ]
-for i in range(10)
-  execute "silent! nmap <unique> <Space>" . i . "  <Plug>(quicklaunch-" . i . ")"
-endfor
+"let g:quicklaunch_commands = [
+"      \   'ruby launch.rb',
+"      \   'ls',
+"      \   'ls -a',
+"      \   'ls -l',
+"      \   'ruby check_gmail.rb',
+"      \   'twitter timeline',
+"      \   'port outdated',
+"      \   '',
+"      \   '',
+"      \   'tail -n 30 ~/.zsh_history'
+"      \ ]
+"for i in range(10)
+"  execute "silent! nmap <unique> <Space>" . i . "  <Plug>(quicklaunch-" . i . ")"
+"endfor
 "silent! nmap <unique> <Space>l  <Plug>(quicklaunch-list)
 " }}}
 " kana's useful tab function {{{
@@ -718,8 +718,9 @@ function! s:move_window_into_tab_page(target_tabpagenr)
 
   execute target_tabpagenr 'tabnext'
 endfunction " }}}
-" <space>ao move current buffer into a new tab.
+" <space>ao move current buffer into a new tab. {{{
 nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
+" }}}
 " shell-like guyon cd {{{
 "command! CD call CD()
 "function! CD()
