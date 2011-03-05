@@ -27,6 +27,9 @@ endfunction
 
 nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
 nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
+inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
+inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+
 
 " http://vim-users.jp/2010/01/hack120/ {{{
 let g:save_window_file = expand('~/.vimwinpos')
