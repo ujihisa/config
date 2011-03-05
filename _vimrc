@@ -1304,8 +1304,9 @@ nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
 " vim-ref {{{
 let g:ref_phpmanual_path = expand("~/src/php-chunked-xhtml/")
 let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-references %s' " charset is important
-let g:ref_man_cmd = "man -P cat"
+"let g:ref_man_cmd = "man -P cat"
 let g:ref_erlang_manpath = '/usr/local/share/man'
+let $MANPAGER='cat'
 call ref#rmcache()
 " }}}
 " special git log viewer {{{
