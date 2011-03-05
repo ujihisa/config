@@ -1204,21 +1204,6 @@ endif
 " Restart.vim {{{
 let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 " }}}
-" unite-beautiful-attack {{{
-"let g:togglecolorscheme_i = 0
-"function! ToggleColorScheme()
-"  let g:togglecolorscheme_i += 1
-"  let name = ['mrkn256', 'zenburn', 'zenesque', 'newspaper', 'lucius'][g:togglecolorscheme_i % 5]
-"  execute 'colorscheme' name
-"endfunction
-"nnoremap <SID>(toggle_color_scheme) :<C-u>call ToggleColorScheme()<Cr>
-"inoremap <SID>(toggle_color_scheme) <C-o>:call ToggleColorScheme()<Cr>
-"autocmd FileType unite nmap <buffer> j      <Plug>(unite_loop_cursor_down)<SID>(toggle_color_scheme)
-"autocmd FileType unite nmap <buffer> k      <Plug>(unite_loop_cursor_up)<SID>(toggle_color_scheme)
-"autocmd FileType unite imap <buffer> <C-n>  <Plug>(unite_select_next_line)<SID>(toggle_color_scheme)
-"autocmd FileType unite imap <buffer> <Down> <Plug>(unite_select_next_line)<SID>(toggle_color_scheme)
-"autocmd FileType unite imap <buffer> <C-p>  <Plug>(unite_select_previous_line)<SID>(toggle_color_scheme)
-"" }}}
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
