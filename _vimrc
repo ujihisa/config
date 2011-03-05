@@ -931,9 +931,10 @@ let g:Interactive_EscapeColors = [
       \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
-" }}}
 let g:vimshell_split_command = 'split'
 let g:vimshell_cd_command = 'TabpageCD'
+let g:VimShell_UsePopen2 = 0
+" }}}
 " mspec/rubyspec supports {{{
 function! DoMspec()
   new
@@ -956,7 +957,6 @@ function! DoMspec()
   read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t /usr/bin/ruby #
 endfunction
 " }}}
-let g:VimShell_UsePopen2 = 0
 " capslock.vim {{{
 imap <C-a> <C-O><Plug>CapsLockToggle
 "set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
