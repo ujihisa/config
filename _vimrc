@@ -188,8 +188,10 @@ nnoremap <space>flip :<C-u>call FlipArguments()<Cr>
 function! EmptyBufferP()
   return expand('%') == '' && !&modified
 endfunction
-nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
-nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
+"nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
+"nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
+nmap <Space>v <Plug>(vimshell_split_switch)
+nmap <Space>V <Plug>(vimshell_switch)
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'vnew'
@@ -1305,6 +1307,9 @@ function! s:git_log_viewer()
   setl foldexpr=getline(v:lnum)!~'^commit'
 endfunction
 command! GitLogViewer call s:git_log_viewer()
+" }}}
+" disable macvim vimrc_examples {{{
+let g:no_vimrc_example = 1
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
