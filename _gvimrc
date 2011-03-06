@@ -64,6 +64,7 @@ if has('gui_macvim')
   set fullscreen
   WindowsizeMaximize13
   VimShell
+  normal! <C-u>
 endif
 " }}}
 " vim: foldmethod=marker
