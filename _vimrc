@@ -1278,7 +1278,7 @@ endfunction
 " }}}
 " rsense {{{
 let g:rsenseUseOmniFunc = 1
-if filereadable(expand('~/git/rsense/bin/rsense'))
+if 0 && filereadable(expand('~/git/rsense/bin/rsense'))
   let g:rsenseHome = expand('~/git/rsense')
 
   if !exists('g:neocomplcache_omni_patterns')
