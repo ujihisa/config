@@ -1311,6 +1311,47 @@ command! GitLogViewer call s:git_log_viewer()
 " disable macvim vimrc_examples {{{
 let g:no_vimrc_example = 1
 " }}}
+" Git Diff -> The file {{{
+function! SGoDiff()
+  let [maybe, fname] = s:latest_fname()
+  if maybe ==# 'nothing'
+    echoerr 'failed to find the filename'
+    return
+  endif
+
+  let [maybe, linenum] = s:latest_linenum()
+  if maybe ==# 'nothing'
+    echoerr 'failed to find the linenum'
+    return
+  endif
+
+  execute "vnew" fname
+  execute linenum
+  execute "normal! z\<Cr>"
+endfunction
+nnoremap <C-d> :<C-u>call SGoDiff()<Cr>
+
+function! s:latest_fname()
+  for i in reverse(range(1, line('.')))
+    if getline(i) =~ '^+++ '
+      return ['just', getline(i)[4:]]
+    endif
+  endfor
+  return ['nothing', '']
+endfunction
+
+function! s:latest_linenum()
+  for i in reverse(range(1, line('.')))
+    if getline(i) =~ '^@@ '
+      let a = matchlist(getline(i), '^@@ -.\{-},.\{-} +\(.\{-}\),')
+      if exists('a[1]')
+        return ['just', a[1]]
+      endif
+    endif
+  endfor
+  return ['nothing', '']
+endfunction
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
