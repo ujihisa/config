@@ -1334,7 +1334,7 @@ nnoremap <C-d> :<C-u>call SGoDiff()<Cr>
 function! s:latest_fname()
   for i in reverse(range(1, line('.')))
     if getline(i) =~ '^+++ '
-      return ['just', getline(i)[4:]]
+      return ['just', substitute(getline(i)[4:], '\t.*$', '', 'b')]
     endif
   endfor
   return ['nothing', '']
