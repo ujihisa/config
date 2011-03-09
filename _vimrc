@@ -1240,8 +1240,14 @@ nnoremap <silent> gl :GoToTheLine<Cr>
 " }}}
 " Haskell Type {{{
 function! s:haskell_type(fname, expression)
+  if !filereadable(a:fname)
+    return {'left': printf("File not found: %s", a:fname)}
+  endif
   let r = ref#system(['ghc-mod', 'type', a:fname, 'main', a:expression])
-  return r.stdout . r.stderr
+  if r.result != 0
+    return {'left': r.stderr}
+  endif
+  return {'right': r.stdout}
 endfunction
 command! -nargs=1 HaskellType echo s:haskell_type(expand('%'), <q-args>)
 " }}}
@@ -1261,11 +1267,11 @@ function! s:doc_dict.search(cur_text)
   else
     return []
   endif
-  let result = substitute(s:haskell_type(expand('%'), query), "\n", "", "")
-  if result == ''
+  let result = s:haskell_type(expand('%'), query)
+  if has_key(result, 'left')
     return []
   endif
-  return [{'text': query, 'highlight': 'Identifier'}, {'text': ' :: ' . result}]
+  return [{'text': query, 'highlight': 'Identifier'}, {'text': ' :: ' . substitute(result.right, "\n", "", "")}]
 
   if mode() !=# 'i'
     echo a:cur_text
