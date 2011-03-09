@@ -1238,6 +1238,13 @@ command! -nargs=0 Proportional call Proportional()
 command! -count=1 -nargs=0 GoToTheLine silent execute getpos('.')[1][:-len(v:count)-1] . v:count
 nnoremap <silent> gl :GoToTheLine<Cr>
 " }}}
+" Haskell Type {{{
+function! s:haskell_type(fname, expression)
+  let r = ref#system(['ghc-mod', 'type', a:fname, 'main', a:expression])
+  return r.stdout . r.stderr
+endfunction
+command! -nargs=1 HaskellType echo s:haskell_type(expand('%'), <q-args>)
+" }}}
 " echodoc {{{
 let g:echodoc_enable_at_startup = 1
 let g:echodoc_hoogle_cache = {}
@@ -1248,16 +1255,22 @@ let s:doc_dict = {
       \ }
 function! s:doc_dict.search(cur_text)
   let tmp = matchlist(a:cur_text, "\\([a-z][a-z0-9.'_]*\\)\\s*$")
+  let tmp = filter(tmp, 'v:val != ""')
   if len(tmp) == 2
     let query = tmp[1]
   else
     return []
   endif
+  let result = substitute(s:haskell_type(expand('%'), query), "\n", "", "")
+  if result == ''
+    return []
+  endif
+  return [{'text': query, 'highlight': 'Identifier'}, {'text': ' :: ' . result}]
+
   if mode() !=# 'i'
     echo a:cur_text
     let query .= neocomplcache#get_next_keyword()
   endif
-  echo query
   if len(query) < 3
     return []
   endif
@@ -1274,7 +1287,7 @@ function! s:hoogle(cur_text)
   endif
   return g:echodoc_hoogle_cache[a:cur_text]
 endfunction
-"call echodoc#register('haskell', s:doc_dict)
+call echodoc#register('haskell', s:doc_dict)
 " }}}
 " rsense {{{
 let g:rsenseUseOmniFunc = 1
