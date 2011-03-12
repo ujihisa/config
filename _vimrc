@@ -1240,10 +1240,14 @@ nnoremap <silent> gl :GoToTheLine<Cr>
 " }}}
 " Haskell Type {{{
 function! s:haskell_type(fname, expression)
-  if !filereadable(a:fname)
-    return {'left': printf("File not found: %s", a:fname)}
+  if filereadable(a:fname)
+    let fname = a:fname
+  else
+    let fname = tempname()
+    call writefile(getline(0, '$'), fname, 'b')
+    "return {'left': printf("File not found: %s", a:fname)}
   endif
-  let r = ref#system(['ghc-mod', 'type', a:fname, 'main', a:expression])
+  let r = ref#system(['ghc-mod', 'type', fname, 'main', a:expression])
   if r.result != 0
     return {'left': r.stderr}
   endif
@@ -1252,7 +1256,7 @@ endfunction
 command! -nargs=1 HaskellType echo s:haskell_type(expand('%'), <q-args>)
 " }}}
 " echodoc {{{
-let g:echodoc_enable_at_startup = 1
+let g:echodoc_enable_at_startup = 0
 let g:echodoc_hoogle_cache = {}
 let s:doc_dict = {
       \ 'name': 'haskell',
