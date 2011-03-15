@@ -1375,6 +1375,14 @@ function! s:latest_linenum()
   return ['nothing', '']
 endfunction
 " }}}
+" yet another star {{{
+"function! s:star_with_smartcase()
+"  set hlsearch
+"  echo expand('<cWORD>')
+"  execute printf('/\<%s\>', expand('<cWORD>'))
+"endfunction
+"nnoremap * :<C-u>call <SID>star_with_smartcase()<Cr>
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
