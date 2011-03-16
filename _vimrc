@@ -933,7 +933,7 @@ augroup MyCompiler
 augroup END
 " }}}
 " vimshell supports {{{
-let g:Interactive_EscapeColors = [
+let g:vimshell_escape_colors = [
       \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
