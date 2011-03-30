@@ -70,7 +70,7 @@ nnoremap # :<C-u>set hlsearch<Return>#
 
 "nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
-nnoremap <Space>c :<C-u>!wc %<Cr>
+"nnoremap <Space>c :<C-u>!wc %<Cr>
 
 nnoremap -- :<C-u>e %:h<Cr>
 
@@ -100,8 +100,8 @@ nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
 nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
-nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
-nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
+"nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
+"nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 "nnoremap <Space>h :help<space>
 "nnoremap <Space>n :<C-u>new<space>
 nnoremap <Space>] <C-w>]
@@ -564,6 +564,7 @@ map <Space>r  <Plug>(quickrun)
 let g:quickrun_config = {}
 "let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
 let g:quickrun_config._ = {'runmode': "async:remote:vimproc", 'split': 'below'}
+let g:quickrun_config._.runmode = 'async:vimproc'
 let g:quickrun_config.haskell = {
       \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
       \ 'tempfile': '{tempname()}.hs',
@@ -1382,6 +1383,9 @@ endfunction
 "  execute printf('/\<%s\>', expand('<cWORD>'))
 "endfunction
 "nnoremap * :<C-u>call <SID>star_with_smartcase()<Cr>
+" }}}
+" vital toplevel func for hand-testing {{{
+command! Letv let V = vital#__latest__#new() | echo 'V: ' . string(keys(V))
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
