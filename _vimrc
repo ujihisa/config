@@ -1387,6 +1387,10 @@ endfunction
 " vital toplevel func for hand-testing {{{
 command! Letv let V = vital#__latest__#new() | echo 'V: ' . string(keys(V))
 " }}}
+" setl list is very often {{{
+nnoremap ` :!<C-u>setl list!<Cr>
+" }}}
+"
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
