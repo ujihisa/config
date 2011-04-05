@@ -967,7 +967,9 @@ imap <C-a> <C-O><Plug>CapsLockToggle
 "set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
 " }}}
 " PATH {{{
-let $PATH="/Users/ujihisa/git/mdv:".$PATH
+command! -nargs=1 AddPath let $PATH="<args>:".$PATH
+AddPath /Users/ujihisa/git/mdv
+AddPath /Users/ujihisa/Library/Haskell/bin
 " }}}
 " Haskell Tag {{{
 " see also: ~/bin/update-cabal-tags
