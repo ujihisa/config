@@ -190,8 +190,8 @@ function! EmptyBufferP()
 endfunction
 "nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
 "nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
-nmap <Space>v <Plug>(vimshell_split_switch)
-nmap <Space>V <Plug>(vimshell_switch)
+nmap <Space>V <Plug>(vimshell_split_switch)
+nmap <Space>v <Plug>(vimshell_switch)
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'vnew'
@@ -368,6 +368,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap so :<C-u>Unite outline -auto-preview<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
+  nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su q:Unite<Space>
