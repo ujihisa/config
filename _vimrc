@@ -1047,6 +1047,10 @@ function! CmdwinRun()
   return "\<Esc>\<C-c>\<C-c>:" . a . "\<Cr>"
 endfunction
 
+function! s:cmdwin_backslash()
+  return matchstr(getline('.'), '\w\+') =~# '^s\(ubstitute\)\?$' ? '\' : smartchr#one_of('~/', '\')
+endfunction
+
 function! s:init_cmdwin()
   inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
@@ -1055,7 +1059,7 @@ function! s:init_cmdwin()
   inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  inoremap <buffer><expr> \ pumvisible() ? neocomplcache#close_popup() : smartchr#one_of('~/', '\')
+  inoremap <buffer><expr> \ pumvisible() ? neocomplcache#close_popup() : <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -1393,7 +1397,15 @@ command! Letv let V = vital#__latest__#new() | echo 'V: ' . string(keys(V))
 " setl list is very often {{{
 nnoremap ` :!<C-u>setl list!<Cr>
 " }}}
-"
+" too much t). I dont' use ). ) should be t). {{{
+onoremap ) t)
+onoremap ( t(
+vnoremap ) t)
+vnoremap ( t(
+" }}}
+" hack 104 http://vim-users.jp/2009/11/hack104/ {{{
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker

@@ -73,4 +73,9 @@ if has('gui_macvim')
   normal! <C-u>
 endif
 " }}}
+" for vimshell {{{
+function! GvimrcVimshellColor()
+  hi! link Error WarningMsg
+endfunction
+" }}}
 " vim: foldmethod=marker
