@@ -31,7 +31,7 @@ set splitbelow
 set splitright
 set switchbuf=useopen
 set background=dark
-syntax on
+syntax enable
 set wildmode=list:longest
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
@@ -582,6 +582,7 @@ let g:quickrun_config.textile = {
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
 "\  }
 " }}}
+let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
 let g:quickrun_config['markdown'] = {
 \   'command': 'pandoc',
