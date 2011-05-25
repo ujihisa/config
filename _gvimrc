@@ -1,4 +1,4 @@
-let s:imac = 0 " fixme
+let s:imac = !system('sysctl -a | grep hw.model') == "hw.model = MacBookAir1,1\n"
 "set guifont=Osaka－等幅\ Ultra-Condensed\ 16
 "colorscheme koehler
 "set imactivatekey=s-space
@@ -36,10 +36,12 @@ nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
 inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
 inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 
-nnoremap <swipeup> :<C-u>call <SID>relative_tranparency(5)<Cr>
-nnoremap <swipedown> :<C-u>call <SID>relative_tranparency(-5)<Cr>
-inoremap <swipeup> <C-o>:call <SID>relative_tranparency(5)<Cr>
-inoremap <swipedown> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+if s:imac
+  nnoremap <swipeup> :<C-u>call <SID>relative_tranparency(5)<Cr>
+  nnoremap <swipedown> :<C-u>call <SID>relative_tranparency(-5)<Cr>
+  inoremap <swipeup> <C-o>:call <SID>relative_tranparency(5)<Cr>
+  inoremap <swipedown> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+endif
 
 
 " http://vim-users.jp/2010/01/hack120/ {{{
