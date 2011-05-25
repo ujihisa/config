@@ -1,4 +1,4 @@
-let s:imac = 1 " fixme
+let s:imac = 0 " fixme
 "set guifont=Osaka－等幅\ Ultra-Condensed\ 16
 "colorscheme koehler
 "set imactivatekey=s-space
@@ -7,9 +7,9 @@ let s:imac = 1 " fixme
 
 
 "colorscheme macvim
-"colorscheme mrkn256
+colorscheme mrkn256
 "colorscheme lucius
-colorscheme ekvoli
+"colorscheme ekvoli
 
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
@@ -35,6 +35,11 @@ nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
 nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
 inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
 inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+
+nnoremap <swipeup> :<C-u>call <SID>relative_tranparency(5)<Cr>
+nnoremap <swipedown> :<C-u>call <SID>relative_tranparency(-5)<Cr>
+inoremap <swipeup> <C-o>:call <SID>relative_tranparency(5)<Cr>
+inoremap <swipedown> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 
 
 " http://vim-users.jp/2010/01/hack120/ {{{

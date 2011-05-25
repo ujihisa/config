@@ -725,7 +725,8 @@ function! s:move_window_into_tab_page(target_tabpagenr)
   execute target_tabpagenr 'tabnext'
 endfunction " }}}
 " <space>ao move current buffer into a new tab. {{{
-nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
+"nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
+nnoremap <silent> <Space>ao <C-w>T
 " }}}
 " shell-like guyon cd {{{
 "command! CD call CD()

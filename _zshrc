@@ -25,7 +25,8 @@ alias pingg='ping google.com'
 # }}}
 
 # ssh aliases {{{
-alias ssh_hootsuite='ssh uji@dev.hootsuitemedia.com'
+#alias ssh_hootsuite='ssh uji@dev.hootsuitemedia.com'
+alias ssh_hootsuite='ssh -p 2222 uji@phoenix.hootsuitemedia.com'
 alias ssh_virtualbox='ssh -p 2222 localhost'
 #alias ssh_kami='ssh ujihisa@72.55.171.57'
 #alias ssh_devkami='ssh dev01.kamilabo.jp'
@@ -450,8 +451,8 @@ export PATH=~/git/ruby193/local/bin:$PATH
 export PATH=~/git/ruby187/local/bin:$PATH
 export PATH=~/git/ruby192/local/bin:$PATH
 export PATH=$PATH:~/git/rubinius/local/bin
-export PATH=$PATH:~/git/node/local/bin
-export PATH=$PATH:~/git/coffee-script/local/bin
+#export PATH=$PATH:~/git/node/local/bin
+#export PATH=$PATH:~/git/coffee-script/local/bin
 export PATH=$PATH:~/git/git-hg/bin
 export PATH=$PATH:/usr/local/Cellar/python/2.7.1/bin/
 
