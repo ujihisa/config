@@ -453,6 +453,7 @@ export PATH=~/git/ruby192/local/bin:$PATH
 export PATH=$PATH:~/git/rubinius/local/bin
 #export PATH=$PATH:~/git/node/local/bin
 #export PATH=$PATH:~/git/coffee-script/local/bin
+export PATH=$PATH:~/node_modules/coffee-script/bin/
 export PATH=$PATH:~/git/git-hg/bin
 export PATH=$PATH:/usr/local/Cellar/python/2.7.1/bin/
 

@@ -62,7 +62,8 @@ set updatetime=500
 "let mapleader=" "
 let maplocalleader=' '
 
-nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+"nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr><C-l>
 nnoremap / :<C-u>set hlsearch<Return>/
 nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
