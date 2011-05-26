@@ -386,6 +386,13 @@ let g:unite_quick_match_table = {
       \}
 " in other words, it just swaps : and ;
 
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+  nunmap <buffer> <Up>
+  nunmap <buffer> <Down>
+  iunmap <buffer> <Up>
+  iunmap <buffer> <Down>
+endfunction"}}}
 " }}}
 augroup MyVim " {{{
   autocmd!
@@ -1067,10 +1074,6 @@ function! s:init_cmdwin()
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-  " HootSuite
-  inoreabbrev <buffer> c: ./core/mvc/controllers/mobile/
-  inoreabbrev <buffer> v: ./core/mvc/views/mobile/
-
   startinsert!
 endfunction
 " }}}
@@ -1408,6 +1411,9 @@ vnoremap ( t(
 " }}}
 " hack 104 http://vim-users.jp/2009/11/hack104/ {{{
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+" }}}
+" hootsuite {{{
+command! -nargs=0 HootSuiteVim new /Users/ujihisa/.vimbundles/hootsuite/plugin/hootsuite.vim
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
