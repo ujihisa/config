@@ -388,10 +388,10 @@ let g:unite_quick_match_table = {
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
-  nunmap <buffer> <Up>
-  nunmap <buffer> <Down>
-  iunmap <buffer> <Up>
-  iunmap <buffer> <Down>
+  silent! nunmap <buffer> <Up>
+  silent! nunmap <buffer> <Down>
+  silent! iunmap <buffer> <Up>
+  silent! iunmap <buffer> <Down>
 endfunction"}}}
 " }}}
 augroup MyVim " {{{
