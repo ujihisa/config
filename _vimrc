@@ -196,8 +196,22 @@ nmap <Space>v <Plug>(vimshell_switch)
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'vnew'
-autocmd FileType vimshell
-      \ imap <buffer> <BS>     <Plug>(vimshell_another_delete_backward_char)
+
+autocmd FileType vimshell call s:vimshell_local()
+function! s:vimshell_local()
+  imap <buffer> <BS>  <Plug>(vimshell_another_delete_backward_char)
+  nmap <buffer> <C-j> <Plug>(vimshell_next_prompt)
+  nmap <buffer> <C-k> <Plug>(vimshell_previous_prompt)
+  nunmap <buffer> j
+  nunmap <buffer> k
+endfunction
+
+autocmd FileType int-irb call s:vimshell_intirb()
+function! s:vimshell_intirb()
+  "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
+  nmap <buffer> <C-j> <Plug>(vimshell_int_next_prompt)
+  nmap <buffer> <C-k> <Plug>(vimshell_int_previous_prompt)
+endfunction
 " }}}
 " tag opens in a new window {{{
 "if 0 " if you want to use gtags
@@ -1414,6 +1428,12 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><C
 " }}}
 " hootsuite {{{
 command! -nargs=0 HootSuiteVim new /Users/ujihisa/.vimbundles/hootsuite/plugin/hootsuite.vim
+" }}}
+" MacVim is unko {{{
+let rtp = split(&rtp, ',')
+unlet rtp[index(rtp, '/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya')]
+let &rtp = join(rtp, ',')
+echo &rtp
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
