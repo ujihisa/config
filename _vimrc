@@ -123,7 +123,7 @@ inoremap <M-BS> <C-w>
 cnoremap <M-BS> <C-w>
 
 "nnoremap <Space>a  <Nop>
-nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>
+nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
@@ -1432,6 +1432,7 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><C
 " }}}
 " hootsuite {{{
 command! -nargs=0 HootSuiteVim new /Users/ujihisa/.vimbundles/hootsuite/plugin/hootsuite.vim
+command! -nargs=0 HootSuiteSpec new /Users/ujihisa/git/hstools/spec/committer.rb
 " }}}
 " MacVim is unko {{{
 let rtp = split(&rtp, ',')
