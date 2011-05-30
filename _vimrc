@@ -206,8 +206,8 @@ function! s:vimshell_local()
   nunmap <buffer> k
 endfunction
 
-autocmd FileType int-irb call s:vimshell_intirb()
-function! s:vimshell_intirb()
+autocmd FileType int-* call s:vimshell_iexe()
+function! s:vimshell_iexe()
   "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
   nmap <buffer> <C-j> <Plug>(vimshell_int_next_prompt)
   nmap <buffer> <C-k> <Plug>(vimshell_int_previous_prompt)
