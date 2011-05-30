@@ -97,6 +97,10 @@ function! s:good_width()
   endif
 endfunction
 
+" for plugins rewrites j/k
+nnoremap <C-j> j
+nnoremap <C-k> k
+
 nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
@@ -200,17 +204,17 @@ let g:vimshell_split_command = 'vnew'
 autocmd FileType vimshell call s:vimshell_local()
 function! s:vimshell_local()
   imap <buffer> <BS>  <Plug>(vimshell_another_delete_backward_char)
-  nmap <buffer> <C-j> <Plug>(vimshell_next_prompt)
-  nmap <buffer> <C-k> <Plug>(vimshell_previous_prompt)
-  nunmap <buffer> j
-  nunmap <buffer> k
+  nmap <buffer> j <Plug>(vimshell_next_prompt)
+  nmap <buffer> k <Plug>(vimshell_previous_prompt)
+  nunmap <buffer> <C-k> " deleting <Plug>(vimshell_delete_previous_output)
+  nmap <buffer> <C-S-k> <Plug>(vimshell_delete_previous_output)
 endfunction
 
 autocmd FileType int-* call s:vimshell_iexe()
 function! s:vimshell_iexe()
   "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
-  nmap <buffer> <C-j> <Plug>(vimshell_int_next_prompt)
-  nmap <buffer> <C-k> <Plug>(vimshell_int_previous_prompt)
+  nmap <buffer> j <Plug>(vimshell_int_next_prompt)
+  nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
 endfunction
 " }}}
 " tag opens in a new window {{{
