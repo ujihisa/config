@@ -63,7 +63,7 @@ set updatetime=500
 let maplocalleader=' '
 
 "nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
-nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr><C-l>
+nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 nnoremap / :<C-u>set hlsearch<Return>/
 nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
@@ -195,8 +195,11 @@ function! EmptyBufferP()
 endfunction
 "nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
 "nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
-nmap <Space>V <Plug>(vimshell_split_switch)
-nmap <Space>v <Plug>(vimshell_switch)
+
+"nmap <Space>V <Plug>(vimshell_split_switch)
+"nmap <Space>v <Plug>(vimshell_switch)
+nmap <Space>v <Plug>(vimshell_split_switch)
+
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'vnew'

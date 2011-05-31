@@ -21,6 +21,7 @@ else
   set guifont=Menlo:h16
 endif
 set transparency=10
+let g:transparency = &transparency
 "set go-=e
 set go-=T " no icons on the top of window
 set go-=r " no right-hand scrollbar at any time
@@ -29,6 +30,7 @@ set go+=c
 
 function! s:relative_tranparency(diff)
   let &transparency = a:diff + &transparency
+  let g:transparency = &transparency
 endfunction
 
 nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
