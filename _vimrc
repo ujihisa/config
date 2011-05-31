@@ -209,7 +209,8 @@ function! s:vimshell_local()
   imap <buffer> <BS>  <Plug>(vimshell_another_delete_backward_char)
   nmap <buffer> j <Plug>(vimshell_next_prompt)
   nmap <buffer> k <Plug>(vimshell_previous_prompt)
-  nunmap <buffer> <C-k> " deleting <Plug>(vimshell_delete_previous_output)
+  " deleting <Plug>(vimshell_delete_previous_output)
+  nunmap <buffer> <C-k>
   nmap <buffer> <C-S-k> <Plug>(vimshell_delete_previous_output)
 endfunction
 
