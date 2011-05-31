@@ -161,6 +161,12 @@ nnoremap // /^
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
 nnoremap <Space>n :<C-u>new<Cr>
+nnoremap <Space>N :<C-u>call <SID>new_with_the_filetype()<Cr>
+function! s:new_with_the_filetype()
+  let f = &filetype
+  new
+  let &filetype = f
+endfunction
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
