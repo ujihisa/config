@@ -226,6 +226,24 @@ function! s:vimshell_iexe()
   nmap <buffer> j <Plug>(vimshell_int_next_prompt)
   nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
 endfunction
+
+autocmd FileType int-ssh call vimshell#hook#set('input', ['g:iexe_ssh_vim'])
+function! g:iexe_ssh_vim(input, context)
+  if a:input !~# '^vim\s'
+    return a:input
+  endif
+
+  call vimshell#interactive#send_string("pwd\<Cr>")
+  2sleep
+  "let dir = substitute(b:interactive.process.read(1000, 40), '^pwd\r?\n\(.*\)\r?\n.*', '\1', '')
+  let dir = split(b:interactive.process.read(1000, 40), "\n")[1]
+  let dir = substitute(dir, "\r", '', '')
+  let file = substitute(a:input, '^vim\s\+', '', '')
+
+  echo string({'howtoconnect': join(b:interactive.args, ' '), 'where': dir, 'file': file})
+
+  return 'echo I will support ssh-vim command in the future'
+endfunction
 " }}}
 " tag opens in a new window {{{
 "if 0 " if you want to use gtags
