@@ -109,7 +109,7 @@ nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
 "nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 "nnoremap <Space>h :help<space>
 "nnoremap <Space>n :<C-u>new<space>
-nnoremap <Space>] <C-w>]
+"nnoremap <Space>] <C-w>]
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
@@ -1452,6 +1452,10 @@ let rtp = split(&rtp, ',')
 unlet rtp[index(rtp, '/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya')]
 let &rtp = join(rtp, ',')
 echo &rtp
+" }}}
+" golden ratio {{{
+command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
+nnoremap <Space>] :<C-u>GoldenRatio<Cr>
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
