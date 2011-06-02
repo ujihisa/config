@@ -175,6 +175,8 @@ vnoremap > >gv
 " paste in insert mode is <C-o>p while paste in command-line mode is <C-r>".
 " it's confusing.
 cnoremap <C-o>p <C-r>"
+" for speedup
+nnoremap /<C-o>p /<C-r>"
 
 "}}}
 " Cr in Insert Mode always means newline {{{
@@ -233,16 +235,23 @@ function! g:iexe_ssh_vim(input, context)
     return a:input
   endif
 
-  call vimshell#interactive#send_string("pwd\<Cr>")
-  2sleep
-  "let dir = substitute(b:interactive.process.read(1000, 40), '^pwd\r?\n\(.*\)\r?\n.*', '\1', '')
-  let dir = split(b:interactive.process.read(1000, 40), "\n")[1]
+  "call vimshell#interactive#send_string("pwd\<Cr>")
+  call b:interactive.process.write("pwd\<Cr>")
+  let chunk = ''
+  while chunk == ''
+    "let chunk = b:interactive.process.read_line()
+    let chunk = b:interactive.process.read(1000, 40)
+    "sleep 1m
+  endwhile
+  let dir = split(chunk, "\n")[1]
   let dir = substitute(dir, "\r", '', '')
   let file = substitute(a:input, '^vim\s\+', '', '')
 
-  echo string({'howtoconnect': join(b:interactive.args, ' '), 'where': dir, 'file': file})
+  " assuming the ssh command had no other arguments
+  execute printf('new scp://%s//%s/%s', b:interactive.args[1], dir, file)
+  wincmd W
 
-  return 'echo I will support ssh-vim command in the future'
+  return ''
 endfunction
 " }}}
 " tag opens in a new window {{{
@@ -416,6 +425,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
+  nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su q:Unite<Space>
