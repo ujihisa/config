@@ -228,31 +228,6 @@ function! s:vimshell_iexe()
   nmap <buffer> j <Plug>(vimshell_int_next_prompt)
   nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
 endfunction
-
-autocmd FileType int-ssh call vimshell#hook#set('input', ['g:iexe_ssh_vim'])
-function! g:iexe_ssh_vim(input, context)
-  if a:input !~# '^vim\s'
-    return a:input
-  endif
-
-  "call vimshell#interactive#send_string("pwd\<Cr>")
-  call b:interactive.process.write("pwd\<Cr>")
-  let chunk = ''
-  while chunk == ''
-    "let chunk = b:interactive.process.read_line()
-    let chunk = b:interactive.process.read(1000, 40)
-    "sleep 1m
-  endwhile
-  let dir = split(chunk, "\n")[1]
-  let dir = substitute(dir, "\r", '', '')
-  let file = substitute(a:input, '^vim\s\+', '', '')
-
-  " assuming the ssh command had no other arguments
-  execute printf('new scp://%s//%s/%s', b:interactive.args[1], dir, file)
-  wincmd W
-
-  return ''
-endfunction
 " }}}
 " tag opens in a new window {{{
 "if 0 " if you want to use gtags
