@@ -602,9 +602,7 @@ map <Space>r  <Plug>(quickrun)
 "  let g:quickrun_config = {}
 "endif
 let g:quickrun_config = {}
-"let g:quickrun_config['*'] = {'runmode': 'async:remote:vimproc'}
-let g:quickrun_config._ = {'runmode': "async:remote:vimproc", 'split': 'below'}
-let g:quickrun_config._.runmode = 'async:vimproc'
+let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
 let g:quickrun_config.haskell = {
       \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
       \ 'tempfile': '{tempname()}.hs',
@@ -621,6 +619,7 @@ let g:quickrun_config.textile = {
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
 "\  }
 " }}}
+let g:quickrun_config['ruby'] = {'command': 'ruby'}
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
 
