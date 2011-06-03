@@ -623,11 +623,19 @@ let g:quickrun_config.textile = {
 " }}}
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
+
 let g:quickrun_config['markdown'] = {
 \   'command': 'pandoc',
 \   'exec': ['%c -s -f markdown -t html -o %s:p:r.html %s', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'],
-\   'tempfile': '{tempname()}.md'
+\   'tempfile': '{tempname()}.md',
+\   'outputter': 'null',
 \ }
+
+"     \ 'erlang': {
+"     \   'command': 'escript',
+"    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
+"    +\   'tempfile': '{fnamemodify(tempname(), ":h")}/quickrun',
+"     \ },
 let g:clj_highlight_builtins=1
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
