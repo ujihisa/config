@@ -603,6 +603,7 @@ map <Space>r  <Plug>(quickrun)
 "endif
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
+let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
 let g:quickrun_config.haskell = {
       \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
       \ 'tempfile': '{tempname()}.hs',
