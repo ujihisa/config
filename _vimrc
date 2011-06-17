@@ -69,7 +69,7 @@ nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
-command! -nargs=0 Amp execute 'normal!' printf('/%s<Cr>', expand('<cword>'))
+command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
 "nnoremap & :<C-u>Amp<Cr>
 nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
 
