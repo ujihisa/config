@@ -1470,6 +1470,12 @@ echo &rtp
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
 nnoremap <Space>] :<C-u>GoldenRatio<Cr>
 " }}}
+" hootsuite_lang {{{
+augroup hootsuite-lang
+  autocmd!
+  autocmd BufWinEnter,BufNewFile ~/git/hootsuite_lang/* nnoremap <buffer> <space>m :<C-u>VimProcBang rake<Cr>
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
