@@ -588,7 +588,15 @@ nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
-map <Space>r  <Plug>(quickrun)
+"map <Space>r  <Plug>(quickrun)
+nnoremap <Space>r :<C-u>silent call <SID>quickrun_of_buffer()<Cr>
+function! s:quickrun_of_buffer()
+  if !exists('b:quickrun_of_buffer')
+    let b:quickrun_of_buffer = ''
+  endif
+  echo 'QuickRun' b:quickrun_of_buffer
+  execute 'QuickRun' b:quickrun_of_buffer
+endfunction
 "map <Space>r :<C-u>QuickRun<Cr>
 
 " function! Quickrun_open_test_window()
