@@ -1484,6 +1484,30 @@ augroup hootsuite-lang
   autocmd BufWinEnter,BufNewFile ~/git/hootsuite_lang/* nnoremap <buffer> <space>m :<C-u>VimProcBang rake<Cr>
 augroup END
 " }}}
+" unite-launch {{{
+let g:unite_launch_apps = [
+      \ 'rake',
+      \ 'make',
+      \ 'git pull',
+      \ 'git push']
+" }}}
+" unite-transparency {{{
+let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}}}
+function! s:unite_source.gather_candidates(args, context)
+  return map(range(0, 100, 4), '{
+        \ "word": v:val,
+        \ "source": "transparency",
+        \ "kind": "command",
+        \ "action__command": "set transparency=" . v:val,
+        \ }')
+endfunction
+let s:unite_source.action_table['*'].preview = {
+      \ 'description': 'preview this transparency', 'is_quit': 0 }
+function! s:unite_source.action_table['*'].preview.func(candidate)
+  execute a:candidate.action__command
+endfunction
+call unite#define_source(s:unite_source)
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
