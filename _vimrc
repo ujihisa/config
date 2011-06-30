@@ -858,9 +858,6 @@ function! s:open_lib_and_corresponding_test(fname)
   execute 'vnew spec/' . a:fname . '_test.rb'
   execute "normal \<Plug>(quickrun)\<C-w>J\<C-w>7_"
 endfunction " }}}
-" for textobj-indent
-omap ii ii<C-o>
-
 let g:gist_clip_command = 'pbcopy'
 " color {{{
 colorscheme desert
@@ -1367,7 +1364,7 @@ call echodoc#register('haskell', s:doc_dict)
 " }}}
 " rsense {{{
 let g:rsenseUseOmniFunc = 1
-if 0 && filereadable(expand('~/git/rsense/bin/rsense'))
+if filereadable(expand('~/git/rsense/bin/rsense'))
   let g:rsenseHome = expand('~/git/rsense')
 
   if !exists('g:neocomplcache_omni_patterns')
