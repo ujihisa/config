@@ -1490,6 +1490,9 @@ let g:unite_launch_apps = [
 " }}}
 " unite-transparency {{{
 let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}}}
+" quickrun + haskell = infinite loop {{{
+command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
+" }}}
 function! s:unite_source.gather_candidates(args, context)
   return map(range(0, 100, 4), '{
         \ "word": v:val,
