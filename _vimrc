@@ -334,6 +334,8 @@ let g:neocomplcache_max_keyword_width = 70
 let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
 imap <C-l> <Plug>(neocomplcache_start_unite_complete)
+
+command! -nargs=0 NeoComplCacheRestart execute 'NeoComplCacheDisable' | NeoComplCacheEnable
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
@@ -1507,6 +1509,9 @@ function! s:unite_source.action_table['*'].preview.func(candidate)
   execute a:candidate.action__command
 endfunction
 call unite#define_source(s:unite_source)
+" }}}
+" synastic {{{
+let g:synastic_enable_signs = 1
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
