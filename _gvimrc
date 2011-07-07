@@ -78,6 +78,10 @@ if has('gui_macvim')
   nnoremap <SwipeRight> gt
   set fullscreen
   WindowsizeMaximize13
+  " termtter {{{
+  VimShellInteractive termtter
+  wincmd W
+  " }}}
   VimShell
   normal! <C-u>
 endif
