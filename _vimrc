@@ -42,7 +42,7 @@ set backspace=indent,eol,start
 set modeline
 set noequalalways " http://vim-users.jp/2009/06/hack31/
 set t_Co=256
-set cmdheight=2
+set cmdheight=3
 " http://vim-users.jp/2009/06/hack32/
 set directory-=.
 " http://vim-users.jp/2010/07/hack162/
@@ -151,7 +151,8 @@ nnoremap <Space>sr :<C-u>set filetype=ruby<Cr>
 "nnoremap <Space>sh :<C-u>set filetype=haskell<Cr>
 "nnoremap <Space>sj :<C-u>set filetype=javascript<Cr>
 nnoremap <Space>spp :<C-u>set filetype=php<Cr>i<?php<Cr>error_reporting(E_ERROR \| E_WARNING \| E_PARSE \| E_NOTICE \| E_STRICT);<Cr><esc>
-nnoremap <Space>spn :<C-u>set filetype=python<Cr>
+nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>i{-# LANGUAGE OverloadedStrings #-}<Cr>import qualified Data.Text as T<Cr>import qualified Data.Text.IO as T<Cr><Cr>main = do<Cr>print $ <Esc>
+
 
 nnoremap <Space>b :w blogger:create
 let g:blogger_ruby_path = '/Users/ujihisa/git/ruby192/local/bin/ruby'
