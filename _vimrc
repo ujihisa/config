@@ -418,6 +418,8 @@ let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
 let g:unite_cd_command = 'CD'
 
+let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o|exe|dll|bak|sw[po]\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
+
 let g:unite_quick_match_table = {
       \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
       \'q' : 11, 'w' : 12, 'e' : 13, 'r' : 14, 't' : 15, 'y' : 16, 'u' : 17, 'i' : 18, 'o' : 19, 'p' : 20,
@@ -1033,6 +1035,9 @@ imap <C-a> <C-O><Plug>CapsLockToggle
 command! -nargs=1 AddPath let $PATH="<args>:".$PATH
 AddPath /Users/ujihisa/git/mdv
 AddPath /Users/ujihisa/Library/Haskell/bin
+if filereadable('/Users/ujihisa/pear/bin/pear')
+  AddPath /Users/ujihisa/pear/bin
+endif
 " }}}
 " Haskell Tag {{{
 " see also: ~/bin/update-cabal-tags
