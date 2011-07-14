@@ -1519,6 +1519,10 @@ call unite#define_source(s:unite_source)
 " synastic {{{
 let g:synastic_enable_signs = 1
 " }}}
+" vimerl {{{
+let g:erlangManPath = '/usr/local/share/man'
+let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
