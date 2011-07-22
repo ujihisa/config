@@ -131,10 +131,12 @@ cnoremap <M-BS> <C-w>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
-nnoremap <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
-nnoremap <F10>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+inoremap <silent> <D-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
-nnoremap <F9>       gT
+nnoremap <D-k>  gT
+inoremap <D-k>  <Esc>gT
 
 nnoremap Y y$
 nnoremap co zo
@@ -628,6 +630,7 @@ let g:quickrun_config.haskell = {
       \ 'tempfile': '{tempname()}.hs',
       \ 'exec': ['%c %s -o %s:p:r', '%s:p:r', 'rm %s:p:r'] }
 let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
+let g:quickrun_config.haskell = {'exec': ['%c %s -o %s:p:r'], 'command': 'runghc'}
 
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
 let g:quickrun_config['ruby.rspec'] = {'command': "spec -l {line('.')}"}
@@ -1039,6 +1042,9 @@ AddPath /Users/ujihisa/git/mdv
 AddPath /Users/ujihisa/Library/Haskell/bin
 if filereadable('/Users/ujihisa/pear/bin/pear')
   AddPath /Users/ujihisa/pear/bin
+endif
+if filereadable('/Users/ujihisa/git/llvm/local/bin')
+  AddPath /Users/ujihisa/git/llvm/local/bin
 endif
 " }}}
 " Haskell Tag {{{
@@ -1556,7 +1562,7 @@ endfunction
 let remote = s:new()
 " echo remote.send('<Esc>:h client-server<Cr>')
 command! -nargs=* R call remote.send('<Esc>:' . <q-args> . '<Cr>') | call remote.focus()
-nnoremap <space>[ :<C-u>VimProcBang open ~/Desktop/macvimfocus.app<Cr>
+nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr>
 
 augroup dualvim
   autocmd!
