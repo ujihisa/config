@@ -60,7 +60,7 @@ set updatetime=500
 " }}}
 " mappings {{{
 "let mapleader=" "
-let maplocalleader=' '
+"let maplocalleader=' '
 
 "nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
@@ -645,7 +645,8 @@ let g:quickrun_config.textile = {
 " }}}
 let g:quickrun_config['ruby'] = {'command': 'ruby'}
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
-let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
+"let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
+let g:quickrun_config['clojure'] = {'command': 'clj'}
 
 let g:quickrun_config['markdown'] = {
 \   'command': 'pandoc',
@@ -1569,6 +1570,9 @@ augroup dualvim
   autocmd FocusGained * set transparency=10
   autocmd FocusLost * set transparency=50
 augroup END
+" }}}
+" clojure {{{
+let g:vimclojure#ParenRainbow = 1
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
