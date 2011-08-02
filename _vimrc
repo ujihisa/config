@@ -157,10 +157,10 @@ nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>i{-# LANGUAGE OverloadedString
 
 
 nnoremap <Space>b :w blogger:create
-let g:blogger_ruby_path = '/Users/ujihisa/git/ruby192/local/bin/ruby'
+let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
 let g:blogger_gist = 0
 nnoremap <Space>I $i
-nnoremap <Space>C $C
+"nnoremap <Space>C $C
 nnoremap X ^x
 nnoremap cp Pjdd
 nnoremap Q <nop>
