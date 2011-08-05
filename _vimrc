@@ -1044,8 +1044,8 @@ AddPath /Users/ujihisa/Library/Haskell/bin
 if filereadable('/Users/ujihisa/pear/bin/pear')
   AddPath /Users/ujihisa/pear/bin
 endif
-if filereadable('/Users/ujihisa/git/llvm/local/bin')
-  AddPath /Users/ujihisa/git/llvm/local/bin
+if filereadable('/Users/ujihisa/src/llvm-git-build/local/bin')
+  AddPath /Users/ujihisa/src/llvm-git-build/local/bin
 endif
 " }}}
 " Haskell Tag {{{
