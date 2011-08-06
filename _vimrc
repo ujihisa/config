@@ -1085,8 +1085,12 @@ let g:loaded_vimrc = 1
 " inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 " }}}
 " = for completion and \ for cancel {{{
-inoremap <expr> = pumvisible() ? "\<C-n>" : '='
+inoremap <expr> = pumvisible() ? "\<C-p>" : '='
 inoremap <expr> \ pumvisible() ? neocomplcache#close_popup() : '\'
+
+" new completion system
+inoremap <expr> 0   pumvisible() ? "\<C-n>" : '0'
+"inoremap <expr> <s-space> pumvisible() ? neocomplcache#close_popup() . ' ' : ' '
 " }}}
 " Open junk file. by Shougo "{{{
 command! -nargs=0 JunkFile call s:open_junk_file()
