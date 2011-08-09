@@ -222,7 +222,7 @@ let g:vimshell_split_command = 'vnew'
 
 autocmd FileType vimshell call s:vimshell_local()
 function! s:vimshell_local()
-  imap <buffer> <BS>  <Plug>(vimshell_another_delete_backward_char)
+  imap <buffer><expr> <BS>  pumvisible() ? "\<Plug>(vimrc_bs)" : "\<Plug>(vimshell_another_delete_backward_char)"
   nmap <buffer> j <Plug>(vimshell_next_prompt)
   nmap <buffer> k <Plug>(vimshell_previous_prompt)
   " deleting <Plug>(vimshell_delete_previous_output)
@@ -1037,17 +1037,6 @@ endfunction
 imap <C-a> <C-O><Plug>CapsLockToggle
 "set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
 " }}}
-" PATH {{{
-command! -nargs=1 AddPath let $PATH="<args>:".$PATH
-AddPath /Users/ujihisa/git/mdv
-AddPath /Users/ujihisa/Library/Haskell/bin
-if filereadable('/Users/ujihisa/pear/bin/pear')
-  AddPath /Users/ujihisa/pear/bin
-endif
-if filereadable('/Users/ujihisa/src/llvm-git-build/local/bin')
-  AddPath /Users/ujihisa/src/llvm-git-build/local/bin
-endif
-" }}}
 " Haskell Tag {{{
 " see also: ~/bin/update-cabal-tags
 set tag+=~/.cabal/tags
@@ -1085,11 +1074,14 @@ let g:loaded_vimrc = 1
 " inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 " }}}
 " = for completion and \ for cancel {{{
-inoremap <expr> = pumvisible() ? "\<C-p>" : '='
-inoremap <expr> \ pumvisible() ? neocomplcache#close_popup() : '\'
+inoremap <expr> = pumvisible() ? "\<C-n>" : '='
+inoremap <expr> \ pumvisible() ? "\<C-p>" : '\'
+inoremap <expr> <Plug>(vimrc_bs) pumvisible() ? neocomplcache#close_popup() : "\<BS>"
+imap <BS> <Plug>(vimrc_bs)
+"function! s:wrapmap(key)
+"  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
+"endfunction
 
-" new completion system
-inoremap <expr> 0   pumvisible() ? "\<C-n>" : '0'
 "inoremap <expr> <s-space> pumvisible() ? neocomplcache#close_popup() . ' ' : ' '
 " }}}
 " Open junk file. by Shougo "{{{
@@ -1136,7 +1128,9 @@ function! s:init_cmdwin()
   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
-  inoremap <buffer><expr><BS> col('.') == 1 ? "\<ESC>:quit\<CR>" : pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  inoremap <buffer><expr><BS> <Plug>(vimrc_cmdwin_close) "\<ESC>:quit\<CR>"
+  imap     <buffer><expr><BS> col('.') == 1 ? "\<Plug>(vimrc_cmdwin_close)" : "\<Plug>(vimrc_bs)"
+
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
   inoremap <buffer><expr> \ pumvisible() ? neocomplcache#close_popup() : <SID>cmdwin_backslash()
@@ -1295,6 +1289,17 @@ let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 let g:shadow_debug = 1
 " FIXME
 execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
+" PATH {{{
+command! -nargs=1 AddPath let $PATH="<args>:".$PATH
+AddPath /Users/ujihisa/git/mdv
+AddPath /Users/ujihisa/Library/Haskell/bin
+if isdirectory('/Users/ujihisa/pear/bin/pear')
+  AddPath /Users/ujihisa/pear/bin
+endif
+if isdirectory('/Users/ujihisa/src/llvm-git-build/local/bin')
+  AddPath /Users/ujihisa/src/llvm-git-build/local/bin
+endif
+" }}}
 " macvim proportional {{{
 function! Proportional()
   set guifontwide=
