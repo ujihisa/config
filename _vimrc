@@ -1076,7 +1076,7 @@ let g:loaded_vimrc = 1
 " = for completion and \ for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <expr> \ pumvisible() ? "\<C-p>" : '\'
-inoremap <expr> <Plug>(vimrc_bs) pumvisible() ? neocomplcache#close_popup() : "\<BS>"
+inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
 imap <BS> <Plug>(vimrc_bs)
 "function! s:wrapmap(key)
 "  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
@@ -1123,12 +1123,12 @@ function! s:cmdwin_backslash()
   return matchstr(getline('.'), '\w\+') =~# '^s\(ubstitute\)\?$' ? '\' : smartchr#one_of('~/', '\')
 endfunction
 
+inoremap <Plug>(vimrc_cmdwin_close) <ESC>:<C-u>quit<CR>
 function! s:init_cmdwin()
   inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
-  inoremap <buffer><expr><BS> <Plug>(vimrc_cmdwin_close) "\<ESC>:quit\<CR>"
   imap     <buffer><expr><BS> col('.') == 1 ? "\<Plug>(vimrc_cmdwin_close)" : "\<Plug>(vimrc_bs)"
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
