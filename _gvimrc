@@ -8,9 +8,9 @@ let s:imac = !system('sysctl -a | grep hw.model') == "hw.model = MacBookAir1,1\n
 
 "colorscheme macvim
 "colorscheme mrkn256
-colorscheme neverland2-darker
 "colorscheme lucius
-"colorscheme ekvoli
+"colorscheme neverland2-darker
+colorscheme xoria256
 
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
