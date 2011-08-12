@@ -1583,6 +1583,11 @@ augroup END
 " clojure {{{
 let g:vimclojure#ParenRainbow = 1
 " }}}
+" golden-ratio {{{
+let g:golden_ratio_autocommand = 1
+"nmap <space>gr <Plug>(golden_ratio_resize)
+"imap <space>gr <Plug>(golden_ratio_resize)
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
