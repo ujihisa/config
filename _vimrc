@@ -1584,7 +1584,7 @@ augroup END
 let g:vimclojure#ParenRainbow = 1
 " }}}
 " golden-ratio {{{
-let g:golden_ratio_autocommand = 1
+let g:golden_ratio_autocommand = 0
 "nmap <space>gr <Plug>(golden_ratio_resize)
 "imap <space>gr <Plug>(golden_ratio_resize)
 " }}}
