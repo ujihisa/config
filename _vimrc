@@ -1588,6 +1588,9 @@ let g:golden_ratio_autocommand = 0
 "nmap <space>gr <Plug>(golden_ratio_resize)
 "imap <space>gr <Plug>(golden_ratio_resize)
 " }}}
+" conceallevel changer {{{
+nnoremap <space>` :<C-u>setl conceallevel=0<Cr>
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
