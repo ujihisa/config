@@ -1591,6 +1591,15 @@ let g:golden_ratio_autocommand = 0
 " conceallevel changer {{{
 nnoremap <space>` :<C-u>setl conceallevel=0<Cr>
 " }}}
+" vimfiler {{{
+let g:vimfiler_as_default_explorer = 1
+
+autocmd FileType vimfiler call s:vimfiler_local()
+function! s:vimfiler_local()
+  nunmap <buffer> L
+  nunmap <buffer> H
+endfunction
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
