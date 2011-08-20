@@ -17,9 +17,11 @@ colorscheme xoria256
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
 if s:imac
   set guifont=Menlo:h18
-else
+elseif has('mac')
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
+else
+  let &guifont='VL Gothic 16'
 endif
 set transparency=10
 let g:transparency = &transparency
