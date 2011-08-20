@@ -420,13 +420,15 @@ function l() {
 # }}}
 
 # for cdd
-source ~/bin/cdd.zsh
-function chpwd() {
-  _reg_pwd_screennum
-}
+#source ~/bin/cdd.zsh
+#function chpwd() {
+#  _reg_pwd_screennum
+#}
 
 # for yarm
-source ~/bin/yarm.zsh
+if [ -e ~/bin/yarm.zsh ]; then
+  source ~/bin/yarm.zsh
+fi
 
 # paths
 #export PATH=$PATH:~/coderepos/ruby/misc
