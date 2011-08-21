@@ -665,7 +665,7 @@ let g:quickrun_config['markdown'] = {
 "    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
 "    +\   'tempfile': '{fnamemodify(tempname(), ":h")}/quickrun',
 "     \ },
-let g:clj_highlight_builtins=1
+let g:vimclojure#HighlightBuiltins = 1
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
   autocmd!
@@ -1500,7 +1500,6 @@ command! -nargs=0 HootSuiteSpec new /Users/ujihisa/git/hstools/spec/committer.rb
 let rtp = split(&rtp, ',')
 unlet rtp[index(rtp, '/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya')]
 let &rtp = join(rtp, ',')
-echo &rtp
 " }}}
 " golden ratio {{{
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
@@ -1549,7 +1548,9 @@ let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 " remote {{{
 let g:V = vital#of('vital')
 function! s:_vim(x)
-  return g:V.system('/Applications/MacVim.app/Contents/MacOS/Vim ' . a:x)
+  if filereadable('/Applications/MacVim.app/Contents/MacOS/Vim')
+    return g:V.system('/Applications/MacVim.app/Contents/MacOS/Vim ' . a:x)
+  endif
 endfunction
 
 function! s:new(...)
