@@ -1394,13 +1394,13 @@ endfunction
 call echodoc#register('haskell', s:doc_dict)
 " }}}
 " rsense {{{
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
 let g:rsenseUseOmniFunc = 1
 if filereadable(expand('~/git/rsense/bin/rsense'))
   let g:rsenseHome = expand('~/git/rsense')
 
-  if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-  endif
   let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 endif
 " }}}
