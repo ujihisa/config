@@ -23,8 +23,10 @@ elseif has('mac')
 else
   let &guifont='VL Gothic 16'
 endif
-set transparency=10
-let g:transparency = &transparency
+if has('mac')
+  set transparency=10
+  let g:transparency = &transparency
+endif
 "set go-=e
 set go-=T " no icons on the top of window
 set go-=r " no right-hand scrollbar at any time
@@ -36,10 +38,12 @@ function! s:relative_tranparency(diff)
   let g:transparency = &transparency
 endfunction
 
-nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
-nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
-inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
-inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+if has('mac')
+  nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
+  nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
+  inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
+  inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+endif
 
 if s:imac
   nnoremap <swipeup> :<C-u>call <SID>relative_tranparency(5)<Cr>

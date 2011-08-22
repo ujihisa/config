@@ -1582,8 +1582,10 @@ nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr
 
 augroup dualvim
   autocmd!
-  autocmd FocusGained * set transparency=10
-  autocmd FocusLost * set transparency=50
+  if has('mac')
+    autocmd FocusGained * set transparency=10
+    autocmd FocusLost * set transparency=50
+  endif
 augroup END
 " }}}
 " clojure {{{
