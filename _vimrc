@@ -11,9 +11,9 @@ if exists('g:loaded_pathogen')
 end
 " }}}
 " vimproc {{{
-if !has('mac')
-  let g:vimproc_dll_path = '/home/ujihisa/vimproc2/autoload/proc.so'
-endif
+"if !has('mac')
+"  let g:vimproc_dll_path = '/home/ujihisa/vimproc2/autoload/proc.so'
+"endif
 " }}}
 " settings {{{
 filetype plugin indent on
