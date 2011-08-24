@@ -21,8 +21,8 @@ elseif has('mac')
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
 else
-  "let &guifont='VL Gothic 16'
-  let &guifont='Anonymous Pro Bold 16'
+  let &guifont = 'Anonymous Pro Bold 16'
+  let &guifontwide = 'Hiragino Kaku Gothic Pro Light 14'
 endif
 
 if has('mac')
