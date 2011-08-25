@@ -1618,6 +1618,10 @@ function! s:vimfiler_local()
   nunmap <buffer> H
 endfunction
 " }}}
+" ENV
+if !$LANG
+  let $LANG='en_US.UTF-8'
+endif
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
