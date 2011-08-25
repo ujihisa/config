@@ -15,17 +15,18 @@ colorscheme xoria256
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
+let V = vital#of('vital')
 if s:imac
   set guifont=Menlo:h18
-elseif has('mac')
+elseif V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
 else
-  let &guifont = 'Anonymous Pro Bold 16'
-  let &guifontwide = 'Hiragino Kaku Gothic Pro Light 14'
+  let &guifont = 'Anonymous Pro Bold 14'
+  let &guifontwide = 'Hiragino Kaku Gothic Pro Light 12'
 endif
 
-if has('mac')
+if V.is_mac()
   set transparency=10
   let g:transparency = &transparency
 endif
@@ -40,7 +41,7 @@ function! s:relative_tranparency(diff)
   let g:transparency = &transparency
 endfunction
 
-if has('mac')
+if V.is_mac()
   nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
   nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
   inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
@@ -82,11 +83,13 @@ endfunction
 command! WindowsizeMaximize13 call WindowsizeMaximize13()
 " }}}
 " macvim specific {{{
-if has('gui_macvim')
+if V.is_mac()
   nnoremap <SwipeLeft> gT
   nnoremap <SwipeRight> gt
   set fullscreen
   WindowsizeMaximize13
+endif
+if has('gui')
   " termtter {{{
   VimShellInteractive termtter
   wincmd W
