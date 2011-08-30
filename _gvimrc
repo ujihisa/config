@@ -16,9 +16,7 @@ colorscheme xoria256
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
 let V = vital#of('vital')
-if s:imac
-  set guifont=Menlo:h18
-elseif V.is_mac()
+if V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
 else
