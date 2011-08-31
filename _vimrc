@@ -69,6 +69,7 @@ set updatetime=500
 "let maplocalleader=' '
 
 "nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+let g:transparency = 10
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 nnoremap / :<C-u>set hlsearch<Return>/
 nnoremap ? :<C-u>set hlsearch<Return>?
