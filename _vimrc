@@ -1587,10 +1587,12 @@ function! s:_remote_name()
   call g:V.print_error('No remote server')
 endfunction
 
-let remote = s:new()
-" echo remote.send('<Esc>:h client-server<Cr>')
-command! -nargs=* R call remote.send('<Esc>:' . <q-args> . '<Cr>') | call remote.focus()
-nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr>
+function! VimrcRemoteInit()
+  let remote = s:new()
+  " echo remote.send('<Esc>:h client-server<Cr>')
+  command! -nargs=* R call remote.send('<Esc>:' . <q-args> . '<Cr>') | call remote.focus()
+  nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr>
+endfunction
 
 augroup dualvim
   autocmd!
@@ -1619,19 +1621,6 @@ function! s:vimfiler_local()
   nunmap <buffer> L
   nunmap <buffer> H
 endfunction
-" }}}
-" vim help write {{{
-" http://d.hatena.ne.jp/thinca/20110903/1314982646
-" after/ftplugin/help.vim
-if &l:buftype !=# 'help'
-  setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab textwidth=78
-  if exists('+colorcolumn')
-    setlocal colorcolumn=+1
-  endif
-  if has('conceal')
-    setlocal conceallevel=0
-  endif
-endif
 " }}}
 " ENV
 if !$LANG
