@@ -20,10 +20,10 @@ if V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
 else
-  "let &guifont = 'Anonymous Pro Bold 14'
-  "let &guifontwide = 'Hiragino Kaku Gothic Pro Light 12'
-  let &guifont = 'Menlo Bold 11'
-  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 10'
+  let &guifont = 'Anonymous Pro Bold 14'
+  let &guifontwide = 'Hiragino Kaku Gothic Pro Light 12'
+  "let &guifont = 'Menlo Bold 11'
+  "let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 10'
 endif
 
 if V.is_mac()
