@@ -70,7 +70,12 @@ set updatetime=500
 
 "nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 let g:transparency = 10
-nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
+let g:V = vital#of('vital')
+if g:V.is_mac
+  nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
+else
+  nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
+end
 nnoremap / :<C-u>set hlsearch<Return>/
 nnoremap ? :<C-u>set hlsearch<Return>?
 nnoremap * :<C-u>set hlsearch<Return>*
@@ -1558,7 +1563,6 @@ let g:erlangManPath = '/usr/local/share/man'
 let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 " }}}
 " remote {{{
-let g:V = vital#of('vital')
 function! s:_vim(x)
   if filereadable('/Applications/MacVim.app/Contents/MacOS/Vim')
     return g:V.system('/Applications/MacVim.app/Contents/MacOS/Vim ' . a:x)
