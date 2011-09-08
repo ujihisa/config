@@ -96,6 +96,7 @@ if has('gui')
   " }}}
   VimShell
   normal! <C-u>
+  redraw!
 endif
 " }}}
 " for vimshell {{{

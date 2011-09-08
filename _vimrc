@@ -62,6 +62,8 @@ endif
 set equalalways
 set updatetime=500
 
+" for Gentoo
+set notagbsearch
 
 " }}}
 " mappings {{{
@@ -71,7 +73,7 @@ set updatetime=500
 "nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 let g:transparency = 10
 let g:V = vital#of('vital')
-if g:V.is_mac
+if g:V.is_mac()
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 else
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
@@ -145,6 +147,7 @@ nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+nnoremap <silent> <A-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 inoremap <silent> <D-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
 nnoremap <D-k>  gT
@@ -1320,6 +1323,7 @@ if !V.is_mac()
   AddPath /home/ujihisa/src/haskell-platform-2011.2.0.1/local/bin
   AddPath /home/ujihisa/src/ghc-7.0.3/local/bin
   "AddPath /home/ujihisa/git/ghc/local/bin
+  AddPath /home/ujihisa/git/Gyazo-for-Linux/
 endif
 " }}}
 " macvim proportional {{{
