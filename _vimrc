@@ -1303,10 +1303,17 @@ endif
 let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 " }}}
 let g:shadow_debug = 1
-" FIXME
-execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
 " PATH {{{
 command! -nargs=1 AddPath let $PATH="<args>:".$PATH
+if filereadable(expand('~/.zshrc'))
+  execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
+else
+  AddPath /usr/bin
+  AddPath /usr/local/bin
+  AddPath /sbin
+  AddPath /usr/sbin
+endif
+
 AddPath /Users/ujihisa/git/mdv
 AddPath /Users/ujihisa/Library/Haskell/bin
 if isdirectory('/Users/ujihisa/pear/bin/pear')
