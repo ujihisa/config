@@ -149,9 +149,12 @@ nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1
 nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <A-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 inoremap <silent> <D-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+inoremap <silent> <A-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
 nnoremap <D-k>  gT
+nnoremap <A-k>  gT
 inoremap <D-k>  <Esc>gT
+inoremap <A-k>  <Esc>gT
 
 nnoremap Y y$
 nnoremap co zo
