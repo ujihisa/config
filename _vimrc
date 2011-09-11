@@ -668,11 +668,9 @@ let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', 
 let g:quickrun_config['clojure'] = {'command': 'clj'}
 
 let g:quickrun_config['markdown'] = {
-\   'command': 'pandoc',
-\   'exec': ['%c -s -f markdown -t html -o %s:p:r.html %s', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'],
-\   'tempfile': '{tempname()}.md',
-\   'outputter': 'null',
-\ }
+      \ 'type': 'markdown/pandoc',
+      \ 'outputter': 'browser'
+      \ }
 
 "     \ 'erlang': {
 "     \   'command': 'escript',
