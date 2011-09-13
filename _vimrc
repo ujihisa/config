@@ -669,6 +669,7 @@ let g:quickrun_config['clojure'] = {'command': 'clj'}
 
 let g:quickrun_config['markdown'] = {
       \ 'type': 'markdown/pandoc',
+      \ 'cmdopt': '-s',
       \ 'outputter': 'browser'
       \ }
 
