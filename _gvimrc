@@ -34,6 +34,7 @@ endif
 set go-=T " no icons on the top of window
 set go-=r " no right-hand scrollbar at any time
 set go-=l " no left-hand scrollbar at any time
+set go-=L " no left-hand scrollbar at any time
 set go-=m " no gui menu (not for MacVim?)
 set go+=c
 
