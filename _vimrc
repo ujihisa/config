@@ -665,7 +665,6 @@ let g:quickrun_config.textile = {
 let g:quickrun_config['ruby'] = {'command': 'ruby'}
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 "let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
-let g:quickrun_config['clojure'] = {'command': 'clj'}
 
 let g:quickrun_config['markdown'] = {
       \ 'type': 'markdown/pandoc',
@@ -1324,6 +1323,9 @@ endif
 if isdirectory('/Users/ujihisa/src/llvm-git-build/local/bin')
   AddPath /Users/ujihisa/src/llvm-git-build/local/bin
 endif
+if isdirectory('/Users/ujihisa/git/jark')
+  AddPath /Users/ujihisa/git/jark
+endif
 
 if !V.is_mac()
   AddPath /home/ujihisa/git/termtter/bin
@@ -1643,6 +1645,8 @@ endfunction
 if !$LANG
   let $LANG='en_US.UTF-8'
 endif
+" http://lingr.com/room/vim/archives/2011/09/19#message-4881743
+"let g:neocomplcache_enable_prefetch = 1
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
