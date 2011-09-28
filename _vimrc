@@ -677,7 +677,6 @@ let g:quickrun_config['markdown'] = {
 "    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
 "    +\   'tempfile': '{fnamemodify(tempname(), ":h")}/quickrun',
 "     \ },
-let g:vimclojure#HighlightBuiltins = 1
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
   autocmd!
@@ -1622,7 +1621,8 @@ augroup dualvim
 augroup END
 " }}}
 " clojure {{{
-let g:vimclojure#ParenRainbow = 1
+let g:clj_highlight_builtins = 1
+let g:clj_paren_rainbow = 1
 " }}}
 " golden-ratio {{{
 let g:golden_ratio_autocommand = 0
