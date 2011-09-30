@@ -233,6 +233,7 @@ endfunction
 "nmap <Space>V <Plug>(vimshell_split_switch)
 "nmap <Space>v <Plug>(vimshell_switch)
 nmap <Space>v <Plug>(vimshell_split_switch)
+nnoremap <Space>V :<C-u>new<Cr>:VimShellCreate<Cr>
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
