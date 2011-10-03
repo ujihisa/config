@@ -106,4 +106,13 @@ function! GvimrcVimshellColor()
   hi! link Error WarningMsg
 endfunction
 " }}}
+" transparency adjustment based on window focus {{{
+augroup dualvim
+  autocmd!
+  if has('mac')
+    autocmd FocusGained * set transparency=10
+    autocmd FocusLost * set transparency=50
+  endif
+augroup END
+" }}}
 " vim: foldmethod=marker

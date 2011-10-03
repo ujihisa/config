@@ -1613,13 +1613,6 @@ function! VimrcRemoteInit()
   nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr>
 endfunction
 
-augroup dualvim
-  autocmd!
-  if has('mac')
-    autocmd FocusGained * set transparency=10
-    autocmd FocusLost * set transparency=50
-  endif
-augroup END
 " }}}
 " clojure {{{
 let g:clj_highlight_builtins = 1
