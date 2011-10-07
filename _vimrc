@@ -1640,7 +1640,6 @@ if !$LANG
   let $LANG='en_US.UTF-8'
 endif
 " http://lingr.com/room/vim/archives/2011/09/19#message-4881743
-"let g:neocomplcache_enable_prefetch = 1
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
