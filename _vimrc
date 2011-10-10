@@ -1640,6 +1640,7 @@ endfunction
 " :TOhtmlAndBrowse {{{
 " http://d.hatena.ne.jp/tyru/20110710/tenuki
 " changing command name from TOhtmlAndBrowse to TOhtmAndBrowse to avoid Vim bug
+" also.. it doesn't delete the file because this computer is slow..
 command!
 \   TOhtmAndBrowse
 \   call s:TOhtmlAndBrowse()
@@ -1653,8 +1654,19 @@ function! s:TOhtmlAndBrowse()
   finally
     let g:openbrowser_open_filepath_in_vim = save
   endtry
-  sleep 1
-  call delete(expand('%'))
+  "sleep 1
+  "call delete(expand('%'))
+endfunction
+" }}}
+" keynote integration {{{
+command! -nargs=0 TOkeynote call s:keynote()
+function! s:keynote()
+  let before = g:colors_name
+  Tcolorscheme martin_krischik
+  ToggleRaibowParenthesis
+  setl conceallevel=0
+  TOhtmAndBrowse
+  execute "Tcolorscheme" before
 endfunction
 " }}}
 " ENV
