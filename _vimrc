@@ -1331,8 +1331,9 @@ if !V.is_mac()
   AddPath /home/ujihisa/git/termtter/bin
   AddPath /home/ujihisa/git/ruby/local/bin
   AddPath /home/ujihisa/src/llvm-git-build/local/bin
-  AddPath /home/ujihisa/src/haskell-platform-2011.2.0.1/local/bin
-  AddPath /home/ujihisa/src/ghc-7.0.3/local/bin
+  "AddPath /home/ujihisa/src/haskell-platform-2011.2.0.1/local/bin
+  "AddPath /home/ujihisa/src/ghc-7.0.3/local/bin
+  AddPath /home/ujihisa/.cabal/bin
   "AddPath /home/ujihisa/git/ghc/local/bin
   AddPath /home/ujihisa/git/Gyazo-for-Linux/
 endif
