@@ -1646,6 +1646,10 @@ command!
 \   call s:TOhtmlAndBrowse()
 function! s:TOhtmlAndBrowse()
   TOhtml
+  " begin callback...?
+  %s/font-family: monospace/font-family: Myriad Pro/
+  %s/^<span class="lnr">[ 0-9]\+<\/span> */<font family="monospace">\0<\/font>/
+  " end
   saveas `=tempname()`
   let save = get(g:, 'openbrowser_open_filepath_in_vim')
   let g:openbrowser_open_filepath_in_vim = 0
@@ -1659,6 +1663,7 @@ function! s:TOhtmlAndBrowse()
 endfunction
 " }}}
 " keynote integration {{{
+" memo
 command! -nargs=0 TOkeynote call s:keynote()
 function! s:keynote()
   let before = g:colors_name
