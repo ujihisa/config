@@ -1648,6 +1648,7 @@ function! s:TOhtmlAndBrowse()
   TOhtml
   " begin callback...?
   %s/font-family: monospace/font-family: Myriad Pro/
+  %s/.lnr { /\0font-family: monospace; /
   %s/^<span class="lnr">[ 0-9]\+<\/span> */<font family="monospace">\0<\/font>/
   " end
   saveas `=tempname()`
