@@ -1637,8 +1637,9 @@ endfunction
 " }}}
 " :TOhtmlAndBrowse {{{
 " http://d.hatena.ne.jp/tyru/20110710/tenuki
+" changing command name from TOhtmlAndBrowse to TOhtmAndBrowse to avoid Vim bug
 command!
-\   TOhtmlAndBrowse
+\   TOhtmAndBrowse
 \   call s:TOhtmlAndBrowse()
 function! s:TOhtmlAndBrowse()
   TOhtml
