@@ -1635,6 +1635,25 @@ function! s:vimfiler_local()
   nunmap <buffer> H
 endfunction
 " }}}
+" :TOhtmlAndBrowse {{{
+" http://d.hatena.ne.jp/tyru/20110710/tenuki
+command!
+\   TOhtmlAndBrowse
+\   call s:TOhtmlAndBrowse()
+function! s:TOhtmlAndBrowse()
+  TOhtml
+  saveas `=tempname()`
+  let save = get(g:, 'openbrowser_open_filepath_in_vim')
+  let g:openbrowser_open_filepath_in_vim = 0
+  try
+    OpenBrowser file://%
+  finally
+    let g:openbrowser_open_filepath_in_vim = save
+  endtry
+  sleep 1
+  call delete(expand('%'))
+endfunction
+" }}}
 " ENV
 if !$LANG
   let $LANG='en_US.UTF-8'
