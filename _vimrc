@@ -1675,6 +1675,9 @@ function! s:keynote()
   execute "Tcolorscheme" before
 endfunction
 " }}}
+" unite-build {{{
+command! -nargs=* UniteBuild Unite build -no-start-insert -default-action=split
+" }}}
 " ENV
 if !$LANG
   let $LANG='en_US.UTF-8'
