@@ -10,6 +10,29 @@ if exists('g:loaded_pathogen')
   endtry
 end
 " }}}
+" neobundle {{{
+set nocompatible
+filetype off
+if has('vim_starting')
+  set runtimepath+=expand('~/.vimbundles/neobundle.vim')
+  call neobundle#rc(expand('~/.vimbundles'))
+endif
+
+"NeoBundle 'git://github.com/Shougo/clang_complete.git'
+NeoBundle 'git://github.com/Shougo/echodoc.git'
+NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+"NeoBundle 'git://github.com/Shougo/unite.vim.git'
+NeoBundle 'git://github.com/Shougo/vim-vcs.git'
+NeoBundle 'git://github.com/Shougo/vimfiler.git'
+NeoBundle 'git://github.com/Shougo/vimshell.git'
+NeoBundle 'git://github.com/Shougo/vimproc.git'
+
+filetype plugin on
+filetype indent on
+
+nnoremap sn :<C-u>Unite neobundle:install:!<Cr>
+" }}}
 " vimproc {{{
 let V = vital#of('vital')
 if !V.is_mac()
@@ -1650,6 +1673,7 @@ function! s:TOhtmlAndBrowse()
   %s/font-family: monospace/font-family: Myriad Pro/
   %s/.lnr { /\0font-family: monospace; /
   %s/^<span class="lnr">[ 0-9]\+<\/span> */<font family="monospace">\0<\/font>/
+  %s/<span class="lnr">\s*[0-9]\+\s*<\/span>\zs \+\ze/\='<font color=white>' . repeat("_", len(submatch(0))) . "<\/font>"/g
   " end
   saveas `=tempname()`
   let save = get(g:, 'openbrowser_open_filepath_in_vim')
@@ -1664,7 +1688,6 @@ function! s:TOhtmlAndBrowse()
 endfunction
 " }}}
 " keynote integration {{{
-" memo
 command! -nargs=0 TOkeynote call s:keynote()
 function! s:keynote()
   let before = g:colors_name
