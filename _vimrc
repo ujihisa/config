@@ -1642,8 +1642,10 @@ endfunction
 
 " }}}
 " clojure {{{
-let g:clj_highlight_builtins = 1
-let g:clj_paren_rainbow = 1
+if globpath(&rtp, 'autoload/vimclojure.vim') != ''
+  let vimclojure#HighlightBuiltins = 1
+  let vimclojure#ParenRainbow = 1
+endif
 " }}}
 " golden-ratio {{{
 let g:golden_ratio_autocommand = 0
