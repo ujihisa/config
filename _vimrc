@@ -458,6 +458,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su q:Unite<Space>
+  nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
@@ -696,6 +697,7 @@ let g:quickrun_config['markdown'] = {
       \ 'cmdopt': '-s',
       \ 'outputter': 'browser'
       \ }
+let g:quickrun_config['haskell'] = {'type': 'haskell/ghc'}
 
 "     \ 'erlang': {
 "     \   'command': 'escript',
