@@ -1331,9 +1331,13 @@ let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
 " }}}
 let g:shadow_debug = 1
 " PATH {{{
-command! -nargs=1 AddPath let $PATH="<args>:".$PATH
+"command! -nargs=1 AddPath let $PATH="<args>:".$PATH
+command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
+"command! -nargs=1 AddPath0e let $PATH = $PATH . ':' . expand(<q-args>)
+
 if filereadable(expand('~/.zshrc'))
-  execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
+  "execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
+  let $PATH='/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/usr/local/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/ujihisa/git/jark:/Users/ujihisa/src/llvm-git-build/local/bin:/Users/ujihisa/Library/Haskell/bin:/Users/ujihisa/git/mdv:/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/Applications/MacVim.app/Contents/MacOS:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/:/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/::/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/'
 else
   AddPath /usr/bin
   AddPath /usr/local/bin
@@ -1351,6 +1355,10 @@ if isdirectory('/Users/ujihisa/src/llvm-git-build/local/bin')
 endif
 if isdirectory('/Users/ujihisa/git/jark')
   AddPath /Users/ujihisa/git/jark
+endif
+
+if isdirectory(expand('~/git/ruby200/local/bin'))
+  AddPath ~/git/ruby200/local/bin
 endif
 
 if !V.is_mac()
@@ -1464,7 +1472,7 @@ if filereadable(expand('~/git/rsense/bin/rsense'))
 endif
 " }}}
 " testing neco-ghc {{{
-nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
+"nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
 " }}}
 " vim-ref {{{
 let g:ref_phpmanual_path = expand("~/src/php-chunked-xhtml/")

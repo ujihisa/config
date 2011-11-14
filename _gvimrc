@@ -25,6 +25,14 @@ else
   "let &guifont = 'Menlo Bold 11'
   "let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 10'
 endif
+let s:gvimrc_default_fonts = {
+      \ 'guifont': &guifont,
+      \ 'guifontwide': &guifontwide}
+function! s:set_default_guifonts()
+  let &guifont = s:gvimrc_default_fonts.guifont
+  let &guifontwide = s:gvimrc_default_fonts.guifontwide
+endfunction
+nnoremap <D-0> :<C-u>call <SID>set_default_guifonts()<Cr>
 
 if V.is_mac()
   set transparency=10
