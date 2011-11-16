@@ -371,6 +371,10 @@ let g:neocomplcache_enable_at_startup = 1
 "let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
 "let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
 "let g:neocomplcache_manual_completion_length = 2
+let g:neocomplcache_plugin_completion_length = {
+      \ 'include_complete': 1}
+let g:neocomplcache_plugin_rank = {
+      \ 'include_complete': 11}
 let g:neocomplcache_max_list = 200
 let g:neocomplcache_max_keyword_width = 70
 "let g:neocomplcache_enable_smart_case = 1
@@ -381,6 +385,8 @@ let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
 imap <C-l> <Plug>(neocomplcache_start_unite_complete)
 imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
+imap <C-\> <Plug>(neocomplcache_snippets_jump)
+nmap <C-\> a<C-\>
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 " }}}
