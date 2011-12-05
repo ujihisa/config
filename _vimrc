@@ -983,17 +983,17 @@ function! s:yank_paste_without_yanking()
   let @" = a
 endfunction " }}}
 " smartword {{{
-if exists('*smartword#move') " It's a little bit tricky.
-  map w  <Plug>(smartword-w)
-  map b  <Plug>(smartword-b)
-  map e  <Plug>(smartword-e)
-  map ge  <Plug>(smartword-ge)
-  noremap W  w
-  "noremap B  b
-  noremap E  e
-  noremap gE ge
-endif
-"nnoremap B :<C-u>edit %:h<Cr>
+
+"if globpath(&rtp, 'autoload/smartword.vim') != ''
+"  map w  <Plug>(smartword-w)
+"  map b  <Plug>(smartword-b)
+"  map e  <Plug>(smartword-e)
+"  map ge  <Plug>(smartword-ge)
+"  noremap W  w
+"  "noremap B  b
+"  noremap E  e
+"  noremap gE ge
+"endif
 
 " }}}
 " Require secret password file {{{
