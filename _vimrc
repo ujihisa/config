@@ -1720,11 +1720,15 @@ endfunction
 " unite-build {{{
 command! -nargs=* UniteBuild Unite build -no-start-insert -default-action=split
 " }}}
-" ENV
+" ENV {{{
 if !$LANG
   let $LANG='en_US.UTF-8'
 endif
 " http://lingr.com/room/vim/archives/2011/09/19#message-4881743
+" }}}
+" for vital spec
+" /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
+"
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
