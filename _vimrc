@@ -1377,6 +1377,7 @@ if !V.is_mac()
   AddPath /home/ujihisa/.cabal/bin
   "AddPath /home/ujihisa/git/ghc/local/bin
   AddPath /home/ujihisa/git/Gyazo-for-Linux/
+  AddPath /home/ujihisa/git/leiningen/bin
 endif
 " }}}
 " macvim proportional {{{
@@ -1729,6 +1730,19 @@ endif
 " for vital spec
 " /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
 "
+" vimshell platform-dependent aliases {{{
+let s:is_gentoo = system('uname -a') =~ 'gentoo' " for some reason vimproc#system doesn't work
+function! s:vimshell_settings()
+  if s:is_gentoo
+    call vimshell#set_alias('time', 'exe time -p')
+    call vimshell#set_alias('clojure', 'clojure-1.3')
+  endif
+endfunction
+augroup vimshell-settings
+  autocmd!
+  autocmd FileType vimshell call s:vimshell_settings()
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
