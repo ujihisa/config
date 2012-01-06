@@ -1736,7 +1736,6 @@ let s:is_gentoo = system('uname -a') =~ 'gentoo' " for some reason vimproc#syste
 function! s:vimshell_settings()
   if s:is_gentoo
     call vimshell#set_alias('time', 'exe time -p')
-    call vimshell#set_alias('clojure', 'clojure-1.3')
   endif
 endfunction
 augroup vimshell-settings
