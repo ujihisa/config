@@ -1469,15 +1469,15 @@ endfunction
 call echodoc#register('haskell', s:doc_dict)
 " }}}
 " rsense {{{
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:rsenseUseOmniFunc = 1
-if filereadable(expand('~/git/rsense/bin/rsense'))
-  let g:rsenseHome = expand('~/git/rsense')
-
-  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-endif
+"if !exists('g:neocomplcache_omni_patterns')
+"  let g:neocomplcache_omni_patterns = {}
+"endif
+"let g:rsenseUseOmniFunc = 1
+"if filereadable(expand('~/git/rsense/bin/rsense'))
+"  let g:rsenseHome = expand('~/git/rsense')
+"
+"  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"endif
 " }}}
 " testing neco-ghc {{{
 "nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
