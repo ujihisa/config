@@ -1743,6 +1743,17 @@ augroup vimshell-settings
   autocmd FileType vimshell call s:vimshell_settings()
 augroup END
 " }}}
+" jruby {{{
+function! VimrcJruby()
+  if &filetype != 'ruby'
+    echoerr 'not ruby'
+    return
+  endif
+
+  call vimproc#system_bg('jruby --ng-server')
+  let b:quickrun_config = {'command': 'jruby', 'cmdopt': '--ng --1.9'}
+endfunction
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
