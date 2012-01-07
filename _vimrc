@@ -199,7 +199,8 @@ nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>imain = do<Cr>print $<Esc>
 
 
 nnoremap <Space>b :w blogger:create
-let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
+"let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
+let g:blogger_ruby_path = "/Users/ujihisa/git/ruby200/local/bin/ruby"
 let g:blogger_gist = 0
 nnoremap <Space>I $i
 "nnoremap <Space>C $C
