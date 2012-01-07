@@ -1378,8 +1378,8 @@ if !V.is_mac()
   AddPath /home/ujihisa/.cabal/bin
   "AddPath /home/ujihisa/git/ghc/local/bin
   AddPath /home/ujihisa/git/Gyazo-for-Linux/
-  AddPath /home/ujihisa/git/leiningen/bin
 endif
+AddPath ~/git/leiningen/bin
 " }}}
 " macvim proportional {{{
 function! Proportional()
