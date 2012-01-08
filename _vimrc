@@ -1755,6 +1755,9 @@ function! VimrcJruby()
   let b:quickrun_config = {'command': 'jruby', 'cmdopt': '--ng --1.9'}
 endfunction
 " }}}
+" syntastic {{{
+let g:syntastic_cpp_compiler_options = ' -std=c++0x'
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
