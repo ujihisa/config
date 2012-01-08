@@ -1619,7 +1619,7 @@ let g:synastic_enable_signs = 1
 " }}}
 " vimerl {{{
 let g:erlangManPath = '/usr/local/share/man'
-let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
+"let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 " }}}
 " remote {{{
 function! s:_vim(x)
