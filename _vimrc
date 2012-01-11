@@ -698,14 +698,7 @@ let g:quickrun_config['markdown'] = {
       \ 'outputter': 'browser'
       \ }
 
-let g:quickrun_config.haskell = {
-      \ 'command': 'ghc -package yaml -package yaml -package test-framework-hunit',
-      \ 'tempfile': '{tempname()}.hs',
-      \ 'exec': ['%c %s -o %s:p:r', '%s:p:r', 'rm %s:p:r'] }
-let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
-let g:quickrun_config.haskell = {'exec': ['%c %s -o %s:p:r'], 'command': 'runghc'}
-
-let g:quickrun_config['haskell'] = {'type': 'haskell/ghc'}
+"let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
 
 "     \ 'erlang': {
 "     \   'command': 'escript',
