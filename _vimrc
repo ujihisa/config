@@ -544,12 +544,13 @@ endif " }}}
 "set formatoptions=tcq
 " http://subtech.g.hatena.ne.jp/secondlife/20080603/1212489817
 "let git_diff_spawn_mode=1
+" for git {{{
 augroup MyGit
   autocmd!
   autocmd BufWinEnter,BufNewFile COMMIT_EDITMSG set filetype=git
 augroup END
 let g:git_diff_spawn_mode = 2
-
+" }}}
 command! GitGol call s:git_gol() " {{{
 function! s:git_gol()
   vnew
