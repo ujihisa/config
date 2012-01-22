@@ -1738,6 +1738,12 @@ augroup vimshell-settings
   autocmd FileType vimshell call s:vimshell_settings()
 augroup END
 " }}}
+" platform-dependent key mappings {{{
+if s:is_gentoo
+  inoremap ö <C-o>"+p
+  vnoremap ã "+y
+endif
+" }}}
 " jruby {{{
 function! VimrcJruby()
   if &filetype != 'ruby'
