@@ -1758,6 +1758,9 @@ endfunction
 " syntastic {{{
 let g:syntastic_cpp_compiler_options = ' -std=c++0x'
 " }}}
+" pseudo rm command {{{
+command! -nargs=* Rm echo <q-args>
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
