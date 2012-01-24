@@ -1738,10 +1738,11 @@ augroup vimshell-settings
   autocmd FileType vimshell call s:vimshell_settings()
 augroup END
 " }}}
-" platform-dependent key mappings {{{
+" platform-dependencies {{{
 if s:is_gentoo
   inoremap ö <C-o>"+p
   vnoremap ã "+y
+  set lsp=2
 endif
 " }}}
 " jruby {{{
