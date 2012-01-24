@@ -719,8 +719,8 @@ augroup END
 nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
 nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter>
 nnoremap <Space>gs :<C-u>GitStatus<Enter>
-nnoremap <Space>gl :<C-u>GitLog<Enter>
-nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
+"nnoremap <Space>gl :<C-u>GitLog<Enter>
+"nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
 if globpath(&rtp, 'plugin/shadow.vim') != ''
   nnoremap <Space>ga :<C-u>call GitAddBoth()<Enter>
 else
@@ -1488,7 +1488,8 @@ call ref#rmcache()
 " special git log viewer {{{
 function! s:git_log_viewer()
   vnew
-  VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
+  "VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
+  VimProcRead git log -u 'ORIG_HEAD..HEAD'
   set filetype=git-log.git-diff
   setl foldmethod=expr
   setl foldexpr=getline(v:lnum)!~'^commit'
