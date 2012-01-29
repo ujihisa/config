@@ -21,10 +21,10 @@ if V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
 else
-  let &guifont = 'Anonymous Pro Bold 14'
-  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
-  "let &guifont = 'Menlo Bold 11'
-  "let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 10'
+  "let &guifont = 'Anonymous Pro Bold 14'
+  "let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
+  let &guifont = 'Menlo Bold 11'
+  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 11'
 endif
 let s:gvimrc_default_fonts = {
       \ 'guifont': &guifont,
@@ -88,6 +88,10 @@ endif
 " }}}
 " window size {{{
 function! WindowsizeMaximize13()
+  if !V.is_mac()
+    echoerr 'only on mac'
+    return
+  endif
   set lines=570
   set columns=1810
 endfunction
