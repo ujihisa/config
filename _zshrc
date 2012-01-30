@@ -24,35 +24,6 @@ alias pingg='ping google.com'
 
 # }}}
 
-# ssh aliases {{{
-#alias ssh_hootsuite='ssh uji@dev.hootsuitemedia.com'
-alias ssh_hootsuite='ssh -p 2222 uji@phoenix.hootsuitemedia.com'
-alias ssh_virtualbox='ssh -p 2222 localhost'
-#alias ssh_kami='ssh ujihisa@72.55.171.57'
-#alias ssh_devkami='ssh dev01.kamilabo.jp'
-#alias ssh_kamidev2='ssh dev02.kamilabo.jp' # This async is intentional for compl
-#alias ssh_terrsa_in='ssh 192.168.1.22'
-#alias ssh_think_in='ssh 192.168.1.21'
-#alias ssh_necma_in='ssh 192.168.1.20'
-#alias ssh_terrsa_out='ssh -p 2000 219.23.140.27'
-#alias ssh_ikomastation_in='ssh 192.168.1.12'
-#alias ssh_ikomastation_out='ssh 218.183.125.77'
-#alias ssh_sharestyle='ssh sharestyle.com'
-#alias ssh_sanjone_in_home='ssh -p 2022 192.168.1.20'
-#alias ssh_sanjone_in_lab='ssh 192.168.25.5'
-#alias ssh_sanjone_out='ssh -p 2022 219.23.140.27'
-#alias ssh_terrsa='ssh -p 2000 219.23.140.27'
-# for lab machines
-# alias ssh_shapley="ssh inulab@192.168.25.221"
-# alias ssh_nash="ssh inulab@192.168.25.222"
-# alias ssh_gomory="ssh calculate@192.168.25.223"
-# alias ssh_matlab="ssh calculate@192.168.25.224"
-#alias ssh_shien='ssh 124.108.36.82'
-#alias ssh_neumann='ssh 192.168.25.62'
-#alias ssh_slicehost='ssh 67.23.4.19'
-#alias ssh_vmware='ssh 192.168.183.128'
-# }}}
-
 export PATH=$PATH:~/bin/
 # labp :: Boolean {{{
 #function labp() {
