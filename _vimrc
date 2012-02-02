@@ -34,8 +34,8 @@ filetype indent on
 nnoremap sn :<C-u>Unite neobundle:install:!<Cr>
 " }}}
 " vimproc {{{
-let V = vital#of('vital')
-if !V.is_mac()
+let g:V = vital#of('vital')
+if !g:V.is_mac()
   let g:vimproc_dll_path = '/home/ujihisa/vimproc2/autoload/proc.so'
 endif
 " }}}
@@ -95,7 +95,6 @@ set notagbsearch
 
 "nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 let g:transparency = 10
-let g:V = vital#of('vital')
 if g:V.is_mac()
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 else
@@ -1363,7 +1362,7 @@ if isdirectory(expand('~/git/ruby200/local/bin'))
   AddPath ~/git/ruby200/local/bin
 endif
 
-if !V.is_mac()
+if !g:V.is_mac()
   AddPath /home/ujihisa/git/termtter/bin
   AddPath /home/ujihisa/git/ruby/local/bin
   AddPath /home/ujihisa/src/llvm-git-build/local/bin
