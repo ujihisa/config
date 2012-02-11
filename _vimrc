@@ -352,10 +352,10 @@ command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
 "cnoremap <expr> \  smartchr#one_of('~/', '\')
 " }}}
 " http://vim-users.jp/2009/11/hack96/ {{{
-autocmd FileType *
-\   if &l:omnifunc == ''
-\ |   setlocal omnifunc=syntaxcomplete#Complete
-\ | endif
+"autocmd FileType *
+"\   if &l:omnifunc == ''
+"\ |   setlocal omnifunc=syntaxcomplete#Complete
+"\ | endif
 
 "}}}
 " remote {{{
