@@ -26,7 +26,8 @@ NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/vim-vcs.git'
 NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/Shougo/vimproc.git'
+"NeoBundle 'git://github.com/Shougo/vimproc.git'
+NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 
 filetype plugin on
 filetype indent on
@@ -385,7 +386,7 @@ let g:neocomplcache_max_keyword_width = 70
 let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
 imap <C-l> <Plug>(neocomplcache_start_unite_complete)
-imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
+imap <C-s> <Plug>(neocomplcache_snippets_expand)
 imap <C-\> <Plug>(neocomplcache_snippets_jump)
 nmap <C-\> a<C-\>
 
