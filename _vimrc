@@ -1733,6 +1733,8 @@ let s:is_gentoo = system('uname -a') =~ 'gentoo' " for some reason vimproc#syste
 function! s:vimshell_settings()
   if s:is_gentoo
     call vimshell#set_alias('time', 'exe time -p')
+  else
+    call vimshell#set_alias('eix', 'exe brew search')
   endif
 endfunction
 augroup vimshell-settings
