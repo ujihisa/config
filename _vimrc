@@ -1356,9 +1356,9 @@ endif
 if isdirectory('/Users/ujihisa/src/llvm-git-build/local/bin')
   AddPath /Users/ujihisa/src/llvm-git-build/local/bin
 endif
-if isdirectory('/Users/ujihisa/git/jark')
-  AddPath /Users/ujihisa/git/jark
-endif
+"if isdirectory('/Users/ujihisa/git/jark')
+"  AddPath /Users/ujihisa/git/jark
+"endif
 
 if isdirectory(expand('~/git/ruby200/local/bin'))
   AddPath ~/git/ruby200/local/bin
