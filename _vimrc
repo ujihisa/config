@@ -1766,6 +1766,15 @@ let g:syntastic_cpp_compiler_options = ' -std=c++0x'
 " pseudo rm command {{{
 command! -nargs=* Rm echo <q-args>
 " }}}
+" no python preview {{{
+set completeopt-=preview
+" }}}
+" minecraft {{{
+function! VimrcSwank()
+  VimShellInteractive java -jar /home/ujihisa/git/swank-client/swank-client-1.1.0-standalone.jar -p 4005
+  set filetype=clojure
+endfunction
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
