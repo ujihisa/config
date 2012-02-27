@@ -1782,7 +1782,6 @@ function! VimrcSendSwank()
 endfunction
 " vim-scala {{{
 let g:scala_use_default_keymappings = 0
->>>>>>> Stashed changes
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
