@@ -201,8 +201,11 @@ nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>imain = do<Cr>print $<Esc>
 
 nnoremap <Space>b :w blogger:create
 "let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
-"let g:blogger_ruby_path = "/Users/ujihisa/git/ruby200/local/bin/ruby"
-let g:blogger_ruby_path = "/home/ujihisa/git/ruby/local/bin/ruby"
+if filereadable("/Users/ujihisa/git/ruby200/local/bin/ruby")
+  let g:blogger_ruby_path = "/Users/ujihisa/git/ruby200/local/bin/ruby"
+else
+  let g:blogger_ruby_path = "/home/ujihisa/git/ruby/local/bin/ruby"
+endif
 let g:blogger_gist = 0
 nnoremap <Space>I $i
 "nnoremap <Space>C $C
@@ -1772,7 +1775,7 @@ set completeopt-=preview
 " }}}
 " minecraft {{{
 function! VimrcSwank()
-  VimShellInteractive java -jar /home/ujihisa/git/swank-client/swank-client-1.1.0-standalone.jar -p 4005
+  VimShellInteractive java -jar ~/git/swank-client/swank-client-1.1.0-standalone.jar -p 4005
   set filetype=clojure
   normal! A(ns cloft.core)
 endfunction
