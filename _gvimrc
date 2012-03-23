@@ -128,4 +128,10 @@ augroup dualvim
   endif
 augroup END
 " }}}
+" scala syntax tweaks {{{
+hi scalaValName gui=underline
+hi scalaVarName gui=underline
+"hi scalaType gui=underline
+"hi scalaTypeCase gui=underline
+" }}}
 " vim: foldmethod=marker
