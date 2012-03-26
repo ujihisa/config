@@ -1786,6 +1786,16 @@ endfunction
 " vim-scala {{{
 let g:scala_use_default_keymappings = 0
 " }}}
+" haskell snippets {{{
+" import qualified Control.Monad.State as S
+" import Control.Applicative ((<$>), (<*>))
+" import Data.Maybe (fromMaybe)
+" import qualified Data.Map as M
+" import Control.Monad (unless)
+"
+" {-# LANGUAGE QuasiQuotes #-}
+" import Data.String.Interpolation (str)
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
