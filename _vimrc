@@ -1796,6 +1796,16 @@ let g:scala_use_default_keymappings = 0
 " {-# LANGUAGE QuasiQuotes #-}
 " import Data.String.Interpolation (str)
 " }}}
+" unite-file_rec with file-extension {{{
+function! s:file_extension()
+  let table = {
+        \ 'ruby': 'rb',
+        \ 'haskell': 'hs',
+        \ 'clojure': 'clj' }
+  return '.' . get(table, &filetype, &filetype)
+endfunction
+command! -nargs=0 UniteFilerecWithFiletype execute "Unite file_rec -input=" . <SID>file_extension()
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
