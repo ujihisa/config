@@ -1157,7 +1157,7 @@ nmap :  <sid>(command-line-enter)
 xmap :  <sid>(command-line-enter)
 
 " I added
-nnoremap q: q:<Esc>
+"nnoremap q: q:<Esc>
 
 autocmd CmdwinEnter * call s:init_cmdwin()
 
@@ -1766,6 +1766,9 @@ endfunction
 " }}}
 " syntastic {{{
 let g:syntastic_cpp_compiler_options = ' -std=c++0x'
+let g:syntastic_mode_map = {
+      \ 'mode': 'active',
+      \ 'passive_filetypes': ['scala'] }
 " }}}
 " pseudo rm command {{{
 command! -nargs=* Rm echo <q-args>
