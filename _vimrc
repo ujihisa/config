@@ -38,7 +38,7 @@ nnoremap sn :<C-u>Unite neobundle:install:!<Cr>
 " vimproc {{{
 let g:V = vital#of('vital')
 if !g:V.is_mac()
-  let g:vimproc_dll_path = '/home/ujihisa/vimproc2/autoload/proc.so'
+  let g:vimproc_dll_path = '/home/ujihisa/vimproc2/autoload/vimproc_unix.so'
 endif
 " }}}
 " settings {{{
@@ -1366,6 +1366,10 @@ endif
 
 if isdirectory(expand('~/git/ruby200/local/bin'))
   AddPath ~/git/ruby200/local/bin
+endif
+
+if isdirectory(expand('~/bin'))
+  AddPath ~/bin
 endif
 
 if !g:V.is_mac()
