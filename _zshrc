@@ -109,7 +109,7 @@ freebsd*|darwin*) # OSX {{{
   #fi
 
 
-  RPS1=$'%{\e[00;04;32m%}[%D{%H}:%D{%M}:%D{%S}]%{\e[00m%}'
+  #RPS1=$'%{\e[00;04;32m%}[%D{%H}:%D{%M}:%D{%S}]%{\e[00m%}'
 
   # histories
   #   http://journal.mycom.co.jp/column/zsh/003/index.html
