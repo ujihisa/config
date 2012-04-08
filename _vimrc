@@ -395,6 +395,7 @@ imap <C-\> <Plug>(neocomplcache_snippets_jump)
 nmap <C-\> a<C-\>
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
+let g:neocomplcache_auto_completion_start_length = 1
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
