@@ -29,6 +29,7 @@ NeoBundle 'git://github.com/Shougo/vimshell.git'
 "NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 
 filetype plugin on
 filetype indent on
