@@ -331,6 +331,9 @@ endfunction
 nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
 nnoremap <Cr> :<C-u>call <SID>tagjump_or_cr()<Cr>
 " }}}
+" unite-grep {{{
+nnoremap sg :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>')<Cr>
+" }}}
 " {{{ thinca/poslist.vim
 nmap <C-o> <Plug>(poslist_prev)
 nmap <C-i> <Plug>(poslist_next)
