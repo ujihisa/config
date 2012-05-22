@@ -708,6 +708,7 @@ let g:quickrun_config['markdown'] = {
       \ 'cmdopt': '-s',
       \ 'outputter': 'browser'
       \ }
+let g:quickrun_config['scala'] = {'cmdopt': '-unchecked'}
 
 "let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
 
@@ -729,6 +730,7 @@ augroup END
 nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
 nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter>
 nnoremap <Space>gs :<C-u>GitStatus<Enter>
+nnoremap <Space>gS :<C-u>Git submodule foreach git status<Enter>
 "nnoremap <Space>gl :<C-u>GitLog<Enter>
 "nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
 if globpath(&rtp, 'plugin/shadow.vim') != ''
