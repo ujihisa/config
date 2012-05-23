@@ -1789,7 +1789,7 @@ set completeopt-=preview
 " }}}
 " minecraft {{{
 function! VimrcSwank()
-  VimShellInteractive java -jar ~/git/swank-client/swank-client-1.1.0-standalone.jar -p 4005
+  VimShellInteractive java -jar /home/ujihisa/git/swank-client/swank-client-1.1.0-standalone.jar -p 4005
   set filetype=clojure
   normal! A(ns cloft.core)
 endfunction
