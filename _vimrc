@@ -450,20 +450,20 @@ endfunction
 
 " }}}
 " rak {{{
-command! -nargs=* Rak call Rak("<args>")
-function Rak(args)
-  new
-  execute "r!rak --nocolour" a:args
-  nnoremap <buffer> o :<C-u>sp<Cr>gf
-endfunction
-
-call altercmd#load()
-command!
-\ -bar -nargs=+
-\ AlterCommandWrapper
-\ CAlterCommand <args> | AlterCommand <cmdwin> <args>
-
-AlterCommandWrapper rak Rak
+"command! -nargs=* Rak call Rak("<args>")
+"function Rak(args)
+"  new
+"  execute "r!rak --nocolour" a:args
+"  nnoremap <buffer> o :<C-u>sp<Cr>gf
+"endfunction
+"
+"call altercmd#load()
+"command!
+"\ -bar -nargs=+
+"\ AlterCommandWrapper
+"\ CAlterCommand <args> | AlterCommand <cmdwin> <args>
+"
+"AlterCommandWrapper rak Rak
 " }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
@@ -634,12 +634,6 @@ augroup RubyTrunk " {{{
   autocmd BufWinEnter,BufNewFile ~/git/ruby/*.c setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/git/ruby/*.y setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
-augroup END
-" }}}
-augroup DrEnglish " {{{
-  autocmd!
-  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt setl spell
-  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt nnoremap <buffer> <Space>y 3G"+yG
 augroup END
 " }}}
 "augroup RubySpec " {{{
