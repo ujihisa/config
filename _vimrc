@@ -1775,7 +1775,8 @@ endfunction
 let g:syntastic_cpp_compiler_options = ' -std=c++0x'
 let g:syntastic_mode_map = {
       \ 'mode': 'active',
-      \ 'passive_filetypes': ['scala'] }
+      \ }
+      "\ 'passive_filetypes': ['scala'] }
 " }}}
 " pseudo rm command {{{
 command! -nargs=* Rm echo <q-args>
