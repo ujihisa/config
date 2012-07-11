@@ -512,8 +512,8 @@ augroup END
 " }}}
 " Big and Man {{{
 command! Big wincmd _ | wincmd |
-AlterCommandWrapper big Big
-AlterCommandWrapper man Man
+"AlterCommandWrapper big Big
+"AlterCommandWrapper man Man
 " }}}
 " fuzzyfinder {{{
 if 0
@@ -912,11 +912,11 @@ autocmd TabEnter *
 " Exchange ':cd' to ':TabpageCD'.
 "cnoreabbrev <expr> cd (getcmdtype() == ':' && getcmdline() ==# 'cd') ? 'TabpageCD' : 'cd'
 
-AlterCommandWrapper cd  CD
+"AlterCommandWrapper cd  CD
 "}}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
-AlterCommandWrapper lib Lib
+"AlterCommandWrapper lib Lib
 function! s:open_lib_and_corresponding_test(fname)
   execute 'tabnew lib/' . a:fname . '.rb'
   execute 'vnew spec/' . a:fname . '_test.rb'
@@ -955,7 +955,7 @@ function! s:left_space()
     wincmd p
   endif
 endfunction
-AlterCommandWrapper leftspace LeftSpace
+"AlterCommandWrapper leftspace LeftSpace
 " }}}
 " Say supports {{{
 command! Say silent execute '!say "' . escape(getline('.'), '"') . '" &>/dev/null &'
@@ -1233,7 +1233,7 @@ command! MacScreen silent !osascript -e 'tell application "System Events" to key
 " }}}
 " few itself {{{
 command! -nargs=0 Few QuickRun ruby /Users/ujihisa/git/few/bin/few
-AlterCommandWrapper few Few
+"AlterCommandWrapper few Few
 " }}}
 " Swap window without moving cursor {{{
 " https://gist.github.com/654701
@@ -1271,7 +1271,7 @@ endfunction
 " }}}
 " copy the current file name {{{
 command! -nargs=0 CopyTheCurrentFileName let @+ = expand('%')
-AlterCommandWrapper copythecurrentfilename CopyTheCurrentFileName
+"AlterCommandWrapper copythecurrentfilename CopyTheCurrentFileName
 " }}}
 " unite-neco {{{
 let s:unite_source = {'name': 'neco'}
