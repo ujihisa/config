@@ -478,7 +478,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su q:Unite<Space>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
-  AlterCommandWrapper unite Unite
+  "AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
