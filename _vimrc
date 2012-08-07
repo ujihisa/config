@@ -30,6 +30,7 @@ NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
+NeoBundle 'tsukkee/lingr-vim'
 
 filetype plugin on
 filetype indent on
@@ -1816,6 +1817,13 @@ function! s:file_extension()
   return '.' . get(table, &filetype, &filetype)
 endfunction
 command! -nargs=0 UniteFilerecWithFiletype execute "Unite file_rec -input=" . <SID>file_extension()
+" }}}
+" lingr-vim {{{
+augroup vimrc-lingr
+  autocmd!
+  autocmd FileType lingr-messages nmap <buffer> i <Plug>(lingr-messages-show-say-buffer)
+  autocmd FileType lingr-say inoremap <buffer> <Cr> <Esc>:wq<Cr>
+augroup END
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
