@@ -1530,7 +1530,11 @@ function! SGoDiff()
   execute linenum
   execute "normal! z\<Cr>"
 endfunction
-nnoremap <C-d> :<C-u>call SGoDiff()<Cr>
+
+augroup vimrc-sgodiff
+  autocmd!
+  autocmd FileType git-diff nnoremap <buffer> <C-d> :<C-u>call SGoDiff()<Cr>
+augroup END
 
 function! s:latest_fname()
   for i in reverse(range(1, line('.')))
