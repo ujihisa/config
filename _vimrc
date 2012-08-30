@@ -1,4 +1,4 @@
-" pathogen {{{
+" legacy pathogen {{{
 " http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
@@ -10,7 +10,7 @@ if exists('g:loaded_pathogen')
   endtry
 end
 " }}}
-" neobundle {{{
+" active neobundle {{{
 set nocompatible
 filetype off
 if has('vim_starting')
@@ -40,11 +40,11 @@ nnoremap sn :<C-u>Unite neobundle:install:!<Cr>
 " vimproc {{{
 let g:V = vital#of('vital')
 if !g:V.is_mac()
-  let g:vimproc_dll_path = '/home/ujihisa/vimproc2/autoload/vimproc_unix.so'
+  let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/vimproc_unix.so')
+  " '/home/ujihisa/vimproc2/autoload/vimproc_unix.so'
 endif
 " }}}
 " settings {{{
-filetype plugin indent on
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
@@ -89,7 +89,8 @@ endif
 set equalalways
 set updatetime=500
 
-" for Gentoo
+" for Gentoo.
+" is this bug fixed already?
 set notagbsearch
 
 " }}}
@@ -97,9 +98,9 @@ set notagbsearch
 "let mapleader=" "
 "let maplocalleader=' '
 
-"nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 let g:transparency = 10
 if g:V.is_mac()
+  " for MacVim's bug
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 else
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
@@ -110,13 +111,8 @@ nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
 command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
-"nnoremap & :<C-u>Amp<Cr>
 nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
 
-
-"nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
-
-"nnoremap <Space>c :<C-u>!wc %<Cr>
 
 nnoremap -- :<C-u>e %:h<Cr>
 
@@ -142,7 +138,7 @@ function! s:good_width()
   endif
 endfunction
 
-" for plugins rewrites j/k
+" for plugins rewrite j/k
 nnoremap <C-j> j
 nnoremap <C-k> k
 
@@ -153,14 +149,14 @@ nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
 "nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
 "nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
 "nnoremap <Space>h :help<space>
-"nnoremap <Space>n :<C-u>new<space>
 "nnoremap <Space>] <C-w>]
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
-inoremap <C-t> 「」<left>
-inoremap <C-t><C-t> 【】<left>
+" inoremap <C-t> 「」<left>
+" inoremap <C-t><C-t> 【】<left>
 
+" undoable
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
@@ -186,10 +182,10 @@ nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
 
-inoremap <expr><Tab> TabOrCompl()
-function! TabOrCompl()
-  return (col('.') == 1 || matchstr(getline('.'), '.', col('.')-2) == "\t") ? "\<C-q>\<Tab>" : "\<C-p>"
-endfunction
+" inoremap <expr><Tab> TabOrCompl()
+" function! TabOrCompl()
+"   return (col('.') == 1 || matchstr(getline('.'), '.', col('.')-2) == "\t") ? "\<C-q>\<Tab>" : "\<C-p>"
+" endfunction
 
 nnoremap <Space>s q:set filetype=
 nnoremap <Space>sr :<C-u>set filetype=ruby<Cr>
@@ -200,7 +196,7 @@ nnoremap <Space>spp :<C-u>set filetype=php<Cr>i<?php<Cr>error_reporting(E_ERROR 
 "nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>i{-# LANGUAGE OverloadedStrings #-}<Cr>import qualified Data.Text as T<Cr>import qualified Data.Text.IO as T<Cr><Cr>main = do<Cr>print $ <Esc>
 nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>imain = do<Cr>print $<Esc>
 nnoremap <Space>ssl :<C-u>set filetype=scala<Cr>
-
+nnoremap <Space>scl :<C-u>set filetype=clojure<Cr>
 
 nnoremap <Space>b :w blogger:create
 "let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
@@ -1742,9 +1738,9 @@ if !$LANG
 endif
 " http://lingr.com/room/vim/archives/2011/09/19#message-4881743
 " }}}
-" for vital spec
+" for vital spec {{{
 " /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
-"
+" }}}
 " vimshell platform-dependent aliases {{{
 let s:is_gentoo = system('uname -a') =~ 'gentoo' " for some reason vimproc#system doesn't work
 function! s:vimshell_settings()
