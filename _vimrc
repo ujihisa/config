@@ -1794,7 +1794,8 @@ function! VimrcSwank()
 endfunction
 
 function! VimrcSendSwank()
-  let @" = substitute(vimclojure#ExtractSexpr(1)[1], '\(;.*\)\?\n *', ' ', 'g')
+  "let @" = substitute(vimclojure#ExtractSexpr(1)[1], '\(;.*\)\?\n *', ' ', 'g')
+  execute 'VimShellSendString' vimclojure#ExtractSexpr(1)[1]
 endfunction
 " vim-scala {{{
 let g:scala_use_default_keymappings = 0
