@@ -89,10 +89,6 @@ endif
 set equalalways
 set updatetime=500
 
-" for Gentoo.
-" is this bug fixed already?
-set notagbsearch
-
 " }}}
 " mappings {{{
 "let mapleader=" "
