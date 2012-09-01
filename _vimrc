@@ -573,11 +573,11 @@ augroup MyGit
 augroup END
 let g:git_diff_spawn_mode = 2
 " }}}
-command! GitGol call s:git_gol() " {{{
-function! s:git_gol()
-  vnew
-  read!for i in $(git log --pretty=oneline | head -n 10 | cut -d ' ' -f 1); do git show $i --color-words; done
-endfunction
+" command! GitGol call s:git_gol() " {{{
+" function! s:git_gol()
+"   vnew
+"   read!for i in $(git log --pretty=oneline | head -n 10 | cut -d ' ' -f 1); do git show $i --color-words; done
+" endfunction
 " }}}
 " motemen's escape sequence {{{
 function! HighlightConsoleCodes()
@@ -643,7 +643,7 @@ augroup RubyTrunk " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/git/ruby/*.c setl ts=8 noexpandtab
   autocmd BufWinEnter,BufNewFile ~/git/ruby/*.y setl ts=8 noexpandtab
-  autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
+  "autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
 augroup END
 " }}}
 "augroup RubySpec " {{{
@@ -1154,9 +1154,8 @@ function! s:open_junk_file()
 endfunction
 
 " }}}
-" No Command-line window by Shougo http://vim-users.jp/2010/07/hack161/ {{{
-" also for vim filetype specific conf in general
-
+" vim filetype specific conf in general  {{{
+" also for No Command-line window by Shougo http://vim-users.jp/2010/07/hack161/
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
@@ -1201,7 +1200,7 @@ endfunction
 
 function! s:vimrc_vim()
   " to disable sw= -> swapfile= auto completion
-  inoremap <buffer> sw= sw=
+  inoremap <buffer> w= w=
 endfunction
 augroup vimrc-vim
   autocmd!
@@ -1217,33 +1216,30 @@ augroup END
 "call LoadPathFromZshrc()
 " }}}
 " guifont changer {{{
-function! GuifontChanger()
-  if !exists('s:guifont_changer_index')
-    let s:guifont_changer_index = 0
-  else
-    let s:guifont_changer_index += 1
-  endif
-  if !exists('s:guifont_changer_list')
-    let s:guifont_changer_list = [
-          \ 'Andale Mono:h14',
-          \ 'Menlo:h13',
-          \ 'Inconsolata:h14',
-          \ 'Handwriting - Dakota:h32',
-          \ 'Handwriting - Dakota:h64',
-          \ ]
-  endif
-  let font = s:guifont_changer_list[
-        \ s:guifont_changer_index % len(s:guifont_changer_list)]
-  let cmd = "set guifont=" . substitute(font, " ", "\\\\ ", 'g')
-  execute cmd
-  call WindowsizeMaximize13()
-  echo cmd " for some reason it doesn't show up...
-endfunction
-"command! -nargs=0 GuifontChanger call GuifontChanger()
-nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
-" }}}
-" hitode909's Mac Screen Blackout {{{
-command! MacScreen silent !osascript -e 'tell application "System Events" to key code 28 using {command down, option down, control down}'
+"  function! GuifontChanger()
+"    if !exists('s:guifont_changer_index')
+"      let s:guifont_changer_index = 0
+"    else
+"      let s:guifont_changer_index += 1
+"    endif
+"    if !exists('s:guifont_changer_list')
+"      let s:guifont_changer_list = [
+"            \ 'Andale Mono:h14',
+"            \ 'Menlo:h13',
+"            \ 'Inconsolata:h14',
+"            \ 'Handwriting - Dakota:h32',
+"            \ 'Handwriting - Dakota:h64',
+"            \ ]
+"    endif
+"    let font = s:guifont_changer_list[
+"          \ s:guifont_changer_index % len(s:guifont_changer_list)]
+"    let cmd = "set guifont=" . substitute(font, " ", "\\\\ ", 'g')
+"    execute cmd
+"    call WindowsizeMaximize13()
+"    echo cmd " for some reason it doesn't show up...
+"  endfunction
+"  "command! -nargs=0 GuifontChanger call GuifontChanger()
+"  nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " }}}
 " few {{{
 function s:vimrc_few()
@@ -1915,6 +1911,7 @@ augroup vimrc-java
   autocmd FileType java call <SID>vimrc_java()
 augroup END
 " }}}
+" あ、そういやたぶん今年も11月くらいに来日します。ujihisa.vimとかそういう感じの何かをやりたいなと思ってます。発表したい方はlingrやtwitterなどでぜひお伝えください!
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
