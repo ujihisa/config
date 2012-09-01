@@ -35,7 +35,7 @@ NeoBundle 'tsukkee/lingr-vim'
 filetype plugin on
 filetype indent on
 
-nnoremap sn :<C-u>Unite neobundle:install:!<Cr>
+nnoremap sn :<C-u>Unite neobundle/install:!<Cr>
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
