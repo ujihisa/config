@@ -695,7 +695,7 @@ let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './
 let g:quickrun_config['ruby.rspec'] = {'command': "spec -l {line('.')}"}
 let g:quickrun_config.textile = {
       \ 'command': 'redcloth',
-      \ 'tempfile': '{tempname()}.textile',
+      \ 'tempfile': '%{tempname()}.textile',
       \ 'exec': ['%c %s > %s:p:r.html', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'] }
 "let g:quickrun_config.go = {
 "\    'command': '8g',
