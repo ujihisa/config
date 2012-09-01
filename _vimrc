@@ -1911,7 +1911,6 @@ augroup vimrc-java
   autocmd FileType java call <SID>vimrc_java()
 augroup END
 " }}}
-" あ、そういやたぶん今年も11月くらいに来日します。ujihisa.vimとかそういう感じの何かをやりたいなと思ってます。発表したい方はlingrやtwitterなどでぜひお伝えください!
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
