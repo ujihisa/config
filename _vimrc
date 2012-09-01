@@ -89,6 +89,10 @@ endif
 set equalalways
 set updatetime=500
 
+" delete later: for Gentoo.
+" delete later: is this bug fixed already?
+" delete later: set notagbsearch
+" delete later:
 " }}}
 " mappings {{{
 "let mapleader=" "
