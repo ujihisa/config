@@ -289,7 +289,7 @@ function! s:vimshell_local()
   nmap <buffer> <C-S-k> <Plug>(vimshell_delete_previous_output)
 endfunction
 
-autocmd FileType int-* call s:vimshell_iexe()
+autocmd FileType int-* call s:vimshell_iexe() " TODO
 function! s:vimshell_iexe()
   "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
   nmap <buffer> j <Plug>(vimshell_int_next_prompt)
@@ -1076,7 +1076,7 @@ let g:vimshell_escape_colors = [
       \]
 let g:vimshell_split_command = 'split'
 let g:vimshell_cd_command = 'TabpageCD'
-let g:VimShell_UsePopen2 = 0
+"let g:VimShell_UsePopen2 = 0
 " }}}
 " mspec/rubyspec supports {{{
 function! DoMspec()
@@ -1633,7 +1633,7 @@ function! s:unite_source.gather_candidates(args, context)
         \ "action__command": "set transparency=" . v:val,
         \ }')
 endfunction
-let s:unite_source.action_table['*'].preview = {
+let s:unite_source.action_table.preview = {
       \ 'description': 'preview this transparency', 'is_quit': 0 }
 function! s:unite_source.action_table['*'].preview.func(candidate)
   execute a:candidate.action__command
@@ -1762,7 +1762,7 @@ endif
 " /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
 " }}}
 " vimshell platform-dependent aliases {{{
-let s:is_gentoo = system('uname -a') =~ 'gentoo' " for some reason vimproc#system doesn't work
+let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
 function! s:vimshell_settings()
   if s:is_gentoo
     call vimshell#set_alias('time', 'exe time -p')
