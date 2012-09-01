@@ -89,10 +89,6 @@ endif
 set equalalways
 set updatetime=500
 
-" delete later: for Gentoo.
-" delete later: is this bug fixed already?
-" delete later: set notagbsearch
-" delete later:
 " }}}
 " mappings {{{
 "let mapleader=" "
@@ -279,7 +275,11 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'vnew'
 
-autocmd FileType vimshell call s:vimshell_local()
+augroup vimrc-vimshell
+  autocmd!
+  autocmd FileType vimshell call s:vimshell_local()
+augroup END
+
 function! s:vimshell_local()
   imap <buffer><expr> <BS>  pumvisible() ? "\<Plug>(vimrc_bs)" : "\<Plug>(vimshell_another_delete_backward_char)"
   nmap <buffer> j <Plug>(vimshell_next_prompt)
