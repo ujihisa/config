@@ -550,9 +550,11 @@ if has('mac') " {{{
   nnoremap [B[B <C-w>j
   nnoremap [A[A <C-w>k
 endif " }}}
+"legacy {{{
 "set formatoptions=tcq
 " http://subtech.g.hatena.ne.jp/secondlife/20080603/1212489817
 "let git_diff_spawn_mode=1
+"}}}
 " for git {{{
 augroup MyGit
   autocmd!
@@ -641,13 +643,13 @@ augroup END
 "        "\ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
 "augroup END
 " }}}
-" irb
-augroup MyIRB
-  autocmd!
-  autocmd FileType irb inoremap <buffer> <silent> <Cr> <Esc>:<C-u>ruby v=VIM::Buffer.current;v.append(v.line_number, '#=> ' + eval(v[v.line_number]).inspect)<Cr>jo
-augroup END
-nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
-
+" irb {{{
+" augroup MyIRB
+"   autocmd!
+"   autocmd FileType irb inoremap <buffer> <silent> <Cr> <Esc>:<C-u>ruby v=VIM::Buffer.current;v.append(v.line_number, '#=> ' + eval(v[v.line_number]).inspect)<Cr>jo
+" augroup END
+" nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
+" }}}
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
@@ -1578,8 +1580,8 @@ vnoremap ( t(
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " }}}
 " hootsuite {{{
-command! -nargs=0 HootSuiteVim new /Users/ujihisa/.vimbundles/hootsuite/plugin/hootsuite.vim
-command! -nargs=0 HootSuiteSpec new /Users/ujihisa/git/hstools/spec/committer.rb
+"command! -nargs=0 HootSuiteVim new /Users/ujihisa/.vimbundles/hootsuite/plugin/hootsuite.vim
+"command! -nargs=0 HootSuiteSpec new /Users/ujihisa/git/hstools/spec/committer.rb
 " }}}
 " MacVim is unko {{{
 let rtp = split(&rtp, ',')
