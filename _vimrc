@@ -73,7 +73,7 @@ set autoread
 set title
 set backspace=indent,eol,start
 set modeline
-set noequalalways " http://vim-users.jp/2009/06/hack31/
+" set noequalalways " http://vim-users.jp/2009/06/hack31/ paradox: see 89
 set t_Co=256
 set cmdheight=3
 " http://vim-users.jp/2009/06/hack32/
