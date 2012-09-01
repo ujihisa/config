@@ -1155,6 +1155,8 @@ endfunction
 
 " }}}
 " No Command-line window by Shougo http://vim-users.jp/2010/07/hack161/ {{{
+" also for vim filetype specific conf in general
+
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
@@ -1196,6 +1198,15 @@ function! s:init_cmdwin()
 
   startinsert!
 endfunction
+
+function! s:vimrc_vim()
+  " to disable sw= -> swapfile= auto completion
+  inoremap <buffer> sw= sw=
+endfunction
+augroup vimrc-vim
+  autocmd!
+  autocmd FileType vim call <SID>vimrc_vim()
+augroup END
 " }}}
 " load PATH from ~/.zshrc {{{
 "function! LoadPathFromZshrc()
@@ -1234,8 +1245,16 @@ nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " hitode909's Mac Screen Blackout {{{
 command! MacScreen silent !osascript -e 'tell application "System Events" to key code 28 using {command down, option down, control down}'
 " }}}
-" few itself {{{
-command! -nargs=0 Few QuickRun ruby /Users/ujihisa/git/few/bin/few
+" few {{{
+function s:vimrc_few()
+  let path = expand('~/git/few/bin/few')
+  if filereadable(path)
+    execute 'QuickRun ruby' path
+  else
+    echoerr printf("'%s' not found", path)
+  endif
+endfunction
+command! -nargs=0 Few call <SID>vimrc_few()
 "AlterCommandWrapper few Few
 " }}}
 " Swap window without moving cursor {{{
@@ -1348,15 +1367,15 @@ let g:shadow_debug = 1
 command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
 "command! -nargs=1 AddPath0e let $PATH = $PATH . ':' . expand(<q-args>)
 
-if filereadable(expand('~/.zshrc'))
-  "execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
-  let $PATH='/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/usr/local/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/ujihisa/git/jark:/Users/ujihisa/src/llvm-git-build/local/bin:/Users/ujihisa/Library/Haskell/bin:/Users/ujihisa/git/mdv:/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/Applications/MacVim.app/Contents/MacOS:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/:/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/::/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/'
-else
+" if filereadable(expand('~/.zshrc'))
+"   "execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
+"   let $PATH='/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/usr/local/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/ujihisa/git/jark:/Users/ujihisa/src/llvm-git-build/local/bin:/Users/ujihisa/Library/Haskell/bin:/Users/ujihisa/git/mdv:/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/Applications/MacVim.app/Contents/MacOS:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/:/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/::/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/'
+" else
   AddPath /usr/bin
   AddPath /usr/local/bin
   AddPath /sbin
   AddPath /usr/sbin
-endif
+" endif
 
 AddPath /Users/ujihisa/git/mdv
 AddPath /Users/ujihisa/Library/Haskell/bin
@@ -1882,6 +1901,18 @@ augroup vimrc-yacc
   autocmd FileType yacc setl noexpandtab
   autocmd FileType yacc setl ts=8
   autocmd FileType yacc setl sw=4
+augroup END
+" }}}
+" java {{{
+function! s:vimrc_java()
+  compiler javac
+  nnoremap <buffer> <space>m :<C-u>make %<Cr>
+  inoremap <buffer> ` System.out.println();<left><left>
+endfunction
+
+augroup vimrc-java
+  autocmd!
+  autocmd FileType java call <SID>vimrc_java()
 augroup END
 " }}}
 " __END__  "{{{1
