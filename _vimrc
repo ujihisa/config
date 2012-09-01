@@ -234,6 +234,17 @@ cnoremap <C-o>p <C-r>"
 nnoremap /<C-o>p /<C-r>"
 
 "}}}
+" = for completion and \ for cancel {{{
+inoremap <expr> = pumvisible() ? "\<C-n>" : '='
+inoremap <expr> \ pumvisible() ? "\<C-p>" : '\'
+inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
+imap <BS> <Plug>(vimrc_bs)
+"function! s:wrapmap(key)
+"  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
+"endfunction
+
+"inoremap <expr> <s-space> pumvisible() ? neocomplcache#close_popup() . ' ' : ' '
+" }}}
 " Cr in Insert Mode always means newline {{{
 function! CrInInsertModeAlwaysMeansNewline()
   "let a = (exists('b:did_indent') ? "\<C-f>" : "") . "\<CR>X\<BS>"
@@ -653,16 +664,15 @@ augroup END
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
-"map <Space>r  <Plug>(quickrun)
-nnoremap <Space>r :<C-u>call <SID>quickrun_of_buffer()<Cr>
-function! s:quickrun_of_buffer()
-  if !exists('b:quickrun_of_buffer')
-    let b:quickrun_of_buffer = ''
-  endif
-  echo 'QuickRun' b:quickrun_of_buffer
-  execute 'QuickRun' b:quickrun_of_buffer
-endfunction
-"map <Space>r :<C-u>QuickRun<Cr>
+
+" nnoremap <Space>r :<C-u>call <SID>quickrun_of_buffer()<Cr>
+" function! s:quickrun_of_buffer()
+"   if !exists('b:quickrun_of_buffer')
+"     let b:quickrun_of_buffer = ''
+"   endif
+"   echo 'QuickRun' b:quickrun_of_buffer
+"   execute 'QuickRun' b:quickrun_of_buffer
+" endfunction
 
 " function! Quickrun_open_test_window()
 "   new
@@ -675,10 +685,8 @@ endfunction
 " }}}
 " quickrun for thinca {{{
 "nmap <Space>r :<C-u>QuickRun<Cr>
+nmap <Space>r <Plug>(quickrun)
 
-"if !exists('g:quickrun_config')
-"  let g:quickrun_config = {}
-"endif
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
 let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
@@ -693,7 +701,6 @@ let g:quickrun_config.textile = {
 "\    'command': '8g',
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
 "\  }
-" }}}
 let g:quickrun_config['ruby'] = {'command': 'ruby'}
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 "let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
@@ -713,6 +720,7 @@ let g:quickrun_config['scala'] = {
 "    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
 "    +\   'tempfile': '{fnamemodify(tempname(), ":h")}/quickrun',
 "     \ },
+" }}}
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
   autocmd!
@@ -739,12 +747,13 @@ nnoremap <Space>gc :<C-u>GitCommit<Enter>
 nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
 " }}}
+" TeX Supports {{{
 " F5 to --
 "augroup LatexSuite
 "  au LatexSuite User LatexSuiteFileType
 "   \ imap <silent> <buffer> -- <Plug>Tex_FastEnvironmentInsert
 "augroup END
-" TeX Supports {{{
+" lates-suite is so evil. don't use it.
 
 " LaTeX-Suite
 let g:Tex_SmartKeyQuote = 0
@@ -771,6 +780,7 @@ else
   let g:Tex_ViewRule_pdf = 'acroread'
 endif
 " }}}
+" misc {{{
 augroup MyKeywordprg
   autocmd!
   autocmd FileType twitter setl keywordprg=dictionary
@@ -782,7 +792,7 @@ augroup END
 
 "set cursorline
 "set cursorcolumn
-
+" }}}
 " html {{{
 function! s:HtmlEscape()
   silent s/&/\&amp;/eg
@@ -922,18 +932,20 @@ function! s:open_lib_and_corresponding_test(fname)
   execute 'vnew spec/' . a:fname . '_test.rb'
   execute "normal \<Plug>(quickrun)\<C-w>J\<C-w>7_"
 endfunction " }}}
+" gist.vim {{{
 let g:gist_clip_command = 'pbcopy'
+" }}}
 " color {{{
-colorscheme desert
-highlight Cursor ctermbg=black
-highlight Pmenu cterm=standout ctermfg=2 ctermbg=black
-highlight PmenuSel cterm=bold ctermfg=2 ctermbg=black
-highlight PmenuSbar ctermbg=0
-highlight StatusLine term=standout cterm=underline ctermfg=2
-highlight StatusLineNC cterm=underline
-highlight VertSplit cterm=NONE
-highlight LineNr ctermfg=2
-highlight TabLineFill ctermfg=0
+" colorscheme desert
+" highlight Cursor ctermbg=black
+" highlight Pmenu cterm=standout ctermfg=2 ctermbg=black
+" highlight PmenuSel cterm=bold ctermfg=2 ctermbg=black
+" highlight PmenuSbar ctermbg=0
+" highlight StatusLine term=standout cterm=underline ctermfg=2
+" highlight StatusLineNC cterm=underline
+" highlight VertSplit cterm=NONE
+" highlight LineNr ctermfg=2
+" highlight TabLineFill ctermfg=0
 
 
 " }}}
@@ -1008,6 +1020,8 @@ endif
 "   * g:blogger_blogid
 "   * g:blogger_email
 "   * g:blogger_pass
+"   * g:lingr_vim_user
+"   * g:lingr_vim_password
 " }}}
 " XML, HTML completion {{{
 "augroup MyXML
@@ -1016,7 +1030,7 @@ endif
 "  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
 "augroup END
 " }}}
-" Rename (See Vim Hacks #?? {{{
+" Rename (See Vim Hacks #17 {{{
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
 " C/C++ semicolon support {{{
@@ -1125,17 +1139,6 @@ let g:loaded_vimrc = 1
 
 "inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : "\<C-n>"
 " inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
-" }}}
-" = for completion and \ for cancel {{{
-inoremap <expr> = pumvisible() ? "\<C-n>" : '='
-inoremap <expr> \ pumvisible() ? "\<C-p>" : '\'
-inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
-imap <BS> <Plug>(vimrc_bs)
-"function! s:wrapmap(key)
-"  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
-"endfunction
-
-"inoremap <expr> <s-space> pumvisible() ? neocomplcache#close_popup() . ' ' : ' '
 " }}}
 " Open junk file. by Shougo "{{{
 command! -nargs=0 JunkFile call s:open_junk_file()
@@ -1606,10 +1609,7 @@ let g:unite_launch_apps = [
       \ 'git push']
 " }}}
 " unite-transparency {{{
-let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}}}
-" quickrun + haskell = infinite loop {{{
-command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
-" }}}
+let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}} } " avoid triple closes
 function! s:unite_source.gather_candidates(args, context)
   return map(range(0, 100, 4), '{
         \ "word": v:val,
@@ -1625,7 +1625,10 @@ function! s:unite_source.action_table['*'].preview.func(candidate)
 endfunction
 call unite#define_source(s:unite_source)
 " }}}
-" synastic {{{
+" quickrun + haskell = infinite loop {{{
+command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
+" }}}
+" syntastic {{{
 let g:synastic_enable_signs = 1
 " }}}
 " vimerl {{{
@@ -1669,7 +1672,7 @@ function! VimrcRemoteInit()
 endfunction
 
 " }}}
-" clojure {{{
+" vimclojure {{{
 if globpath(&rtp, 'autoload/vimclojure.vim') != ''
   let vimclojure#HighlightBuiltins = 1
   let vimclojure#ParenRainbow = 1
@@ -1799,6 +1802,7 @@ function! VimrcSendSwank()
   "let @" = substitute(vimclojure#ExtractSexpr(1)[1], '\(;.*\)\?\n *', ' ', 'g')
   execute 'VimShellSendString' vimclojure#ExtractSexpr(1)[1]
 endfunction
+" }}}
 " vim-scala {{{
 let g:scala_use_default_keymappings = 0
 " }}}
@@ -1827,6 +1831,57 @@ augroup vimrc-lingr
   autocmd!
   autocmd FileType lingr-messages nmap <buffer> i <Plug>(lingr-messages-show-say-buffer)
   autocmd FileType lingr-say inoremap <buffer> <Cr> <Esc>:wq<Cr>
+augroup END
+" }}}
+" javascript {{{
+function! s:vimrc_javascript()
+  setl ts=4
+  setl sw=4
+  setl noexpandtab
+  setl nolist
+
+  inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
+  inoremap <buffer> ` console.log();<Left><Left>
+  "runtime! ftplugin/coffee.vim
+endfunction
+augroup vimrc-javascript
+  autocmd!
+  autocmd FileType javascript call <SID>vimrc_javascript()
+augroup END
+" }}}
+" coffeescript {{{
+function! s:vimrc_coffeescript()
+  setl sw=2
+  setl sts=2
+  setl expandtab
+  setl list
+
+  return
+
+  function! JavaScriptUnderScoreBecomesCamelCase()
+    if matchstr(getline('.'), '.', col('.')-2) =~ '\w'
+      return "\<Plug>(stickykey-shift)"
+    else
+      return '_'
+    endif
+  endfunction!
+
+  imap <buffer><expr> _ JavaScriptUnderScoreBecomesCamelCase()
+endfunction
+
+augroup vimrc-coffeescript
+  autocmd!
+  autocmd FileType coffee call <SID>vimrc_coffeescript()
+augroup END
+" }}}
+" yacc {{{
+" mostly for ruby/parse.y
+augroup vimrc-yacc
+  autocmd!
+  autocmd FileType yacc setl nolist
+  autocmd FileType yacc setl noexpandtab
+  autocmd FileType yacc setl ts=8
+  autocmd FileType yacc setl sw=4
 augroup END
 " }}}
 " __END__  "{{{1
