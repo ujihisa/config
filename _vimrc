@@ -1635,7 +1635,7 @@ function! s:unite_source.gather_candidates(args, context)
 endfunction
 let s:unite_source.action_table.preview = {
       \ 'description': 'preview this transparency', 'is_quit': 0 }
-function! s:unite_source.action_table['*'].preview.func(candidate)
+function! s:unite_source.action_table.preview.func(candidate)
   execute a:candidate.action__command
 endfunction
 call unite#define_source(s:unite_source)
