@@ -31,6 +31,7 @@ NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
+NeoBundle 'thinca/vim-ft-clojure'
 
 filetype plugin on
 filetype indent on
