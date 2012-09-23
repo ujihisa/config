@@ -405,12 +405,6 @@ let g:neocomplcache_max_keyword_width = 70
 let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
 imap <C-l> <Plug>(neocomplcache_start_unite_complete)
-"imap <C-s> <Plug>(neocomplcache_snippets_expand)
-imap <expr><C-s> neocomplcache#sources#snippets_complete#expandable() ?
-      \ "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ?
-      \ "\<C-n>\<Plug>(neocomplcache_snippets_expand)" : ""
-imap <C-\> <Plug>(neocomplcache_snippets_jump)
-smap <C-\> <Plug>(neocomplcache_snippets_jump)
 nmap <C-\> a<C-\>
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
@@ -489,7 +483,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
-  nnoremap su q:Unite<Space>
+  nnoremap su :<C-u>Unite source<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   "AlterCommandWrapper unite Unite
 endif
@@ -1765,6 +1759,15 @@ endif
 " }}}
 " for vital spec {{{
 " /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
+" }}}
+" neocomplcache-snippets-complete {{{
+
+"imap <C-s> <Plug>(neocomplcache_snippets_expand)
+imap <expr> - neocomplcache#sources#snippets_complete#expandable() ?
+      \ "\<Plug>(neocomplcache_snippets_expand)" : "-"
+nnoremap <C-s> :<C-u>Unite snippet<Cr>
+imap <C-\> <Plug>(neocomplcache_snippets_jump)
+smap <C-\> <Plug>(neocomplcache_snippets_jump)
 " }}}
 " vimshell platform-dependent aliases {{{
 let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
