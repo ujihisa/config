@@ -1774,6 +1774,12 @@ function! s:vimshell_settings()
   else
     call vimshell#set_alias('eix', 'exe brew search')
   endif
+
+  " it's the default behaviour of <Cr> in vimshell's insert mode
+  imap <buffer> <S-CR> <C-]><Plug>(vimshell_enter)
+  " <Cr> expands snippet!
+  imap <buffer><expr> <CR> neocomplcache#sources#snippets_complete#expandable() ?
+      \ "\<Plug>(neocomplcache_snippets_expand)\<Plug>(vimshell_enter)" : "\<Plug>(vimshell_enter)"
 endfunction
 augroup vimshell-settings
   autocmd!
