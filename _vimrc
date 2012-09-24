@@ -1765,8 +1765,8 @@ endif
 "imap <C-s> <Plug>(neocomplcache_snippets_expand)
 
 " the next line expect you to read :h neocomplcache#sources#snippets_complete#expandable in advance.
-imap <expr> <Space> (pumvisible() && neocomplcache#sources#snippets_complete#expandable() % 2 == 1) ?
-      \ "\<Plug>(neocomplcache_snippets_expand)" : " "
+imap <expr> <Bslash> (pumvisible() && neocomplcache#sources#snippets_complete#expandable() % 2 == 1) ?
+      \ "\<Plug>(neocomplcache_snippets_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite snippet<Cr>
 imap <C-\> <Plug>(neocomplcache_snippets_jump)
