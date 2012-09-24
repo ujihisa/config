@@ -36,7 +36,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 filetype plugin on
 filetype indent on
 
-nnoremap sn :<C-u>Unite neobundle/update -auto-quit<Cr>
+nnoremap sn :<C-u>Unite neobundle/update<Cr>
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
