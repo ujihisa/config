@@ -36,7 +36,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 filetype plugin on
 filetype indent on
 
-nnoremap sn :<C-u>Unite neobundle/update<Cr>
+nnoremap snu :<C-u>Unite neobundle/update<Cr>
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
@@ -484,6 +484,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite source<Cr>
+  nnoremap sn :<C-u>Unite launch<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   "AlterCommandWrapper unite Unite
 endif
@@ -1617,10 +1618,10 @@ augroup END
 " }}}
 " unite-launch {{{
 let g:unite_launch_apps = [
-      \ 'rake',
-      \ 'make',
-      \ 'git pull',
-      \ 'git push']
+      \ 'sbt compile',
+      \ 'sbt clean update',
+      \ 'git stash save && git pull --rebase && git stash pop',
+      \ 'sbt test']
 " }}}
 " unite-transparency {{{
 let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}} } " avoid triple closes
