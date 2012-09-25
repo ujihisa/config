@@ -231,9 +231,8 @@ cnoremap <C-o>p <C-r>"
 nnoremap /<C-o>p /<C-r>"
 
 "}}}
-" = for completion and \ for cancel {{{
+" = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
-inoremap <expr> \ pumvisible() ? "\<C-p>" : '\'
 inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
 imap <BS> <Plug>(vimrc_bs)
 "function! s:wrapmap(key)
@@ -298,29 +297,6 @@ function! s:vimshell_iexe()
 endfunction
 " }}}
 " tag opens in a new window {{{
-"if 0 " if you want to use gtags
-"  function! s:tagjump_in_new_window()
-"    if filereadable("GTAGS")
-"      sp
-"      GtagsCursor
-"    else
-"      execute "normal! \<C-w>\<C-]>"
-"    endif
-"  endfunction
-"
-"  function! s:tagjump_or_cr()
-"    if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
-"      execute "normal! \<Cr>"
-"    else
-"      if filereadable("GTAGS")
-"        GtagsCursor
-"      else
-"        execute "normal! \<C-]>"
-"      endif
-"    endif
-"  endfunction
-"  let Gtags_OpenQuickfixWindow = 0
-"else
 function! s:tagjump_in_new_window()
   execute "normal! \<C-w>\<C-]>"
   "http://d.hatena.ne.jp/thinca/20110202
@@ -352,45 +328,13 @@ nmap <C-i> <Plug>(poslist_next)
 " MacBook Battery http://d.hatena.ne.jp/lurker/20060801/1154443551 {{{
 command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
 " }}}
-" Backslashes in the commands :e and :cd are ~/ {{{
-"function! HomedirOrBackslash()
-"  if getcmdtype() == ':'
-"    for i in split('e cd CD new vnew so', ' ')
-"      if getcmdline() =~# printf('^%s ', i)
-"        return '~/'
-"      endif
-"    endfor
-"    if getcmdline() =~# '^?\?!'
-"      return '~/'
-"    endif
-"  endif
-"  return '\'
-"endfunction
-"cnoremap <expr> <Bslash> HomedirOrBackslash()
-
-"cnoremap <expr> \  smartchr#one_of('~/', '\')
-" }}}
-" http://vim-users.jp/2009/11/hack96/ {{{
-"autocmd FileType *
-"\   if &l:omnifunc == ''
-"\ |   setlocal omnifunc=syntaxcomplete#Complete
-"\ | endif
-
-"}}}
 " remote {{{
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
 " Neocomplecache {{{
 let g:neocomplcache_enable_at_startup = 1
 "let g:NeoComplCache_EnableQuickMatch = 0
-"cnoreabbrev ne NeoComplCacheEnable
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
-"if !exists('g:NeoComplCache_OmniPatterns')
-"  let g:NeoComplCache_OmniPatterns = {}
-"endif
-" below is the copy from ruby's.
-"let g:NeoComplCache_OmniPatterns.haskell = '[^. *\t]\.\h\w*'
-"let g:NeoComplCache_CachingDisablePattern = '\[Command line\]'
 "let g:neocomplcache_manual_completion_length = 2
 let g:neocomplcache_plugin_completion_length = {
       \ 'include_complete': 1}
@@ -400,12 +344,11 @@ let g:neocomplcache_max_list = 200
 let g:neocomplcache_max_keyword_width = 70
 "let g:neocomplcache_enable_smart_case = 1
 "let g:neocomplcache_enable_ignore_case = 0
-"let g:neocomplcache_text_mode_filetypes = {
-"      \ 'text': 0, 'help': 0, 'tex': 0, 'gitcommit': 0, 'nothing': 0}
 let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
 imap <C-l> <Plug>(neocomplcache_start_unite_complete)
-nmap <C-\> a<C-\>
+" see also
+"   * snippets section
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 let g:neocomplcache_auto_completion_start_length = 1
@@ -1772,6 +1715,7 @@ imap <expr> <Bslash> (pumvisible() && neocomplcache#sources#snippets_complete#ex
 nnoremap <C-s> :<C-u>Unite snippet<Cr>
 imap <C-\> <Plug>(neocomplcache_snippets_jump)
 smap <C-\> <Plug>(neocomplcache_snippets_jump)
+nmap <C-\> a<C-\>
 " }}}
 " vimshell platform-dependent aliases {{{
 let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
