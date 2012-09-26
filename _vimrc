@@ -1818,7 +1818,7 @@ function! s:vimrc_javascript()
   setl noexpandtab
   setl nolist
 
-  inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
+  "inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
   inoremap <buffer> ` console.log();<Left><Left>
   "runtime! ftplugin/coffee.vim
 endfunction
