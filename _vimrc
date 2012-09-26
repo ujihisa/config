@@ -428,6 +428,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite source<Cr>
   nnoremap sn :<C-u>Unite launch<Cr>
+  nnoremap sp :<C-u>Unite process<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   "AlterCommandWrapper unite Unite
 endif
