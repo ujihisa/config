@@ -1883,19 +1883,27 @@ function! VitalVimBuffer_all()
   echo flag_dict
 endfunction
 " }}}
-" scala sbt interaction (experimental) {{{
-"function! s:sbt_run()
-"  vimshell#interactive#set_send_buffer('iexe-sbt@18')<Cr>:VimShellSendString run<Cr>
-"endfunction
-"
-"function! s:vimrc_scala()
-"  nnoremap <buffer> <Space>m :<C-u>write<Cr>call <SID>sbt_run()<Cr>
-"endfunction
-"
-"augroup vimrc_scala
-"  autocmd!
-"  autocmd FileType scala call s:vimrc_scala()
-"augroup END
+" scala sbt interaction {{{
+command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
+
+function! s:sbt_run()
+  let sbt_bufname = get(t:, 'sbt_bufname')
+  if sbt_bufname !=# ''
+    call vimshell#interactive#set_send_buffer(sbt_bufname)
+    VimShellSendString run
+  else
+    echoerr 'try StartSBT'
+  endif
+endfunction
+
+function! s:vimrc_scala()
+  nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+endfunction
+
+augroup vimrc_scala
+  autocmd!
+  autocmd FileType scala call s:vimrc_scala()
+augroup END
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
