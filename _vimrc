@@ -32,6 +32,8 @@ NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-ft-clojure'
+NeoBundle "osyo-manga/shabadou.vim"
+NeoBundle "osyo-manga/vim-watchdogs"
 
 filetype plugin on
 filetype indent on
@@ -664,6 +666,11 @@ let g:quickrun_config['scala'] = {
 "    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
 "    +\   'tempfile': '{fnamemodify(tempname(), ":h")}/quickrun',
 "     \ },
+
+
+call watchdogs#setup(g:quickrun_config)
+let g:watchdogs_check_BufWritePost_enable = 1
+
 " }}}
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
@@ -1873,6 +1880,20 @@ augroup vimrc-java
   autocmd!
   autocmd FileType java call <SID>vimrc_java()
 augroup END
+" }}}
+" scala sbt interaction (experimental) {{{
+"function! s:sbt_run()
+"  vimshell#interactive#set_send_buffer('iexe-sbt@18')<Cr>:VimShellSendString run<Cr>
+"endfunction
+"
+"function! s:vimrc_scala()
+"  nnoremap <buffer> <Space>m :<C-u>write<Cr>call <SID>sbt_run()<Cr>
+"endfunction
+"
+"augroup vimrc_scala
+"  autocmd!
+"  autocmd FileType scala call s:vimrc_scala()
+"augroup END
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
