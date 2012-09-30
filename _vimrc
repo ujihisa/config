@@ -1594,9 +1594,6 @@ call unite#define_source(s:unite_source)
 " quickrun + haskell = infinite loop {{{
 command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
 " }}}
-" syntastic {{{
-let g:synastic_enable_signs = 1
-" }}}
 " vimerl {{{
 let g:erlangManPath = '/usr/local/share/man'
 "let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
@@ -1758,13 +1755,6 @@ function! VimrcJruby()
   call vimproc#system_bg('jruby --ng-server')
   let b:quickrun_config = {'command': 'jruby', 'cmdopt': '--ng --1.9'}
 endfunction
-" }}}
-" syntastic {{{
-let g:syntastic_cpp_compiler_options = ' -std=c++0x'
-let g:syntastic_mode_map = {
-      \ 'mode': 'active',
-      \ }
-      "\ 'passive_filetypes': ['scala'] }
 " }}}
 " pseudo rm command {{{
 command! -nargs=* Rm echo <q-args>
