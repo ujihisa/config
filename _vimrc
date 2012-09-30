@@ -1712,17 +1712,13 @@ endif
 " for vital spec {{{
 " /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
 " }}}
-" neocomplcache-snippets-complete {{{
-
-"imap <C-s> <Plug>(neocomplcache_snippets_expand)
-
-" the next line expect you to read :h neocomplcache#sources#snippets_complete#expandable in advance.
-imap <expr> <Bslash> (pumvisible() && neocomplcache#sources#snippets_complete#expandable() % 2 == 1) ?
-      \ "\<Plug>(neocomplcache_snippets_expand)" : '\'
+" neosnippet {{{
+imap <expr> <Bslash> (pumvisible() && neosnippet#force_expandable() % 2 == 1) ?
+      \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite snippet<Cr>
-imap <C-\> <Plug>(neocomplcache_snippets_jump)
-smap <C-\> <Plug>(neocomplcache_snippets_jump)
+imap <C-\> <Plug>(neosnippet_jump)
+smap <C-\> <Plug>(neosnippet_jump)
 nmap <C-\> a<C-\>
 " }}}
 " vimshell platform-dependent aliases {{{
@@ -1880,6 +1876,22 @@ augroup vimrc-java
   autocmd!
   autocmd FileType java call <SID>vimrc_java()
 augroup END
+" }}}
+" Vital.Vim.Buffer {{{
+function! VitalVimBuffer_all()
+  redir => output
+  silent! ls
+  redir END
+
+  let flag_dict = {}
+  for out in map(split(output, '\n'), 'split(v:val)')
+    let flag_dict[out[0]] = [
+          \ matchstr(join(out), '^.*\ze\s\+"'),
+          \ matchstr(join(out), '"\zs.*\ze"')]
+  endfor
+
+  echo flag_dict
+endfunction
 " }}}
 " scala sbt interaction (experimental) {{{
 "function! s:sbt_run()
