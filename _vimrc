@@ -1889,7 +1889,7 @@ endfunction
 command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
 
 function! s:sbt_run()
-  let cmd = get(b:, 'sbt_cmd', 'run')
+  let cmd = get(t:, 'sbt_cmd', 'run')
 
   let sbt_bufname = get(t:, 'sbt_bufname')
   if sbt_bufname !=# ''
