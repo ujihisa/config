@@ -42,7 +42,9 @@ nnoremap snu :<C-u>Unite neobundle/update<Cr>
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
-if !g:V.is_mac()
+if g:V.is_mac()
+  " TODO
+else
   let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/autoload/vimproc_unix.so')
   " '/home/ujihisa/vimproc2/autoload/vimproc_unix.so'
 endif
