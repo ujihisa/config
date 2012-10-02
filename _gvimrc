@@ -1,11 +1,7 @@
-let s:imac = !system('sysctl -a | grep hw.model') == "hw.model = MacBookAir1,1\n"
-"set guifont=Osaka－等幅\ Ultra-Condensed\ 16
-"colorscheme koehler
 "set imactivatekey=s-space
-"let $PATH=$HOME.'/bin:'.$PATH
-" vim:fenc=utf8
 
 
+"colorscheme koehler
 "colorscheme macvim
 "colorscheme mrkn256
 "colorscheme lucius
@@ -57,9 +53,7 @@ if g:V.is_mac()
   nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
   inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
   inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
-endif
 
-if s:imac
   nnoremap <swipeup> :<C-u>call <SID>relative_tranparency(5)<Cr>
   nnoremap <swipedown> :<C-u>call <SID>relative_tranparency(-5)<Cr>
   inoremap <swipeup> <C-o>:call <SID>relative_tranparency(5)<Cr>
