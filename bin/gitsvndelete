@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-# equivalent to do
-#   $ svn delete {repository-url}/branches/{current branch}
-cmd = "svn delete #{`git svn info --url`.chomp}"
-abort 'ERROR: You cannot gitsvndelete on trunk/master' if /trunk/ =~ cmd
-system cmd
