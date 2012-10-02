@@ -334,14 +334,6 @@ linux*|cygwin*) # LINUX {{{
   ;; # }}}
 esac
 
-function safaritab() {
-  # http://www.tuaw.com/2008/09/08/terminal-tips-force-safari-to-open-all-links-in-new-tab/
-  # Give me true or false.
-  # Default behavior is "false"
-  defaults write com.apple.Safari TargetedClicksCreateTabs -bool $1
-  echo "restart Safari"
-}
-
 # VCS supports {{{
 alias gss='git stash save'
 alias gsp='git stash pop'
@@ -390,12 +382,6 @@ function l() {
 }
 # }}}
 
-# for cdd
-#source ~/bin/cdd.zsh
-#function chpwd() {
-#  _reg_pwd_screennum
-#}
-
 # for yarm
 if [ -e ~/bin/yarm.zsh ]; then
   source ~/bin/yarm.zsh
@@ -403,64 +389,15 @@ fi
 
 # paths
 #export PATH=$PATH:~/coderepos/ruby/misc
-export PATH=~/.gem/ruby/1.8/bin:$PATH
 export PATH=~/.gem/ruby/1.9/bin:$PATH
-export PATH=~/.gem/jruby/1.8/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
-export PATH=~/src/javacc-5.0/bin:$PATH
-export PATH=~/src/llvm/usr/bin:$PATH
-export PATH=~/git/cbc/usr/bin:$PATH
-export PATH=~/git/epitaph/bin:$PATH
-export PATH=$PATH:~/appengine-java-sdk-1.2.1/bin
-export PATH=$PATH:~/android-sdk-mac_x86-1.5_r2/tools/
 export PATH=$PATH:~/git/termtter/bin
 export PATH=$PATH:~/.gem/ruby/1.9.1/bin
-export PATH=$PATH:~/bin/scala-2.6.0-final/
 export PATH=/usr/local/bin:$PATH:
-#export PATH=$PATH:~/rubies/bin
-#export PATH=~/git/ruby/local/bin:$PATH
-export PATH=~/git/jruby/bin:$PATH # jruby must come earlier than other rubies because it has "gem" command
-export PATH=~/git/ruby187/local/bin:$PATH
-export PATH=~/git/ruby192/local/bin:$PATH
-export PATH=~/git/ruby193/local/bin:$PATH
-export PATH=$PATH:~/git/rubinius/local/bin
-#export PATH=$PATH:~/git/node/local/bin
-#export PATH=$PATH:~/git/coffee-script/local/bin
-export PATH=$PATH:~/node_modules/coffee-script/bin/
-export PATH=$PATH:~/git/git-hg/bin
-export PATH=$PATH:/usr/local/Cellar/python/2.7.1/bin/
 
 if [ -e /Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine ]; then
   export PATH=$PATH:/Applications/GoogleAppEngineLauncher.app/Contents/Resources/GoogleAppEngine-default.bundle/Contents/Resources/google_appengine
 fi
-
-export PYTHONSTARTUP=/Users/ujihisa/.pythonrc.py
-alias pt=python
-
-function pasg() {
-  if [ -e ~/Documents/uvn/passwords.txt ] ; then
-    grep -5 -i $* ~/Documents/uvn/passwords.txt
-  else
-    grep -5 -i $* ~/passwords.txt
-  fi
-}
-
-function cady() { # {{{
-  local filename; filename=$1
-  local input; input=$2
-  local expect; expect=$3
-  local output;
-  if [ -e $input ]; then
-    output=`ruby $filename $input`
-  else
-    output=`echo $input | ruby $filename`
-  fi
-  if [ $output = $expect ]; then
-    echo "ok"
-  else
-    echo "ng"
-  fi
-} # }}}
 
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*?.(pdf|o)'
 
@@ -484,35 +421,11 @@ alias -g H='| head'
 alias -g F="| ruby /Users/ujihisa/git/few/bin/few"
 alias -g P="| pbcopy"
 
-# kana's nice tool
-function git-gol() {
-  for i in $(git log --pretty=oneline | head -n 10 | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
-}
-function git-gol-full() {
-  for i in $(git log --pretty=oneline | tail -r | cut -d ' ' -f 1); do git show $i --color-words; done | less
-}
-
 function lprweb() {
   xulrunner-1.9 /tmp/mozilla2ps/application.ini $1 /tmp/lprweb.ps \
     -margins 0.25 -papername A4 -bgcolors true -bgimages true
   lpr /tmp/lprweb.ps
   rm /tmp/lprweb.ps
-}
-
-function githubinitial() {
-  git config --add branch.master.remote origin
-  git config --add branch.master.merge refs/heads/master
-}
-function rubyup() {
-  local now
-  now=`pwd`
-  cd ~/git/ruby-trunk
-  git svn rebase
-  cd spec/mspec
-  git pull --rebase
-  cd ../rubyspec
-  git pull --rebase
-  cd $now
 }
 
 function mspecci() {
@@ -521,71 +434,6 @@ function mspecci() {
   /usr/bin/ruby ${rt}/spec/mspec/bin/mspec ci -t ~/rubies/bin/ruby192 -fs
 }
 
-# kana's prompt git branch {{{
-function prompt-git-head-name() {
-  local git_dir="$(git rev-parse --git-dir 2>/dev/null)"
-  if [ -z "$git_dir" ]; then
-    return 1
-  fi
-  local head_name=''
-  local additional_info=''
-  if [ -d "$git_dir/rebase-apply" ]; then
-    if [ -f "$git_dir/rebase-apply/rebasing" ]; then
-      additional_info="REBASE"
-    elif [ -f "$git_dir/rebase-apply/applying" ]; then
-      additional_info="AM"
-    else
-      additional_info="AM/REBASE"
-    fi
-    head_name="$(git symbolic-ref HEAD 2>/dev/null)"
-  elif [ -f "$git_dir/rebase-merge/interactive" ]; then
-    additional_info="REBASE-i"
-    head_name="$(< "$git_dir/rebase-merge/head-name")"
-  elif [ -d "$git_dir/rebase-merge" ]; then
-    additional_info="REBASE-m"
-    head_name="$(< "$git_dir/rebase-merge/head-name")"
-  elif [ -f "$git_dir/MERGE_HEAD" ]; then
-    additional_info="MERGING"
-    head_name="$(git symbolic-ref HEAD 2>/dev/null)"
-  fi
-  if [ -z "$head_name" ]; then
-    head_name="$(git branch | sed -e 's/^\* //;t;d')"
-    if [ "$head_name" = '(no branch)' ]; then
-      # "git branch" doesn't show the correct name of a branch after
-      # "git checkout {commitish-and-not-the-head-of-a-branch}",
-      # so we have to use another method to get the name of {commitish}.
-      head_name="($(
-        {
-          fgrep 'checkout: moving from ' .git/logs/HEAD |
-          sed '$s/^.* to \([^ ]*\)$/\1/;t;d'
-        } 2>/dev/null
-      ))"
-    elif [ "$head_name" = '' ]; then
-      head_name='(just initialized; nothing commited)'
-    fi
-  else
-    head_name="${head_name##refs/heads/}"
-  fi
-  if [ -n "$additional_info" ]; then
-    additional_info="|$additional_info"
-  fi
-
-  echo " [$head_name$additional_info]"
-  return 0
-} # }}}
-
-# sudo gem wrapper {{{
-function sudo() {
-  if [ $1 = "gem" ]; then
-    echo "Use gem without sudo!"
-  else
-    command sudo $*
-  fi
-}
-# }}}
-# for vimshell brain {{{
-alias iexe=''
-# }}}
 # __END__  {{{1
 # vim: expandtab softtabstop=2 shiftwidth=2
 # vim: foldmethod=marker
