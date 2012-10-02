@@ -1905,11 +1905,8 @@ endfunction
 augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
+  autocmd FileType scala nnoremap <buffer> <Space>st :<C-u>StartSBT
 augroup END
-
-" let b:sbt_cmd = '; assembly ; eval "scp ./target/StreamControl-assembly-0.1.jar uji@devpush1:/usr/local/akka/bin/" !'
-" let b:sbt_cmd = '; assembly ; eval "scp ./target/PushServer-assembly-0.3.2.jar uji@devpush1:/usr/local/akka/deploy/" !'
-
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
