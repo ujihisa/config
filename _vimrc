@@ -668,8 +668,8 @@ let g:quickrun_config['scala'] = {
 "     \ },
 
 
-call watchdogs#setup(g:quickrun_config)
-let g:watchdogs_check_BufWritePost_enable = 1
+"call watchdogs#setup(g:quickrun_config)
+"let g:watchdogs_check_BufWritePost_enable = 1
 
 " }}}
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
@@ -1887,10 +1887,12 @@ endfunction
 command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
 
 function! s:sbt_run()
+  let cmd = get(b:, 'sbt_cmd', 'run')
+
   let sbt_bufname = get(t:, 'sbt_bufname')
   if sbt_bufname !=# ''
     call vimshell#interactive#set_send_buffer(sbt_bufname)
-    VimShellSendString run
+    call vimshell#interactive#send_string(cmd)
   else
     echoerr 'try StartSBT'
   endif
@@ -1904,6 +1906,10 @@ augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
 augroup END
+
+" let b:sbt_cmd = '; assembly ; eval "scp ./target/StreamControl-assembly-0.1.jar uji@devpush1:/usr/local/akka/bin/" !'
+" let b:sbt_cmd = '; assembly ; eval "scp ./target/PushServer-assembly-0.3.2.jar uji@devpush1:/usr/local/akka/deploy/" !'
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
