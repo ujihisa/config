@@ -651,7 +651,6 @@ let g:quickrun_config.textile = {
 "\  }
 let g:quickrun_config['ruby'] = {'command': 'ruby'}
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
-"let g:quickrun_config['clojure'] = {'command': 'java -cp /Users/ujihisa/git/clojure/clojure.jar clojure.main'}
 
 let g:quickrun_config['markdown'] = {
       \ 'type': 'markdown/pandoc',
@@ -1764,10 +1763,10 @@ function! VimrcSwank()
   normal! A(ns cloft.core)
 endfunction
 
-function! VimrcSendSwank()
-  "let @" = substitute(vimclojure#ExtractSexpr(1)[1], '\(;.*\)\?\n *', ' ', 'g')
-  execute 'VimShellSendString' vimclojure#ExtractSexpr(1)[1]
-endfunction
+"function! VimrcSendSwank()
+"  "let @" = substitute(vimclojure#ExtractSexpr(1)[1], '\(;.*\)\?\n *', ' ', 'g')
+"  execute 'VimShellSendString' vimclojure#ExtractSexpr(1)[1]
+"endfunction
 " }}}
 " vim-scala {{{
 let g:scala_use_default_keymappings = 0
@@ -1902,6 +1901,12 @@ augroup vimrc_scala
   autocmd FileType scala call s:vimrc_scala()
   autocmd FileType scala nnoremap <buffer> <Space>st :<C-u>StartSBT
 augroup END
+" }}}
+" clojure {{{
+
+" for clojure.tools.cli/cli
+let g:clojure#indent#special = '\<cli$'
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
