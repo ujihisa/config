@@ -1637,13 +1637,6 @@ function! VimrcRemoteInit()
 endfunction
 
 " }}}
-" vimclojure {{{
-if globpath(&rtp, 'autoload/vimclojure.vim') != ''
-  let vimclojure#HighlightBuiltins = 1
-  let vimclojure#ParenRainbow = 1
-  let g:vimclojure#FuzzyIndent = 1
-endif
-" }}}
 " golden-ratio {{{
 let g:golden_ratio_autocommand = 0
 "nmap <space>gr <Plug>(golden_ratio_resize)
