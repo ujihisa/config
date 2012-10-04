@@ -403,22 +403,6 @@ function! s:split_nicely()
 endfunction
 
 " }}}
-" rak {{{
-"command! -nargs=* Rak call Rak("<args>")
-"function Rak(args)
-"  new
-"  execute "r!rak --nocolour" a:args
-"  nnoremap <buffer> o :<C-u>sp<Cr>gf
-"endfunction
-"
-"call altercmd#load()
-"command!
-"\ -bar -nargs=+
-"\ AlterCommandWrapper
-"\ CAlterCommand <args> | AlterCommand <cmdwin> <args>
-"
-"AlterCommandWrapper rak Rak
-" }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
@@ -434,7 +418,6 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sn :<C-u>Unite launch<Cr>
   nnoremap sp :<C-u>Unite process<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
-  "AlterCommandWrapper unite Unite
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
@@ -468,8 +451,6 @@ augroup END
 " }}}
 " Big and Man {{{
 command! Big wincmd _ | wincmd |
-"AlterCommandWrapper big Big
-"AlterCommandWrapper man Man
 " }}}
 " fuzzyfinder {{{
 if 0
@@ -826,32 +807,6 @@ nnoremap <silent> <Space>ao <C-w>T
 "  execute "lcd " . b:old_dir
 "  let b:old_dir = tmp
 "endfunction " }}}
-" kana's tabpagecd with my fix {{{
-"let s:TRUE = 1
-"augroup MyAutoCmd
-"  autocmd!
-"augroup END
-"
-"command! -complete=customlist,s:complete_cdpath -nargs=+ CD  TabpageCD <args>
-"function! s:complete_cdpath(arglead, cmdline, cursorpos)
-"  return split(globpath(&cdpath,
-"  \                     join(split(a:cmdline, '\s', s:TRUE)[1:], ' ') . '*/'),
-"  \            "\n")
-"endfunction
-"
-"AlterCommandWrapper cd  CD
-"" TabpageCD - wrapper of :cd to keep cwd for each tabpage
-"
-"command! -nargs=? TabpageCD
-"\   execute 'cd' fnameescape(<q-args>)
-"\ | let t:cwd = getcwd()
-"
-"autocmd MyAutoCmd TabEnter *
-"\   if !exists('t:cwd')
-"\ |   let t:cwd = getcwd()
-"\ | endif
-"\ | execute 'cd' fnameescape(t:cwd)
-" }}}
 " shougo's tabpagecd {{{
 " Each tab has current directory
 command! -bar -complete=dir -nargs=?
@@ -874,11 +829,10 @@ autocmd TabEnter *
 " Exchange ':cd' to ':TabpageCD'.
 "cnoreabbrev <expr> cd (getcmdtype() == ':' && getcmdline() ==# 'cd') ? 'TabpageCD' : 'cd'
 
-"AlterCommandWrapper cd  CD
 "}}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
-"AlterCommandWrapper lib Lib
+
 function! s:open_lib_and_corresponding_test(fname)
   execute 'tabnew lib/' . a:fname . '.rb'
   execute 'vnew spec/' . a:fname . '_test.rb'
@@ -919,7 +873,6 @@ function! s:left_space()
     wincmd p
   endif
 endfunction
-"AlterCommandWrapper leftspace LeftSpace
 " }}}
 " Say supports {{{
 command! Say silent execute '!say "' . escape(getline('.'), '"') . '" &>/dev/null &'
@@ -1203,7 +1156,6 @@ function s:vimrc_few()
   endif
 endfunction
 command! -nargs=0 Few call <SID>vimrc_few()
-"AlterCommandWrapper few Few
 " }}}
 " Swap window without moving cursor {{{
 " https://gist.github.com/654701
@@ -1241,7 +1193,6 @@ endfunction
 " }}}
 " copy the current file name {{{
 command! -nargs=0 CopyTheCurrentFileName let @+ = expand('%')
-"AlterCommandWrapper copythecurrentfilename CopyTheCurrentFileName
 " }}}
 " unite-neco {{{
 let s:unite_source = {'name': 'neco'}
