@@ -23,6 +23,8 @@ NeoBundle 'git://github.com/Shougo/echodoc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
+NeoBundle 'git://github.com/Shougo/unite-ssh.git'
+NeoBundle 'git://github.com/Shougo/unite-build.git'
 NeoBundle 'git://github.com/Shougo/vim-vcs.git'
 NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
@@ -412,12 +414,15 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
-  nnoremap sra :<C-u>Unite rake<Cr>
+  "nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite source<Cr>
-  nnoremap sn :<C-u>Unite launch<Cr>
+  nnoremap sd :<C-u>Unite command<Cr>
   nnoremap sp :<C-u>Unite process<Cr>
+  nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
+  nnoremap <space>M :Unite -buffer-name=build -no-focus build:
+  nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
@@ -959,12 +964,8 @@ augroup MyCompiler
   autocmd Filetype cpp compiler gcc
   autocmd Filetype c setl makeprg=gcc\ -Wall\ %\ -o\ %:r.o
   autocmd Filetype cpp setl makeprg=g++\ -Wall\ %\ -o\ %:r.o
-  autocmd Filetype c nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
-  autocmd Filetype cpp nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
-
-  " run splint
-  autocmd Filetype c nmap <buffer> <Space>M :<C-u>!splint %<Cr>
-  autocmd Filetype cpp nmap <buffer> <Space>M :<C-u>!splint %<Cr>
+  "autocmd Filetype c nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
+  "autocmd Filetype cpp nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
 augroup END
 " }}}
 " vimshell supports {{{
@@ -1505,12 +1506,6 @@ let &rtp = join(rtp, ',')
 " golden ratio {{{
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
 nnoremap <Space>] :<C-u>GoldenRatio<Cr>
-" }}}
-" hootsuite_lang {{{
-augroup hootsuite-lang
-  autocmd!
-  autocmd BufWinEnter,BufNewFile ~/git/hootsuite_lang/* nnoremap <buffer> <space>m :<C-u>VimProcBang rake<Cr>
-augroup END
 " }}}
 " unite-launch {{{
 let g:unite_launch_apps = [
