@@ -426,8 +426,8 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sp :<C-u>Unite process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
-  nnoremap <space>M :Unite -buffer-name=build -no-focus -winwidth=30 build::
-  nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus -winwidth=30 build:<Cr>
+  nnoremap <space>M :Unite -buffer-name=build -no-focus -winwidth=50 build::
+  nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus -winwidth=50 build:<Cr>
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
@@ -1638,6 +1638,10 @@ nnoremap <C-s> :<C-u>Unite snippet<Cr>
 imap <C-\> <Plug>(neosnippet_jump)
 smap <C-\> <Plug>(neosnippet_jump)
 nmap <C-\> a<C-\>
+
+" uses system snippet as personal snippet!
+let g:neosnippet#snippets_directory = '~/.vimbundles/neocomplcache-snippets-complete/autoload/neosnippet/snippets/'
+
 " }}}
 " vimshell platform-dependent aliases {{{
 let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
