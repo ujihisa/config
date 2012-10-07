@@ -654,7 +654,7 @@ let g:quickrun_config['markdown'] = {
       \ 'outputter': 'browser'
       \ }
 let g:quickrun_config['scala'] = {
-      \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp ' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
+      \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp .:' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
 
 "let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
 
@@ -1277,7 +1277,9 @@ if isdirectory(expand('~/bin'))
   AddPath ~/bin
 endif
 
-if !g:V.is_mac()
+if g:V.is_mac()
+  AddPath /Users/ujihisa/git/termtter/bin
+else
   AddPath /home/ujihisa/git/termtter/bin
   AddPath /home/ujihisa/git/ruby/local/bin
   AddPath /home/ujihisa/src/llvm-git-build/local/bin
