@@ -181,7 +181,9 @@ inoremap <silent> <A-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1
 nnoremap <Space>ak  gT
 nnoremap <D-k>  gT
 nnoremap <A-k>  gT
-inoremap <D-k>  <Esc>gT
+if g:V.is_mac()
+  inoremap <D-k>  <Esc>gT
+endif
 inoremap <A-k>  <Esc>gT
 
 nnoremap Y y$
@@ -424,7 +426,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sp :<C-u>Unite process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
-  nnoremap <space>M :Unite -buffer-name=build -no-focus build:
+  nnoremap <space>M :Unite -buffer-name=build -no-focus build::
   nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
 let g:unite_enable_start_insert = 1
@@ -1618,9 +1620,6 @@ function! s:keynote()
   TOhtmAndBrowse
   execute "Tcolorscheme" before
 endfunction
-" }}}
-" unite-build {{{
-command! -nargs=* UniteBuild Unite build -no-start-insert -default-action=split
 " }}}
 " ENV {{{
 if !$LANG
