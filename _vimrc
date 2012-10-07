@@ -30,12 +30,15 @@ NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
 "NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache-snippets-complete.git'
+NeoBundle 'git://github.com/Shougo/vesting'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle "osyo-manga/shabadou.vim"
 NeoBundle "osyo-manga/vim-watchdogs"
+NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
+NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
 
 filetype plugin on
 filetype indent on
@@ -376,7 +379,7 @@ endfunction
 " }}}
 function! OpenVimrcTab() " {{{
   tabnew
-  TabpageCD ~/git/config
+  cd ~/git/config
   edit ~/git/config/_vimrc
 endfunction
 
@@ -819,29 +822,6 @@ nnoremap <silent> <Space>ao <C-w>T
 "  execute "lcd " . b:old_dir
 "  let b:old_dir = tmp
 "endfunction " }}}
-" shougo's tabpagecd {{{
-" Each tab has current directory
-command! -bar -complete=dir -nargs=?
-      \   CD
-      \   TabpageCD <args>
-command! -bar -complete=dir -nargs=?
-      \   TabpageCD
-      \   execute 'cd' fnameescape(expand(<q-args>))
-      \   | let t:cwd = getcwd()
-
-autocmd TabEnter *
-      \   if exists('t:cwd') && !isdirectory(t:cwd)
-      \ |     unlet t:cwd
-      \ | endif
-    \ | if !exists('t:cwd')
-      \ |   let t:cwd = getcwd()
-      \ | endif
-    \ | execute 'cd' fnameescape(expand(t:cwd))
-
-" Exchange ':cd' to ':TabpageCD'.
-"cnoreabbrev <expr> cd (getcmdtype() == ':' && getcmdline() ==# 'cd') ? 'TabpageCD' : 'cd'
-
-"}}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 
@@ -981,7 +961,7 @@ let g:vimshell_escape_colors = [
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
 let g:vimshell_split_command = 'split'
-let g:vimshell_cd_command = 'TabpageCD'
+
 "let g:VimShell_UsePopen2 = 0
 " }}}
 " mspec/rubyspec supports {{{
