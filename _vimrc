@@ -437,13 +437,20 @@ let g:unite_quick_match_table = {
       \}
 " in other words, it just swaps : and ;
 
-autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
   silent! nunmap <buffer> <Up>
   silent! nunmap <buffer> <Down>
   silent! iunmap <buffer> <Up>
   silent! iunmap <buffer> <Down>
+
+  " swapping q and Q
+  nmap <buffer> Q <Plug>(unite_exit)
+  nmap <buffer> q <Plug>(unite_all_exit)
 endfunction"}}}
+augroup vimrc-unite
+  autocmd!
+  autocmd FileType unite call s:unite_my_settings()
+augroup END
 " }}}
 augroup MyVim " {{{
   autocmd!
