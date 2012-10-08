@@ -176,7 +176,9 @@ nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <A-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
-inoremap <silent> <D-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+if g:V.is_mac()
+  inoremap <silent> <D-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+endif
 inoremap <silent> <A-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
 nnoremap <D-k>  gT
@@ -925,26 +927,8 @@ endif
 " Rename (See Vim Hacks #17 {{{
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
-" C/C++ semicolon support {{{
-"function! s:smartsemicolon()
-"  let s = getline('.')
-"  if s != "" && match(s, '#.*\|.*//.*\|/\*\|\*/\|\s*$\|.*[;({},]$')
-"    normal! a;
-"  endif
-"endfunction
-"augroup MyCSemicolon
-"  autocmd!
-"  "autocmd Filetype c inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
-"  "autocmd Filetype cpp inoremap <buffer> <Cr> <C-o>:call <SID>smartsemicolon()<Cr><Cr>
-"
-"  autocmd FileType c inoremap <buffer> : ;
-"  autocmd FileType c inoremap <buffer> ; :
-"
-"  autocmd FileType cpp inoremap <buffer> : ;
-"  autocmd FileType cpp inoremap <buffer> ; :
-"augroup END
-" }}}
 " C/C++ compiler {{{
+if 0
 augroup MyCompiler
   autocmd!
 
@@ -956,6 +940,7 @@ augroup MyCompiler
   "autocmd Filetype c nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
   "autocmd Filetype cpp nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
 augroup END
+endif
 " }}}
 " vimshell supports {{{
 let g:vimshell_escape_colors = [
