@@ -35,8 +35,8 @@ NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-ft-clojure'
-NeoBundle "osyo-manga/shabadou.vim"
-NeoBundle "osyo-manga/vim-watchdogs"
+"NeoBundle "osyo-manga/shabadou.vim"
+"NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
 NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
 
@@ -1272,7 +1272,7 @@ else
   AddPath /home/ujihisa/src/llvm-git-build/local/bin
   "AddPath /home/ujihisa/src/haskell-platform-2011.2.0.1/local/bin
   "AddPath /home/ujihisa/src/ghc-7.0.3/local/bin
-  AddPath /home/ujihisa/.cabal/bin
+  " AddPath /home/ujihisa/.cabal/bin
   "AddPath /home/ujihisa/git/ghc/local/bin
   AddPath /home/ujihisa/git/Gyazo-for-Linux/
 endif
