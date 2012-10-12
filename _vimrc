@@ -428,8 +428,8 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sp :<C-u>Unite process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
-  nnoremap <space>M :Unite -buffer-name=build -no-focus -winwidth=50 build::
-  nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus -winwidth=50 build:<Cr>
+  nnoremap <space>M :Unite -buffer-name=build -no-focus build::
+  nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
