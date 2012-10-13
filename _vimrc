@@ -39,6 +39,13 @@ NeoBundle 'thinca/vim-ft-clojure'
 "NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
 NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
+NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'veloce/vim-aldmeris', {'directory': 'aldmeris'}
+NeoBundle 'thinca/vim-quickrun', {'directory': 'quickrun'}
+NeoBundle 'kana/vim-smartword', {'directory': 'smartword'}
+NeoBundle 'thinca/vim-poslist', {'directory': 'poslist'}
+NeoBundle 'git://github.com/trapd00r/neverland-vim-theme.git'
 
 filetype plugin on
 filetype indent on
@@ -335,8 +342,8 @@ nnoremap sg :<C-u>Unite grep:. -default-action=split<Cr>
 nnoremap sG :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>') . ' -default-action=split'<Cr>
 " }}}
 " {{{ thinca/poslist.vim
-nmap <C-o> <Plug>(poslist_prev)
-nmap <C-i> <Plug>(poslist_next)
+nmap <C-o> <Plug>(poslist-prev-pos)
+nmap <C-i> <Plug>(poslist-next-pos)
 " }}}
 " MacBook Battery http://d.hatena.ne.jp/lurker/20060801/1154443551 {{{
 command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
@@ -901,18 +908,18 @@ augroup END
 "   end
 command! -nargs=0 LeadUnderscores %s/^\s*/\=repeat('_', strlen(submatch(0)))/g
 " }}}
-" smartword {{{
+" kana's smartword {{{
 
-"if globpath(&rtp, 'autoload/smartword.vim') != ''
-"  map w  <Plug>(smartword-w)
-"  map b  <Plug>(smartword-b)
-"  map e  <Plug>(smartword-e)
-"  map ge  <Plug>(smartword-ge)
-"  noremap W  w
-"  "noremap B  b
-"  noremap E  e
-"  noremap gE ge
-"endif
+if globpath(&rtp, 'autoload/smartword.vim') != ''
+  map w  <Plug>(smartword-w)
+  map b  <Plug>(smartword-b)
+  map e  <Plug>(smartword-e)
+  map ge  <Plug>(smartword-ge)
+  noremap W  w
+  "noremap B  b
+  noremap E  e
+  noremap gE ge
+endif
 
 " }}}
 " Require secret password file {{{
@@ -1560,11 +1567,6 @@ function! VimrcRemoteInit()
   nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr>
 endfunction
 
-" }}}
-" golden-ratio {{{
-let g:golden_ratio_autocommand = 0
-"nmap <space>gr <Plug>(golden_ratio_resize)
-"imap <space>gr <Plug>(golden_ratio_resize)
 " }}}
 " conceallevel changer {{{
 nnoremap <space>` :<C-u>setl conceallevel=0<Cr>
