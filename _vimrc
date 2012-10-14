@@ -423,8 +423,8 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   "nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
-  nnoremap su :<C-u>Unite source<Cr>
-  nnoremap sd :<C-u>Unite command<Cr>
+  nnoremap su :<C-u>Unite source command<Cr>
+  "nnoremap sd :<C-u>Unite command<Cr>
   nnoremap sp :<C-u>Unite process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
