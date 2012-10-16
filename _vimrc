@@ -43,7 +43,6 @@ NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris', {'directory': 'aldmeris'}
 NeoBundle 'thinca/vim-quickrun', {'directory': 'quickrun'}
-NeoBundle 'kana/vim-smartword', {'directory': 'smartword'}
 NeoBundle 'thinca/vim-poslist', {'directory': 'poslist'}
 NeoBundle 'git://github.com/trapd00r/neverland-vim-theme.git'
 NeoBundle 'git://github.com/vim-scripts/sudo.vim.git'
@@ -914,15 +913,17 @@ command! -nargs=0 LeadUnderscores %s/^\s*/\=repeat('_', strlen(submatch(0)))/g
 " }}}
 " kana's smartword {{{
 
-if globpath(&rtp, 'autoload/smartword.vim') != ''
-  map w  <Plug>(smartword-w)
-  map b  <Plug>(smartword-b)
-  map e  <Plug>(smartword-e)
-  map ge  <Plug>(smartword-ge)
-  noremap W  w
-  "noremap B  b
-  noremap E  e
-  noremap gE ge
+if 0
+  if globpath(&rtp, 'autoload/smartword.vim') != ''
+    map w  <Plug>(smartword-w)
+    map b  <Plug>(smartword-b)
+    map e  <Plug>(smartword-e)
+    map ge  <Plug>(smartword-ge)
+    noremap W  w
+    "noremap B  b
+    noremap E  e
+    noremap gE ge
+  endif
 endif
 
 " }}}
