@@ -48,6 +48,7 @@ NeoBundle 'git://github.com/trapd00r/neverland-vim-theme.git'
 NeoBundle 'git://github.com/vim-scripts/sudo.vim.git'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'pocket7878/presen-vim'
+NeoBundle 'pocket7878/curses-vim'
 
 filetype plugin on
 filetype indent on
@@ -374,7 +375,7 @@ imap <C-l> <Plug>(neocomplcache_start_unite_complete)
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplcache_skip_auto_completion_time = "1.00"
+let g:neocomplcache_skip_auto_completion_time = "" " disabling it
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
