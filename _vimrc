@@ -297,6 +297,7 @@ nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'vnew'
+"let g:vimshell_split_command = 'split'
 
 augroup vimrc-vimshell
   autocmd!
@@ -323,7 +324,6 @@ let g:vimshell_escape_colors = [
       \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
-let g:vimshell_split_command = 'split'
 
 "let g:VimShell_UsePopen2 = 0
 
@@ -436,7 +436,7 @@ endfunction
 " }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
-  nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
+  nnoremap ss :<C-u>Unite file_rec -default-action=vsplit -direction=rightbelow<Cr>
   nnoremap se :<C-u>Unite file_rec<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
