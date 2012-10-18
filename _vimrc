@@ -425,7 +425,7 @@ endfunction
 " }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
-  nnoremap ss :<C-u>Unite file_rec -default-action=split<Cr>
+  nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
   nnoremap se :<C-u>Unite file_rec<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
@@ -436,7 +436,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite source command<Cr>
   "nnoremap sd :<C-u>Unite command<Cr>
-  nnoremap sp :<C-u>Unite process<Cr>
+  nnoremap sp :<C-u>Unite process -no-split<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   nnoremap <space>M :Unite -buffer-name=build -no-focus build::
@@ -444,7 +444,6 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
-let g:unite_kind_openable_cd_command = 'CD'
 
 let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
 
