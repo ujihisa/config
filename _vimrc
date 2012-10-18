@@ -318,6 +318,14 @@ function! s:vimshell_iexe()
   nmap <buffer> j <Plug>(vimshell_int_next_prompt)
   nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
 endfunction
+
+let g:vimshell_escape_colors = [
+      \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
+      \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
+      \]
+let g:vimshell_split_command = 'split'
+
+"let g:VimShell_UsePopen2 = 0
 " }}}
 " tag opens in a new window {{{
 function! s:tagjump_in_new_window()
@@ -963,15 +971,6 @@ augroup MyCompiler
   "autocmd Filetype cpp nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
 augroup END
 endif
-" }}}
-" vimshell supports {{{
-let g:vimshell_escape_colors = [
-      \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
-      \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
-      \]
-let g:vimshell_split_command = 'split'
-
-"let g:VimShell_UsePopen2 = 0
 " }}}
 " mspec/rubyspec supports {{{
 function! DoMspec()
