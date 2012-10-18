@@ -296,8 +296,7 @@ nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
-let g:vimshell_split_command = 'vnew'
-"let g:vimshell_split_command = 'split'
+let g:vimshell_split_command = 'split'
 
 augroup vimrc-vimshell
   autocmd!
