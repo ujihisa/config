@@ -1504,7 +1504,7 @@ let &rtp = join(rtp, ',')
 " }}}
 " golden ratio {{{
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
-nnoremap <Space>] :<C-u>GoldenRatio<Cr>
+nnoremap <silent><Space>] :<C-u>GoldenRatio<Cr>
 " }}}
 " unite-launch {{{
 let g:unite_launch_apps = [
