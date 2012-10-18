@@ -326,6 +326,9 @@ let g:vimshell_escape_colors = [
 let g:vimshell_split_command = 'split'
 
 "let g:VimShell_UsePopen2 = 0
+
+" experimental
+vnoremap <Space>r :VimShellSendString<Cr>
 " }}}
 " tag opens in a new window {{{
 function! s:tagjump_in_new_window()
