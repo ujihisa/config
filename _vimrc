@@ -1816,12 +1816,12 @@ endfunction
 command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
 
 function! s:sbt_run()
-  let cmd = get(t:, 'sbt_cmd', 'run')
+  let cmds = get(t:, 'sbt_cmds', 'run')
 
   let sbt_bufname = get(t:, 'sbt_bufname')
   if sbt_bufname !=# ''
     call vimshell#interactive#set_send_buffer(sbt_bufname)
-    call vimshell#interactive#send_string(cmd)
+    call vimshell#interactive#send_string(cmds)
   else
     echoerr 'try StartSBT'
   endif
