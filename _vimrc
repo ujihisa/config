@@ -49,6 +49,7 @@ NeoBundle 'git://github.com/vim-scripts/sudo.vim.git'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'pocket7878/presen-vim'
 NeoBundle 'pocket7878/curses-vim'
+NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
 
 filetype plugin on
 filetype indent on
