@@ -1643,7 +1643,7 @@ smap <C-\> <Plug>(neosnippet_jump)
 nmap <C-\> a<C-\>
 
 " uses system snippet as personal snippet!
-let g:neosnippet#snippets_directory = '~/.vimbundles/neocomplcache-snippets-complete/autoload/neosnippet/snippets/'
+let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
 
 " }}}
 " vimshell platform-dependent aliases {{{
