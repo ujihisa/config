@@ -50,6 +50,7 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'pocket7878/presen-vim'
 NeoBundle 'pocket7878/curses-vim'
 NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
+NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
 
 filetype plugin on
 filetype indent on
@@ -445,7 +446,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   "nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
-  nnoremap su :<C-u>Unite source command<Cr>
+  nnoremap su :<C-u>Unite history/command source command<Cr>
   "nnoremap sd :<C-u>Unite command<Cr>
   nnoremap sp :<C-u>Unite process -no-split<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
