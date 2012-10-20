@@ -7,7 +7,8 @@
 "colorscheme lucius
 "colorscheme neverland2-darker
 "colorscheme xoria256
-colorscheme aldmeris
+"colorscheme aldmeris
+colorscheme neverland-darker
 
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
