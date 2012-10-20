@@ -1675,7 +1675,7 @@ augroup END
 " }}}
 " platform-dependencies {{{
 if s:is_gentoo
-  inoremap ö <C-o>"+p
+  inoremap ö <C-o>"+P
   vnoremap ã "+y
   set lsp=2
 endif
