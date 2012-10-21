@@ -51,6 +51,7 @@ NeoBundle 'pocket7878/presen-vim'
 NeoBundle 'pocket7878/curses-vim'
 NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
 NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
+NeoBundle 'chikatoike/concealedyank.vim'
 
 filetype plugin on
 filetype indent on
@@ -299,6 +300,8 @@ nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'split'
+let g:vimshell_scrollback_limit = 2000
+let g:vimshell_interactive_update_time = 400
 
 augroup vimrc-vimshell
   autocmd!
@@ -457,7 +460,9 @@ endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
 
-let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
+" g:unite_source_file_rec_ignore_pattern is deprecated
+"let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
+call unite#custom_source('file_rec', 'ignore_pattern', '\$global\|\.class$')
 
 let g:unite_quick_match_table = {
       \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
@@ -1850,6 +1855,10 @@ augroup vimrc-make
   autocmd FileType make syn keyword makeKeyword CFLAGS LDFLAGS contained
   autocmd FileType make hi def link makeKeyword Keyword
 augroup END
+" }}}
+" concealedyank.vim {{{
+vnoremap <Plug>(vimrc-yankprefix-clipboard) "+
+vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
