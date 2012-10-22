@@ -1827,7 +1827,7 @@ function! s:sbt_run()
   let sbt_bufname = get(t:, 'sbt_bufname')
   if sbt_bufname !=# ''
     call vimshell#interactive#set_send_buffer(sbt_bufname)
-    call vimshell#interactive#send_string(cmds)
+    call vimshell#interactive#send(cmds)
   else
     echoerr 'try StartSBT'
   endif
