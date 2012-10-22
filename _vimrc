@@ -1675,7 +1675,9 @@ augroup END
 " }}}
 " platform-dependencies {{{
 if s:is_gentoo
-  inoremap ö <C-o>"+P
+  nnoremap <expr> <Plug>(vimrc-cmd-v-paste) len(getline('.')) == col('.') ? '"+p' : '"+P'
+  inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
+  imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
   vnoremap ã "+y
   set lsp=2
 endif
