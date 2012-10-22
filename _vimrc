@@ -1101,14 +1101,14 @@ function! s:init_cmdwin()
   startinsert!
 endfunction
 
-function! s:vimrc_vim()
-  " to disable sw= -> swapfile= auto completion
-  inoremap <buffer> w= w=
-endfunction
-augroup vimrc-vim
-  autocmd!
-  autocmd FileType vim call <SID>vimrc_vim()
-augroup END
+"function! s:vimrc_vim()
+"  " to disable sw= -> swapfile= auto completion
+"  inoremap <buffer> w= w=
+"endfunction
+"augroup vimrc-vim
+"  autocmd!
+"  autocmd FileType vim call <SID>vimrc_vim()
+"augroup END
 " }}}
 " load PATH from ~/.zshrc {{{
 "function! LoadPathFromZshrc()
