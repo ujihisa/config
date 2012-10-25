@@ -1676,9 +1676,14 @@ augroup END
 " platform-dependencies {{{
 if s:is_gentoo
   " col('$') <= col('.'): at the end of line or not, considering virtualedit.
-  nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
-  inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
-  imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
+
+  " it didn't work for some reason...
+  " nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
+  " inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
+  " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
+  imap <expr> ö col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+
+
   vnoremap ã "+y
   set lsp=2
 endif
