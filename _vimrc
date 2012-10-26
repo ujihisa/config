@@ -52,6 +52,7 @@ NeoBundle 'pocket7878/curses-vim'
 NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
 NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
 NeoBundle 'chikatoike/concealedyank.vim'
+NeoBundle 'ujihisa/vimshell-ssh'
 
 filetype plugin on
 filetype indent on
