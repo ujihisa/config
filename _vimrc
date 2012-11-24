@@ -53,6 +53,8 @@ NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
 NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
 NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
+NeoBundle 'git://github.com/pasela/unite-webcolorname.git'
+NeoBundle 'Shougo/neocomplcache-rsense'
 
 filetype plugin on
 filetype indent on
@@ -375,9 +377,9 @@ let g:neocomplcache_enable_at_startup = 1
 "let g:NeoComplCache_EnableQuickMatch = 0
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 "let g:neocomplcache_manual_completion_length = 2
-let g:neocomplcache_plugin_completion_length = {
+let g:neocomplcache_source_completion_length = {
       \ 'include_complete': 1}
-let g:neocomplcache_plugin_rank = {
+let g:neocomplcache_source_rank = {
       \ 'include_complete': 11}
 let g:neocomplcache_max_list = 200
 let g:neocomplcache_max_keyword_width = 70
@@ -1407,6 +1409,10 @@ call echodoc#register('haskell', s:doc_dict)
 "
 "  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "endif
+
+if filereadable(expand('~/git/rsense/bin/rsense'))
+  let g:neocomplcache#sources#rsense#home_directory = expand('~/git/rsense')
+endif
 " }}}
 " testing neco-ghc {{{
 "nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
@@ -1646,9 +1652,10 @@ imap <expr> <Bslash> (pumvisible() && neosnippet#expandable() % 2 == 1) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite snippet<Cr>
-imap <C-\> <Plug>(neosnippet_jump)
-smap <C-\> <Plug>(neosnippet_jump)
+imap <C-\> <Plug>(neosnippet_jump_or_expand)
+smap <C-\> <Plug>(neosnippet_jump_or_expand)
 nmap <C-\> a<C-\>
+xmap <C-\> <Plug>(neosnippet_expand_target)
 
 " uses system snippet as personal snippet!
 let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
@@ -1666,8 +1673,8 @@ function! s:vimshell_settings()
   " it's the default behaviour of <Cr> in vimshell's insert mode
   imap <buffer> <S-CR> <C-]><Plug>(vimshell_enter)
   " <Cr> expands snippet!
-  imap <buffer><expr> <CR> neocomplcache#sources#snippets_complete#expandable() ?
-      \ "\<Plug>(neocomplcache_snippets_expand)\<Plug>(vimshell_enter)" : "\<Plug>(vimshell_enter)"
+  imap <buffer><expr> <CR> neosnippet#expandable() ?
+      \ "\<Plug>(neosnippet_expand)\<Plug>(vimshell_enter)" : "\<Plug>(vimshell_enter)"
 endfunction
 augroup vimshell-settings
   autocmd!
