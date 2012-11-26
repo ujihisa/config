@@ -55,6 +55,8 @@ NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'git://github.com/pasela/unite-webcolorname.git'
 NeoBundle 'Shougo/neocomplcache-rsense'
+NeoBundle 'vim-scripts/IndentAnything'
+NeoBundle 'git@github.com:ujihisa/ref-hoogle.git'
 
 filetype plugin on
 filetype indent on
