@@ -57,11 +57,15 @@ NeoBundle 'git://github.com/pasela/unite-webcolorname.git'
 NeoBundle 'Shougo/neocomplcache-rsense'
 NeoBundle 'vim-scripts/IndentAnything'
 NeoBundle 'git@github.com:ujihisa/ref-hoogle.git'
+NeoBundle 'vim-scripts/zenesque.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kossnocorp/perfect.vim'
+NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 
 filetype plugin on
 filetype indent on
 
-nnoremap snu :<C-u>Unite neobundle/update<Cr>
+"nnoremap snu :<C-u>Unite neobundle/update<Cr>
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
