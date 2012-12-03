@@ -61,6 +61,7 @@ NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
+NeoBundle 'fsouza/go.vim'
 
 filetype plugin on
 filetype indent on
@@ -1721,9 +1722,9 @@ set completeopt-=preview
 " }}}
 " minecraft {{{
 function! VimrcSwank()
-  VimShellInteractive java -jar /home/ujihisa/git/swank-client/swank-client-1.1.0-standalone.jar -p 4005
+  VimShellInteractive java -jar /home/ujihisa/git/swank-client/swank-client-1.1.0-standalone.jar -p 4006
   set filetype=clojure
-  normal! A(ns cloft.core)
+  normal! A(ns mc68.core)
 endfunction
 
 "function! VimrcSendSwank()
