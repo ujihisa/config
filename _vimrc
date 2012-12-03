@@ -1731,6 +1731,9 @@ endfunction
 "  "let @" = substitute(vimclojure#ExtractSexpr(1)[1], '\(;.*\)\?\n *', ' ', 'g')
 "  execute 'VimShellSendString' vimclojure#ExtractSexpr(1)[1]
 "endfunction
+
+" experimental
+nnoremap <space>9 V%y<C-w>jGpkVGJ
 " }}}
 " vim-scala {{{
 let g:scala_use_default_keymappings = 0
