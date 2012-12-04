@@ -16,12 +16,12 @@ hi Folded guibg=NONE guifg=GRAY ctermfg=0
 let g:V = vital#of('vital')
 if g:V.is_mac()
   "set guifont=Andale\ Mono:h14
-  set guifont=Menlo:h16
+  set guifont=Menlo:h14
 else
   "let &guifont = 'Anonymous Pro Bold 14'
   "let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
-  let &guifont = 'Menlo Bold 11'
-  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 11'
+  let &guifont = 'Menlo Bold 10'
+  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 10'
 endif
 let s:gvimrc_default_fonts = {
       \ 'guifont': &guifont,
