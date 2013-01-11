@@ -63,3 +63,6 @@ mrxvt.xft: 1
 mrxvt.xftFont: Menlo
 mrxvt.xftWeight: bold
 mrxvt.xftSize: 10
+
+mrxvt.multichar_encoding: UTF-8
+mrxvt.inputMethod: ibus
