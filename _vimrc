@@ -62,6 +62,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
+" NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
 
 filetype plugin on
 filetype indent on
@@ -1655,7 +1656,7 @@ endif
 " /Users/ujihisa/git/MacVim/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g -u NONE -i NONE -N --cmd 'filetype indent on' -S spec/data/string.vim -c 'Fin /tmp/prelude.result'
 " }}}
 " neosnippet {{{
-imap <expr> <Bslash> (pumvisible() && neosnippet#expandable() % 2 == 1) ?
+imap <expr> <Bslash> (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite snippet<Cr>
