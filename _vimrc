@@ -1846,7 +1846,7 @@ function! VitalVimBuffer_all()
 endfunction
 " }}}
 " scala sbt interaction {{{
-command! -nargs=0 StartSBT execute 'VimShellInteractive sbt -Djava.library.path=/usr/local/lib' | let t:sbt_bufname = bufname('%')
+command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
 
 function! s:sbt_run()
   let cmds = get(t:, 'sbt_cmds', 'run')
