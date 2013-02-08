@@ -2,13 +2,20 @@
 
 
 "colorscheme koehler
-"colorscheme macvim
+colorscheme macvim
+"  for macvim.vim
+hi! link Error WarningMsg
+hi VertSplit    gui=NONE guifg=DarkSlateGray guibg=NONE
+hi StatusLineNC gui=NONE guifg=SlateGray guibg=Gray5
+hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
+hi MatchParen   guifg=White guibg=Gray25
+
 "colorscheme mrkn256
 "colorscheme lucius
 "colorscheme neverland2-darker
 "colorscheme xoria256
 "colorscheme aldmeris
-colorscheme neverland-darker
+"colorscheme neverland-darker
 
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE

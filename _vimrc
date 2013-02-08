@@ -462,7 +462,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite history/command source command<Cr>
   "nnoremap sd :<C-u>Unite command<Cr>
-  nnoremap sp :<C-u>Unite process -no-split<Cr>
+  nnoremap sp :<C-u>Unite process -no-split -auto-quit<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   nnoremap <space>M :Unite -buffer-name=build -no-focus build::
@@ -482,6 +482,7 @@ let g:unite_quick_match_table = {
       \}
 " in other words, it just swaps : and ;
 
+let g:unite_source_process_enable_confirm = 0
 function! s:unite_my_settings()"{{{
   silent! nunmap <buffer> <Up>
   silent! nunmap <buffer> <Down>
@@ -1846,7 +1847,16 @@ function! VitalVimBuffer_all()
 endfunction
 " }}}
 " scala sbt interaction {{{
-command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
+function! s:start_sbt()
+  execute 'VimShellInteractive sbt'
+  let t:sbt_bufname = bufname('%')
+  if !has_key(t:, 'sbt_cmds')
+    let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
+  endif
+  wincmd w
+endfunction
+
+command! -nargs=0 StartSBT call <SID>start_sbt()
 
 function! s:sbt_run()
   let cmds = get(t:, 'sbt_cmds', 'run')
@@ -1886,6 +1896,55 @@ augroup END
 " concealedyank.vim {{{
 vnoremap <Plug>(vimrc-yankprefix-clipboard) "+
 vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)
+" }}}
+" iexe-sbt {{{
+function! s:vimrc_int_sbt()
+  syn match intsbtInfo '^\[info\]'
+  syn match intsbtError '^\[error\]'
+  syn match intsbtSuccess '^\[success\] .*'
+  syn match intsbtPrompt '^> '
+  hi def link intsbtInfo LineNr
+  hi def link intsbtError ErrorMsg
+  hi def link intsbtSuccess LineNr
+  hi def link intsbtPrompt vimshellUserPrompt
+endfunction
+
+augroup vimrc-int-sbt
+  autocmd!
+  autocmd FileType int-sbt call <SID>vimrc_int_sbt()
+augroup END
+" }}}
+" unite-menu {{{
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.test = {
+      \     'description' : 'Test menu',
+      \ }
+let g:unite_source_menu_menus.test.candidates = {
+      \   'ghci'      : 'VimShellInteractive ghci',
+      \ }
+function g:unite_source_menu_menus.test.map(key, value)
+  return {
+      \       'word' : a:key, 'kind' : 'command',
+      \       'action__command' : a:value,
+      \     }
+endfunction
+
+let g:unite_source_menu_menus.test2 = {
+      \     'description' : 'Test menu2',
+      \ }
+let g:unite_source_menu_menus.test2.command_candidates = {
+      \   'python'    : 'VimShellInteractive python',
+      \ }
+
+let g:unite_source_menu_menus.test3 = {
+      \     'description' : 'Test menu3',
+      \ }
+let g:unite_source_menu_menus.test3.command_candidates = [
+      \   ['ruby', 'VimShellInteractive python'],
+      \   ['python', 'VimShellInteractive python'],
+      \ ]
+
+nnoremap <silent> sn  :<C-u>Unite menu:test<CR>
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
