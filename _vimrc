@@ -340,7 +340,6 @@ let g:vimshell_escape_colors = [
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
 
-"let g:VimShell_UsePopen2 = 0
 
 " experimental
 vnoremap <Space>r :VimShellSendString<Cr>
@@ -1945,6 +1944,12 @@ let g:unite_source_menu_menus.test3.command_candidates = [
       \ ]
 
 nnoremap <silent> sn  :<C-u>Unite menu:test<CR>
+" }}}
+" clojure completion candidates {{{
+function! VimrcClojureComplCand()
+  let to_run = "(ns tmp [:require [cloft.cloft]]) (doseq [k (keys (ns-publics 'cloft.cloft))] (println (str \"c/\" k))) (System/exit 0)"
+  return vimproc#system(printf('java -cp `lein classpath` clojure.main -e "%s"', to_run))
+endfunction
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
