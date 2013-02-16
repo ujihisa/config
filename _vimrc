@@ -1848,11 +1848,12 @@ endfunction
 " scala sbt interaction {{{
 function! s:start_sbt()
   execute 'VimShellInteractive sbt'
+  stopinsert
   let t:sbt_bufname = bufname('%')
   if !has_key(t:, 'sbt_cmds')
     let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
   endif
-  wincmd w
+  wincmd p
 endfunction
 
 command! -nargs=0 StartSBT call <SID>start_sbt()
