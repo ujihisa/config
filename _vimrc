@@ -473,6 +473,8 @@ let g:unite_enable_split_vertically = 1
 " g:unite_source_file_rec_ignore_pattern is deprecated
 "let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
 
+" I wanted to simply refer the default ignore pattern with using g:unite_source_file_rec_ignore_pattern, but unite sets it lazily.
+" here I force unite defining file_rec and referes the default value.
 call unite#custom_source('file_rec', 'ignore_pattern', (unite#sources#file_rec#define()[0]['ignore_pattern']) . '\|\$global\|\.class$')
 
 let g:unite_quick_match_table = {
