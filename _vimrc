@@ -168,6 +168,9 @@ function! s:good_width()
   endif
 endfunction
 
+nnoremap q <NOP>
+nnoremap Q q
+
 " for plugins rewrite j/k
 nnoremap <C-j> j
 nnoremap <C-k> k
