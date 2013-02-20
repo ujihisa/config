@@ -478,7 +478,7 @@ let g:unite_enable_split_vertically = 1
 
 " I wanted to simply refer the default ignore pattern with using g:unite_source_file_rec_ignore_pattern, but unite sets it lazily.
 " here I force unite defining file_rec and referes the default value.
-call unite#custom_source('file_rec', 'ignore_pattern', (unite#sources#file_rec#define()[0]['ignore_pattern']) . '\|\$global\|\.class$')
+call unite#custom_source('file_rec', 'ignore_pattern', (unite#sources#file_rec#define()[0]['ignore_pattern']) . '\|\$global\|\.class$\|\<target\>')
 
 let g:unite_quick_match_table = {
       \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
