@@ -464,7 +464,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite history/command source command<Cr>
   "nnoremap sd :<C-u>Unite command<Cr>
-  nnoremap sp :<C-u>Unite process -no-split -auto-quit<Cr>
+  nnoremap sp :<C-u>Unite process -no-split<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   nnoremap <space>M :Unite -buffer-name=build -no-focus build::
@@ -478,7 +478,9 @@ let g:unite_enable_split_vertically = 1
 
 " I wanted to simply refer the default ignore pattern with using g:unite_source_file_rec_ignore_pattern, but unite sets it lazily.
 " here I force unite defining file_rec and referes the default value.
-call unite#custom_source('file_rec', 'ignore_pattern', (unite#sources#file_rec#define()[0]['ignore_pattern']) . '\|\$global\|\.class$\|\<target\>')
+let s:file_rec_ignore_pattern = (unite#sources#file_rec#define()[0]['ignore_pattern']) . '\|\$global\|\.class$\|\<target\>'
+call unite#custom_source('file_rec', 'ignore_pattern', s:file_rec_ignore_pattern)
+call unite#custom_source('grep', 'ignore_pattern', s:file_rec_ignore_pattern)
 
 let g:unite_quick_match_table = {
       \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
