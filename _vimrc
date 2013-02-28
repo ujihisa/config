@@ -574,6 +574,7 @@ let g:git_diff_spawn_mode = 2
 " endfunction
 " }}}
 " motemen's escape sequence {{{
+if 0
 function! HighlightConsoleCodes()
     0
     let register_save = @"
@@ -615,6 +616,7 @@ endfunction
 
 
 autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsoleCodes() | set buftype=nofile nomodifiable | endif
+endif
 " `:set modifiable | undo | syntax clear' to revert
 " }}}
 augroup MySomething " {{{
