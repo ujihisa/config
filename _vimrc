@@ -63,6 +63,7 @@ NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 " NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
+NeoBundle 'vim-scripts/groovy.vim'
 
 filetype plugin on
 filetype indent on
