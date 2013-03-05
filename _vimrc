@@ -1962,6 +1962,12 @@ function! VimrcClojureComplCand()
   return vimproc#system(printf('java -cp `lein classpath` clojure.main -e "%s"', to_run))
 endfunction
 " }}}
+" groovy {{{
+augroup vimrc-groovy
+  autocmd!
+  autocmd BufWinEnter,BufNewFile *.gradle set filetype=groovy
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
