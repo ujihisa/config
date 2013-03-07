@@ -454,7 +454,8 @@ endfunction
 " }}}
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
-  nnoremap ss :<C-u>Unite file_rec -default-action=vsplit -direction=rightbelow<Cr>
+  "nnoremap ss :<C-u>Unite file_rec -default-action=vsplit -direction=rightbelow<Cr>
+  nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
   nnoremap se :<C-u>Unite file_rec<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
