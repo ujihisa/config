@@ -63,6 +63,7 @@ NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 " NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
+NeoBundle 'vim-scripts/groovyindent'
 
 filetype plugin on
 filetype indent on
@@ -1968,6 +1969,9 @@ augroup vimrc-groovy
   autocmd BufWinEnter,BufNewFile *.gradle set filetype=groovy
 augroup END
 " }}}
+" just for now
+let g:unite_feedback_report_level = 2
+let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
