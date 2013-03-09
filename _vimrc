@@ -405,6 +405,7 @@ imap <C-l> <Plug>(neocomplcache_start_unite_complete)
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_skip_auto_completion_time = "" " disabling it
+let g:necoghc_enable_detailed_browse = 1
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
@@ -1974,6 +1975,14 @@ endfunction
 augroup vimrc-groovy
   autocmd!
   autocmd BufWinEnter,BufNewFile *.gradle set filetype=groovy
+augroup END
+" }}}
+" ghcmod {{{
+augroup vimrc-ghcmod
+  autocmd!
+  autocmd FileType haskell silent nnoremap <buffer> <space>\t :<C-u>GhcModTypeClear<Cr>:GhcModType<Cr>
+  autocmd FileType haskell silent nnoremap <buffer> <space>\i :<C-u>GhcModTypeClear<Cr>:GhcModInfo<Cr>
+  autocmd FileType haskell silent nnoremap <buffer> <space>\c :<C-u>GhcModTypeClear<Cr>
 augroup END
 " }}}
 " just for now
