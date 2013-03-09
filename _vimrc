@@ -1335,7 +1335,7 @@ else
   "AddPath /home/ujihisa/git/ghc/local/bin
   AddPath /home/ujihisa/git/Gyazo-for-Linux/
 endif
-AddPath ~/git/leiningen/bin
+"AddPath ~/git/leiningen/bin
 " }}}
 " macvim proportional {{{
 function! Proportional()
