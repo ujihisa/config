@@ -1985,6 +1985,13 @@ augroup vimrc-ghcmod
   autocmd FileType haskell silent nnoremap <buffer> <space>\c :<C-u>GhcModTypeClear<Cr>
 augroup END
 " }}}
+" ebuild {{{
+augroup vimrc-ebuild
+  autocmd!
+  autocmd FileType ebuild nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite build:repoman:manifest build:repoman:full -horizontal<Cr>
+  " :GitAdd Manifest<Cr>
+augroup END
+" }}}
 " just for now
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
