@@ -271,6 +271,10 @@ cnoremap <C-o>p <C-r>"
 " for speedup
 nnoremap /<C-o>p /<C-r>"
 
+" filetype specific key mappings
+silent nnoremap <space>M :<C-u>echo 'space-M Not defined'<Cr>
+silent nnoremap <space>m :<C-u>echo 'space-m Not defined'<Cr>
+
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
@@ -470,8 +474,8 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sp :<C-u>Unite process -no-split<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
-  nnoremap <space>M :Unite -buffer-name=build -no-focus build::
-  nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
+  "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
+  "nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
 let g:unite_enable_start_insert = 1
 let g:unite_enable_split_vertically = 1
