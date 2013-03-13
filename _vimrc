@@ -1992,8 +1992,15 @@ augroup END
 " ebuild {{{
 augroup vimrc-ebuild
   autocmd!
-  autocmd FileType ebuild nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite build:repoman:manifest build:repoman:full -horizontal<Cr>
+  autocmd FileType ebuild nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:repoman:manifest build:repoman:full -horizontal<Cr>
   " :GitAdd Manifest<Cr>
+augroup END
+" }}}
+" c {{{
+augroup vimrc-c
+  autocmd!
+  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build<Cr>
+  " no-focus
 augroup END
 " }}}
 " just for now
