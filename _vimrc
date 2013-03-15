@@ -757,7 +757,19 @@ augroup END
 nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
 nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter>
 nnoremap <Space>gs :<C-u>GitStatus<Enter>
-nnoremap <Space>gS :<C-u>Git submodule foreach git status<Enter>
+nnoremap <Space>gh :<C-u>call <SID>vimrc_git_show()<Cr>
+
+function! s:vimrc_git_show()
+  new
+  VimProcRead git show
+  normal! dd
+  set filetype=git-log.git-diff
+  nnoremap <buffer> q :<C-u>quit!<Cr>
+  setl nomodifiable readonly
+endfunction
+
+"nnoremap <Space>gS :<C-u>Git submodule foreach git status<Enter>
+
 "nnoremap <Space>gl :<C-u>GitLog<Enter>
 "nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
 if globpath(&rtp, 'plugin/shadow.vim') != ''
