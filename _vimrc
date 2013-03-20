@@ -725,8 +725,8 @@ let g:quickrun_config['markdown'] = {
 
 augroup vimrc-lazy-quickrun-scala
   autocmd!
-  autocmd FileType scala if !has_key(g:quickrun_config, 'scala') |
-        \ let g:quickrun_config['scala'] = {
+  autocmd FileType scala if !has_key(g:quickrun_config, 'scala/all') |
+        \ let g:quickrun_config['scala/all'] = {
         \   'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp .:' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
         \ | endif
 augroup END
