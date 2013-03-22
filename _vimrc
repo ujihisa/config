@@ -489,6 +489,8 @@ let s:file_rec_ignore_pattern = (unite#sources#file_rec#define()[0]['ignore_patt
 call unite#custom_source('file_rec', 'ignore_pattern', s:file_rec_ignore_pattern)
 call unite#custom_source('grep', 'ignore_pattern', s:file_rec_ignore_pattern)
 
+let g:unite_source_file_rec_max_cache_files = 9000
+
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
@@ -1900,6 +1902,8 @@ function! s:sbt_run()
   if sbt_bufname !=# ''
     call vimshell#interactive#set_send_buffer(sbt_bufname)
     call vimshell#interactive#send(cmds)
+    " explosion
+    "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
   else
     echoerr 'try StartSBT'
   endif
@@ -1978,6 +1982,12 @@ let g:unite_source_menu_menus.test3.command_candidates = [
       \   ['ruby', 'VimShellInteractive python'],
       \   ['python', 'VimShellInteractive python'],
       \ ]
+let g:unite_source_menu_menus.neobundle = {
+      \   'description' : 'Test menu',
+      \   'command_candidates': [
+      \     ['shougo', 'Unite neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
+      \   ]
+      \ }
 
 nnoremap <silent> sn  :<C-u>Unite menu:test<CR>
 " }}}
@@ -2013,6 +2023,24 @@ augroup vimrc-c
   autocmd!
   autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build<Cr>
   " no-focus
+augroup END
+" }}}
+" {{{
+" augroup vimrc-sound
+"   autocmd!
+"   autocmd BufWritePost * call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
+" augroup END
+" }}}
+" iexe git-log -u {{{
+function! s:vimrc_git_log_u()
+  if bufname('%') =~ '^less-git log -u'
+    set filetype=git-log.git-diff
+  endif
+endfunction
+
+augroup vimrc-git-log-u
+  autocmd!
+  autocmd FileType vimshell-less call <SID>vimrc_git_log_u()
 augroup END
 " }}}
 " just for now
