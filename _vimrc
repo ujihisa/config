@@ -2043,6 +2043,11 @@ augroup vimrc-git-log-u
   autocmd FileType vimshell-less call <SID>vimrc_git_log_u()
 augroup END
 " }}}
+" postgresql {{{
+let g:quickrun_config['sql/postgresql'] = {
+      \ 'cmdopt': '-h 0.0.0.0 mydb postgres'
+      \ }
+" }}}
 " just for now
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
