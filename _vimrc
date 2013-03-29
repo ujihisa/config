@@ -2014,7 +2014,7 @@ augroup END
 " ebuild {{{
 augroup vimrc-ebuild
   autocmd!
-  autocmd FileType ebuild nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:repoman:manifest build:repoman:full -horizontal<Cr> -no-start-insert
+  autocmd FileType ebuild nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:repoman:manifest build:repoman:full -horizontal -no-start-insert<Cr>
   " :GitAdd Manifest<Cr>
 augroup END
 " }}}
