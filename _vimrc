@@ -2021,7 +2021,7 @@ augroup END
 " c {{{
 augroup vimrc-c
   autocmd!
-  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build<Cr>
+  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build -horizontal -no-start-insert<Cr>
   " no-focus
 augroup END
 " }}}
