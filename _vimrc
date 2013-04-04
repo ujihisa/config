@@ -64,6 +64,7 @@ NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 " NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
 NeoBundle 'vim-scripts/groovyindent'
+NeoBundle 'https://github.com/kana/vim-textobj-user.git'
 
 filetype plugin on
 filetype indent on
@@ -2047,6 +2048,16 @@ augroup END
 let g:quickrun_config['sql/postgresql'] = {
       \ 'cmdopt': '-h 0.0.0.0 mydb postgres'
       \ }
+" }}}
+" scrot {{{
+let g:scrot_n = 0
+function! s:scrot()
+  call vimproc#system(printf('scrot /tmp/%04d.png', g:scrot_n))
+  let g:scrot_n += 1
+  return ""
+endfunction
+nnoremap <silent><C-q> :<C-u>call <SID>scrot()<Cr>
+inoremap <silent><expr> <C-q> <SID>scrot()
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
