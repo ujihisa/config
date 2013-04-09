@@ -2071,7 +2071,7 @@ function! s:vimrc_esparse()
     " Mac
     let b:quickrun_config = {'command': '/usr/local/share/npm/bin/esparse'}
   elseif filereadable('/home/ujihisa/node_modules/esprima/bin/esparse.js')
-    let b:quickrun_config = {'command': '/usr/local/share/npm/bin/esparse'}
+    let b:quickrun_config = {'command': '/home/ujihisa/node_modules/esprima/bin/esparse.js'}
   endif
 endfunction
 
