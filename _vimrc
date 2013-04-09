@@ -1989,8 +1989,14 @@ let g:unite_source_menu_menus.neobundle = {
       \     ['shougo', 'Unite neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
       \   ]
       \ }
+let g:unite_source_menu_menus.quickrun_set = {
+      \   'description': "change b:quickrun_config to enable more",
+      \   'command_candidates': [
+      \     ['esprima', 'call <SID>vimrc_esparse()']
+      \   ]
+      \ }
 
-nnoremap <silent> sn  :<C-u>Unite menu:test<CR>
+nnoremap <silent> sn  :<C-u>Unite menu<CR>
 " }}}
 " clojure completion candidates {{{
 function! VimrcClojureComplCand()
@@ -2058,6 +2064,17 @@ function! s:scrot()
 endfunction
 nnoremap <silent><C-q> :<C-u>call <SID>scrot()<Cr>
 inoremap <silent><expr> <C-q> <SID>scrot()
+" }}}
+" esparse {{{
+function! s:vimrc_esparse()
+  if filereadable('/usr/local/share/npm/bin/esparse')
+    " Mac
+    let b:quickrun_config = {'command': '/usr/local/share/npm/bin/esparse'}
+  elseif filereadable('/home/ujihisa/node_modules/esprima/bin/esparse.js')
+    let b:quickrun_config = {'command': '/usr/local/share/npm/bin/esparse'}
+  endif
+endfunction
+
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
