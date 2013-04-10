@@ -65,6 +65,7 @@ NeoBundle 'fsouza/go.vim'
 " NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
 NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'https://github.com/kana/vim-textobj-user.git'
+NeoBundle 'https://github.com/basyura/J6uil.vim.git'
 
 filetype plugin on
 filetype indent on
