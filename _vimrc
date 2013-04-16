@@ -689,7 +689,8 @@ nmap <Space>r <Plug>(quickrun)
 
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
-let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
+"let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
+let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
 
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
 let g:quickrun_config['ruby.rspec'] = {'command': "spec -l {line('.')}"}
