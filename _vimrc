@@ -239,7 +239,9 @@ nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>imain = do<Cr>print $<Esc>
 nnoremap <Space>ssl :<C-u>set filetype=scala<Cr>
 nnoremap <Space>scl :<C-u>set filetype=clojure<Cr>
 
-nnoremap <Space>b :w blogger:create
+"nnoremap <Space>b :w blogger:create
+nnoremap <space>b <C-w>100+
+
 "let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
 if filereadable("/Users/ujihisa/git/ruby200/local/bin/ruby")
   let g:blogger_ruby_path = "/Users/ujihisa/git/ruby200/local/bin/ruby"
