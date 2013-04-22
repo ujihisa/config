@@ -714,9 +714,8 @@ let g:quickrun_config['markdown'] = {
       \ 'outputter': 'browser'
       \ }
 
-" let g:quickrun_config['scala'] = {
-"       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp .:' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
-" ... to make it lazy
+let g:quickrun_config['scala'] = {
+      \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
 
 augroup vimrc-lazy-quickrun-scala
   autocmd!
