@@ -125,6 +125,7 @@ if has('persistent_undo')
 endif
 set equalalways
 set updatetime=500
+set scrolljump=10
 
 " }}}
 " mappings {{{
