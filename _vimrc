@@ -2067,6 +2067,10 @@ function! s:vimrc_esparse()
 endfunction
 
 " }}}
+" mcsakura reload {{{
+command! ReloadMcsakura silent VimProcBang curl -s http://0.0.0.0:8126/reload
+nnoremap <space>0 :<C-u>ReloadMcsakura<Cr>
+" }}}
 " just for now
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
