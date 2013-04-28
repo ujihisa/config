@@ -2068,7 +2068,7 @@ endfunction
 
 " }}}
 " mcsakura reload {{{
-command! ReloadMcsakura silent VimProcBang curl -s http://0.0.0.0:8126/reload
+command! ReloadMcsakura silent VimProcBang curl -s http://0.0.0.0:8126/reload &
 nnoremap <space>0 :<C-u>ReloadMcsakura<Cr>
 " }}}
 " just for now
