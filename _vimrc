@@ -2068,8 +2068,9 @@ endfunction
 
 " }}}
 " mcsakura reload {{{
-command! ReloadMcsakura silent VimProcBang curl -s http://0.0.0.0:8126/reload &
+command! ReloadMcsakura VimProcBang curl -s http://0.0.0.0:8126/reload & >& /dev/null
 nnoremap <space>0 :<C-u>ReloadMcsakura<Cr>
+nnoremap <space>0 :<C-u>! curl -s http://0.0.0.0:8126/reload & >& /dev/null<Cr>
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
