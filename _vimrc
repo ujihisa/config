@@ -2067,9 +2067,9 @@ function! s:vimrc_esparse()
 endfunction
 
 " }}}
-" mcsakura reload {{{
-command! ReloadMcsakura VimProcBang curl -s http://0.0.0.0:8126/reload & >& /dev/null
-nnoremap <space>0 :<C-u>ReloadMcsakura<Cr>
+" mckokoro reload {{{
+command! ReloadMckokoro VimProcBang curl -s http://0.0.0.0:8126/reload & >& /dev/null
+nnoremap <space>0 :<C-u>ReloadMckokoro<Cr>
 nnoremap <space>0 :<C-u>! curl -s http://0.0.0.0:8126/reload & >& /dev/null<Cr>
 " }}}
 " just for now
