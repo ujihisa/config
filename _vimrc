@@ -1689,10 +1689,10 @@ imap <expr> <Bslash> (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite snippet<Cr>
-imap <C-\> <Plug>(neosnippet_jump_or_expand)
-smap <C-\> <Plug>(neosnippet_jump_or_expand)
-nmap <C-\> a<C-\>
-xmap <C-\> <Plug>(neosnippet_expand_target)
+imap <M-\> <Plug>(neosnippet_jump_or_expand)
+smap <M-\> <Plug>(neosnippet_jump_or_expand)
+nmap <M-\> a<M-\>
+xmap <M-\> <Plug>(neosnippet_expand_target)
 
 " uses system snippet as personal snippet!
 let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
