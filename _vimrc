@@ -1105,6 +1105,7 @@ nnoremap <sid>(command-line-norange) q:<C-u>
 
 nmap :  <sid>(command-line-enter)
 xmap :  <sid>(command-line-enter)
+imap <M-:> <Esc><sid>(command-line-enter)
 
 " I added
 "nnoremap q: q:<Esc>
