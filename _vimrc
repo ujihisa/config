@@ -253,7 +253,6 @@ nnoremap <Space>I $i
 "nnoremap <Space>C $C
 nnoremap X ^x
 nnoremap cp Pjdd
-nnoremap Q <nop>
 
 nnoremap // /^
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
