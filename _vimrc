@@ -1540,6 +1540,12 @@ onoremap ) t)
 onoremap ( t(
 vnoremap ) t)
 vnoremap ( t(
+" I don't use [(, so I remap [.
+onoremap ] t]
+onoremap [ t[
+vnoremap ] t]
+vnoremap [ t[
+
 " }}}
 " hack 104 http://vim-users.jp/2009/11/hack104/ {{{
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
