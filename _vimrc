@@ -279,6 +279,11 @@ nnoremap /<C-o>p /<C-r>"
 silent nnoremap <space>M :<C-u>echo 'space-M Not defined'<Cr>
 silent nnoremap <space>m :<C-u>echo 'space-m Not defined'<Cr>
 
+" <C-g> is to swap visual mode and select mode. <C-g> is difficult to type.
+" Use Alt-g instead
+vnoremap <M-g> <C-g>
+snoremap <M-g> <C-g>
+
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
