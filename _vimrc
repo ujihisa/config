@@ -284,6 +284,8 @@ silent nnoremap <space>m :<C-u>echo 'space-m Not defined'<Cr>
 vnoremap <M-g> <C-g>
 snoremap <M-g> <C-g>
 
+nnoremap <M-f> <C-w><C-f>
+
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
