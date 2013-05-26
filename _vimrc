@@ -392,9 +392,6 @@ nnoremap sG :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>') . ' -default-a
 nmap <C-o> <Plug>(poslist-prev-pos)
 nmap <C-i> <Plug>(poslist-next-pos)
 " }}}
-" MacBook Battery http://d.hatena.ne.jp/lurker/20060801/1154443551 {{{
-command! Battery echo split(system("pmset -g ps | egrep -o '[0-9]+%'"), "\n")[0]
-" }}}
 " remote {{{
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
