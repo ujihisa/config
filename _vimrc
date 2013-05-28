@@ -228,6 +228,7 @@ nnoremap cc zc
 " endfunction
 
 nnoremap <Space>s q:set filetype=
+nnoremap <Space>S q:set filetype=
 nnoremap <Space>sr :<C-u>set filetype=ruby<Cr>
 "nnoremap <Space>sm :<C-u>set filetype=markdown<Cr>
 "nnoremap <Space>sh :<C-u>set filetype=haskell<Cr>
@@ -1712,8 +1713,6 @@ let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
 function! s:vimshell_settings()
   if s:is_gentoo
     call vimshell#set_alias('time', 'exe time -p')
-  else
-    call vimshell#set_alias('eix', 'exe brew search')
   endif
 
   " it's the default behaviour of <Cr> in vimshell's insert mode
