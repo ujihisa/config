@@ -291,6 +291,7 @@ snoremap <M-g> <C-g>
 
 nnoremap <M-f> <C-w><C-f>
 
+nmap <M-o> <Plug>(openbrowser-open)
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
