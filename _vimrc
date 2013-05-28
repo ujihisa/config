@@ -207,21 +207,20 @@ nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <A-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
-if g:V.is_mac()
-  inoremap <silent> <D-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
-endif
 inoremap <silent> <A-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
 nnoremap <D-k>  gT
 nnoremap <A-k>  gT
-if g:V.is_mac()
-  inoremap <D-k>  <Esc>gT
-endif
 inoremap <A-k>  <Esc>gT
 
 nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
+
+" memo:
+"   MacBook Pro Apple Keyboard (both built-in and bluetooth) Gentoo (with xmodmap?)
+"     Command = <A-*>
+
 
 " inoremap <expr><Tab> TabOrCompl()
 " function! TabOrCompl()
