@@ -66,6 +66,7 @@ NeoBundle 'fsouza/go.vim'
 NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'https://github.com/kana/vim-textobj-user.git'
 NeoBundle 'https://github.com/basyura/J6uil.vim.git'
+NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
 
 filetype plugin on
 filetype indent on
@@ -151,8 +152,11 @@ nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
 nnoremap -- :<C-u>e %:h<Cr>
 
 omap <Space>p %
+omap <M-9> %
 nmap <Space>p %
+nmap <M-9> %
 vmap <Space>p %
+vmap <M-9> %
 
 nnoremap vv <C-v>
 nnoremap ]p p`[=`]
@@ -2079,6 +2083,11 @@ endfunction
 command! ReloadMckokoro VimProcBang curl -s http://0.0.0.0:8126/reload & >& /dev/null
 nnoremap <space>0 :<C-u>ReloadMckokoro<Cr>
 nnoremap <space>0 :<C-u>! curl -s http://0.0.0.0:8126/reload & >& /dev/null<Cr>
+" }}}
+" fontzoom {{{
+let g:fontzoom_no_default_key_mappings = 1
+nmap <M--> <Plug>(fontzoom-smaller)
+nmap <M-=> <Plug>(fontzoom-larger)
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
