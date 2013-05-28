@@ -39,6 +39,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 "NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
 NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
+NeoBundle 'kana/vim-smartchr', {'directory': 'smartchr'}
 NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris', {'directory': 'aldmeris'}
