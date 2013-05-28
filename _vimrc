@@ -1738,10 +1738,9 @@ if s:is_gentoo
   " nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
   " inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
   " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
-  imap <expr> ö col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+  imap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
 
-
-  vnoremap ã "+y
+  vnoremap <M-c> "+y
   set lsp=2
 endif
 " }}}
