@@ -351,6 +351,7 @@ function! s:vimshell_local()
   " deleting <Plug>(vimshell_delete_previous_output)
   nunmap <buffer> <C-k>
   nmap <buffer> <C-S-k> <Plug>(vimshell_delete_previous_output)
+  inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
 endfunction
 
 autocmd FileType int-* call s:vimshell_iexe() " TODO
@@ -358,6 +359,7 @@ function! s:vimshell_iexe()
   "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
   nmap <buffer> j <Plug>(vimshell_int_next_prompt)
   nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
+  inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
 endfunction
 
 let g:vimshell_escape_colors = [
