@@ -449,7 +449,6 @@ endfunction
 " }}}
 " My commands {{{
 command! -nargs=0 OpenVimrcTab call OpenVimrcTab()
-command! -nargs=1 OpenRubydoc new ~/rubydoc/doctree/refm/api/src/<args>.rd
 command! -nargs=0 Ctags call Ctags()
 
 function! Ctags()
