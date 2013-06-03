@@ -66,6 +66,7 @@ NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'https://github.com/kana/vim-textobj-user.git'
 NeoBundle 'https://github.com/basyura/J6uil.vim.git'
 NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
+NeoBundle 'lhttps://github.com/junegunn/seoul256.vim'
 
 filetype plugin on
 filetype indent on
