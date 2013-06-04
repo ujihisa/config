@@ -527,6 +527,9 @@ function! s:unite_my_settings()"{{{
   " swapping q and Q
   nmap <buffer> Q <Plug>(unite_exit)
   nmap <buffer> q <Plug>(unite_all_exit)
+
+  " overwrite p (preview) as print
+  nmap <buffer> p <Plug>(unite_print_candidate)
 endfunction"}}}
 augroup vimrc-unite
   autocmd!
@@ -2088,6 +2091,9 @@ nnoremap <space>0 :<C-u>! curl -s http://0.0.0.0:8126/reload & >& /dev/null<Cr>
 let g:fontzoom_no_default_key_mappings = 1
 nmap <M--> <Plug>(fontzoom-smaller)
 nmap <M-=> <Plug>(fontzoom-larger)
+" }}}
+" bare vim {{{
+" $ vim -u NONE -U NONE --noplugin
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
