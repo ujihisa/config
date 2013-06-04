@@ -1484,6 +1484,15 @@ function! s:git_log_viewer()
   setl foldexpr=getline(v:lnum)!~'^commit'
 endfunction
 command! GitLogViewer call s:git_log_viewer()
+
+function s:cd_pull_log(path)
+  tabnew
+  execute 'cd' expand(a:path)
+  VimShell
+  GitLogViewer
+  wincmd L
+endfunction
+command! -nargs=1 CdPullLog call s:cd_pull_log(<q-args>)
 " }}}
 " disable macvim vimrc_examples {{{
 let g:no_vimrc_example = 1
