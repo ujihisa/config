@@ -2105,6 +2105,20 @@ nmap <M-=> <Plug>(fontzoom-larger)
 " bare vim {{{
 " $ vim -u NONE -U NONE --noplugin
 " }}}
+" tabline for gui {{{
+function GuiTabLabel()
+  "return printf("%s/%s", expand('%:p:h:h:t'), expand('%:p:h:t'))
+
+  " depends on kana's tabpagecd
+  let cwd = get(t:, 'cwd', getcwd())
+  let tmp = printf("%s/%s",
+        \ fnamemodify(cwd, ':p:h:h:t'),
+        \ fnamemodify(cwd, ':p:h:t'))
+  return tmp . repeat(' ', 20 - len(tmp))
+endfunction
+
+set guitablabel=%!GuiTabLabel()
+" }}}
 " just for now
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
