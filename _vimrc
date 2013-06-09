@@ -1474,7 +1474,11 @@ let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-re
 "let g:ref_man_cmd = "man -P cat"
 let g:ref_erlang_manpath = '/usr/local/share/man'
 let $MANPAGER='cat'
-call ref#rmcache()
+"call ref#rmcache()
+
+let g:ref_clojure_cmd = [
+      \ 'java', '-XX:+TieredCompilation', '-XX:TieredStopAtLevel=1', '-Xverify:none',
+      \ '-cp', '/usr/share/clojure-1.5/lib/clojure.jar', 'clojure.main']
 " }}}
 " special git log viewer {{{
 function! s:git_log_viewer()
