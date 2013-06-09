@@ -25,7 +25,6 @@ NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
 NeoBundle 'git://github.com/Shougo/unite-ssh.git'
 NeoBundle 'git://github.com/Shougo/unite-build.git'
-NeoBundle 'git://github.com/Shougo/vim-vcs.git'
 NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
 "NeoBundle 'git://github.com/Shougo/vimproc.git'
@@ -67,6 +66,7 @@ NeoBundle 'https://github.com/kana/vim-textobj-user.git'
 NeoBundle 'https://github.com/basyura/J6uil.vim.git'
 NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
+NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
 
 filetype plugin on
 filetype indent on
