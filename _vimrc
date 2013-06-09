@@ -41,7 +41,7 @@ NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
 NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
 NeoBundle 'kana/vim-smartchr', {'directory': 'smartchr'}
 NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-ref', {'directory': 'ref'}
 NeoBundle 'veloce/vim-aldmeris', {'directory': 'aldmeris'}
 NeoBundle 'thinca/vim-quickrun', {'directory': 'quickrun'}
 NeoBundle 'thinca/vim-poslist', {'directory': 'poslist'}
@@ -177,7 +177,7 @@ function! s:good_width()
 endfunction
 
 nnoremap q <NOP>
-nnoremap Q q
+gnnoremap Q q
 
 " for plugins rewrite j/k
 nnoremap <C-j> j
