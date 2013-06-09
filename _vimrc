@@ -34,7 +34,7 @@ NeoBundle 'git://github.com/Shougo/vesting'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
-NeoBundle 'thinca/vim-ft-clojure'
+NeoBundle 'thinca/vim-ft-clojure', {'directory': 'ft-clojure'}
 "NeoBundle "osyo-manga/shabadou.vim"
 "NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
