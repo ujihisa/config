@@ -1772,6 +1772,10 @@ function! s:vimshell_settings()
     call vimshell#set_alias('time', 'exe time -p')
   endif
 
+  " from vimshell's doc
+  call vimshell#set_alias('j', ':Unite -buffer-name=files
+        \ -default-action=lcd -no-split -input=$$args directory_mru')
+
   " it's the default behaviour of <Cr> in vimshell's insert mode
   imap <buffer> <S-CR> <C-]><Plug>(vimshell_enter)
   " <Cr> expands snippet!
@@ -1941,23 +1945,37 @@ endfunction
 " scala sbt interaction {{{
 function! s:start_sbt()
   if !has_key(t:, 'sbt_cmds')
-    let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
+    "let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
+    let t:sbt_cmds = 'compile'
+    echo "let t:sbt_cmd = 'compile'"
   endif
   execute 'VimShellInteractive sbt'
   stopinsert
   let t:sbt_bufname = bufname('%')
+  wincmd H
   wincmd p
 endfunction
 
 command! -nargs=0 StartSBT call <SID>start_sbt()
 
 function! s:sbt_run()
-  let cmds = get(t:, 'sbt_cmds', 'run')
+  if !has_key(t:, 'sbt_cmds')
+    echoerr 'please give t:sbt_cmds a list'
+    return
+  endif
 
   let sbt_bufname = get(t:, 'sbt_bufname')
   if sbt_bufname !=# ''
+    " go to the window
+    let wn = bufwinnr(sbt_bufname)
+    execute wn . 'wincmd w'
+    " whew
+    normal! Gzt
+    " go back to the previous window
+    wincmd p
+
     call vimshell#interactive#set_send_buffer(sbt_bufname)
-    call vimshell#interactive#send(cmds)
+    call vimshell#interactive#send(t:sbt_cmds)
     " explosion
     "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
   else
@@ -1967,12 +1985,12 @@ endfunction
 
 function! s:vimrc_scala()
   nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+  nnoremap <buffer> <Space>st :<C-u>StartSBT
 endfunction
 
 augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
-  autocmd FileType scala nnoremap <buffer> <Space>st :<C-u>StartSBT
 augroup END
 " }}}
 " clojure {{{
