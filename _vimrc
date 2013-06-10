@@ -731,13 +731,17 @@ let g:quickrun_config['markdown'] = {
 let g:quickrun_config['scala'] = {
       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
 
-augroup vimrc-lazy-quickrun-scala
-  autocmd!
-  autocmd FileType scala if !has_key(g:quickrun_config, 'scala/all') |
-        \ let g:quickrun_config['scala/all'] = {
-        \   'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp .:' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
-        \ | endif
-augroup END
+"augroup vimrc-lazy-quickrun-scala
+"  autocmd!
+"  autocmd FileType scala if !has_key(g:quickrun_config, 'scala/all') |
+"        \ let g:quickrun_config['scala/all'] = {
+"        \   'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp .:' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
+"        \ | endif
+"augroup END
+
+" experimental
+let g:quickrun_config.clojure = {'type': 'clojure/process_manager'}
+let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 
 "let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
 
