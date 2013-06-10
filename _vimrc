@@ -705,6 +705,7 @@ nmap <Space>r <Plug>(quickrun)
 
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
+"let g:quickrun_config._ = {'runner': 'process_manager', 'split': 'below'}
 "let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
 
@@ -1448,7 +1449,36 @@ function! s:hoogle(cur_text)
   endif
   return g:echodoc_hoogle_cache[a:cur_text]
 endfunction
-call echodoc#register('haskell', s:doc_dict)
+"call echodoc#register('haskell', s:doc_dict)
+" }}}
+" echodoc for clojure {{{
+"let s:clojure_doc_dict = {
+"      \ 'name': 'clojure',
+"      \ 'rank': 10,
+"      \ 'filetypes' : {'clojure': 1},
+"      \ }
+"let s:P = g:V.import('ProcessManager')
+"function! s:clojure_doc_dict.search(cur_text)
+"  let tmp = matchlist(a:cur_text, "\\([a-z][a-z0-9.'_]*\\)\\s*$")
+"  let tmp = filter(tmp, 'v:val != ""')
+"  if len(tmp) == 2
+"    let query = tmp[1]
+"  else
+"    return []
+"  endif
+"  let t = s:P.touch('vimrc-echodoc-clojure', 'clojure-1.5')
+"  if t ==# 'new'
+"    call s:P.read_wait('vimrc-echodoc-clojure', 2.0)
+"    call s:P.writeln('vimrc-echodoc-clojure', '(ns vim-ref (:use [clojure.repl :only (doc find-doc)]))')
+"  endif
+"  call s:P.writeln('vimrc-echodoc-clojure', printf('(doc %s)', query))
+"  let result = s:P.read('vimrc-echodoc-clojure')[0]
+"  let result = get(matchlist(result, printf('[a-z.]\+/%s', query)), 0, '')
+"  return [
+"        \ {'text': query, 'highlight': 'Identifier'},
+"        \ {'text': ' ' . substitute(string(result), '\n', "", "")}]
+"endfunction
+"call echodoc#register('clojure', s:clojure_doc_dict)
 " }}}
 " rsense {{{
 "if !exists('g:neocomplcache_omni_patterns')
