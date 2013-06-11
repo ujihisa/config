@@ -2063,10 +2063,10 @@ let g:unite_source_menu_menus.quickrun_set = {
       \ }
 let g:unite_source_menu_menus.myset = {
       \   'description': 'from vimrc',
-      \   'command_candidates': {
-      \     'CopyTheCurrentFileName': 'CopyTheCurrentFileName',
-      \     'GitLogViewer': 'GitLogViewer',
-      \   },
+      \   'command_candidates': [
+      \     ['CopyTheCurrentFileName', 'CopyTheCurrentFileName'],
+      \     ['GitLogViewer', 'GitLogViewer'],
+      \   ],
       \ }
 
 nnoremap <silent> sn  :<C-u>Unite menu:myset -quick-match<CR>
