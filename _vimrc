@@ -509,11 +509,11 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
-let g:unite_quick_match_table = {
-      \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
-      \'q' : 11, 'w' : 12, 'e' : 13, 'r' : 14, 't' : 15, 'y' : 16, 'u' : 17, 'i' : 18, 'o' : 19, 'p' : 20,
-      \'1' : 21, '2' : 22, '3' : 23, '4' : 24, '5' : 25, '6' : 26, '7' : 27, '8' : 28, '9' : 29, '0' : 30,
-      \}
+"let g:unite_quick_match_table = {
+"      \'a' : 1, 's' : 2, 'd' : 3, 'f' : 4, 'g' : 5, 'h' : 6, 'j' : 7, 'k' : 8, 'l' : 9, ':' : 10,
+"      \'q' : 11, 'w' : 12, 'e' : 13, 'r' : 14, 't' : 15, 'y' : 16, 'u' : 17, 'i' : 18, 'o' : 19, 'p' : 20,
+"      \'1' : 21, '2' : 22, '3' : 23, '4' : 24, '5' : 25, '6' : 26, '7' : 27, '8' : 28, '9' : 29, '0' : 30,
+"      \}
 " in other words, it just swaps : and ;
 
 let g:unite_source_process_enable_confirm = 0
@@ -2022,33 +2022,33 @@ augroup END
 " }}}
 " unite-menu {{{
 let g:unite_source_menu_menus = {}
-let g:unite_source_menu_menus.test = {
-      \     'description' : 'Test menu',
-      \ }
-let g:unite_source_menu_menus.test.candidates = {
-      \   'ghci'      : 'VimShellInteractive ghci',
-      \ }
-function g:unite_source_menu_menus.test.map(key, value)
-  return {
-      \       'word' : a:key, 'kind' : 'command',
-      \       'action__command' : a:value,
-      \     }
-endfunction
-
-let g:unite_source_menu_menus.test2 = {
-      \     'description' : 'Test menu2',
-      \ }
-let g:unite_source_menu_menus.test2.command_candidates = {
-      \   'python'    : 'VimShellInteractive python',
-      \ }
-
-let g:unite_source_menu_menus.test3 = {
-      \     'description' : 'Test menu3',
-      \ }
-let g:unite_source_menu_menus.test3.command_candidates = [
-      \   ['ruby', 'VimShellInteractive python'],
-      \   ['python', 'VimShellInteractive python'],
-      \ ]
+"let g:unite_source_menu_menus.test = {
+"      \     'description' : 'Test menu',
+"      \ }
+"let g:unite_source_menu_menus.test.candidates = {
+"      \   'ghci'      : 'VimShellInteractive ghci',
+"      \ }
+"function g:unite_source_menu_menus.test.map(key, value)
+"  return {
+"      \       'word' : a:key, 'kind' : 'command',
+"      \       'action__command' : a:value,
+"      \     }
+"endfunction
+"
+"let g:unite_source_menu_menus.test2 = {
+"      \     'description' : 'Test menu2',
+"      \ }
+"let g:unite_source_menu_menus.test2.command_candidates = {
+"      \   'python'    : 'VimShellInteractive python',
+"      \ }
+"
+"let g:unite_source_menu_menus.test3 = {
+"      \     'description' : 'Test menu3',
+"      \ }
+"let g:unite_source_menu_menus.test3.command_candidates = [
+"      \   ['ruby', 'VimShellInteractive python'],
+"      \   ['python', 'VimShellInteractive python'],
+"      \ ]
 let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
@@ -2061,8 +2061,14 @@ let g:unite_source_menu_menus.quickrun_set = {
       \     ['esprima', 'call <SID>vimrc_esparse()']
       \   ]
       \ }
+let g:unite_source_menu_menus.myset = {
+      \   'description': 'from vimrc',
+      \   'command_candidates': {
+      \     'CopyTheCurrentFileName': 'CopyTheCurrentFileName',
+      \   },
+      \ }
 
-nnoremap <silent> sn  :<C-u>Unite menu<CR>
+nnoremap <silent> sn  :<C-u>Unite menu:myset -quick-match<CR>
 " }}}
 " clojure completion candidates {{{
 function! VimrcClojureComplCand()
