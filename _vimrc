@@ -133,8 +133,8 @@ set scrolljump=10
 "let mapleader=" "
 "let maplocalleader=' '
 
-let g:transparency = 10
 if g:V.is_mac()
+  let g:transparency = 10
   " for MacVim's bug
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 else
@@ -159,7 +159,7 @@ vmap <Space>p %
 vmap <M-9> %
 
 nnoremap vv <C-v>
-nnoremap ]p p`[=`]
+"nnoremap ]p p`[=`]
 
 nnoremap sh <C-w>h:call <SID>good_width()<Cr>
 nnoremap sj <C-w>j
@@ -187,9 +187,6 @@ nnoremap <Space>w :<C-u>write<Return>
 nnoremap <Space>q :<C-u>quit<Return>
 nnoremap <Space>Q :<C-u>quit!<Return>
 nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
-"nnoremap <Space>cz :<C-u>new ~/git/config/_zshrc<Cr>
-"nnoremap <Space>ct :<C-u>new ~/git/config/_termtter.erb<Cr>
-"nnoremap <Space>h :help<space>
 "nnoremap <Space>] <C-w>]
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
@@ -1152,7 +1149,7 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  inoremap <buffer><expr> \ pumvisible() ? neocomplcache#close_popup() : <SID>cmdwin_backslash()
+  inoremap <buffer><expr> \ neocomplcache#close_popup() . <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -1610,10 +1607,6 @@ vnoremap [ t[
 " }}}
 " hack 104 http://vim-users.jp/2009/11/hack104/ {{{
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
-" }}}
-" hootsuite {{{
-"command! -nargs=0 HootSuiteVim new /Users/ujihisa/.vimbundles/hootsuite/plugin/hootsuite.vim
-"command! -nargs=0 HootSuiteSpec new /Users/ujihisa/git/hstools/spec/committer.rb
 " }}}
 " MacVim is unko {{{
 let rtp = split(&rtp, ',')
