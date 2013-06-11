@@ -2065,6 +2065,7 @@ let g:unite_source_menu_menus.myset = {
       \   'description': 'from vimrc',
       \   'command_candidates': {
       \     'CopyTheCurrentFileName': 'CopyTheCurrentFileName',
+      \     'GitLogViewer': 'GitLogViewer',
       \   },
       \ }
 
