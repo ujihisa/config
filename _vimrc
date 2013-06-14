@@ -214,6 +214,8 @@ nnoremap <D-k>  gT
 nnoremap <M-k>  gT
 inoremap <M-k>  <Esc>gT
 
+nnoremap <M-[> :<C-u>e #<Cr>
+
 nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
