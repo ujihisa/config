@@ -220,6 +220,8 @@ nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
 
+inoremap ,. <Esc>
+
 " memo:
 "   MacBook Pro Apple Keyboard (both built-in and bluetooth) Gentoo (with xmodmap?)
 "     Command = <A-*> and <M-*>
@@ -500,8 +502,8 @@ let g:unite_enable_split_vertically = 1
 " I wanted to simply refer the default ignore pattern with using g:unite_source_file_rec_ignore_pattern, but unite sets it lazily.
 " here I force unite defining file_rec and referes the default value.
 let s:file_rec_ignore_pattern = (unite#sources#rec#define()[0]['ignore_pattern']) . '\|\$global\|\.class$\|\<target\>'
-call unite#custom_source('file_rec', 'ignore_pattern', s:file_rec_ignore_pattern)
-call unite#custom_source('grep', 'ignore_pattern', s:file_rec_ignore_pattern)
+call unite#custom#source('file_rec', 'ignore_pattern', s:file_rec_ignore_pattern)
+call unite#custom#source('grep', 'ignore_pattern', s:file_rec_ignore_pattern)
 
 let g:unite_source_file_rec_max_cache_files = 9000
 
@@ -2177,6 +2179,27 @@ function GuiTabLabel()
 endfunction
 
 set guitablabel=%!GuiTabLabel()
+" }}}
+" j6uil {{{
+let g:J6uil_display_icon = 1
+augroup my-j6uil
+  autocmd!
+  autocmd FileType J6uil call s:j6uil_settings()
+augroup END
+
+function! s:j6uil_settings()
+  nunmap <buffer> s
+  nmap <silent> <buffer> i <Plug>(J6uil_open_say_buffer)
+endfunction
+" }}}
+" spin.vim (rails) {{{
+let g:quickrun_config.spin = {
+      \ 'command': '~/git/spin.vim/bin/spin serve -Itest',
+      \ 'cmdopt': '-Itest',
+      \ 'runner': 'process_manager',
+      \ 'runner/process_manager/load': '["%s"]',
+      \ 'runner/process_manager/prompt': 'spin>>>>> ',
+      \ }
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
