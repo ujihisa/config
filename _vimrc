@@ -67,6 +67,7 @@ NeoBundle 'https://github.com/basyura/J6uil.vim.git'
 NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
+NeoBundle 'https://github.com/Pychimp/vim-luna.git'
 
 filetype plugin on
 filetype indent on
