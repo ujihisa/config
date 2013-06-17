@@ -8,8 +8,8 @@ let g:V = vital#of('vital')
 "colorscheme neverland2-darker
 "colorscheme xoria256
 "colorscheme aldmeris
-"colorscheme neverland-darker
-colorscheme luna
+colorscheme neverland-darker
+"colorscheme luna
 
 if g:V.is_mac()
   colorscheme macvim
