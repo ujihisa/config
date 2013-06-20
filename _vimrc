@@ -70,6 +70,7 @@ NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
 NeoBundle 'https://github.com/Pychimp/vim-luna.git'
 NeoBundle 'https://github.com/BirdseyeSoftware/tracker.vim'
 NeoBundle 'https://github.com/KamunagiChiduru/unite-javaimport.git'
+NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 
 filetype plugin on
 filetype indent on
