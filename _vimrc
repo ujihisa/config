@@ -2206,17 +2206,17 @@ let g:quickrun_config.spin = {
       \ }
 " }}}
 " mongodb {{{
-function! s:vimrc_filetype_mongodb()
-  setl syntax=javascript
-  " remote mongo
-  let b:quickrun_config = {
-  \   'command': 'ssh -t',
-  \   'runner': 'process_manager',
-  \   'runner/process_manager/load': '(load-file "%s")',
-  \   'runner/process_manager/prompt': 'user=> ',
-  \ },
-  echo 'let b:quickrun_config.cmdopt = '
-endfunction
+"function! s:vimrc_filetype_mongodb()
+"  setl syntax=javascript
+"  " remote mongo
+"  let b:quickrun_config = {
+"  \   'command': 'ssh -t',
+"  \   'runner': 'process_manager',
+"  \   'runner/process_manager/load': '(load-file "%s")',
+"  \   'runner/process_manager/prompt': 'rs_a:SECONDARY> ',
+"  \ },
+"  echo 'let b:quickrun_config.cmdopt = '
+"endfunction
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
