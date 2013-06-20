@@ -68,6 +68,7 @@ NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
 NeoBundle 'https://github.com/Pychimp/vim-luna.git'
+NeoBundle 'https://github.com/BirdseyeSoftware/tracker.vim'
 
 filetype plugin on
 filetype indent on
@@ -2201,6 +2202,19 @@ let g:quickrun_config.spin = {
       \ 'runner/process_manager/load': '["%s"]',
       \ 'runner/process_manager/prompt': 'spin>>>>> ',
       \ }
+" }}}
+" mongodb {{{
+function! s:vimrc_filetype_mongodb()
+  setl syntax=javascript
+  " remote mongo
+  let b:quickrun_config = {
+  \   'command': 'ssh -t',
+  \   'runner': 'process_manager',
+  \   'runner/process_manager/load': '(load-file "%s")',
+  \   'runner/process_manager/prompt': 'user=> ',
+  \ },
+  echo 'let b:quickrun_config.cmdopt = '
+endfunction
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
