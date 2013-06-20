@@ -69,6 +69,7 @@ NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
 NeoBundle 'https://github.com/Pychimp/vim-luna.git'
 NeoBundle 'https://github.com/BirdseyeSoftware/tracker.vim'
+NeoBundle 'https://github.com/KamunagiChiduru/unite-javaimport.git'
 
 filetype plugin on
 filetype indent on
@@ -222,7 +223,7 @@ nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
 
-inoremap ,. <Esc>
+"inoremap <expr> k smartchr#one_of('k', "\<Esc>")
 
 " memo:
 "   MacBook Pro Apple Keyboard (both built-in and bluetooth) Gentoo (with xmodmap?)
@@ -1758,7 +1759,7 @@ nnoremap <C-s> :<C-u>Unite snippet<Cr>
 imap <M-\> <Plug>(neosnippet_jump_or_expand)
 smap <M-\> <Plug>(neosnippet_jump_or_expand)
 nmap <M-\> a<M-\>
-xmap <M-\> <Plug>(neosnippet_expand_target)
+xmap <M-\> <Plug>(neosnippet_start_unite_snippet_target)
 
 " uses system snippet as personal snippet!
 let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
