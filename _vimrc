@@ -71,6 +71,7 @@ NeoBundle 'https://github.com/Pychimp/vim-luna.git'
 NeoBundle 'https://github.com/BirdseyeSoftware/tracker.vim'
 NeoBundle 'https://github.com/KamunagiChiduru/unite-javaimport.git'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin on
 filetype indent on
@@ -207,6 +208,7 @@ cnoremap <M-BS> <C-w>
 
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
+nnoremap <Space>av  :<C-u>tabnew<CR>:pwd<Cr>:VimShell ~/.vimbundles<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
@@ -2217,6 +2219,16 @@ let g:quickrun_config.spin = {
 "  \ },
 "  echo 'let b:quickrun_config.cmdopt = '
 "endfunction
+" }}}
+" maxlength {{{
+let s:L = g:V.import('Data.List')
+function! s:vimrc_currentfile_maxlength(limit)
+  let buf_max_len = s:L.max(map(getline(1, line('$')), 'len(v:val)'), 'v:val')
+  return s:L.min([buf_max_len, a:limit], 'v:val')
+endfunction
+nnoremap <M-]> :<C-u>execute printf(
+      \ 'vertical resize %s',
+      \ <SID>vimrc_currentfile_maxlength(&columns * 9 / 10))<Cr>
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
