@@ -116,8 +116,10 @@ if g:V.is_mac()
 endif
 if has('gui')
   " termtter {{{
-  VimShellInteractive termtter
-  wincmd W
+  if 0
+    VimShellInteractive termtter
+    wincmd W
+  endif
   " }}}
   VimShell
   normal! <C-u>

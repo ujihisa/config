@@ -133,6 +133,7 @@ set equalalways
 set updatetime=500
 set scrolljump=10
 set timeoutlen=300
+inoremap ,. <Esc>
 
 " }}}
 " mappings {{{
