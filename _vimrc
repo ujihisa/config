@@ -72,6 +72,7 @@ NeoBundle 'https://github.com/BirdseyeSoftware/tracker.vim'
 NeoBundle 'https://github.com/KamunagiChiduru/unite-javaimport.git'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'osyo-manga/vim-jplus'
 
 filetype plugin on
 filetype indent on
@@ -2231,6 +2232,22 @@ endfunction
 nnoremap <M-]> :<C-u>execute printf(
       \ 'vertical resize %s',
       \ <SID>vimrc_currentfile_maxlength(&columns * 9 / 10))<Cr>
+" }}}
+" jplus {{{
+nmap <M-J> <Plug>(jplus-input)
+vmap <M-J> <Plug>(jplus-input)
+" }}}
+" lein-test {{{
+let g:quickrun_config['lein-test'] = {
+      \   'command': 'lein run -m clojure.main/repl',
+      \   'runner': 'process_manager',
+      \   'runner/process_manager/load': "(do (use 'vimson.tests.core :reload-all) (clojure.test/run-tests 'vimson.tests.core))",
+      \   'runner/process_manager/prompt': 'user=> ',
+      \ }
+augroup vimrc-lein-test
+  autocmd!
+  autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type lein-test<Cr>
+augroup END
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
