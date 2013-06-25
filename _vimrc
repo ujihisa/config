@@ -73,6 +73,7 @@ NeoBundle 'https://github.com/KamunagiChiduru/unite-javaimport.git'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'osyo-manga/vim-jplus'
+NeoBundle 'deris/vim-rengbang'
 
 filetype plugin on
 filetype indent on
