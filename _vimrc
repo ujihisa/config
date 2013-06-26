@@ -2237,6 +2237,19 @@ nnoremap <M-]> :<C-u>execute printf(
 nmap <M-J> <Plug>(jplus-input)
 vmap <M-J> <Plug>(jplus-input)
 " }}}
+" clojure-ns {{{
+function! s:vimrc_clojure_current_ns(contents)
+  for line in a:contents[:4] " take 5 items
+    let x = matchlist(line, '^(ns \(.*\)')[1]
+    if len(x)
+      return x
+    endif
+  endfor
+  echomsg 'could not find ns'
+  return ''
+endfunction
+command! -nargs=0 VimrcClojureCurrentNs echo <SID>vimrc_clojure_current_ns(getline(1, '$'))
+" }}}
 " lein-test {{{
 let g:quickrun_config['lein-test'] = {
       \   'command': 'lein run -m clojure.main/repl',
