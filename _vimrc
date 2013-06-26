@@ -19,17 +19,17 @@ if has('vim_starting')
 endif
 
 "NeoBundle 'git://github.com/Shougo/clang_complete.git'
-NeoBundle 'git://github.com/Shougo/echodoc.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-NeoBundle 'git://github.com/Shougo/unite-ssh.git'
-NeoBundle 'git://github.com/Shougo/unite-build.git'
+NeoBundle 'Shougo/echodoc'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-ssh'
+NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 "NeoBundle 'git://github.com/Shougo/vimproc.git'
-NeoBundle 'git://github.com/Shougo/neosnippet.git'
-NeoBundle 'git://github.com/Shougo/vesting'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vesting'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
@@ -51,7 +51,7 @@ NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
 NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
 NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
-NeoBundle 'git://github.com/pasela/unite-webcolorname.git'
+NeoBundle 'pasela/unite-webcolorname'
 NeoBundle 'Shougo/neocomplcache-rsense'
 NeoBundle 'vim-scripts/IndentAnything'
 NeoBundle 'git@github.com:ujihisa/ref-hoogle.git'
@@ -62,14 +62,14 @@ NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 " NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
 NeoBundle 'vim-scripts/groovyindent'
-NeoBundle 'https://github.com/kana/vim-textobj-user.git'
-NeoBundle 'https://github.com/basyura/J6uil.vim.git'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
-NeoBundle 'https://github.com/Pychimp/vim-luna.git'
-NeoBundle 'https://github.com/BirdseyeSoftware/tracker.vim'
-NeoBundle 'https://github.com/KamunagiChiduru/unite-javaimport.git'
+NeoBundle 'Pychimp/vim-luna'
+NeoBundle 'BirdseyeSoftware/tracker.vim'
+NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'osyo-manga/vim-jplus'
@@ -1953,7 +1953,7 @@ endfunction
 function! s:start_sbt()
   if !has_key(t:, 'sbt_cmds')
     "let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
-    let t:sbt_cmds = 'compile'
+    let t:sbt_cmds = ['compile']
     echo "let t:sbt_cmd = 'compile'"
   endif
   execute 'VimShellInteractive sbt'
@@ -2261,6 +2261,20 @@ let g:quickrun_config['lein-test'] = {
 augroup vimrc-lein-test
   autocmd!
   autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type lein-test<Cr>
+augroup END
+" }}}
+" debug quickrun/process_manager {{{
+function! VimrcStopProcess(type)
+  "echo vital#of('quickrun').import('ProcessManager').stop('clojure/process_manager')
+  echo vital#of('quickrun').import('ProcessManager').stop(a:type)
+endfunction
+" }}}
+" showtime {{{
+augroup vimrc-showtime
+  autocmd!
+  " By default it's just "s" but it takes time to trigger.
+  " Just use <M-u> instead.
+  autocmd FileType showtime nmap <buffer> <M-u> <Plug>(showtime-cursor)
 augroup END
 " }}}
 " just for now
