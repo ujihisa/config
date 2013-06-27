@@ -211,8 +211,10 @@ inoremap <M-BS> <C-w>
 cnoremap <M-BS> <C-w>
 
 "nnoremap <Space>a  <Nop>
-nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
-nnoremap <Space>av  :<C-u>tabnew<CR>:pwd<Cr>:VimShell ~/.vimbundles<Cr>
+
+" -- workaround... nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
+nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShellCreate<Cr>
+nnoremap <Space>av  :<C-u>tabnew<CR>:pwd<Cr>:VimShellCreate ~/.vimbundles<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
