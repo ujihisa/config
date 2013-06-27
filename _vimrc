@@ -2277,12 +2277,6 @@ augroup vimrc-showtime
   autocmd FileType showtime nmap <buffer> <M-u> <Plug>(showtime-cursor)
 augroup END
 " }}}
-" workaround for evil vim's key mapping new feature  {{{
-augroup vimrc-less-space
-  autocmd!
-  autocmd FileType vimshell-less nunmap <buffer> <space>
-augroup END
-" }}}
 " just for now
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
