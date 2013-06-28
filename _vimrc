@@ -2258,7 +2258,7 @@ endfunction
 let g:quickrun_config['lein-test'] = {
       \   'command': 'lein run -m clojure.main/repl',
       \   'runner': 'process_manager',
-      \   'runner/process_manager/load': "(do (use 'vimson.tests.core :reload-all) (clojure.test/run-tests 'vimson.tests.core))",
+      \   'runner/process_manager/load': "(do (use 'rabbitmq-client.core-test :reload-all) (clojure.test/run-tests 'rabbitmq-client.core-test))",
       \   'runner/process_manager/prompt': 'user=> ',
       \ }
 augroup vimrc-lein-test
