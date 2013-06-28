@@ -2249,7 +2249,10 @@ function! s:vimrc_clojure_current_ns(contents)
   echomsg 'could not find ns'
   return ''
 endfunction
-command! -nargs=0 VimrcClojureCurrentNs echo <SID>vimrc_clojure_current_ns(getline(1, '$'))
+
+function! s:vimrc_clojure_current_ns_current_file()
+  return s:vimrc_clojure_current_ns(getline(1, '$'))
+endfunction
 " }}}
 " lein-test {{{
 let g:quickrun_config['lein-test'] = {
