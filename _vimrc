@@ -2272,6 +2272,10 @@ function! VimrcStopProcess(type)
   echo vital#of('quickrun').import('ProcessManager').stop(a:type)
 endfunction
 " }}}
+" conflict...? {{{
+let g:S = g:V.import('Database.Sqlite')
+call g:S.debug_mode_to(1)
+" }}}
 " showtime {{{
 augroup vimrc-showtime
   autocmd!
