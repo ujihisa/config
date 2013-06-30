@@ -2119,7 +2119,7 @@ augroup vimrc-c
   " no-focus
 augroup END
 " }}}
-" {{{
+" sound {{{
 " augroup vimrc-sound
 "   autocmd!
 "   autocmd BufWritePost * call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
