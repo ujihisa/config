@@ -2284,6 +2284,10 @@ augroup vimrc-showtime
   autocmd FileType showtime nmap <buffer> <M-u> <Plug>(showtime-cursor)
 augroup END
 " }}}
+" unite-file/mru {{{
+let g:unite_source_file_mru_limit = 1000 " default was 100
+let g:unite_source_file_mru_long_limit = 5000 " default was 1000
+" }}}
 " just for now
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
