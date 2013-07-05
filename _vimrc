@@ -2254,18 +2254,6 @@ function! s:vimrc_clojure_current_ns_current_file()
   return s:vimrc_clojure_current_ns(getline(1, '$'))
 endfunction
 " }}}
-" lein-test {{{
-let g:quickrun_config['lein-test'] = {
-      \   'command': 'lein run -m clojure.main/repl',
-      \   'runner': 'process_manager',
-      \   'runner/process_manager/load': "(do (use 'rabbitmq-client.core-test :reload-all) (clojure.test/run-tests 'rabbitmq-client.core-test))",
-      \   'runner/process_manager/prompt': 'user=> ',
-      \ }
-augroup vimrc-lein-test
-  autocmd!
-  autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type lein-test<Cr>
-augroup END
-" }}}
 " debug quickrun/process_manager {{{
 function! VimrcStopProcess(type)
   "echo vital#of('quickrun').import('ProcessManager').stop('clojure/process_manager')
@@ -2287,6 +2275,24 @@ augroup END
 " unite-file/mru {{{
 let g:unite_source_file_mru_limit = 1000 " default was 100
 let g:unite_source_file_mru_long_limit = 5000 " default was 1000
+" }}}
+" unite-build {{{
+augroup vimrc-unite-build
+  autocmd!
+  autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus -no-start-insert build:lein<Cr>
+augroup END
+
+"let g:quickrun_config['lein-test'] = {
+"      \   'command': 'lein run -m clojure.main/repl',
+"      \   'runner': 'process_manager',
+"      \   'runner/process_manager/load': "(do (use 'rabbitmq-client.core-test :reload-all) (clojure.test/run-tests 'rabbitmq-client.core-test))",
+"      \   'runner/process_manager/prompt': 'user=> ',
+"      \ }
+"augroup vimrc-lein-test
+"  autocmd!
+"  autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type lein-test<Cr>
+"augroup END
+
 " }}}
 " just for now
 let g:unite_feedback_report_level = 2
