@@ -2227,7 +2227,7 @@ let g:quickrun_config.spin = {
 " maxlength {{{
 let s:L = g:V.import('Data.List')
 function! s:vimrc_currentfile_maxlength(limit)
-  let buf_max_len = s:L.max(map(getline(1, line('$')), 'len(v:val)'), 'v:val')
+  let buf_max_len = s:L.max_by(map(getline(1, line('$')), 'len(v:val)'), 'v:val')
   return s:L.min([buf_max_len, a:limit], 'v:val')
 endfunction
 nnoremap <M-]> :<C-u>execute printf(
