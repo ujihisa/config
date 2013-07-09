@@ -2192,6 +2192,7 @@ set guitablabel=%!GuiTabLabel()
 " }}}
 " j6uil {{{
 let g:J6uil_display_icon = 1
+let g:J6uil_empty_separator = 1
 augroup my-j6uil
   autocmd!
   autocmd FileType J6uil call s:j6uil_settings()
