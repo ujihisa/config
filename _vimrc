@@ -2193,6 +2193,9 @@ set guitablabel=%!GuiTabLabel()
 " j6uil {{{
 let g:J6uil_display_icon = 1
 let g:J6uil_empty_separator = 1
+let g:J6uil_open_buffer_cmd = 'new'
+let g:J6uil_align_message = 0
+
 augroup my-j6uil
   autocmd!
   autocmd FileType J6uil call s:j6uil_settings()
@@ -2201,6 +2204,7 @@ augroup END
 function! s:j6uil_settings()
   nunmap <buffer> s
   nmap <silent> <buffer> i <Plug>(J6uil_open_say_buffer)
+  "imap <silent> <buffer> <Cr> <Esc><Cr>
 endfunction
 " }}}
 " spin.vim (rails) {{{
