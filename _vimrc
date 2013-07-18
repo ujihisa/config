@@ -2266,8 +2266,8 @@ function! VimrcStopProcess(type)
 endfunction
 " }}}
 " Database.SQLite {{{
-let g:S = g:V.import('Database.SQLite')
-call g:S.debug_mode_to(1)
+" let g:S = g:V.import('Database.SQLite')
+" call g:S.debug_mode_to(1)
 " }}}
 " showtime {{{
 augroup vimrc-showtime
