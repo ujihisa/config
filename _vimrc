@@ -2299,9 +2299,10 @@ augroup END
 "augroup END
 
 " }}}
-" just for now
+" just for now -- vuls {{{
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
