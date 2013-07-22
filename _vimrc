@@ -1282,11 +1282,7 @@ function! s:unite_source.gather_candidates(args, context)
         \ }')
 endfunction
 
-"function! unite#sources#locate#define()
-"  return executable('locate') ? s:unite_source : []
-"endfunction
 call unite#define_source(s:unite_source)
-
 " }}}
 " unite-evalruby {{{
 "let s:unite_source = {
