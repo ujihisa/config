@@ -1655,6 +1655,7 @@ call unite#define_source(s:unite_source)
 command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
 " }}}
 " vimerl {{{
+" TODO am I using vimerl?
 let g:erlangManPath = '/usr/local/share/man'
 "let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 " }}}
