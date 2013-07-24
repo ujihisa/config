@@ -253,6 +253,7 @@ nnoremap <Space>spp :<C-u>set filetype=php<Cr>i<?php<Cr>error_reporting(E_ERROR 
 nnoremap <Space>shs :<C-u>set filetype=haskell<Cr>imain = do<Cr>print $<Esc>
 nnoremap <Space>ssl :<C-u>set filetype=scala<Cr>
 nnoremap <Space>scl :<C-u>set filetype=clojure<Cr>
+nnoremap <Space>ssh :<C-u>set filetype=sh<Cr>
 
 "nnoremap <Space>b :w blogger:create
 nnoremap <space>b <C-w>100+
