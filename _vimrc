@@ -1074,10 +1074,6 @@ function! DoMspec()
   read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t /usr/bin/ruby #
 endfunction
 " }}}
-" capslock.vim {{{
-imap <C-a> <C-O><Plug>CapsLockToggle
-"set statusline=...%{exists('*CapsLockStatusline')?CapsLockStatusline():''}
-" }}}
 " Haskell Tag {{{
 " see also: ~/bin/update-cabal-tags
 set tag+=~/.cabal/tags
