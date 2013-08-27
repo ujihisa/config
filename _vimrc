@@ -683,13 +683,6 @@ augroup END
 "        "\ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
 "augroup END
 " }}}
-" irb {{{
-" augroup MyIRB
-"   autocmd!
-"   autocmd FileType irb inoremap <buffer> <silent> <Cr> <Esc>:<C-u>ruby v=VIM::Buffer.current;v.append(v.line_number, '#=> ' + eval(v[v.line_number]).inspect)<Cr>jo
-" augroup END
-" nnoremap <Space>irb :<C-u>vnew<Cr>:setfiletype irb<Cr>
-" }}}
 " quickrun {{{ for mine
 let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
