@@ -18,7 +18,6 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.vimbundles'))
 endif
 
-"NeoBundle 'git://github.com/Shougo/clang_complete.git'
 NeoBundle 'Shougo/echodoc'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neobundle.vim'
@@ -34,8 +33,6 @@ NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-ft-clojure', {'directory': 'ft-clojure'}
-"NeoBundle "osyo-manga/shabadou.vim"
-"NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
 NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
 NeoBundle 'kana/vim-smartchr', {'directory': 'smartchr'}
@@ -60,7 +57,6 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
-" NeoBundle 'git@github.com:davidhalter/jedi-vim.git'
 NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'basyura/J6uil.vim'
@@ -79,7 +75,6 @@ NeoBundle 'thinca/vim-portal', {'directory': 'portal'}
 filetype plugin on
 filetype indent on
 
-"nnoremap snu :<C-u>Unite neobundle/update<Cr>
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
