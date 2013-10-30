@@ -740,7 +740,7 @@ let g:quickrun_config['scala'] = {
 "        \ | endif
 "augroup END
 
-" experimental
+let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
 let g:quickrun_config.clojure = {'type': 'clojure/process_manager'}
 let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 
