@@ -1869,6 +1869,21 @@ augroup vimrc-javascript
   autocmd FileType javascript call <SID>vimrc_javascript()
 augroup END
 " }}}
+" python {{{
+function! s:vimrc_python()
+  " setl ts=4
+  " setl sw=4
+  " setl noexpandtab
+  " setl nolist
+
+  "inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
+  inoremap <buffer> ` print()<Left>
+endfunction
+augroup vimrc-python
+  autocmd!
+  autocmd FileType python call <SID>vimrc_python()
+augroup END
+" }}}
 " coffeescript {{{
 function! s:vimrc_coffeescript()
   setl sw=2
