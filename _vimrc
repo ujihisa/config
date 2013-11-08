@@ -2301,6 +2301,9 @@ augroup END
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
 " }}}
+" jruby {{{
+let $GEM_HOME = expand('~/.gem')
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
