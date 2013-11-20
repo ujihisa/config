@@ -43,7 +43,7 @@ NeoBundle 'thinca/vim-quickrun', {'directory': 'quickrun'}
 NeoBundle 'thinca/vim-poslist', {'directory': 'poslist'}
 NeoBundle 'git://github.com/trapd00r/neverland-vim-theme.git'
 NeoBundle 'vim-scripts/sudo.vim', {'directory': 'sudo'}
-NeoBundle 'ujihisa/neco-ghc'
+NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
 NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
 NeoBundle 'chikatoike/concealedyank.vim'
