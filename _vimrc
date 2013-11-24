@@ -2304,6 +2304,13 @@ let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
 " jruby {{{
 let $GEM_HOME = expand('~/.gem')
 " }}}
+" vimshell-benri {{{
+let g:B = g:V.import('Vim.Buffer')
+augroup vimshell-benri
+  autocmd!
+  autocmd CursorHold * if !g:B.is_cmdwin() | silent call feedkeys("g\<ESC>", 'n') | endif
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
