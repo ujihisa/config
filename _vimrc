@@ -743,7 +743,15 @@ let g:quickrun_config['scala'] = {
 "augroup END
 
 let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
-let g:quickrun_config.clojure = {'type': 'clojure/process_manager'}
+
+"let s:clojure_libs = ['/home/ujihisa/.m2/repository/org/clojure/core.match/0.2.0/core.match-0.2.0.jar']
+let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), "\n")
+let g:quickrun_config.clojure = {
+      \ 'type': 'clojure/process_manager',
+      \ 'command': printf(
+      \   'java -cp %s:/usr/share/clojure-1.5/lib/clojure.jar clojure.main',
+      \   join(s:clojure_libs, ':'))}
+
 let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 
 "let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
