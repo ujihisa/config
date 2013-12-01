@@ -2001,6 +2001,7 @@ endfunction
 function! s:vimrc_scala()
   nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
   nnoremap <buffer> <Space>st :<C-u>StartSBT
+  inoremap <buffer><expr> { smartchr#loop('{', '${', '{{{')
 endfunction
 
 augroup vimrc_scala
