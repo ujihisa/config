@@ -2322,6 +2322,16 @@ let $GEM_HOME = expand('~/.gem')
 "   autocmd CursorHold * if !g:B.is_cmdwin() | silent call feedkeys("g\<ESC>", 'n') | endif
 " augroup END
 " }}}
+" lein repl {{{
+function! s:ft_lein_repl()
+  set filetype=clojure
+endfunction
+
+augroup lein-repl
+  autocmd!
+  autocmd FileType int-lein call s:ft_lein_repl()
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
