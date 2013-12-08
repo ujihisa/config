@@ -2001,12 +2001,61 @@ endfunction
 function! s:vimrc_scala()
   nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
   nnoremap <buffer> <Space>st :<C-u>StartSBT
-  inoremap <buffer><expr> { smartchr#loop('{', '${', '{{{')
+  inoremap <buffer><expr> { smartchr#loop('{', '${', '{{{') " }}}
 endfunction
 
 augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
+augroup END
+" }}}
+" clojure leininge integrate (deadcopy from scala. really bad.) {{{
+function! s:start_leiningen()
+  if !has_key(t:, 'lein_cmds')
+    let t:lein_cmds = ['uberjar']
+    echo "let t:lein_cmd = 'uberjar'"
+  endif
+  execute 'VimShellInteractive lein repl'
+  stopinsert
+  let t:lein_bufname = bufname('%')
+  wincmd H
+  wincmd p
+endfunction
+
+command! -nargs=0 StartLeiningen call <SID>start_leiningen()
+
+function! s:lein_run()
+  if !has_key(t:, 'lein_cmds')
+    echoerr 'please give t:lein_cmds a list'
+    return
+  endif
+
+  let lein_bufname = get(t:, 'lein_bufname')
+  if lein_bufname !=# ''
+    " go to the window
+    let wn = bufwinnr(lein_bufname)
+    execute wn . 'wincmd w'
+    " whew
+    normal! Gzt
+    " go back to the previous window
+    wincmd p
+
+    call vimshell#interactive#set_send_buffer(lein_bufname)
+    let cmd_formatted = printf('(leiningen.core.main/apply-task "%s" (leiningen.core.project/read) [])', join(t:lein_cmds))
+    call vimshell#interactive#send(cmd_formatted)
+  else
+    echoerr 'try StartLeiningen'
+  endif
+endfunction
+
+function! s:vimrc_clojure()
+  nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>lein_run()<Cr>
+  nnoremap <buffer> <Space>st :<C-u>StartLeiningen
+endfunction
+
+augroup vimrc_clojure
+  autocmd!
+  autocmd FileType clojure call s:vimrc_clojure()
 augroup END
 " }}}
 " clojure {{{
@@ -2293,7 +2342,7 @@ let g:unite_source_file_mru_long_limit = 5000 " default was 1000
 " unite-build {{{
 augroup vimrc-unite-build
   autocmd!
-  autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus -no-start-insert build:lein<Cr>
+  "autocmd FileType clojure nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus -no-start-insert build:lein<Cr>
 augroup END
 
 "let g:quickrun_config['lein-test'] = {
