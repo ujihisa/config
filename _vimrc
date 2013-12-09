@@ -71,6 +71,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'osyo-manga/vim-jplus'
 NeoBundle 'deris/vim-rengbang'
 NeoBundle 'thinca/vim-portal', {'directory': 'portal'}
+NeoBundle 'iyf/vimrepress'
 
 filetype plugin on
 filetype indent on
