@@ -74,6 +74,7 @@ NeoBundle 'thinca/vim-portal', {'directory': 'portal'}
 if has('python')
   NeoBundle 'iyf/vimrepress'
 endif
+NeoBundle 'tpope/vim-fugitive', {'directory': 'fugitive'}
 
 filetype plugin on
 filetype indent on
@@ -778,11 +779,12 @@ augroup FiletypeAliases
 augroup END
 
 " }}}
-" for git-vim (motemen) {{{
+" for fugitive {{{
 "let g:git_command_edit = 'rightbelow vnew'
-nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
-nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter>
-nnoremap <Space>gs :<C-u>GitStatus<Enter>
+"nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
+nnoremap <Space>gd :<C-u>Gdiff<Cr>
+nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter> " motemen's
+nnoremap <Space>gs :<C-u>Gstatus<Cr>
 nnoremap <Space>gh :<C-u>call <SID>vimrc_git_show()<Cr>
 
 function! s:vimrc_git_show()
@@ -798,14 +800,16 @@ endfunction
 
 "nnoremap <Space>gl :<C-u>GitLog<Enter>
 "nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
-if globpath(&rtp, 'plugin/shadow.vim') != ''
-  nnoremap <Space>ga :<C-u>call GitAddBoth()<Enter>
-else
-  nnoremap <Space>ga :<C-u>GitAdd<Enter>
-endif
-nnoremap <Space>gA :<C-u>GitAdd <cfile><Enter>
-nnoremap <Space>gc :<C-u>GitCommit<Enter>
-nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
+
+" if globpath(&rtp, 'plugin/shadow.vim') != ''
+"   nnoremap <Space>ga :<C-u>call GitAddBoth()<Enter>
+" else
+"   nnoremap <Space>ga :<C-u>GitAdd<Enter>
+" endif
+
+nnoremap <silent> <Space>ga :<C-u>silent Git add %<Cr>
+nnoremap <Space>gc :<C-u>Gcommit<Cr>
+"nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
 " }}}
 " TeX Supports {{{
