@@ -1640,13 +1640,6 @@ let &rtp = join(rtp, ',')
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
 nnoremap <silent><Space>] :<C-u>GoldenRatio<Cr>
 " }}}
-" unite-launch {{{
-let g:unite_launch_apps = [
-      \ 'sbt compile',
-      \ 'sbt clean update',
-      \ 'git stash save && git pull --rebase && git stash pop',
-      \ 'sbt test']
-" }}}
 " unite-transparency {{{
 let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}} } " avoid triple closes
 function! s:unite_source.gather_candidates(args, context)
