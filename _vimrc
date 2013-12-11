@@ -2000,6 +2000,7 @@ function! s:sbt_run()
     wincmd p
 
     call vimshell#interactive#set_send_buffer(sbt_bufname)
+    call vimshell#interactive#clear()
     call vimshell#interactive#send(t:sbt_cmds)
     " explosion
     "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
@@ -2051,6 +2052,7 @@ function! s:lein_run()
     wincmd p
 
     call vimshell#interactive#set_send_buffer(lein_bufname)
+    call vimshell#interactive#clear()
     let cmd_formatted = printf('(leiningen.core.main/apply-task "%s" (leiningen.core.project/read) [])', join(t:lein_cmds))
     call vimshell#interactive#send(cmd_formatted)
   else
