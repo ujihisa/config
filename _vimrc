@@ -304,6 +304,7 @@ snoremap <M-g> <C-g>
 nnoremap <M-f> <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
+
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
@@ -343,7 +344,10 @@ endfunction
 "nmap <Space>V <Plug>(vimshell_split_switch)
 "nmap <Space>v <Plug>(vimshell_switch)
 nmap <Space>v <Plug>(vimshell_split_switch)
-nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
+"nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
+
+" close vimshell from anywhere
+nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
