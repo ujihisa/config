@@ -74,6 +74,8 @@ if has('python')
   NeoBundle 'iyf/vimrepress'
 endif
 NeoBundle 'tpope/vim-fugitive', {'directory': 'fugitive'}
+NeoBundle 'mopp/autodirmake.vim'
+NeoBundle 'mattn/gist-vim'
 
 filetype plugin on
 filetype indent on
@@ -2397,7 +2399,6 @@ augroup END
 " clingre.vim
 " gas
 " gauche.vim
-" gist-vim
 " git-vim
 " haskellhisa
 " haskell.vim
