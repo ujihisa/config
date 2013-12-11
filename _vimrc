@@ -31,7 +31,6 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vesting'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
-NeoBundle 'tsukkee/lingr-vim'
 NeoBundle 'thinca/vim-ft-clojure', {'directory': 'ft-clojure'}
 NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
 NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
@@ -2392,6 +2391,60 @@ augroup lein-repl
   autocmd!
   autocmd FileType int-lein call s:ft_lein_repl()
 augroup END
+" }}}
+" {{{
+" -- list of plugins not managed by neobundle --
+" clingre.vim
+" gas
+" gauche.vim
+" gist-vim
+" git-vim
+" haskellhisa
+" haskell.vim
+" hootsuite
+" leiningen.vim
+" luajikken.vim
+" mrkn256.vim
+" nclipper.vim
+" neco-look
+" neco-rubymf
+" phpconceal
+" proto
+" quicklearn
+" Rainbow-Parenthsis-Bundle
+" restart.vim
+" shiracha-vim
+" smartword
+" sound-volume.vim
+" stickykey.vim
+" textobj-wiw
+" uj-textile
+" unite-colorscheme
+" unite-equery
+" unite-font
+" unite-gem
+" unite-git_grep
+" unite-haskellimport
+" unite-help
+" unite-jjj
+" unite-lein
+" unite-locate
+" unite-outline
+" unite-rake
+" unite-systemctl
+" unite-tag
+" vim-coffee-script
+" vim-colors-solarized
+" vimerl
+" vimlint
+" vim-markdown
+" vim-painter
+" vim-ruby
+" vim-scala
+" vimshell-erlang
+" vimshell-git
+" vimshell-repl
+" vim-surround
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
