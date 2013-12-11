@@ -79,6 +79,7 @@ NeoBundle 'tpope/vim-fugitive', {'directory': 'fugitive'}
 filetype plugin on
 filetype indent on
 
+
 " }}}
 " vimproc {{{
 let g:V = vital#of('vital')
@@ -780,6 +781,11 @@ augroup END
 
 " }}}
 " for fugitive {{{
+augroup vimrc-fugitive
+  autocmd!
+  autocmd FileType gitcommit setl nolist
+augroup END
+
 "let g:git_command_edit = 'rightbelow vnew'
 "nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
 nnoremap <Space>gd :<C-u>Gdiff<Cr>
