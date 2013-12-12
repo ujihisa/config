@@ -825,7 +825,7 @@ endfunction
 " endif
 
 nnoremap <silent> <Space>ga :<C-u>silent Git add %<Cr>
-nnoremap <Space>gc :<C-u>Gcommit<Cr>
+nnoremap <Space>gc :<C-u>Gcommit --verbose<Cr>
 "nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
 " }}}
