@@ -76,10 +76,14 @@ endif
 NeoBundle 'tpope/vim-fugitive', {'directory': 'fugitive'}
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+NeoBundle 'vim-scripts/haskell.vim'
+NeoBundle 'mrkn/mrkn256.vim', 'light_background'
+NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
+NeoBundle 'ujihisa/quicklearn'
+NeoBundle 'tpope/vim-surround', {'directory': 'surround'}
 
 filetype plugin on
 filetype indent on
-
 
 " }}}
 " vimproc {{{
@@ -2403,21 +2407,16 @@ augroup END
 " {{{
 " -- list of plugins not managed by neobundle --
 " clingre.vim
-" gas
 " gauche.vim
 " git-vim
 " haskellhisa
-" haskell.vim
 " hootsuite
 " leiningen.vim
 " luajikken.vim
-" mrkn256.vim
-" nclipper.vim
+"
 " neco-look
 " neco-rubymf
 " phpconceal
-" proto
-" quicklearn
 " Rainbow-Parenthsis-Bundle
 " restart.vim
 " shiracha-vim
@@ -2451,7 +2450,6 @@ augroup END
 " vimshell-erlang
 " vimshell-git
 " vimshell-repl
-" vim-surround
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
