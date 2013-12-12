@@ -81,6 +81,8 @@ NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
 NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tpope/vim-surround', {'directory': 'surround'}
+NeoBundle 'ujihisa/neco-look'
+NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 
 filetype plugin on
 filetype indent on
@@ -2413,11 +2415,8 @@ augroup END
 " hootsuite
 " leiningen.vim
 " luajikken.vim
-"
-" neco-look
-" neco-rubymf
 " phpconceal
-" Rainbow-Parenthsis-Bundle
+"
 " restart.vim
 " shiracha-vim
 " smartword
