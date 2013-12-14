@@ -83,6 +83,7 @@ NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tpope/vim-surround', {'directory': 'surround'}
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
+NeoBundle 'shiracha/shiracha-vim'
 
 filetype plugin on
 filetype indent on
@@ -2417,8 +2418,6 @@ augroup END
 " luajikken.vim
 " phpconceal
 "
-" restart.vim
-" shiracha-vim
 " smartword
 " sound-volume.vim
 " stickykey.vim
