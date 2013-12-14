@@ -57,18 +57,17 @@ NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 NeoBundle 'vim-scripts/groovyindent'
-NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-user', {'directory': 'textobj-user'}
 NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
-NeoBundle 'Pychimp/vim-luna'
+NeoBundle 'Pychimp/vim-luna', {'directory': 'luna'}
 NeoBundle 'BirdseyeSoftware/tracker.vim'
 NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'osyo-manga/vim-jplus'
-NeoBundle 'deris/vim-rengbang'
+NeoBundle 'osyo-manga/jplus', {'directory': 'jplus'}
+NeoBundle 'deris/rengbang', {'directory': 'rengbang'}
 NeoBundle 'thinca/vim-portal', {'directory': 'portal'}
 if has('python')
   NeoBundle 'iyf/vimrepress'
@@ -84,6 +83,18 @@ NeoBundle 'tpope/vim-surround', {'directory': 'surround'}
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'shiracha/shiracha-vim'
+NeoBundle 'kana/vim-smartword', {'directory': 'smartword'}
+NeoBundle 'h1mesuke/textobj-wiw'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'ujihisa/unite-equery'
+NeoBundle 'ujihisa/unite-font'
+NeoBundle 'ujihisa/unite-gem'
+NeoBundle 'ujihisa/unite-haskellimport'
+NeoBundle 'tsukkee/unite-help'
+NeoBundle 'ujihisa/unite-locate'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'kchmck/vim-coffee-script', {'directory': 'coffee-script'}
+NeoBundle 'altercation/vim-colors-solarized', {'directory': 'colors-solarized'}
 
 filetype plugin on
 filetype indent on
@@ -507,7 +518,6 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
-  "nnoremap sra :<C-u>Unite rake<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   "nnoremap su :<C-u>Unite history/command source command<Cr>
   "nnoremap sd :<C-u>Unite command<Cr>
@@ -698,7 +708,7 @@ augroup END
 "augroup END
 " }}}
 " quickrun {{{ for mine
-let g:quickrun_direction = 'rightbelow vertical'
+"let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
 
 " nnoremap <Space>r :<C-u>call <SID>quickrun_of_buffer()<Cr>
@@ -1552,7 +1562,7 @@ let g:ref_clojure_cmd = [
 function! s:git_log_viewer()
   vnew
   "VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
-  VimProcRead git log -u 'ORIG_HEAD..HEAD'
+  VimProcRead git log -u 'ORIG_HEAD..HEAD' --
   set filetype=git-log.git-diff
   setl foldmethod=expr
   setl foldexpr=getline(v:lnum)!~'^commit'
@@ -1924,18 +1934,6 @@ function! s:vimrc_coffeescript()
   setl sts=2
   setl expandtab
   setl list
-
-  return
-
-  function! JavaScriptUnderScoreBecomesCamelCase()
-    if matchstr(getline('.'), '.', col('.')-2) =~ '\w'
-      return "\<Plug>(stickykey-shift)"
-    else
-      return '_'
-    endif
-  endfunction!
-
-  imap <buffer><expr> _ JavaScriptUnderScoreBecomesCamelCase()
 endfunction
 
 augroup vimrc-coffeescript
@@ -2417,29 +2415,12 @@ augroup END
 " leiningen.vim
 " luajikken.vim
 " phpconceal
-"
-" smartword
 " sound-volume.vim
-" stickykey.vim
-" textobj-wiw
 " uj-textile
-" unite-colorscheme
-" unite-equery
-" unite-font
-" unite-gem
-" unite-git_grep
-" unite-haskellimport
-" unite-help
 " unite-jjj
 " unite-lein
-" unite-locate
-" unite-outline
-" unite-rake
 " unite-systemctl
-" unite-tag
-" vim-coffee-script
-" vim-colors-solarized
-" vimerl
+"
 " vimlint
 " vim-markdown
 " vim-painter
