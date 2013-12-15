@@ -332,11 +332,9 @@ imap <S-BS> <Plug>(vimrc_bs)
 " }}}
 " Cr in Insert Mode always means newline {{{
 function! CrInInsertModeAlwaysMeansNewline()
-  "let a = (exists('b:did_indent') ? "\<C-f>" : "") . "\<CR>X\<BS>"
   let a = "\<CR>X\<BS>"
   return pumvisible() ? neocomplcache#close_popup() . a : a
 endfunction
-"inoremap <expr> <CR> pumvisible() ? neocomplcache#close_popup()."\<C-f>\<CR>X\<BS>" : "\<C-f>\<CR>X\<BS>"
 inoremap <expr> <CR> CrInInsertModeAlwaysMeansNewline()
 " }}}
 " Flip Arguments {{{
