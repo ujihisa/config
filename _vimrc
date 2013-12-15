@@ -1,23 +1,13 @@
-" legacy pathogen {{{
-" http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-runtime! autoload/pathogen.vim
-if exists('g:loaded_pathogen')
-  call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
-  try
-    call pathogen#helptags()
-  catch /Duplicate tag/
-    " do nothing
-  endtry
-end
-" }}}
-" active neobundle {{{
+" neobundle {{{
 set nocompatible
 filetype off
 if has('vim_starting')
-  set runtimepath+=expand('~/.vimbundles/neobundle.vim')
+  set runtimepath+=~/.vimbundles/neobundle.vim
   call neobundle#rc(expand('~/.vimbundles'))
 endif
 
+let g:neobundle#enable_name_conversion = 1
+NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/echodoc'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neobundle.vim'
@@ -26,25 +16,25 @@ NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
-"NeoBundle 'git://github.com/Shougo/vimproc.git'
+NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vesting'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
-NeoBundle 'thinca/vim-ft-clojure', {'directory': 'ft-clojure'}
-NeoBundle 'kana/vim-tabpagecd', {'directory': 'tabpagecd'}
-NeoBundle 'kana/vim-filetype-haskell', {'directory': 'filetype-haskell'}
-NeoBundle 'kana/vim-smartchr', {'directory': 'smartchr'}
+NeoBundle 'thinca/vim-ft-clojure'
+NeoBundle 'kana/vim-tabpagecd'
+NeoBundle 'kana/vim-filetype-haskell'
+NeoBundle 'kana/vim-smartchr'
 NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'thinca/vim-ref', {'directory': 'ref'}
-NeoBundle 'veloce/vim-aldmeris', {'directory': 'aldmeris'}
-NeoBundle 'thinca/vim-quickrun', {'directory': 'quickrun'}
-NeoBundle 'thinca/vim-poslist', {'directory': 'poslist'}
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'veloce/vim-aldmeris'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-poslist'
 NeoBundle 'git://github.com/trapd00r/neverland-vim-theme.git'
-NeoBundle 'vim-scripts/sudo.vim', {'directory': 'sudo'}
+NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'eagletmt/neco-ghc'
-NeoBundle 'thinca/vim-showtime', {'directory': 'showtime'}
-NeoBundle 'thinca/vim-unite-history', {'directory': 'unite-history'}
+NeoBundle 'thinca/vim-showtime'
+NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'pasela/unite-webcolorname'
@@ -57,33 +47,33 @@ NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 NeoBundle 'vim-scripts/groovyindent'
-NeoBundle 'kana/vim-textobj-user', {'directory': 'textobj-user'}
+NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'basyura/J6uil.vim'
-NeoBundle 'thinca/vim-fontzoom', {'directory': 'fontzoom'}
+NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundle 'AndrewRadev/switch.vim', {'directory': 'switch'}
-NeoBundle 'Pychimp/vim-luna', {'directory': 'luna'}
+NeoBundle 'AndrewRadev/switch.vim'
+NeoBundle 'Pychimp/vim-luna'
 NeoBundle 'BirdseyeSoftware/tracker.vim'
 NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
-NeoBundle 'osyo-manga/jplus', {'directory': 'jplus'}
-NeoBundle 'deris/rengbang', {'directory': 'rengbang'}
-NeoBundle 'thinca/vim-portal', {'directory': 'portal'}
+NeoBundle 'osyo-manga/jplus'
+NeoBundle 'deris/rengbang'
+NeoBundle 'thinca/vim-portal'
 if has('python')
   NeoBundle 'iyf/vimrepress'
 endif
-NeoBundle 'tpope/vim-fugitive', {'directory': 'fugitive'}
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
 NeoBundle 'ujihisa/quicklearn'
-NeoBundle 'tpope/vim-surround', {'directory': 'surround'}
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'shiracha/shiracha-vim'
-NeoBundle 'kana/vim-smartword', {'directory': 'smartword'}
+NeoBundle 'kana/vim-smartword'
 NeoBundle 'h1mesuke/textobj-wiw'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/unite-equery'
@@ -93,8 +83,9 @@ NeoBundle 'ujihisa/unite-haskellimport'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'kchmck/vim-coffee-script', {'directory': 'coffee-script'}
-NeoBundle 'altercation/vim-colors-solarized', {'directory': 'colors-solarized'}
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'altercation/vim-colors-solarized'
+call neobundle#local("~/.vimbundles", {})
 
 filetype plugin on
 filetype indent on
@@ -2148,7 +2139,7 @@ let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
-      \     ['shougo', 'Unite neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
+      \     ['shougo', 'Unite -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
       \   ]
       \ }
 let g:unite_source_menu_menus.quickrun_set = {
@@ -2409,6 +2400,7 @@ augroup END
 " -- list of plugins not managed by neobundle --
 " clingre.vim
 " gauche.vim
+"
 " git-vim
 " haskellhisa
 " hootsuite
