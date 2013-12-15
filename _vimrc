@@ -1984,7 +1984,7 @@ function! s:start_leiningen()
     let t:lein_cmds = ['uberjar']
     echo "let t:lein_cmd = 'uberjar'"
   endif
-  execute 'VimShellInteractive lein repl'
+  execute 'VimShellInteractive lein interactive'
   stopinsert
   let t:lein_bufname = bufname('%')
   wincmd H
@@ -2011,7 +2011,8 @@ function! s:lein_run()
 
     call vimshell#interactive#set_send_buffer(lein_bufname)
     call vimshell#interactive#clear()
-    let cmd_formatted = printf('(leiningen.core.main/apply-task "%s" (leiningen.core.project/read) [])', join(t:lein_cmds))
+    "let cmd_formatted = printf('(leiningen.core.main/apply-task "%s" (leiningen.core.project/read) [])', join(t:lein_cmds))
+    let cmd_formatted = join(t:lein_cmds)
     call vimshell#interactive#send(cmd_formatted)
   else
     echoerr 'try StartLeiningen'
