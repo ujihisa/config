@@ -1,3 +1,4 @@
+"
 " neobundle {{{
 set nocompatible
 filetype off
@@ -331,20 +332,13 @@ imap <S-BS> <Plug>(vimrc_bs)
 "inoremap <expr> <s-space> pumvisible() ? neocomplcache#close_popup() . ' ' : ' '
 " }}}
 " Cr in Insert Mode always means newline {{{
+if 0
 function! CrInInsertModeAlwaysMeansNewline()
   let a = "\<CR>X\<BS>"
   return pumvisible() ? neocomplcache#close_popup() . a : a
 endfunction
 inoremap <expr> <CR> CrInInsertModeAlwaysMeansNewline()
-" }}}
-" Flip Arguments {{{
-"   f(a, b) to f(b, a) when your cursol is on '('.
-function! FlipArguments()
-  normal! y%
-  let @" = split(system('flipper "' . @" . '"'), "\n")[0]
-  execute "normal! %p\<C-o>d%"
-endfunction
-nnoremap <space>flip :<C-u>call FlipArguments()<Cr>
+endif
 " }}}
 " vimshell {{{
 function! EmptyBufferP()
