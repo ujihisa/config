@@ -322,6 +322,12 @@ nnoremap <M-f> <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
 
+" jlj (in insert mode) = <Esc>
+call smartinput#map_to_trigger('i', 'j', 'j', 'j')
+call smartinput#define_rule({
+      \   'at': 'jl\%#',
+      \   'char': 'j',
+      \   'input': '<BS><BS><Esc>'})
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
