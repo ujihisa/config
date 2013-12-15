@@ -99,7 +99,11 @@ filetype plugin on
 filetype indent on
 
 " }}}
-let g:V = vital#of('vital')
+" g:V {{{
+if !has_key(g:, 'V')
+  let g:V = vital#of('vital')
+endif
+" }}}
 " vimproc {{{
 if g:V.is_mac()
   " TODO
@@ -157,9 +161,6 @@ set timeoutlen=300
 
 " }}}
 " mappings {{{
-"let mapleader=" "
-"let maplocalleader=' '
-
 if g:V.is_mac()
   let g:transparency = 10
   " for MacVim's bug
@@ -210,16 +211,13 @@ nnoremap Q q
 nnoremap <C-j> j
 nnoremap <C-k> k
 
-nnoremap <Space>w :<C-u>write<Return>
-nnoremap <Space>q :<C-u>quit<Return>
-nnoremap <Space>Q :<C-u>quit!<Return>
+nnoremap <Space>w :<C-u>write<Cr>
+nnoremap <Space>q :<C-u>quit<Cr>
+nnoremap <Space>Q :<C-u>quit!<Cr>
 nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
 "nnoremap <Space>] <C-w>]
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
-
-" inoremap <C-t> 「」<left>
-" inoremap <C-t><C-t> 【】<left>
 
 " undoable
 inoremap <C-u>  <C-g>u<C-u>
@@ -230,8 +228,8 @@ cnoremap <M-BS> <C-w>
 
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
-nnoremap <Space>av  :<C-u>tabnew<CR>:pwd<Cr>:VimShell ~/.vimbundles<Cr>
-nnoremap <Space>an  :<C-u>tabnew<CR>:CD ~/<Cr>
+nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
+nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
@@ -276,13 +274,6 @@ nnoremap <Space>ssh :<C-u>set filetype=sh<Cr>
 "nnoremap <Space>b :w blogger:create
 nnoremap <space>b <C-w>100+
 
-"let g:blogger_ruby_path = '/Users/ujihisa/git/ruby193/local/bin/ruby'
-if filereadable("/Users/ujihisa/git/ruby200/local/bin/ruby")
-  let g:blogger_ruby_path = "/Users/ujihisa/git/ruby200/local/bin/ruby"
-else
-  let g:blogger_ruby_path = "/home/ujihisa/git/ruby/local/bin/ruby"
-endif
-let g:blogger_gist = 0
 nnoremap <Space>I $i
 "nnoremap <Space>C $C
 nnoremap X ^x
@@ -332,7 +323,7 @@ call smartinput#define_rule({
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
-imap <BS> <Plug>(vimrc_bs)
+imap <S-BS> <Plug>(vimrc_bs)
 "function! s:wrapmap(key)
 "  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
 "endfunction
@@ -988,20 +979,6 @@ endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 " }}}
-" color {{{
-" colorscheme desert
-" highlight Cursor ctermbg=black
-" highlight Pmenu cterm=standout ctermfg=2 ctermbg=black
-" highlight PmenuSel cterm=bold ctermfg=2 ctermbg=black
-" highlight PmenuSbar ctermbg=0
-" highlight StatusLine term=standout cterm=underline ctermfg=2
-" highlight StatusLineNC cterm=underline
-" highlight VertSplit cterm=NONE
-" highlight LineNr ctermfg=2
-" highlight TabLineFill ctermfg=0
-
-
-" }}}
 command! LeftSpace call s:left_space() " {{{
 function! s:left_space()
   let bufname = printf('[leftspace:%s]', tabpagenr())
@@ -1047,21 +1024,10 @@ if filereadable(expand('~/.vimrc_secret'))
   source ~/.vimrc_secret
 endif
 " This file should let following variables:
-" Blogger.vim
-"   * g:blogger_blogid
-"   * g:blogger_email
-"   * g:blogger_pass
 "   * g:lingr_vim_user
 "   * g:lingr_vim_password
 " }}}
-" XML, HTML completion {{{
-"augroup MyXML
-"  autocmd!
-"  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-"  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-"augroup END
-" }}}
-" Rename (See Vim Hacks #17 {{{
+" Rename (See Vim Hacks #17) {{{
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
 " C/C++ compiler {{{
