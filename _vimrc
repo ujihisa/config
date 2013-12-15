@@ -319,14 +319,14 @@ nnoremap <M-f> <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
 
-" jlj (in insert mode) = <Esc>
+" jlj = <Esc>
 call smartinput#map_to_trigger('i', 'j', 'j', 'j')
 call smartinput#define_rule({
       \   'at': 'jl\%#',
       \   'char': 'j',
       \   'input': '<BS><BS><Esc>'})
 
-" {{ (in insert mode in scala string literal) = ${}
+" {{ in scala string literal = ${}
 call smartinput#map_to_trigger('i', '{', '{', '{')
 call smartinput#define_rule({
       \   'at': '{\%#}',
@@ -339,6 +339,33 @@ call smartinput#define_rule({
       \   'char': '{',
       \   'input': '<BS>${}<Left>',
       \   'filetype': ['scala'],
+      \   'syntax': ['String']})
+" {{ in clojure string literal = ~{}
+call smartinput#define_rule({
+      \   'at': '{\%#}',
+      \   'char': '{',
+      \   'input': '<BS>~{',
+      \   'filetype': ['clojure'],
+      \   'syntax': ['String']})
+call smartinput#define_rule({
+      \   'at': '{\%#',
+      \   'char': '{',
+      \   'input': '<BS>~{}<Left>',
+      \   'filetype': ['clojure'],
+      \   'syntax': ['String']})
+" (( in clojure string literal = ~()
+call smartinput#map_to_trigger('i', '(', '(', '(')
+call smartinput#define_rule({
+      \   'at': '(\%#)',
+      \   'char': '(',
+      \   'input': '<BS>~(',
+      \   'filetype': ['clojure'],
+      \   'syntax': ['String']})
+call smartinput#define_rule({
+      \   'at': '(\%#',
+      \   'char': '(',
+      \   'input': '<BS>~()<Left>',
+      \   'filetype': ['clojure'],
       \   'syntax': ['String']})
 "}}}
 " = for completion and <bs> for cancel {{{
