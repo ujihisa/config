@@ -333,11 +333,11 @@ imap <S-BS> <Plug>(vimrc_bs)
 " }}}
 " Cr in Insert Mode always means newline {{{
 if 0
-function! CrInInsertModeAlwaysMeansNewline()
-  let a = "\<CR>X\<BS>"
-  return pumvisible() ? neocomplcache#close_popup() . a : a
-endfunction
-inoremap <expr> <CR> CrInInsertModeAlwaysMeansNewline()
+  function! CrInInsertModeAlwaysMeansNewline()
+    let a = "\<CR>X\<BS>"
+    return pumvisible() ? neocomplcache#close_popup() . a : a
+  endfunction
+  inoremap <expr> <CR> CrInInsertModeAlwaysMeansNewline()
 endif
 " }}}
 " vimshell {{{
