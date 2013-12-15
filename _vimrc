@@ -92,7 +92,6 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'thinca/vim-painter'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'Shougo/javacomplete'
-NeoBundle 'Shougo/vim-vcs'
 
 call neobundle#local("~/.vimbundles", {})
 
@@ -663,22 +662,6 @@ autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsol
 endif
 " `:set modifiable | undo | syntax clear' to revert
 " }}}
-augroup MySomething " {{{
-  autocmd!
-  autocmd BufWinEnter,BufNewFile *.io setfiletype io
-  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
-  autocmd BufWinEnter,BufNewFile *.tex.erb set filetype=tex.eruby
-
-
-  " set filetype=twitter and then...
-  autocmd FileType twitter inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#%') . '" >&/dev/null &'<Cr>o
-
-  "autocmd FileType mixiim inoremap <buffer> <CR> <Esc>2GdG:<C-u>MixiEchoGet<Cr>ddO
-  "autocmd FileType mixispam inoremap <buffer> <Cr> <Esc>:<C-u>MixiEcho<Cr>o
-
-  "autocmd FileType spamspam inoremap <buffer> <silent> <Cr> <Esc>:execute '!twitter post "' . escape(getline('.'), '"!#') . '" >&/dev/null &'<Cr>:<C-u>MixiEcho<Cr>o
-augroup END
-" }}}
 augroup RubyTrunk " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/git/ruby/*.c setl ts=8 noexpandtab
@@ -727,7 +710,6 @@ let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
 
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
-let g:quickrun_config['ruby.rspec'] = {'command': "spec -l {line('.')}"}
 let g:quickrun_config.textile = {
       \ 'command': 'redcloth',
       \ 'tempfile': '%{tempname()}.textile',
