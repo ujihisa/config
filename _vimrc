@@ -25,6 +25,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
+NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
@@ -85,14 +86,21 @@ NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'thinca/vim-painter'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Shougo/javacomplete'
+NeoBundle 'Shougo/vim-vcs'
+
 call neobundle#local("~/.vimbundles", {})
 
 filetype plugin on
 filetype indent on
 
 " }}}
-" vimproc {{{
 let g:V = vital#of('vital')
+" vimproc {{{
 if g:V.is_mac()
   " TODO
 else
@@ -103,7 +111,7 @@ endif
 " settings {{{
 set encoding=utf-8
 set termencoding=utf-8
-set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
+"set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 set ignorecase
 set smartcase
@@ -129,7 +137,6 @@ set autoread
 set title
 set backspace=indent,eol,start
 set modeline
-" set noequalalways " http://vim-users.jp/2009/06/hack31/ paradox: see 89
 set t_Co=256
 set cmdheight=3
 " http://vim-users.jp/2009/06/hack32/
@@ -143,10 +150,10 @@ if has('persistent_undo')
   augroup END
 endif
 set equalalways
+set eadirection=ver
 set updatetime=500
 "set scrolljump=10
 set timeoutlen=300
-inoremap ,. <Esc>
 
 " }}}
 " mappings {{{
@@ -510,7 +517,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
-  "nnoremap su :<C-u>Unite history/command source command<Cr>
+  nnoremap su :<C-u>Unite history/command source command<Cr>
   "nnoremap sd :<C-u>Unite command<Cr>
   nnoremap sp :<C-u>Unite process -no-split<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
@@ -1028,22 +1035,6 @@ augroup END
 "   __hi
 "   end
 command! -nargs=0 LeadUnderscores %s/^\s*/\=repeat('_', strlen(submatch(0)))/g
-" }}}
-" kana's smartword {{{
-
-if 0
-  if globpath(&rtp, 'autoload/smartword.vim') != ''
-    map w  <Plug>(smartword-w)
-    map b  <Plug>(smartword-b)
-    map e  <Plug>(smartword-e)
-    map ge  <Plug>(smartword-ge)
-    noremap W  w
-    "noremap B  b
-    noremap E  e
-    noremap gE ge
-  endif
-endif
-
 " }}}
 " Require secret password file {{{
 if filereadable(expand('~/.vimrc_secret'))
@@ -2414,10 +2405,7 @@ augroup END
 " unite-systemctl
 "
 " vimlint
-" vim-markdown
-" vim-painter
 " vim-ruby
-" vim-scala
 " vimshell-erlang
 " vimshell-git
 " vimshell-repl
