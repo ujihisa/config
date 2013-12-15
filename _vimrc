@@ -54,6 +54,8 @@ NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundle 'AndrewRadev/switch.vim'
+NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
+      \ 'autoload': {'mappings': ['gS', 'gJ']}}
 NeoBundle 'Pychimp/vim-luna'
 NeoBundle 'BirdseyeSoftware/tracker.vim'
 NeoBundle 'KamunagiChiduru/unite-javaimport'
@@ -89,11 +91,14 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tpope/vim-markdown'
-NeoBundle 'thinca/vim-painter'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'Shougo/javacomplete'
+NeoBundleLazy 'thinca/vim-painter', {
+      \ 'autoload' : {
+      \   'commands' : 'PainterStart',
+      \ }}
+NeoBundleLazy 'Shougo/javacomplete'
 
-call neobundle#local("~/.vimbundles", {})
+"call neobundle#local("~/.vimbundles", {})
 
 filetype plugin on
 filetype indent on
@@ -2077,7 +2082,8 @@ let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
-      \     ['shougo', 'Unite -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
+      \     ['all', 'Unite -no-start-insert -horizontal -log neobundle/update'],
+      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
       \   ]
       \ }
 let g:unite_source_menu_menus.quickrun_set = {
