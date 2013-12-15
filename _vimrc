@@ -53,7 +53,8 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundle 'AndrewRadev/switch.vim'
+NeoBundleLazy 'AndrewRadev/switch.vim', {
+      \ 'autoload': {'commands': ['Switch']}}
 NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
       \ 'autoload': {'mappings': ['gS', 'gJ']}}
 NeoBundle 'Pychimp/vim-luna'
@@ -324,6 +325,21 @@ call smartinput#define_rule({
       \   'at': 'jl\%#',
       \   'char': 'j',
       \   'input': '<BS><BS><Esc>'})
+
+" {{ (in insert mode in scala string literal) = ${}
+call smartinput#map_to_trigger('i', '{', '{', '{')
+call smartinput#define_rule({
+      \   'at': '{\%#}',
+      \   'char': '{',
+      \   'input': '<BS>${',
+      \   'filetype': ['scala'],
+      \   'syntax': ['String']})
+call smartinput#define_rule({
+      \   'at': '{\%#',
+      \   'char': '{',
+      \   'input': '<BS>${}<Left>',
+      \   'filetype': ['scala'],
+      \   'syntax': ['String']})
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
@@ -1957,7 +1973,6 @@ endfunction
 function! s:vimrc_scala()
   nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
   nnoremap <buffer> <Space>st :<C-u>StartSBT
-  inoremap <buffer><expr> { smartchr#loop('{', '${', '{{{') " }}}
 endfunction
 
 augroup vimrc_scala
@@ -2339,6 +2354,10 @@ augroup lein-repl
   autocmd!
   autocmd FileType int-lein call s:ft_lein_repl()
 augroup END
+" }}}
+" AndrewRadev/switch {{{
+nnoremap <silent><M-i> :<C-u>Switch<Cr>
+inoremap <silent><M-i> <Esc>:Switch<Cr>a
 " }}}
 " {{{
 " -- list of plugins not managed by neobundle --
