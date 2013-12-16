@@ -100,6 +100,7 @@ NeoBundleLazy 'thinca/vim-painter', {
       \ }}
 NeoBundleLazy 'Shougo/javacomplete'
 NeoBundle 'AndrewRadev/linediff.vim'
+NeoBundle 'ujihisa/vimport'
 
 "call neobundle#local("~/.vimbundles", {})
 
