@@ -2303,20 +2303,22 @@ nmap <M-J> <Plug>(jplus-input)
 vmap <M-J> <Plug>(jplus-input)
 " }}}
 " clojure-ns {{{
-function! s:vimrc_clojure_current_ns(contents)
-  for line in a:contents[:4] " take 5 items
-    let x = matchlist(line, '^(ns \(.*\)')[1]
-    if len(x)
-      return x
-    endif
-  endfor
-  echomsg 'could not find ns'
-  return ''
-endfunction
+if 0
+  function! s:vimrc_clojure_current_ns(contents)
+    for line in a:contents[:4] " take 5 items
+      let x = matchlist(line, '^(ns \(.*\)')[1]
+      if len(x)
+        return x
+      endif
+    endfor
+    echomsg 'could not find ns'
+    return ''
+  endfunction
 
-function! s:vimrc_clojure_current_ns_current_file()
-  return s:vimrc_clojure_current_ns(getline(1, '$'))
-endfunction
+  function! s:vimrc_clojure_current_ns_current_file()
+    return s:vimrc_clojure_current_ns(getline(1, '$'))
+  endfunction
+endif
 " }}}
 " debug quickrun/process_manager {{{
 function! VimrcStopProcess(type)
@@ -2404,7 +2406,6 @@ inoremap <silent><M-i> <Esc>:Switch<Cr>a
 " unite-systemctl
 "
 " vimlint
-" vim-ruby
 " vimshell-erlang
 " vimshell-git
 " vimshell-repl
