@@ -475,6 +475,7 @@ nnoremap sG :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>') . ' -default-a
 " {{{ thinca/poslist.vim
 nmap <C-o> <Plug>(poslist-prev-pos)
 nmap <C-i> <Plug>(poslist-next-pos)
+vmap <C-o> <Plug>(poslist-prev-pos)
 " }}}
 " remote {{{
 command! -nargs=1 RunOnVm !run_on_vm <args> %
@@ -859,7 +860,7 @@ endfunction
 "   nnoremap <Space>ga :<C-u>GitAdd<Enter>
 " endif
 
-nnoremap <silent> <Space>ga :<C-u>silent Git add %<Cr>
+nnoremap <silent> <Space>ga :<C-u>Gwrite<Cr>
 nnoremap <Space>gc :<C-u>Gcommit --verbose<Cr>
 "nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
@@ -1632,7 +1633,7 @@ vnoremap ( t(
 onoremap ] t]
 onoremap [ t[
 vnoremap ] t]
-vnoremap [ t[
+"vnoremap [ t[
 
 " }}}
 " hack 104 http://vim-users.jp/2009/11/hack104/ {{{
@@ -1979,28 +1980,33 @@ endfunction
 command! -nargs=0 StartSBT call <SID>start_sbt()
 
 function! s:sbt_run()
-  if !has_key(t:, 'sbt_cmds')
-    echoerr 'please give t:sbt_cmds a list'
-    return
-  endif
+  let sbt_bufname = get(t:, 'sbt_bufname', '*not-found*')
+  if sbt_bufname == '*not-found*'
+    echo 'Try again please.'
+    call s:start_sbt()
+  else
+    if !has_key(t:, 'sbt_cmds')
+      echoerr 'please give t:sbt_cmds a list'
+      return
+    endif
 
-  let sbt_bufname = get(t:, 'sbt_bufname')
-  if sbt_bufname !=# ''
     " go to the window
     let wn = bufwinnr(sbt_bufname)
-    execute wn . 'wincmd w'
-    " whew
-    normal! Gzt
-    " go back to the previous window
-    wincmd p
+    if wn == -1
+      echo 'OMG not found. Open it please.'
+    else
+      execute wn . 'wincmd w'
+      " whew
+      normal! Gzt
+      " go back to the previous window
+      wincmd p
 
-    call vimshell#interactive#set_send_buffer(sbt_bufname)
-    call vimshell#interactive#clear()
-    call vimshell#interactive#send(t:sbt_cmds)
-    " explosion
-    "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
-  else
-    echoerr 'try StartSBT'
+      call vimshell#interactive#set_send_buffer(sbt_bufname)
+      call vimshell#interactive#clear()
+      call vimshell#interactive#send(t:sbt_cmds)
+      " explosion
+      "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
+    endif
   endif
 endfunction
 
@@ -2084,14 +2090,37 @@ vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)
 " }}}
 " iexe-sbt {{{
 function! s:vimrc_int_sbt()
-  syn match intsbtInfo '^\[info\]'
-  syn match intsbtError '^\[error\]'
-  syn match intsbtSuccess '^\[success\] .*'
-  syn match intsbtPrompt '^> '
-  hi def link intsbtInfo LineNr
-  hi def link intsbtError ErrorMsg
+  nunmap <buffer> j
+  nunmap <buffer> k
+
+  syntax case ignore
+
+  syntax match intsbtPrompt /^> .*/ contains=intsbtPromptBody,intsbtPromptHead
+  syntax match intsbtPromptBody /.*/ contained
+  syntax match intsbtPromptHead /^> / contained
+  syntax match intsbtInfo /^\[info\] .*/ contains=intsbtInfoHead,intsbtInfoBody
+  syntax match intsbtInfoBody /.*/ contained
+  syntax match intsbtInfoHead /\[info\]/ contained
+  syntax match intsbtWarn /^\[warn\] .*/ contains=intsbtWarnHead,intsbtWarnBody
+  syntax match intsbtWarnBody /.*/ contained
+  syntax match intsbtWarnHead /\[warn\]/ contained
+  syntax match intsbtError /^\[error\] .*/ contains=intsbtErrorHead,intsbtErrorBody
+  syntax match intsbtErrorBody /.*/ contained
+  syntax match intsbtErrorHead /\[error\]/ contained
+  syntax match intsbtSuccess /^\[success\] .*/
+
+  hi def link intsbtPromptBody Statement
+  hi def link intsbtPromptHead Operator
+
+  hi def link intsbtInfoBody Comment
+  hi def link intsbtInfoHead LineNr
+  " intsbtWarnBody: something easy to read and doesn't look too strong
+  hi def link intsbtWarnBody String
+  hi def link intsbtWarnHead LineNr
+  " intsbtErrorBody: something easy to read and does look strong
+  hi def link intsbtErrorBody Normal
+  hi def link intsbtErrorHead LineNr
   hi def link intsbtSuccess LineNr
-  hi def link intsbtPrompt vimshellUserPrompt
 endfunction
 
 augroup vimrc-int-sbt
@@ -2394,6 +2423,21 @@ augroup END
 " AndrewRadev/switch {{{
 nnoremap <silent><M-i> :<C-u>Switch<Cr>
 inoremap <silent><M-i> <Esc>:Switch<Cr>a
+" }}}
+" tpope/vim-surround {{{
+"
+" To start operator-pending mode
+nmap <M-s> <Plug>Ysurround
+
+" To surround from visual mode w/ shortcut.
+" Note that there's no {
+vmap s <Plug>VSurround
+vmap ( <Plug>VSurround(
+vmap [ <Plug>VSurround[
+vmap ' <Plug>VSurround'
+vmap " <Plug>VSurround"
+vmap ` <Plug>VSurround`
+
 " }}}
 " {{{
 " -- list of plugins not managed by neobundle --
