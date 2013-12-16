@@ -27,6 +27,7 @@ NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
+NeoBundle 'cohama/vim-smartinput-endwise'
 NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
@@ -58,7 +59,7 @@ NeoBundleLazy 'AndrewRadev/switch.vim', {
 NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
       \ 'autoload': {'mappings': ['gS', 'gJ']}}
 NeoBundle 'Pychimp/vim-luna'
-NeoBundle 'BirdseyeSoftware/tracker.vim'
+"NeoBundle 'BirdseyeSoftware/tracker.vim'
 NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
@@ -94,10 +95,11 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundleLazy 'thinca/vim-painter', {
-      \ 'autoload' : {
-      \   'commands' : 'PainterStart',
+      \ 'autoload': {
+      \   'commands': 'PainterStart',
       \ }}
 NeoBundleLazy 'Shougo/javacomplete'
+NeoBundle 'AndrewRadev/linediff.vim'
 
 "call neobundle#local("~/.vimbundles", {})
 
@@ -318,6 +320,9 @@ snoremap <M-g> <C-g>
 nnoremap <M-f> <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
+" }}}
+" kana/vim-smartinput {{{
+call smartinput_endwise#define_default_rules()
 
 " jlj = <Esc>
 call smartinput#map_to_trigger('i', 'j', 'j', 'j')
@@ -370,6 +375,7 @@ call smartinput#define_rule({
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
+inoremap <M-=> =
 inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
 imap <S-BS> <Plug>(vimrc_bs)
 "function! s:wrapmap(key)
@@ -2142,7 +2148,7 @@ let g:unite_source_menu_menus.myset = {
       \   ],
       \ }
 
-nnoremap <silent> sn  :<C-u>Unite menu:myset -quick-match<CR>
+nnoremap <silent> sn  :<C-u>Unite menu -quick-match<CR>
 " }}}
 " clojure completion candidates {{{
 function! VimrcClojureComplCand()
