@@ -101,6 +101,7 @@ NeoBundleLazy 'thinca/vim-painter', {
 NeoBundleLazy 'Shougo/javacomplete'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'ujihisa/vimport'
+NeoBundle 'leafo/moonscript-vim'
 
 "call neobundle#local("~/.vimbundles", {})
 
@@ -785,6 +786,8 @@ let g:quickrun_config['markdown'] = {
 
 let g:quickrun_config['scala'] = {
       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
+
+let g:quickrun_config['lua'] = {'type': 'lua/vim'}
 
 "augroup vimrc-lazy-quickrun-scala
 "  autocmd!
@@ -2440,6 +2443,27 @@ vmap [ <Plug>VSurround[
 vmap ' <Plug>VSurround'
 vmap " <Plug>VSurround"
 vmap ` <Plug>VSurround`
+
+" }}}
+" moonscript {{{
+if isdirectory(expand('~/.luarocks/bin')) && $PATH !~ 'luarocks'
+  let $PATH = expand('~/.luarocks/bin') . ':' . $PATH
+endif
+let g:quickrun_config.moon = {
+      \ 'command': 'moon'
+      \ }
+let g:quickrun_config['moon/moonc'] = {
+      \ 'exec': '%c %o %s:.',
+      \ 'command': 'moonc',
+      \ 'cmdopt': '-p'}
+
+" moonscript on vim
+"let g:quickrun_config['moon/vim'] = {
+"      \ 'exec': ['moonc -p ']
+"      \ 'command': '',
+"      \ 'hook/eval/template': "echo %s",
+"      \ 'runner': 'vimscript',
+"      \ }
 
 " }}}
 " {{{
