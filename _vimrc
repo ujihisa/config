@@ -2414,6 +2414,18 @@ augroup END
 " AndrewRadev/switch {{{
 nnoremap <silent><M-i> :<C-u>Switch<Cr>
 inoremap <silent><M-i> <Esc>:Switch<Cr>a
+
+augroup vimrc-scala-switch
+  autocmd!
+  autocmd FileType scala let b:switch_custom_definitions =
+        \ [{
+        \   '\(log[ \.]\+\)info\>': '\1warn',
+        \   '\(log[ \.]\+\)warn\>': '\1error',
+        \   '\(log[ \.]\+\)error\>': '\1info'},
+        \  {
+        \   '\<extends\>': 'with',
+        \   '\<with\>': 'extends'}]
+augroup END
 " }}}
 " tpope/vim-surround {{{
 "
