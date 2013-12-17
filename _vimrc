@@ -413,7 +413,7 @@ nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'split'
-let g:vimshell_scrollback_limit = 2000
+let g:vimshell_scrollback_limit = 4000
 let g:vimshell_interactive_update_time = 400
 
 augroup vimrc-vimshell
@@ -443,10 +443,6 @@ let g:vimshell_escape_colors = [
       \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
       \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
       \]
-
-
-" experimental
-vnoremap <Space>r :VimShellSendString<Cr>
 " }}}
 " tag opens in a new window {{{
 function! s:tagjump_in_new_window()
@@ -726,14 +722,6 @@ augroup RubyTrunk " {{{
   "autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
 augroup END
 " }}}
-"augroup RubySpec " {{{
-"  autocmd!
-"  autocmd BufWinEnter,BufNewFile ~/git/ruby-trunk/spec/rubyspec/*.rb
-"        \ let b:quickrun_command =
-"        \ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/rubies/bin/ruby192'
-"        "\ '/usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t ~/git/ruby-trunk/ruby19/bin/ruby'
-"augroup END
-" }}}
 " quickrun {{{ for mine
 "let g:quickrun_direction = 'rightbelow vertical'
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
@@ -759,6 +747,7 @@ let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
 " quickrun for thinca {{{
 "nmap <Space>r :<C-u>QuickRun<Cr>
 nmap <Space>r <Plug>(quickrun)
+vmap <Space>r <Plug>(quickrun)
 
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
