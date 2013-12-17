@@ -1342,9 +1342,6 @@ if 0
   nnoremap <D-k> :<C-u>qa!<Cr>
 endif
 " }}}
-" Restart.vim {{{
-let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages'
-" }}}
 let g:shadow_debug = 1
 " PATH {{{
 "command! -nargs=1 AddPath let $PATH="<args>:".$PATH
@@ -1668,11 +1665,6 @@ call unite#define_source(s:unite_source)
 " quickrun + haskell = infinite loop {{{
 command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
 " }}}
-" vimerl {{{
-" TODO am I using vimerl?
-let g:erlangManPath = '/usr/local/share/man'
-"let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
-" }}}
 " remote {{{
 function! s:_vim(x)
   if filereadable('/Applications/MacVim.app/Contents/MacOS/Vim')
@@ -1970,6 +1962,7 @@ function! s:start_sbt()
     let t:sbt_cmds = ['compile']
     echo "let t:sbt_cmd = 'compile'"
   endif
+  execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
   execute 'VimShellInteractive sbt'
   stopinsert
   let t:sbt_bufname = bufname('%')
@@ -1977,12 +1970,9 @@ function! s:start_sbt()
   wincmd p
 endfunction
 
-command! -nargs=0 StartSBT call <SID>start_sbt()
-
 function! s:sbt_run()
   let sbt_bufname = get(t:, 'sbt_bufname', '*not-found*')
   if sbt_bufname == '*not-found*'
-    echo 'Try again please.'
     call s:start_sbt()
   else
     if !has_key(t:, 'sbt_cmds')
@@ -1994,25 +1984,26 @@ function! s:sbt_run()
     let wn = bufwinnr(sbt_bufname)
     if wn == -1
       echo 'OMG not found. Open it please.'
+      execute 'sbuffer' sbt_bufname
+      wincmd H
     else
       execute wn . 'wincmd w'
-      " whew
-      normal! Gzt
-      " go back to the previous window
-      wincmd p
-
-      call vimshell#interactive#set_send_buffer(sbt_bufname)
-      call vimshell#interactive#clear()
-      call vimshell#interactive#send(t:sbt_cmds)
-      " explosion
-      "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
     endif
+
+    normal! Gzt
+    " go back to the previous window
+    wincmd p
+
+    call vimshell#interactive#set_send_buffer(sbt_bufname)
+    call vimshell#interactive#clear()
+    call vimshell#interactive#send(t:sbt_cmds)
+    " explosion
+    "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
   endif
 endfunction
 
 function! s:vimrc_scala()
   nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
-  nnoremap <buffer> <Space>st :<C-u>StartSBT
 endfunction
 
 augroup vimrc_scala
