@@ -2028,7 +2028,7 @@ let g:quickrun_config['sql/postgresql'] = {
       \ 'cmdopt': '-h 0.0.0.0 mydb postgres'
       \ }
 " }}}
-" scrot {{{
+" scrot (screenshot by <C-q>) {{{
 let g:scrot_n = 0
 function! s:scrot()
   call vimproc#system(printf('scrot /tmp/%04d.png', g:scrot_n))
@@ -2049,11 +2049,6 @@ function! s:vimrc_esparse()
 endfunction
 
 " }}}
-" mckokoro reload {{{
-command! ReloadMckokoro VimProcBang curl -s http://0.0.0.0:8126/reload & >& /dev/null
-nnoremap <space>0 :<C-u>ReloadMckokoro<Cr>
-nnoremap <space>0 :<C-u>! curl -s http://0.0.0.0:8126/reload & >& /dev/null<Cr>
-" }}}
 " fontzoom {{{
 let g:fontzoom_no_default_key_mappings = 1
 nmap <M--> <Plug>(fontzoom-smaller)
@@ -2061,20 +2056,6 @@ nmap <M-=> <Plug>(fontzoom-larger)
 " }}}
 " bare vim {{{
 " $ vim -u NONE -U NONE --noplugin
-" }}}
-" tabline for gui {{{
-function GuiTabLabel()
-  "return printf("%s/%s", expand('%:p:h:h:t'), expand('%:p:h:t'))
-
-  " depends on kana's tabpagecd
-  let cwd = get(t:, 'cwd', getcwd())
-  let tmp = printf("%s/%s",
-        \ fnamemodify(cwd, ':p:h:h:t'),
-        \ fnamemodify(cwd, ':p:h:t'))
-  return tmp . repeat(' ', 20 - len(tmp))
-endfunction
-
-set guitablabel=%!GuiTabLabel()
 " }}}
 " j6uil {{{
 let g:J6uil_display_icon = 1
