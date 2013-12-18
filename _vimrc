@@ -8,10 +8,10 @@ if has('vim_starting')
 endif
 
 let g:neobundle#enable_name_conversion = 1
+NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/echodoc'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
@@ -88,7 +88,7 @@ NeoBundle 'ujihisa/unite-gem'
 NeoBundle 'ujihisa/unite-haskellimport'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-locate'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'derekwyatt/vim-scala'
@@ -102,6 +102,7 @@ NeoBundleLazy 'Shougo/javacomplete'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'ujihisa/vimport'
 NeoBundle 'leafo/moonscript-vim'
+NeoBundle 'tyru/caw.vim'
 
 "call neobundle#local("~/.vimbundles", {})
 
@@ -549,18 +550,16 @@ endfunction
 " unite {{{
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
-  "nnoremap ss :<C-u>Unite file_rec -default-action=vsplit -direction=rightbelow<Cr>
   nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
   nnoremap se :<C-u>Unite file_rec<Cr>
-  nnoremap so :<C-u>Unite outline -auto-preview<Cr>
+  nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
   nnoremap su :<C-u>Unite history/command source command<Cr>
-  "nnoremap sd :<C-u>Unite command<Cr>
-  nnoremap sp :<C-u>Unite process -no-split<Cr>
+  nnoremap sp :<C-u>Unite process -no-split -buffer-name=process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
   nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
@@ -596,7 +595,8 @@ endif
 " in other words, it just swaps : and ;
 
 let g:unite_source_process_enable_confirm = 0
-function! s:unite_my_settings()"{{{
+
+function! s:unite_my_settings()
   silent! nunmap <buffer> <Up>
   silent! nunmap <buffer> <Down>
   silent! iunmap <buffer> <Up>
@@ -608,22 +608,14 @@ function! s:unite_my_settings()"{{{
 
   " overwrite p (preview) as print
   nmap <buffer> p <Plug>(unite_print_candidate)
-endfunction"}}}
+endfunction
+
 augroup vimrc-unite
   autocmd!
   autocmd FileType unite call s:unite_my_settings()
 augroup END
 " }}}
-augroup MyVim " {{{
-  autocmd!
-  if has('gui_running')
-    autocmd FileType vim nnoremap <buffer> gs :<C-u>source %<Cr>:source $MYGVIMRC<Cr>
-  else
-    autocmd FileType vim nnoremap <buffer> gs :<C-u>source %<Cr>
-  endif
-augroup END
-" }}}
-" Big and Man {{{
+" Big {{{
 command! Big wincmd _ | wincmd |
 " }}}
 if has('mac') " {{{
@@ -651,70 +643,6 @@ if has('mac') " {{{
   nnoremap [B[B <C-w>j
   nnoremap [A[A <C-w>k
 endif " }}}
-"legacy {{{
-"set formatoptions=tcq
-" http://subtech.g.hatena.ne.jp/secondlife/20080603/1212489817
-"let git_diff_spawn_mode=1
-"}}}
-" for git {{{
-augroup MyGit
-  autocmd!
-  autocmd BufWinEnter,BufNewFile COMMIT_EDITMSG set filetype=git
-augroup END
-let g:git_diff_spawn_mode = 2
-" }}}
-" command! GitGol call s:git_gol() " {{{
-" function! s:git_gol()
-"   vnew
-"   read!for i in $(git log --pretty=oneline | head -n 10 | cut -d ' ' -f 1); do git show $i --color-words; done
-" endfunction
-" }}}
-" motemen's escape sequence {{{
-if 0
-function! HighlightConsoleCodes()
-    0
-    let register_save = @"
-    while search('^[\[[0-9;]*m', 'c')
-        normal! dfm
-
-        let [lnum, col] = getpos('.')[1:2]
-        if len(getline('.')) == col
-            let col += 1
-        endif
-        let syntax_name = 'ConsoleCodeAt_' . bufnr('%') . '_' . lnum . '_' . col
-        execute 'syntax region' syntax_name 'start=+\%' . lnum . 'l\%' . col . 'c+ end=+\%$+' 'contains=ALL'
-
-        let highlight = ''
-        for color_code in split(matchstr(@", '[0-9;]\+'), ';')
-            if color_code == 0
-                let highlight .= ' ctermfg=NONE ctermbg=NONE'
-            elseif color_code == 1
-                let highlight .= ' cterm=bold'
-            elseif 30 <= color_code && color_code <= 37
-                let highlight .= ' ctermfg=' . (color_code - 30)
-            elseif color_code == 38
-                " TODO
-            elseif color_code == 39
-                " TODO
-            elseif 40 <= color_code && color_code <= 47
-                let highlight .= ' ctermbg=' . (color_code - 40)
-            elseif color_code == 49
-                " TODO
-            endif
-        endfor
-        if len(highlight)
-            execute 'highlight' syntax_name highlight
-        endif
-    endwhile
-    let @" = register_save
-    0
-endfunction
-
-
-autocmd BufRead,StdinReadPost * if search('^[[\d*m', 'n') | call HighlightConsoleCodes() | set buftype=nofile nomodifiable | endif
-endif
-" `:set modifiable | undo | syntax clear' to revert
-" }}}
 augroup RubyTrunk " {{{
   autocmd!
   autocmd BufWinEnter,BufNewFile ~/git/ruby/*.c setl ts=8 noexpandtab
@@ -1259,53 +1187,21 @@ endif
 " }}}
 let g:shadow_debug = 1
 " PATH {{{
-"command! -nargs=1 AddPath let $PATH="<args>:".$PATH
 command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
-"command! -nargs=1 AddPath0e let $PATH = $PATH . ':' . expand(<q-args>)
 
-" if filereadable(expand('~/.zshrc'))
-"   "execute 'let $PATH="' . system('zsh -c "source ~/.zshrc; echo -n \$PATH"') . '"'
-"   let $PATH='/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/usr/local/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/Users/ujihisa/git/jark:/Users/ujihisa/src/llvm-git-build/local/bin:/Users/ujihisa/Library/Haskell/bin:/Users/ujihisa/git/mdv:/Users/ujihisa/git/ruby193/local/bin:/Users/ujihisa/git/ruby192/local/bin:/Users/ujihisa/git/ruby187/local/bin:/Users/ujihisa/git/jruby/bin:/Users/ujihisa/git/epitaph/bin:/Users/ujihisa/git/cbc/usr/bin:/Users/ujihisa/src/llvm/usr/bin:/Users/ujihisa/src/javacc-5.0/bin:/Users/ujihisa/.cabal/bin:/Users/ujihisa/.gem/jruby/1.8/bin:/Users/ujihisa/.gem/ruby/1.9/bin:/Users/ujihisa/.gem/ruby/1.8/bin:/opt/local/bin:/opt/local/sbin:/Applications/MacVim.app/Contents/MacOS:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/:/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/:/Users/ujihisa/bin/:/Users/ujihisa/appengine-java-sdk-1.2.1/bin:/Users/ujihisa/android-sdk-mac_x86-1.5_r2/tools/:/Users/ujihisa/git/termtter/bin:/Users/ujihisa/.gem/ruby/1.9.1/bin:/Users/ujihisa/bin/scala-2.6.0-final/::/Users/ujihisa/git/rubinius/local/bin:/Users/ujihisa/node_modules/coffee-script/bin/:/Users/ujihisa/git/git-hg/bin:/usr/local/Cellar/python/2.7.1/bin/'
-" else
-  AddPath /usr/bin
-  AddPath /usr/local/bin
-  AddPath /sbin
-  AddPath /usr/sbin
-" endif
-
-AddPath /Users/ujihisa/git/mdv
-AddPath /Users/ujihisa/Library/Haskell/bin
-if isdirectory('/Users/ujihisa/pear/bin/pear')
-  AddPath /Users/ujihisa/pear/bin
-endif
-if isdirectory('/Users/ujihisa/src/llvm-git-build/local/bin')
-  AddPath /Users/ujihisa/src/llvm-git-build/local/bin
-endif
-"if isdirectory('/Users/ujihisa/git/jark')
-"  AddPath /Users/ujihisa/git/jark
-"endif
-
-if isdirectory(expand('~/git/ruby200/local/bin'))
-  AddPath ~/git/ruby200/local/bin
-endif
+AddPath /usr/bin
+AddPath /usr/local/bin
+AddPath /sbin
+AddPath /usr/sbin
 
 if isdirectory(expand('~/bin'))
   AddPath ~/bin
 endif
 
-if g:V.is_mac()
-  AddPath /Users/ujihisa/git/termtter/bin
-else
-  AddPath /home/ujihisa/git/termtter/bin
-  AddPath /home/ujihisa/git/ruby/local/bin
-  AddPath /home/ujihisa/src/llvm-git-build/local/bin
-  "AddPath /home/ujihisa/src/haskell-platform-2011.2.0.1/local/bin
-  "AddPath /home/ujihisa/src/ghc-7.0.3/local/bin
-  " AddPath /home/ujihisa/.cabal/bin
-  "AddPath /home/ujihisa/git/ghc/local/bin
-  AddPath /home/ujihisa/git/Gyazo-for-Linux/
-endif
-"AddPath ~/git/leiningen/bin
+AddPath /home/ujihisa/git/termtter/bin
+AddPath /home/ujihisa/git/ruby/local/bin
+AddPath /home/ujihisa/src/llvm-git-build/local/bin
+AddPath /home/ujihisa/git/Gyazo-for-Linux/
 " }}}
 " macvim proportional {{{
 function! Proportional()
@@ -1425,16 +1321,6 @@ endfunction
 "call echodoc#register('clojure', s:clojure_doc_dict)
 " }}}
 " rsense {{{
-"if !exists('g:neocomplcache_omni_patterns')
-"  let g:neocomplcache_omni_patterns = {}
-"endif
-"let g:rsenseUseOmniFunc = 1
-"if filereadable(expand('~/git/rsense/bin/rsense'))
-"  let g:rsenseHome = expand('~/git/rsense')
-"
-"  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"endif
-
 if filereadable(expand('~/git/rsense/bin/rsense'))
   let g:neocomplcache#sources#rsense#home_directory = expand('~/git/rsense')
 endif
@@ -2377,6 +2263,13 @@ let g:quickrun_config['moon/moonc'] = {
 "      \ 'runner': 'vimscript',
 "      \ }
 
+" }}}
+" tyru/caw.vim {{{
+let g:caw_no_default_keymappings = 1
+nmap <M-.> <Plug>(caw:i:toggle)
+nmap <M-,> <Plug>(caw:i:uncomment)
+vmap <M-.> <Plug>(caw:i:toggle)gv
+vmap <M-,> <Plug>(caw:i:uncomment)gv
 " }}}
 " {{{
 " -- list of plugins not managed by neobundle --

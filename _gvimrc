@@ -1,6 +1,4 @@
 "set imactivatekey=s-space
-let g:V = vital#of('vital')
-
 
 "colorscheme koehler
 "colorscheme mrkn256
@@ -96,17 +94,6 @@ if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
 " }}}
-" window size {{{
-function! WindowsizeMaximize13()
-  if !g:V.is_mac()
-    echoerr 'only on mac'
-    return
-  endif
-  set lines=570
-  set columns=1810
-endfunction
-command! WindowsizeMaximize13 call WindowsizeMaximize13()
-" }}}
 " macvim specific {{{
 if g:V.is_mac()
   nnoremap <SwipeLeft> gT
@@ -141,8 +128,8 @@ augroup dualvim
 augroup END
 " }}}
 " scala syntax tweaks {{{
-hi scalaValName gui=underline
-hi scalaVarName gui=underline
+"highlight scalaNameDefinition gui=underline
+highlight scalaNameDefinition gui=italic
 "hi scalaType gui=underline
 "hi scalaTypeCase gui=underline
 " }}}
