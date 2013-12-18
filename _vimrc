@@ -480,7 +480,6 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
 " Neocomplecache {{{
 let g:neocomplcache_enable_at_startup = 1
-"let g:NeoComplCache_EnableQuickMatch = 0
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 "let g:neocomplcache_manual_completion_length = 2
 let g:neocomplcache_source_completion_length = {
@@ -1970,7 +1969,7 @@ let g:unite_source_menu_menus.myset = {
       \   ],
       \ }
 
-nnoremap <silent> sn  :<C-u>Unite menu -quick-match<CR>
+nnoremap <silent> sn  :<C-u>Unite menu -buffer-name=menu<CR>
 " }}}
 " clojure completion candidates {{{
 function! VimrcClojureComplCand()
