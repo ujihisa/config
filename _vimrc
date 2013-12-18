@@ -722,49 +722,29 @@ augroup RubyTrunk " {{{
   "autocmd BufWinEnter,BufNewFile ~/rubies/src/**/*.c setl ts=8 noexpandtab
 augroup END
 " }}}
-" quickrun {{{ for mine
-"let g:quickrun_direction = 'rightbelow vertical'
-let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
-
-" nnoremap <Space>r :<C-u>call <SID>quickrun_of_buffer()<Cr>
-" function! s:quickrun_of_buffer()
-"   if !exists('b:quickrun_of_buffer')
-"     let b:quickrun_of_buffer = ''
-"   endif
-"   echo 'QuickRun' b:quickrun_of_buffer
-"   execute 'QuickRun' b:quickrun_of_buffer
-" endfunction
-
-" function! Quickrun_open_test_window()
-"   new
-"   setfiletype ruby
-"   execute "normal <Plug>(quickrun)"
-"   execute "normal <C-w>H<C-w>7_"
-"   execute "normal <C-w>p"
-"   q!
-" endfunction
-" }}}
 " quickrun for thinca {{{
-"nmap <Space>r :<C-u>QuickRun<Cr>
+let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
 nmap <Space>r <Plug>(quickrun)
 vmap <Space>r <Plug>(quickrun)
 
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
-"let g:quickrun_config._ = {'runner': 'process_manager', 'split': 'below'}
+
 "let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
 
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
-let g:quickrun_config.textile = {
-      \ 'command': 'redcloth',
-      \ 'tempfile': '%{tempname()}.textile',
-      \ 'exec': ['%c %s > %s:p:r.html', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'] }
+
+" let g:quickrun_config.textile = {
+"       \ 'command': 'redcloth',
+"       \ 'tempfile': '%{tempname()}.textile',
+"       \ 'exec': ['%c %s > %s:p:r.html', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'] }
+
 "let g:quickrun_config.go = {
 "\    'command': '8g',
 "\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
 "\  }
-let g:quickrun_config['ruby'] = {'command': 'ruby'}
+
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 
 let g:quickrun_config['markdown'] = {
@@ -773,22 +753,10 @@ let g:quickrun_config['markdown'] = {
       \ 'outputter': 'browser'
       \ }
 
-let g:quickrun_config['scala'] = {
-      \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
-
 let g:quickrun_config['lua'] = {'type': 'lua/vim'}
-
-"augroup vimrc-lazy-quickrun-scala
-"  autocmd!
-"  autocmd FileType scala if !has_key(g:quickrun_config, 'scala/all') |
-"        \ let g:quickrun_config['scala/all'] = {
-"        \   'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -unchecked -cp .:' . join(reverse(split(vimproc#system('find ~/.ivy2/cache/ -name "*.jar"'), "\n")), ":")}
-"        \ | endif
-"augroup END
 
 let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
 
-"let s:clojure_libs = ['/home/ujihisa/.m2/repository/org/clojure/core.match/0.2.0/core.match-0.2.0.jar']
 let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), "\n")
 let g:quickrun_config.clojure = {
       \ 'type': 'clojure/process_manager',
@@ -796,9 +764,10 @@ let g:quickrun_config.clojure = {
       \   'java -cp %s:/usr/share/clojure-1.5/lib/clojure.jar clojure.main',
       \   join(s:clojure_libs, ':'))}
 
-let g:quickrun_config.scala = {'type': 'scala/process_manager'}
+" let g:quickrun_config.scala = {
+"       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
 
-"let g:quickrun_config.haskell = {'exec': ['runghc ~/.vim/sortimport.hs %s > %s.tmp', 'mv %s.tmp %s', '%c %s -o %s:p:r'], 'command': 'runghc', 'runner': 'system'}
+let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 
 "     \ 'erlang': {
 "     \   'command': 'escript',
@@ -806,14 +775,11 @@ let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 "    +\   'tempfile': '{fnamemodify(tempname(), ":h")}/quickrun',
 "     \ },
 
-
-"call watchdogs#setup(g:quickrun_config)
-"let g:watchdogs_check_BufWritePost_enable = 1
-
 " }}}
 " filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
 augroup FiletypeAliases
   autocmd!
+  autocmd FileType md set filetype=markdown
   autocmd FileType js set filetype=javascript
   autocmd FileType cf set filetype=coffee
 augroup END
@@ -890,19 +856,6 @@ else
   let g:Tex_ViewRule_pdf = 'acroread'
 endif
 " }}}
-" misc {{{
-augroup MyKeywordprg
-  autocmd!
-  autocmd FileType twitter setl keywordprg=dictionary
-augroup END
-
-" save with growl
-"nnoremap <Space>w :<C-u>write<Return>:<C-u>silent !growlnotify -n vim -m '[write] %' >&/dev/null<Return>:echo expand('%')<Return>
-"nnoremap <Space>q :<C-u>silent !growlnotify -n vim -m '[quit] %' >&/dev/null<Return>:<C-u>quit<Return>
-
-"set cursorline
-"set cursorcolumn
-" }}}
 " html {{{
 function! s:HtmlEscape()
   silent s/&/\&amp;/eg
@@ -916,24 +869,6 @@ function! s:HtmlUnEscape()
 endfunction
 vnoremap <silent> <space>e :call <SID>HtmlEscape()<CR>
 vnoremap <silent> <space>ue :call <SID>HtmlUnEscape()<CR>
-" }}}
-" for quicklaunch {{{
-"let g:quicklaunch_commands = [
-"      \   'ruby launch.rb',
-"      \   'ls',
-"      \   'ls -a',
-"      \   'ls -l',
-"      \   'ruby check_gmail.rb',
-"      \   'twitter timeline',
-"      \   'port outdated',
-"      \   '',
-"      \   '',
-"      \   'tail -n 30 ~/.zsh_history'
-"      \ ]
-"for i in range(10)
-"  execute "silent! nmap <unique> <Space>" . i . "  <Plug>(quicklaunch-" . i . ")"
-"endfor
-"silent! nmap <unique> <Space>l  <Plug>(quicklaunch-list)
 " }}}
 " kana's useful tab function {{{
 function! s:move_window_into_tab_page(target_tabpagenr)
@@ -972,18 +907,6 @@ endfunction " }}}
 "nnoremap <silent> <Space>ao :<C-u>call <SID>move_window_into_tab_page(0)<Cr>
 nnoremap <silent> <Space>ao <C-w>T
 " }}}
-" shell-like guyon cd {{{
-"command! CD call CD()
-"function! CD()
-"  let b:old_dir = getcwd()
-"  execute "lcd " . expand("%:p:h")
-"endfunction
-"command! CDB call CDB()
-"function! CDB()
-"  let tmp = getcwd()
-"  execute "lcd " . b:old_dir
-"  let b:old_dir = tmp
-"endfunction " }}}
 " open lib and corresponding test at a new tab {{{
 command! -nargs=1 Lib  call s:open_lib_and_corresponding_test(<f-args>)
 
