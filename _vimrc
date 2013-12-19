@@ -2024,8 +2024,8 @@ augroup END
 let $CPP_STDLIB = '/usr/lib/gcc/x86_64-pc-linux-gnu/4.8.2/include/g++-v4'
 augroup vimrc-c
   autocmd!
-  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
-  autocmd FileType cpp nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
+  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -vertical -no-start-insert -no-focus<Cr>
+  autocmd FileType cpp nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -vertical -no-start-insert -no-focus<Cr>
   autocmd FileType cpp setl path+=$CPP_STDLIB
   autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype) | set filetype=cpp | endif
   "autocmd FileType cpp setl suffixesadd+=.hpp
