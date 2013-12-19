@@ -2025,8 +2025,8 @@ augroup vimrc-c
   autocmd!
   autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
   autocmd FileType cpp nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
-  autocmd FileType cpp setl path+=/usr/include/boost/typeof/std/
-  autocmd FileType cpp setl suffixesadd+=.hpp
+  autocmd FileType cpp setl path+=/usr/lib/gcc/x86_64-pc-linux-gnu/4.8.2/include/g++-v4/
+  "autocmd FileType cpp setl suffixesadd+=.hpp
   " no-focus
 augroup END
 " }}}
