@@ -721,6 +721,10 @@ let g:quickrun_config.clojure = {
 
 let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 
+let g:quickrun_config.cpp = {
+      \ 'type': 'cpp/clang++',
+      \ 'cmdopt': '-Wall -std=c++11'}
+
 "     \ 'erlang': {
 "     \   'command': 'escript',
 "    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
