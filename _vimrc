@@ -2021,7 +2021,7 @@ augroup vimrc-ebuild
 augroup END
 " }}}
 " c {{{
-let $CPP_STDLIB = '/usr/lib/gcc/x86_64-pc-linux-gnu/4.8.2/include/g++-v4/'
+let $CPP_STDLIB = '/usr/lib/gcc/x86_64-pc-linux-gnu/4.8.2/include/g++-v4'
 augroup vimrc-c
   autocmd!
   autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
