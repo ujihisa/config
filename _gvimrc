@@ -1,20 +1,16 @@
-"set imactivatekey=s-space
-
-if g:V.is_mac()
-  colorscheme macvim
-  "  for macvim.vim
-  hi! link Error WarningMsg
-  hi VertSplit    gui=NONE guifg=DarkSlateGray guibg=NONE
-  hi StatusLineNC gui=NONE guifg=SlateGray guibg=Gray5
-  hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
-  hi MatchParen   guifg=White guibg=Gray25
-endif
+" if has('xim') && has('GUI_GTK')
+"   let $GTK_IM_MODULE = 'xim'
+"   set imactivatekey=Zenkaku_Hankaku
+"   set iminsert=0 imsearch=0
+" endif
 
 function! s:gvimrc_colorscheme(colors_name)
   if a:colors_name == 'luna'
     "highlight vimshellError gui=underline
     highlight vimshellError gui=undercurl
     "highlight! link vimshellError Constant
+  elseif a:colors_name == 'mustang'
+    highlight vimshellError gui=undercurl
   endif
 endfunction
 
@@ -30,10 +26,21 @@ let g:unite_colorscheme_command = 'GvimrcColorscheme'
 " GvimrcColorscheme neverland-darker
 GvimrcColorscheme luna
 
+if g:V.is_mac()
+  GvimrcColorscheme macvim
+  "  for macvim.vim
+  hi! link Error WarningMsg
+  hi VertSplit    gui=NONE guifg=DarkSlateGray guibg=NONE
+  hi StatusLineNC gui=NONE guifg=SlateGray guibg=Gray5
+  hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
+  hi MatchParen   guifg=White guibg=Gray25
+endif
+
 
 "hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
 "hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
+
 if g:V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h16
@@ -60,13 +67,13 @@ if g:V.is_mac()
   set transparency=10
   let g:transparency = &transparency
 endif
-"set go-=e
-set go-=T " no icons on the top of window
-set go-=r " no right-hand scrollbar at any time
-set go-=l " no left-hand scrollbar at any time
-set go-=L " no left-hand scrollbar at any time
-set go-=m " no gui menu (not for MacVim?)
-set go+=c
+"set guioptions-=e
+set guioptions-=T " no icons on the top of window
+set guioptions-=r " no right-hand scrollbar at any time
+set guioptions-=l " no left-hand scrollbar at any time
+set guioptions-=L " no left-hand scrollbar at any time
+set guioptions-=m " no gui menu (not for MacVim?)
+set guioptions+=c " console dialogs. no popup allowed
 
 function! s:relative_tranparency(diff)
   let &transparency = a:diff + &transparency

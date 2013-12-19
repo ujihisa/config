@@ -11,7 +11,12 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/echodoc'
-NeoBundle 'Shougo/neocomplcache'
+if has('lua')
+  NeoBundle 'Shougo/neocomplete'
+else
+  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neocomplcache-rsense'
+endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
@@ -41,7 +46,6 @@ NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'pasela/unite-webcolorname'
-NeoBundle 'Shougo/neocomplcache-rsense'
 NeoBundle 'vim-scripts/IndentAnything'
 NeoBundle 'git@github.com:ujihisa/ref-hoogle.git'
 NeoBundle 'vim-scripts/zenesque.vim'
@@ -103,6 +107,7 @@ NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'ujihisa/vimport'
 NeoBundle 'leafo/moonscript-vim'
 NeoBundle 'tyru/caw.vim'
+NeoBundle 'ujihisa/ft-cmake'
 
 "call neobundle#local("~/.vimbundles", {})
 
@@ -379,7 +384,11 @@ call smartinput#define_rule({
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
-inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
+if has('lua')
+  inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . (pumvisible() ? '' : "\<BS>")
+else
+  inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
+endif
 imap <S-BS> <Plug>(vimrc_bs)
 "function! s:wrapmap(key)
 "  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
@@ -478,27 +487,41 @@ vmap <C-o> <Plug>(poslist-prev-pos)
 " remote {{{
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
-" Neocomplecache {{{
+" Neocomplecache/Neocomplete {{{
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 "inoremap <expr><silent><C-y> neocomplcache#undo_completion()
 "let g:neocomplcache_manual_completion_length = 2
 let g:neocomplcache_source_completion_length = {
       \ 'include_complete': 1}
 let g:neocomplcache_source_rank = {
       \ 'include_complete': 11}
+
 let g:neocomplcache_max_list = 200
+let g:neocomplete#max_list = 200
+
 let g:neocomplcache_max_keyword_width = 70
+let g:neocomplete#max_keyword_width = 70
 "let g:neocomplcache_enable_smart_case = 1
 "let g:neocomplcache_enable_ignore_case = 0
 let g:neocomplcache_text_mode_filetypes = {}
 let g:neocomplcache_text_mode_filetypes.markdown = 1
-imap <M-l> <Plug>(neocomplcache_start_unite_complete)
+if has('lua')
+  imap <M-l> <Plug>(neocomplete_start_unite_complete)
+else
+  imap <M-l> <Plug>(neocomplcache_start_unite_complete)
+endif
 " see also
 "   * snippets section
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
+
 let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplete#auto_completion_start_length = 1
+
 let g:neocomplcache_skip_auto_completion_time = "" " disabling it
+let g:neocomplete#skip_auto_completion_time = "" " disabling it
+
 let g:necoghc_enable_detailed_browse = 1
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
@@ -530,7 +553,9 @@ command! -nargs=0 Ctags call Ctags()
 function! Ctags()
   let cmdname = globpath(&rtp, 'plugin/vimproc.vim') != '' ? 'VimProcBang' : '!'
   execute cmdname 'ctags -R'
-  if globpath(&rtp, 'plugin/unite.vim') != ''
+  if has('lua')
+    NeoCompleteTagMakeCache
+  else
     NeoComplCacheCachingTags
   endif
 endfunction
@@ -902,21 +927,6 @@ endif
 " Rename (See Vim Hacks #17) {{{
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
-" C/C++ compiler {{{
-if 0
-augroup MyCompiler
-  autocmd!
-
-  " run save&compile
-  autocmd Filetype c compiler gcc
-  autocmd Filetype cpp compiler gcc
-  autocmd Filetype c setl makeprg=gcc\ -Wall\ %\ -o\ %:r.o
-  autocmd Filetype cpp setl makeprg=g++\ -Wall\ %\ -o\ %:r.o
-  "autocmd Filetype c nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
-  "autocmd Filetype cpp nmap <buffer> <Space>m :<C-u>w<Cr>:make<Cr>
-augroup END
-endif
-" }}}
 " mspec/rubyspec supports {{{
 function! DoMspec()
   new
@@ -1026,7 +1036,11 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  inoremap <buffer><expr> \ neocomplcache#close_popup() . <SID>cmdwin_backslash()
+  if has('lua')
+    inoremap <buffer><expr> \ neocomplete#close_popup() . <SID>cmdwin_backslash()
+  else
+    inoremap <buffer><expr> \ neocomplcache#close_popup() . <SID>cmdwin_backslash()
+  endif
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -1783,11 +1797,19 @@ function! s:sbt_run()
     " go to the window
     let wn = bufwinnr(sbt_bufname)
     if wn == -1
-      echo 'OMG not found. Open it please.'
+      echo "buffer exists but windows doesn't exist. opening it."
       execute 'sbuffer' sbt_bufname
       wincmd H
     else
       execute wn . 'wincmd w'
+    endif
+
+    " make sure if it's vimshell
+    if !has_key(b:, 'interactive')
+      close
+      unlet t:sbt_bufname
+      call s:sbt_run()
+      return
     endif
 
     normal! Gzt
@@ -1951,7 +1973,7 @@ let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
-      \     ['all', 'Unite -no-start-insert -horizontal -log neobundle/update'],
+      \     ['all', 'Unite -no-start-insert -horizontal -log neobundle/update:all'],
       \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
       \   ]
       \ }
@@ -2001,7 +2023,10 @@ augroup END
 " c {{{
 augroup vimrc-c
   autocmd!
-  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build -horizontal -no-start-insert<Cr>
+  autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
+  autocmd FileType cpp nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -horizontal -no-start-insert -no-focus<Cr>
+  autocmd FileType cpp setl path+=/usr/include/boost/typeof/std/
+  autocmd FileType cpp setl suffixesadd+=.hpp
   " no-focus
 augroup END
 " }}}
