@@ -1915,19 +1915,30 @@ function! s:vimrc_int_sbt()
   syntax match intsbtPrompt /^> .*/ contains=intsbtPromptBody,intsbtPromptHead
   syntax match intsbtPromptBody /.*/ contained
   syntax match intsbtPromptHead /^> / contained
+
+  syntax match intsbtDebug /^\[debug\] .*/ contains=intsbtDebugHead,intsbtDebugBody
+  syntax match intsbtDebugBody /.*/ contained
+  syntax match intsbtDebugHead /\[debug\]/ contained
+
   syntax match intsbtInfo /^\[info\] .*/ contains=intsbtInfoHead,intsbtInfoBody
   syntax match intsbtInfoBody /.*/ contained
   syntax match intsbtInfoHead /\[info\]/ contained
+
   syntax match intsbtWarn /^\[warn\] .*/ contains=intsbtWarnHead,intsbtWarnBody
   syntax match intsbtWarnBody /.*/ contained
   syntax match intsbtWarnHead /\[warn\]/ contained
+
   syntax match intsbtError /^\[error\] .*/ contains=intsbtErrorHead,intsbtErrorBody
   syntax match intsbtErrorBody /.*/ contained
   syntax match intsbtErrorHead /\[error\]/ contained
+
   syntax match intsbtSuccess /^\[success\] .*/
 
   hi def link intsbtPromptBody Statement
   hi def link intsbtPromptHead Operator
+
+  hi def link intsbtDebugBody Comment
+  hi def link intsbtDebugHead LineNr
 
   hi def link intsbtInfoBody Comment
   hi def link intsbtInfoHead LineNr
