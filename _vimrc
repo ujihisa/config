@@ -25,6 +25,7 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vesting'
+NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'thinca/vim-ft-clojure'
@@ -2041,7 +2042,7 @@ augroup vimrc-c
   autocmd!
   autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -vertical -no-start-insert -no-focus<Cr>
   autocmd FileType cpp nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -vertical -no-start-insert -no-focus<Cr>
-  autocmd FileType cpp setl path+=$CPP_STDLIB
+  autocmd FileType cpp setl path+=$CPP_STDLIB cinoptions+=:0,g0
   autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype) | set filetype=cpp | endif
   "autocmd FileType cpp setl suffixesadd+=.hpp
   " no-focus
