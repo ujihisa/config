@@ -259,6 +259,8 @@ inoremap <M-k>  <Esc>gT
 
 nnoremap <M-[> :<C-u>e #<Cr>
 
+nnoremap <M-n> :<C-u>NeoSnippetEdit -split<Cr>
+
 nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
@@ -2293,6 +2295,30 @@ nmap <M-.> <Plug>(caw:i:toggle)
 nmap <M-,> <Plug>(caw:i:uncomment)
 vmap <M-.> <Plug>(caw:i:toggle)gv
 vmap <M-,> <Plug>(caw:i:uncomment)gv
+" }}}
+" vitalista.vim {{{
+
+function! s:vitalista()
+  if !neobundle#is_installed('vital.vim')
+    g:V.import('Vim.Message').error('vital.vim not installed globally.')
+    return
+  endif
+
+  if &l:path =~ 'vital.vim'
+    return
+  endif
+  let &l:path .= printf(
+        \ ',%s/autoload/vital/__latest__/',
+        \ neobundle#get('vital.vim').path)
+  let &l:suffixesadd = '.vim'
+  let &l:includeexpr = 'substitute(v:fname, "\\.", "/", "g")'
+  let &l:include = '^\s*let\s\+s:\w\+\s*=\s*.\{-}\%(import\|load\)'
+endfunction
+
+augroup vitalista
+  autocmd!
+  autocmd FileType vim call s:vitalista()
+augroup END
 " }}}
 " {{{
 " -- list of plugins not managed by neobundle --
