@@ -110,6 +110,15 @@ NeoBundle 'ujihisa/vimport'
 NeoBundle 'leafo/moonscript-vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'ujihisa/ft-cmake'
+NeoBundle 'Rip-Rip/clang_complete'
+NeoBundleLazy 'vim-jp/cpp-vim', {
+      \ 'autoload': {'filetypes': 'cpp'}}
+NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
+      \ 'depends': [
+      \   'Shougo/unite.vim',
+      \   'tyru/open-browser.vim',
+      \   'mattn/webapi-vim'],
+      \ 'autoload': {'filetypes' : 'cpp'}}
 
 "call neobundle#local("~/.vimbundles", {})
 
@@ -747,7 +756,7 @@ let g:quickrun_config.scala = {'type': 'scala/process_manager'}
 
 let g:quickrun_config.cpp = {
       \ 'type': 'cpp/clang++',
-      \ 'cmdopt': '-Wall -std=c++11'}
+      \ 'cmdopt': '-std=c++11 -Wall -Wextra'}
 
 "     \ 'erlang': {
 "     \   'command': 'escript',
@@ -2066,6 +2075,7 @@ augroup vimrc-c
   autocmd FileType c nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -vertical -no-start-insert -no-focus<Cr>
   autocmd FileType cpp nnoremap <buffer> <space>m :<C-u>write<Cr>:Unite -buffer-name=build build:make -vertical -no-start-insert -no-focus<Cr>
   autocmd FileType cpp setl path+=$CPP_STDLIB cinoptions+=:0,g0
+  autocmd FileType cpp nnoremap sB :<C-u>UniteWithCursorWord boost-online-doc
   autocmd BufReadPost $CPP_STDLIB/* if empty(&filetype) | set filetype=cpp | endif
   "autocmd FileType cpp setl suffixesadd+=.hpp
   " no-focus
@@ -2340,6 +2350,29 @@ augroup vitalista
   autocmd!
   autocmd FileType vim call s:vitalista()
 augroup END
+" }}}
+" clang_complete.vim {{{
+
+" from neocomplete's doc
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_overwrite_completefunc = 1
+let g:neocomplete#force_omni_input_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.objc =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.objcpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+"let g:clang_use_library = 1
+
+" mine
+let g:clang_user_options = '-std=c++11'
+
 " }}}
 " {{{
 " -- list of plugins not managed by neobundle --
