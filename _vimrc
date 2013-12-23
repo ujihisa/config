@@ -86,6 +86,7 @@ NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'shiracha/shiracha-vim'
 NeoBundle 'kana/vim-smartword'
 NeoBundle 'rhysd/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/unite-equery'
 NeoBundle 'ujihisa/unite-font'
