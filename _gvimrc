@@ -165,4 +165,24 @@ endfunction
 
 set guitablabel=%!GuiTabLabel()
 " }}}
+" fullscreen {{{
+
+" install winctrl for gentoo
+nnoremap <M-f> :<C-u>call vimproc#system("wmctrl -r :ACTIVE: -b toggle,fullscreen")<Cr>
+inoremap <M-f> <Esc>:call vimproc#system("wmctrl -r :ACTIVE: -b toggle,fullscreen")<Cr>a
+
+if 0
+  augroup gvimrc-fullscreen
+    autocmd!
+    autocmd VimEnter *
+          \ let s:window_number =
+          \   g:V.import('Data.String').chomp(matchstr(
+          \     vimproc#system('wmctrl -a :ACTIVE: -v'),
+          \     'Using window: \zs0x.*'))
+    autocmd VimEnter * call vimproc#system(printf("wmctrl -i -r %s -b add,fullscreen", s:window_number))
+    autocmd FocusGained * echo vimproc#system(printf("wmctrl -i -r %s -b add,fullscreen", s:window_number))
+    autocmd FocusLost * echo vimproc#system(printf("wmctrl -i -r %s -b remove,fullscreen", s:window_number))
+  augroup END
+endif
+" }}}
 " vim: foldmethod=marker

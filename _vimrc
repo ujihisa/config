@@ -55,7 +55,7 @@ NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
 NeoBundle 'fsouza/go.vim'
 NeoBundle 'vim-scripts/groovyindent'
-NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
@@ -85,7 +85,7 @@ NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'shiracha/shiracha-vim'
 NeoBundle 'kana/vim-smartword'
-NeoBundle 'h1mesuke/textobj-wiw'
+NeoBundle 'h1mesuke/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/unite-equery'
 NeoBundle 'ujihisa/unite-font'
@@ -265,6 +265,9 @@ nnoremap Y y$
 nnoremap co zo
 nnoremap cc zc
 
+
+nnoremap <M-a> ggVG
+
 "inoremap <expr> k smartchr#one_of('k', "\<Esc>")
 
 " memo:
@@ -325,10 +328,10 @@ silent nnoremap <space>m :<C-u>echo 'space-m Not defined'<Cr>
 
 " <C-g> is to swap visual mode and select mode. <C-g> is difficult to type.
 " Use Alt-g instead
-vnoremap <M-g> <C-g>
-snoremap <M-g> <C-g>
+vnoremap <M-g>g <C-g>
+snoremap <M-g>g <C-g>
 
-nnoremap <M-f> <C-w><C-f>
+nnoremap <M-g>f <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
 " }}}
@@ -383,6 +386,23 @@ call smartinput#define_rule({
       \   'input': '<BS>~()<Left>',
       \   'filetype': ['clojure'],
       \   'syntax': ['String']})
+
+" s: in c++ = std::
+call smartinput#map_to_trigger('i', ':', ':', ':')
+call smartinput#define_rule({
+      \   'at': '\<s\%#',
+      \   'char': ':',
+      \   'input': 'td::',
+      \   'filetype': ['cpp'],
+      \   'syntax': ['cBlock']})
+" std:: + : in c++ = s:
+call smartinput#define_rule({
+      \   'at': '\<std::\%#',
+      \   'char': ':',
+      \   'input': '<BS><BS><BS><BS>:',
+      \   'filetype': ['cpp'],
+      \   'syntax': ['cBlock']})
+
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
