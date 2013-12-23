@@ -1622,6 +1622,13 @@ smap <M-\> <Plug>(neosnippet_jump_or_expand)
 nmap <M-\> a<M-\>
 xmap <M-\> <Plug>(neosnippet_start_unite_snippet_target)
 
+" only for MacBook Pro (gentoo)
+imap <C-\> <Plug>(neosnippet_jump_or_expand)
+smap <C-\> <Plug>(neosnippet_jump_or_expand)
+nmap <C-\> a<M-\>
+xmap <C-\> <Plug>(neosnippet_start_unite_snippet_target)
+
+
 " uses system snippet as personal snippet!
 let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
 
