@@ -2266,6 +2266,7 @@ let $GEM_HOME = expand('~/.gem')
 " augroup END
 " }}}
 " lein repl {{{
+
 function! s:ft_lein_repl()
   set filetype=clojure
 endfunction
@@ -2274,6 +2275,7 @@ augroup lein-repl
   autocmd!
   autocmd FileType int-lein call s:ft_lein_repl()
 augroup END
+
 " }}}
 " AndrewRadev/switch {{{
 nnoremap <silent><M-i> :<C-u>Switch<Cr>
@@ -2292,7 +2294,7 @@ augroup vimrc-scala-switch
 augroup END
 " }}}
 " tpope/vim-surround {{{
-"
+
 " To start operator-pending mode
 nmap <M-s> <Plug>Ysurround
 
@@ -2307,6 +2309,7 @@ vmap ` <Plug>VSurround`
 
 " }}}
 " moonscript {{{
+
 if isdirectory(expand('~/.luarocks/bin')) && $PATH !~ 'luarocks'
   let $PATH = expand('~/.luarocks/bin') . ':' . $PATH
 endif
@@ -2357,6 +2360,7 @@ augroup vitalista
   autocmd!
   autocmd FileType vim call s:vitalista()
 augroup END
+
 " }}}
 " clang_complete.vim {{{
 
