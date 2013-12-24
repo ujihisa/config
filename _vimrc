@@ -39,7 +39,7 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-poslist'
-NeoBundle 'git://github.com/trapd00r/neverland-vim-theme.git'
+NeoBundle 'trapd00r/neverland-vim-theme'
 NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'eagletmt/neco-ghc'
 NeoBundle 'thinca/vim-showtime'
@@ -48,11 +48,11 @@ NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'pasela/unite-webcolorname'
 NeoBundle 'vim-scripts/IndentAnything'
-NeoBundle 'git@github.com:ujihisa/ref-hoogle.git'
+NeoBundle 'ujihisa/ref-hoogle'
 NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
-NeoBundle 'git@github.com:ujihisa/tabpagecolorscheme.git'
+NeoBundle 'ujihisa/tabpagecolorscheme'
 NeoBundle 'fsouza/go.vim'
 NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
@@ -2380,6 +2380,12 @@ let g:clang_auto_select = 0
 " mine
 let g:clang_user_options = '-std=c++11'
 
+" }}}
+" d.vim {{{
+augroup vimrc-d
+  autocmd!
+  autocmd FileType d setl expandtab shiftwidth=4 tabstop=4 softtabstop=4
+augroup END
 " }}}
 " {{{
 " -- list of plugins not managed by neobundle --
