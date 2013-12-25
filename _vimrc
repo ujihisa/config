@@ -738,8 +738,7 @@ let g:quickrun_config['markdown'] = {
       \ 'outputter': 'browser'
       \ }
 
-let g:quickrun_config['lua'] = {'type': 'lua/vim'}
-
+let g:quickrun_config.lua = {'type': 'lua/vim'}
 let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
 
 let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), "\n")
