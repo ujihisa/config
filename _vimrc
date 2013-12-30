@@ -414,6 +414,13 @@ call smartinput#define_rule({
       \   'filetype': ['cpp'],
       \   'syntax': ['cBlock']})
 
+" <Cr> in vimshell closes popup in advance.
+call smartinput#map_to_trigger('i', '<Cr>', '<Cr>', '<Cr>')
+call smartinput#define_rule({
+      \   'at': '$\%#',
+      \   'char': '<Cr>',
+      \   'input': '<C-e><Cr>',
+      \   'filetype': ['vimshell', 'int-*']})
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
@@ -1616,7 +1623,7 @@ endif
 imap <expr> <Bslash> (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
-nnoremap <C-s> :<C-u>Unite snippet<Cr>
+nnoremap <C-s> :<C-u>Unite neosnippet<Cr>
 imap <M-\> <Plug>(neosnippet_jump_or_expand)
 smap <M-\> <Plug>(neosnippet_jump_or_expand)
 nmap <M-\> a<M-\>
@@ -1630,7 +1637,8 @@ xmap <C-\> <Plug>(neosnippet_start_unite_snippet_target)
 
 
 " uses system snippet as personal snippet!
-let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
+" let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
+let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/neosnippets/'
 
 " }}}
 " vimshell platform-dependent aliases {{{
