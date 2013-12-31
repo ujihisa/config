@@ -2421,6 +2421,15 @@ augroup END
 " vimshell-git
 " vimshell-repl
 " }}}
+" textobj-wiw {{{
+
+" doesn't seem to be working though...
+xmap ,w <Plug>(textobj-wiw-n)
+xmap ,e <Plug>(textobj-wiw-p)
+omap ,w <Plug>(textobj-wiw-n)
+omap ,e <Plug>(textobj-wiw-p)
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
