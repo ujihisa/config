@@ -120,6 +120,7 @@ NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
       \   'tyru/open-browser.vim',
       \   'mattn/webapi-vim'],
       \ 'autoload': {'filetypes' : 'cpp'}}
+NeoBundle 'ujihisa/unite-include-reversed'
 
 "call neobundle#local("~/.vimbundles", {})
 
