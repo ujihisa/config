@@ -121,6 +121,7 @@ NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
       \   'mattn/webapi-vim'],
       \ 'autoload': {'filetypes' : 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
+NeoBundle 'itchyny/calendar.vim'
 
 "call neobundle#local("~/.vimbundles", {})
 
@@ -2430,6 +2431,9 @@ xmap ,e <Plug>(textobj-wiw-p)
 omap ,w <Plug>(textobj-wiw-n)
 omap ,e <Plug>(textobj-wiw-p)
 
+" }}}
+" unite-include-reversed {{{
+nnoremap <Space>0 :<C-u>source /home/ujihisa/Dropbox/vimbundles/unite-include-reversed/autoload/unite_include_reversed.vim<Cr>:call unite_include_reversed#identifiers()<Cr>
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
