@@ -1825,10 +1825,9 @@ endfunction
 " }}}
 " scala sbt interaction {{{
 function! s:start_sbt()
-  if !has_key(t:, 'sbt_cmds')
-    "let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
-    let t:sbt_cmds = ['compile']
-    echo "let t:sbt_cmd = 'compile'"
+  if !has_key(t:, 'vsm_cmds')
+    "let t:vsm_cmds = [input('t:vsm_cmds[0] = ')]
+    let t:vsm_cmds = ['compile']
   endif
   execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
   execute 'VimShellInteractive sbt'
@@ -1843,8 +1842,8 @@ function! s:sbt_run()
   if sbt_bufname == '*not-found*'
     call s:start_sbt()
   else
-    if !has_key(t:, 'sbt_cmds')
-      echoerr 'please give t:sbt_cmds a list'
+    if !has_key(t:, 'vsm_cmds')
+      echoerr 'please give t:vsm_cmds a list'
       return
     endif
 
@@ -1872,7 +1871,7 @@ function! s:sbt_run()
 
     call vimshell#interactive#set_send_buffer(sbt_bufname)
     call vimshell#interactive#clear()
-    call vimshell#interactive#send(t:sbt_cmds)
+    call vimshell#interactive#send(t:vsm_cmds)
     " explosion
     "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
   endif
@@ -1889,48 +1888,57 @@ augroup END
 " }}}
 " clojure leininge integrate (deadcopy from scala. really bad.) {{{
 function! s:start_leiningen()
-  if !has_key(t:, 'lein_cmds')
-    let t:lein_cmds = ['uberjar']
-    echo "let t:lein_cmd = 'uberjar'"
+  if !has_key(t:, 'vsm_cmds')
+    let t:vsm_cmds = ['uberjar']
   endif
+  execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
   execute 'VimShellInteractive lein interactive'
   stopinsert
-  let t:lein_bufname = bufname('%')
+  let t:vsm_bufname = bufname('%')
   wincmd H
   wincmd p
 endfunction
 
-command! -nargs=0 StartLeiningen call <SID>start_leiningen()
-
 function! s:lein_run()
-  if !has_key(t:, 'lein_cmds')
-    echoerr 'please give t:lein_cmds a list'
-    return
-  endif
+  let vsm_bufname = get(t:, 'vsm_bufname', '*not-found*')
+  if vsm_bufname == '*not-found*'
+    call s:start_leiningen()
+  else
+    if !has_key(t:, 'vsm_cmds')
+      echoerr 'please give t:vsm_cmds a list'
+      return
+    endif
 
-  let lein_bufname = get(t:, 'lein_bufname')
-  if lein_bufname !=# ''
     " go to the window
-    let wn = bufwinnr(lein_bufname)
-    execute wn . 'wincmd w'
-    " whew
+    let wn = bufwinnr(vsm_bufname)
+    if wn == -1
+      echo "buffer exists but windows doesn't exist. opening it."
+      execute 'sbuffer' vsm_bufname
+      wincmd H
+    else
+      execute wn . 'wincmd w'
+    endif
+
+    " make sure if it's vimshell
+    if !has_key(b:, 'interactive')
+      close
+      unlet t:vsm_bufname
+      call s:lein_run()
+      return
+    endif
+
     normal! Gzt
     " go back to the previous window
     wincmd p
 
-    call vimshell#interactive#set_send_buffer(lein_bufname)
+    call vimshell#interactive#set_send_buffer(vsm_bufname)
     call vimshell#interactive#clear()
-    "let cmd_formatted = printf('(leiningen.core.main/apply-task "%s" (leiningen.core.project/read) [])', join(t:lein_cmds))
-    let cmd_formatted = join(t:lein_cmds)
-    call vimshell#interactive#send(cmd_formatted)
-  else
-    echoerr 'try StartLeiningen'
+    call vimshell#interactive#send(t:vsm_cmds)
   endif
 endfunction
 
 function! s:vimrc_clojure()
   nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>lein_run()<Cr>
-  nnoremap <buffer> <Space>st :<C-u>StartLeiningen
 endfunction
 
 augroup vimrc_clojure
