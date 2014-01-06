@@ -423,6 +423,15 @@ call smartinput#define_rule({
       \   'char': '<Cr>',
       \   'input': '<C-e><Cr>',
       \   'filetype': ['vimshell', 'int-*']})
+
+" <Bs> in vimshell closes it when it's on the head
+" call smartinput#map_to_trigger('i', '<Bs>', '<Bs>', '<Bs>')
+" call smartinput#define_rule({
+"       \   'at': '\%#',
+"       \   'char': '<Bs>',
+"       \   'input': '<Plug>(vimshell_another_delete_backward_char)',
+"       \   'filetype': ['vimshell']})
+
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
@@ -476,6 +485,9 @@ augroup END
 
 function! s:vimshell_local()
   imap <buffer><expr> <BS>  pumvisible() ? "\<Plug>(vimrc_bs)" : "\<Plug>(vimshell_another_delete_backward_char)"
+  " to use smartinput
+  " iunmap <buffer> <Bs>
+
   nmap <buffer> j <Plug>(vimshell_next_prompt)
   nmap <buffer> k <Plug>(vimshell_previous_prompt)
   " deleting <Plug>(vimshell_delete_previous_output)
