@@ -2458,12 +2458,14 @@ omap ,e <Plug>(textobj-wiw-p)
 nnoremap <Space>0 :<C-u>source /home/ujihisa/Dropbox/vimbundles/unite-include-reversed/autoload/unite_include_reversed.vim<Cr>:call unite_include_reversed#identifiers()<Cr>
 " }}}
 " paredit {{{
+
 " let g:paredit_electric_return = 1
 let g:paredit_smartjump = 1
 let g:paredit_shortmaps = 1
 
 " nnoremap <M-0> :<C-u>echo synIDattr(synID(line("."), col("."), 0), "name")<Cr>
 " inoremap <M-0> <Esc>:echo synIDattr(synID(line("."), col("."), 0), "name")<Cr>
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
