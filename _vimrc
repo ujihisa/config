@@ -1,11 +1,11 @@
 "
 " neobundle {{{
-set nocompatible
-filetype off
 if has('vim_starting')
+  set nocompatible
   set runtimepath+=~/.vimbundles/neobundle.vim
-  call neobundle#rc(expand('~/.vimbundles'))
 endif
+
+call neobundle#rc(expand('~/.vimbundles'))
 
 let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
@@ -127,8 +127,7 @@ NeoBundle 'bitbucket:kovisoft/paredit'
 
 "call neobundle#local("~/.vimbundles", {})
 
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " }}}
 " g:V {{{
@@ -1864,7 +1863,7 @@ function! s:sbt_run()
     " go to the window
     let wn = bufwinnr(sbt_bufname)
     if wn == -1
-      echo "buffer exists but windows doesn't exist. opening it."
+      echo "buffer exists but window doesn't exist. opening it."
       execute 'sbuffer' sbt_bufname
       wincmd H
     else
@@ -1926,7 +1925,7 @@ function! s:lein_run()
     " go to the window
     let wn = bufwinnr(vsm_bufname)
     if wn == -1
-      echo "buffer exists but windows doesn't exist. opening it."
+      echo "buffer exists but window doesn't exist. opening it."
       execute 'sbuffer' vsm_bufname
       wincmd H
     else
