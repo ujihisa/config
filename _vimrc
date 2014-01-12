@@ -125,7 +125,7 @@ NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'bitbucket:kovisoft/paredit'
 
-"call neobundle#local("~/.vimbundles", {})
+" call neobundle#local("~/.vimbundles", {})
 
 filetype plugin indent on
 
