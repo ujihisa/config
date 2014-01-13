@@ -1653,7 +1653,7 @@ xmap <C-\> <Plug>(neosnippet_start_unite_snippet_target)
 
 " uses system snippet as personal snippet!
 " let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/autoload/neosnippet/snippets/'
-let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet/neosnippets/'
+let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet-snippets/neosnippets/'
 
 " }}}
 " vimshell platform-dependent aliases {{{
