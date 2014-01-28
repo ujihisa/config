@@ -69,6 +69,10 @@ NeoBundle 'Pychimp/vim-luna'
 NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
+" NeoBundle 'osyo-manga/snowdrop'
+" let g:snowdrop#libclang_directory = '/usr/lib64'
+" let g:snowdrop#libclang#default_binding = "python_interpreter"
+NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'deris/rengbang'
 NeoBundle 'thinca/vim-portal'
 if has('python')
