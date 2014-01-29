@@ -137,6 +137,7 @@ filetype plugin indent on
 " g:V {{{
 if !has_key(g:, 'V')
   let g:V = vital#of('vital')
+  call extend(g:V, g:V.import('Prelude'))
 endif
 " }}}
 " vimproc {{{
