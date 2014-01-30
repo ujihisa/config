@@ -126,7 +126,6 @@ NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
       \ 'autoload': {'filetypes' : 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
-NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'bitbucket:kovisoft/paredit'
 
 " call neobundle#local("~/.vimbundles", {})
@@ -194,6 +193,7 @@ set eadirection=ver
 set updatetime=500
 "set scrolljump=10
 set timeoutlen=300
+set synmaxcol=700
 
 " }}}
 " mappings {{{
@@ -412,15 +412,15 @@ call smartinput#define_rule({
       \   'at': '\<s\%#',
       \   'char': ':',
       \   'input': 'td::',
-      \   'filetype': ['cpp'],
-      \   'syntax': ['cBlock']})
+      \   'filetype': ['cpp']})
+      " \   'syntax': ['cBlock']
 " std:: + : in c++ = s:
 call smartinput#define_rule({
       \   'at': '\<std::\%#',
       \   'char': ':',
       \   'input': '<BS><BS><BS><BS>:',
-      \   'filetype': ['cpp'],
-      \   'syntax': ['cBlock']})
+      \   'filetype': ['cpp']})
+      " \   'syntax': ['cBlock']})
 
 " <Cr> in vimshell closes popup in advance.
 call smartinput#map_to_trigger('i', '<Cr>', '<Cr>', '<Cr>')
