@@ -753,11 +753,6 @@ let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './
 "       \ 'tempfile': '%{tempname()}.textile',
 "       \ 'exec': ['%c %s > %s:p:r.html', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'] }
 
-"let g:quickrun_config.go = {
-"\    'command': '8g',
-"\    'exec': ['8g %s', '8l -o %s:p:r %s:p:r.8', '%s:p:r %a', 'rm -f %s:p:r']
-"\  }
-
 let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 
 let g:quickrun_config['markdown'] = {
