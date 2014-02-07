@@ -24,7 +24,8 @@ let g:unite_colorscheme_command = 'GvimrcColorscheme'
 " GvimrcColorscheme xoria256
 " GvimrcColorscheme aldmeris
 " GvimrcColorscheme neverland-darker
-GvimrcColorscheme luna
+" GvimrcColorscheme luna
+GvimrcColorscheme newspaper
 
 if g:V.is_mac()
   GvimrcColorscheme macvim
