@@ -781,6 +781,9 @@ let g:quickrun_config.cpp = {
       \ 'type': 'cpp/clang++',
       \ 'cmdopt': '-std=c++11 -Wall -Wextra'}
 
+let g:quickrun_config.jq = {
+      \ 'cmdopt': '.'}
+
 "     \ 'erlang': {
 "     \   'command': 'escript',
 "    +\   'exec': ['echo "#!escript\n%%%%! -smp enable -sname quickrun -mnesia debug verbose" > %s.tmp', 'cat %s >> %s.tmp', 'mv %s.tmp %s', '%c %s %a', ':call delete("%s.tmp")', ':call delete("%s")'],
