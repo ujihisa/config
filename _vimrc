@@ -128,6 +128,9 @@ NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
 " NeoBundle 'bitbucket:kovisoft/paredit'
 NeoBundle 'kovisoft/slimv'
+NeoBundle 'Shougo/neomru.vim', {
+      \ 'depends': [
+      \   'Shougo/unite.vim']}
 
 " call neobundle#local("~/.vimbundles", {})
 
