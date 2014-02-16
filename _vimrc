@@ -131,6 +131,7 @@ NeoBundle 'kovisoft/slimv'
 NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
       \   'Shougo/unite.vim']}
+NeoBundle 'jimenezrick/vimerl'
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -1411,7 +1412,7 @@ endif
 let g:ref_phpmanual_path = expand("~/src/php-chunked-xhtml/")
 let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-references %s' " charset is important
 "let g:ref_man_cmd = "man -P cat"
-let g:ref_erlang_manpath = '/usr/local/share/man'
+" let g:ref_erlang_manpath = '/usr/local/share/man'
 let $MANPAGER='cat'
 "call ref#rmcache()
 
