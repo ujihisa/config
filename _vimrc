@@ -2479,6 +2479,33 @@ nnoremap <M-o> O
 " slimv {{{
 let g:slimv_disable_clojure = 1
 " }}}
+" ansible {{{
+
+function! Vimrc_ansible_includeexpr(fname)
+  let isfname_bak = &g:isfname
+  let &g:isfname = &g:isfname . ',32,{,}' " 32 is space
+  let memo = expand('<cfile>')
+  let memo = substitute(memo, '{{ basedir }}', expand('%:h/../../..'), '')
+  for env in ['vagrant', 'dev', 'stage', 'production']
+    let tmp = substitute(memo, '{{ env }}', env, '')
+    echomsg string([filereadable(tmp), tmp])
+    if filereadable(tmp)
+      let memo = tmp
+      break
+    endif
+  endfor
+  " echomsg string([isfname_bak, &g:isfname, memo])
+  let &g:isfname = isfname_bak
+  return memo
+endfunction
+
+augroup vimrc-ansible
+  autocmd!
+  " the autocmd is very rough.
+  autocmd FileType yaml let &l:includeexpr = 'Vimrc_ansible_includeexpr(v:fname)'
+augroup END
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
