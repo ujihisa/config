@@ -132,6 +132,7 @@ NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
       \   'Shougo/unite.vim']}
 NeoBundle 'jimenezrick/vimerl'
+NeoBundle 'thinca/vim-threes'
 
 " call neobundle#local("~/.vimbundles", {})
 
