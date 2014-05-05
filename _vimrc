@@ -642,7 +642,7 @@ endfunction
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
   nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
-  nnoremap se :<C-u>Unite file_rec<Cr>
+  nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
   nnoremap sf :<C-u>Unite file -default-action=split<Cr>
