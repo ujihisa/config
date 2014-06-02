@@ -591,6 +591,7 @@ let g:neocomplcache_skip_auto_completion_time = "" " disabling it
 let g:neocomplete#skip_auto_completion_time = "" " disabling it
 
 let g:necoghc_enable_detailed_browse = 1
+let g:neocomplete#lock_iminsert = 1
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
