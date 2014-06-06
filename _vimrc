@@ -1503,7 +1503,9 @@ endfunction
 command! Letv let V = vital#__latest__#new() | echo 'V: ' . string(keys(V))
 " }}}
 " setl list is very often {{{
-nnoremap ` :!<C-u>setl list!<Cr>
+
+" nnoremap ` :<C-u>setl list!<Cr>
+nnoremap ` :<C-u>setl wrap!<Cr>
 " }}}
 " too much t). I dont' use ). ) should be t). {{{
 onoremap ) t)
