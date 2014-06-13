@@ -2522,7 +2522,7 @@ function! HootsuiteMysqlQuickrunSetup()
     return
   endif
 
-  if !has(t:, 'vimrc_mysql_password')
+  if !has_key(t:, 'vimrc_mysql_password')
     let t:vimrc_mysql_password = inputsecret('password: ')
   endif
 
