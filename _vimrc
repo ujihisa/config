@@ -66,7 +66,7 @@ NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
       \ 'autoload': {'mappings': ['gS', 'gJ']}}
 NeoBundle 'Pychimp/vim-luna'
 "NeoBundle 'BirdseyeSoftware/tracker.vim'
-NeoBundle 'KamunagiChiduru/unite-javaimport'
+" NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
 " NeoBundle 'osyo-manga/snowdrop'
@@ -134,6 +134,7 @@ NeoBundle 'Shougo/neomru.vim', {
 NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
+NeoBundle 'osyo-manga/vim-spice'
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -150,8 +151,7 @@ endif
 if g:V.is_mac()
   " TODO
 else
-  let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/autoload/vimproc_unix.so')
-  " '/home/ujihisa/vimproc2/autoload/vimproc_unix.so'
+  " let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/autoload/vimproc_unix.so')
 endif
 " }}}
 " settings {{{
@@ -644,6 +644,7 @@ endfunction
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
   nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
+  nnoremap sS :<C-u>Unite file_rec/async:! -default-action=split -direction=rightbelow<Cr>
   nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
@@ -2274,8 +2275,8 @@ augroup vimrc-showtime
 augroup END
 " }}}
 " unite-file/mru {{{
-let g:unite_source_file_mru_limit = 1000 " default was 100
-let g:unite_source_file_mru_long_limit = 5000 " default was 1000
+let g:neomru#file_mru_limit = 5000 " default is 1000
+let g:neomru#directory_mru_limit = 5000 " default is 1000
 " }}}
 " unite-build {{{
 augroup vimrc-unite-build
@@ -2535,6 +2536,8 @@ function! HootsuiteMysqlQuickrunSetup()
         \ }
 endfunction
 " }}}
+" mongodb
+" let b:quickrun_config = {'cmdopt': 'streaming_service', 'exec': 'cat %s | %c %o %a'}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
