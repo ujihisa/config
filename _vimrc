@@ -135,6 +135,9 @@ NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'osyo-manga/vim-spice'
+" NeoBundle 'ujihisa/ft-mongo.vim'
+call neobundle#local("~/.vimbundles", {},
+      \ ['ft-mongo', 'metaffer'])
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -490,6 +493,7 @@ let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'split'
 let g:vimshell_scrollback_limit = 4000
 let g:vimshell_interactive_update_time = 400
+let g:vimshell_max_command_history = 100000 " default is 1000
 
 augroup vimrc-vimshell
   autocmd!
@@ -2538,6 +2542,9 @@ endfunction
 " }}}
 " mongodb
 " let b:quickrun_config = {'cmdopt': 'streaming_service', 'exec': 'cat %s | %c %o %a'}
+" manga-spice {{{
+let g:spice_highlight_group = "Underlined"
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
