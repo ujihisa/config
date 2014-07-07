@@ -138,6 +138,7 @@ NeoBundle 'osyo-manga/vim-spice'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer'])
+NeoBundle 'chase/vim-ansible-yaml'
 
 " call neobundle#local("~/.vimbundles", {})
 
