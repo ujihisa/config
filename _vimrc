@@ -207,6 +207,11 @@ set timeoutlen=300
 set synmaxcol=700
 
 " }}}
+" landscape / portrait detect {{{
+function! s:is_display_landscape()
+  return &lines * 2 < &columns
+endfunction
+" }}}
 " mappings {{{
 if g:V.is_mac()
   let g:transparency = 10
@@ -323,7 +328,6 @@ nnoremap <Space>ssl :<C-u>set filetype=scala<Cr>
 nnoremap <Space>scl :<C-u>set filetype=clojure<Cr>
 nnoremap <Space>ssh :<C-u>set filetype=sh<Cr>
 
-"nnoremap <Space>b :w blogger:create
 nnoremap <space>b <C-w>100+
 
 nnoremap <Space>I $i
@@ -664,8 +668,17 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
   "nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
-let g:unite_enable_start_insert = 1
-let g:unite_enable_split_vertically = 1
+augroup vimrc-vim-resize
+  autocmd!
+  autocmd GUIEnter *
+        \ call unite#custom#profile('default', 'context', {
+        \  'vertical': s:is_display_landscape(),
+        \  'start_insert': 1})
+  autocmd VimResized *
+        \ call unite#custom#profile('default', 'context', {
+        \  'vertical': s:is_display_landscape(),
+        \  'start_insert': 1})
+augroup END
 
 " g:unite_source_file_rec_ignore_pattern is deprecated
 "let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
