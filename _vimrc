@@ -1444,7 +1444,11 @@ let g:ref_clojure_cmd = [
 " }}}
 " special git log viewer {{{
 function! s:git_log_viewer()
-  vnew
+  if s:is_display_landscape()
+    vnew
+  else
+    new
+  endif
   "VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
   VimProcRead git log -u 'ORIG_HEAD..HEAD' --
   set filetype=git-log.git-diff
