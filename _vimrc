@@ -672,11 +672,13 @@ augroup vimrc-vim-resize
   autocmd!
   autocmd GUIEnter *
         \ call unite#custom#profile('default', 'context', {
-        \  'vertical': s:is_display_landscape(),
+        \  'vertical': 1,
+        \  'no_split': !s:is_display_landscape(),
         \  'start_insert': 1})
   autocmd VimResized *
         \ call unite#custom#profile('default', 'context', {
-        \  'vertical': s:is_display_landscape(),
+        \  'vertical': 1,
+        \  'no_split': !s:is_display_landscape(),
         \  'start_insert': 1})
 augroup END
 
