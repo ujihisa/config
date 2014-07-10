@@ -2565,6 +2565,12 @@ endfunction
 " manga-spice {{{
 let g:spice_highlight_group = "Underlined"
 " }}}
+" gentoo {{{
+
+" gentoo's vim is terrible
+let g:leave_my_textwidth_alone = 1
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
