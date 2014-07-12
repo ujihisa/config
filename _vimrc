@@ -650,6 +650,7 @@ endfunction
 
 " }}}
 " unite {{{
+let g:neomru#filename_format = ':~:.'
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
   nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
