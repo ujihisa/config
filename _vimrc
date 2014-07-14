@@ -1941,7 +1941,7 @@ augroup END
 " clojure leininge integrate (deadcopy from scala. really bad.) {{{
 function! s:start_leiningen()
   if !has_key(t:, 'vsm_cmds')
-    let t:vsm_cmds = ['uberjar']
+    let t:vsm_cmds = ['compile']
   endif
   execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
   execute 'VimShellInteractive lein interactive'
@@ -1963,7 +1963,10 @@ function! s:lein_run()
 
     " go to the window
     let wn = bufwinnr(vsm_bufname)
-    if wn == -1
+    if !bufexists(vsm_bufname)
+      unlet! t:vsm_bufname
+      return s:lein_run() " retry
+    elseif wn == -1
       echo "buffer exists but window doesn't exist. opening it."
       execute 'sbuffer' vsm_bufname
       wincmd H
