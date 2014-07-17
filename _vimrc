@@ -284,11 +284,11 @@ nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
-nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
+" nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <M-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 inoremap <silent> <M-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <Space>ak  gT
-nnoremap <D-k>  gT
+" nnoremap <D-k>  gT
 nnoremap <M-k>  gT
 inoremap <M-k>  <Esc>gT
 
@@ -2502,7 +2502,18 @@ nnoremap <Space>0 :<C-u>source /home/ujihisa/Dropbox/vimbundles/unite-include-re
 
 " let g:paredit_electric_return = 1
 let g:paredit_smartjump = 1
-let g:paredit_shortmaps = 1
+
+" Don't use all the shortmaps, but use some of them.
+let g:paredit_shortmaps = 0
+" with different key
+augroup vimrc-paredit-clojure
+  autocmd!
+  autocmd FileType clojure nmap < ,<
+  autocmd FileType clojure nmap > ,>
+  autocmd FileType clojure nmap R ,W
+  autocmd FileType clojure nmap S ,S
+augroup END
+
 
 " nnoremap <M-0> :<C-u>echo synIDattr(synID(line("."), col("."), 0), "name")<Cr>
 " inoremap <M-0> <Esc>:echo synIDattr(synID(line("."), col("."), 0), "name")<Cr>
