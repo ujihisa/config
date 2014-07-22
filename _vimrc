@@ -137,7 +137,7 @@ NeoBundle 'sickill/vim-monokai'
 NeoBundle 'osyo-manga/vim-spice'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
-      \ ['ft-mongo', 'metaffer'])
+      \ ['ft-mongo', 'metaffer', 'cloft'])
 NeoBundle 'chase/vim-ansible-yaml'
 
 " call neobundle#local("~/.vimbundles", {})
@@ -205,6 +205,7 @@ set updatetime=500
 "set scrolljump=10
 set timeoutlen=300
 set synmaxcol=700
+set history=1000
 
 " }}}
 " landscape / portrait detect {{{
@@ -2508,10 +2509,10 @@ let g:paredit_shortmaps = 0
 " with different key
 augroup vimrc-paredit-clojure
   autocmd!
-  autocmd FileType clojure nmap < ,<
-  autocmd FileType clojure nmap > ,>
-  autocmd FileType clojure nmap R ,W
-  autocmd FileType clojure nmap S ,S
+  autocmd FileType clojure nmap <buffer> < ,<
+  autocmd FileType clojure nmap <buffer> > ,>
+  autocmd FileType clojure nmap <buffer> R ,W
+  autocmd FileType clojure nmap <buffer> S ,S
 augroup END
 
 
