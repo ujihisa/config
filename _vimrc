@@ -732,6 +732,14 @@ augroup vimrc-unite
 augroup END
 " }}}
 " Big {{{
+"
+" ^big = Big
+call smartinput#map_to_trigger('i', 'g', 'g', 'g')
+call smartinput#define_rule({
+      \   'at': '^bi\%#',
+      \   'char': 'g',
+      \   'input': '<BS><BS>Big'})
+
 command! Big wincmd _ | wincmd |
 " }}}
 if has('mac') " {{{
