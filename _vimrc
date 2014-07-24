@@ -651,7 +651,6 @@ endfunction
 
 " }}}
 " unite {{{
-let g:neomru#filename_format = ':~:.'
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
   nnoremap ss :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
@@ -2312,8 +2311,9 @@ augroup vimrc-showtime
 augroup END
 " }}}
 " unite-file/mru {{{
-let g:neomru#file_mru_limit = 5000 " default is 1000
-let g:neomru#directory_mru_limit = 5000 " default is 1000
+let g:neomru#filename_format = ':~:.'
+let g:neomru#file_mru_limit = 50000 " default is 1000
+let g:neomru#directory_mru_limit = 50000 " default is 1000
 " }}}
 " unite-build {{{
 augroup vimrc-unite-build
