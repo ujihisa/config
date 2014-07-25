@@ -1449,9 +1449,11 @@ let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-re
 let $MANPAGER='cat'
 "call ref#rmcache()
 
-let g:ref_clojure_cmd = [
-      \ 'java', '-XX:+TieredCompilation', '-XX:TieredStopAtLevel=1', '-Xverify:none',
-      \ '-cp', '/usr/share/clojure-1.5/lib/clojure.jar', 'clojure.main']
+" let g:ref_clojure_cmd = [
+"       \ 'java', '-XX:+TieredCompilation', '-XX:TieredStopAtLevel=1', '-Xverify:none',
+"       \ '-cp', '/usr/share/clojure-1.5/lib/clojure.jar', 'clojure.main']
+
+let g:ref_clojure_persistent = 1
 " }}}
 " special git log viewer {{{
 function! s:git_log_viewer()
