@@ -135,6 +135,7 @@ NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'osyo-manga/vim-spice'
+NeoBundle 'ujihisa/neoclojure.vim'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer', 'cloft'])
@@ -369,6 +370,10 @@ snoremap <M-g>g <C-g>
 nnoremap <M-g>f <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
+
+" yank without newlines
+vnoremap gy y:<C-u>let @" = substitute(@", "\n\s\*", ' ', 'g')<Cr>
+
 " }}}
 " kana/vim-smartinput {{{
 call smartinput_endwise#define_default_rules()
@@ -1453,7 +1458,7 @@ let $MANPAGER='cat'
 "       \ 'java', '-XX:+TieredCompilation', '-XX:TieredStopAtLevel=1', '-Xverify:none',
 "       \ '-cp', '/usr/share/clojure-1.5/lib/clojure.jar', 'clojure.main']
 
-let g:ref_clojure_persistent = 1
+let g:ref_clojure_use_persistent = 1
 " }}}
 " special git log viewer {{{
 function! s:git_log_viewer()
@@ -2518,8 +2523,27 @@ let g:paredit_smartjump = 1
 let g:paredit_shortmaps = 0
 " with different key
 augroup vimrc-paredit-clojure
+  " (aa bb cc )  anywhere in the expr
+  " ->
+  " (aa bb cc)
+  "          ^
+  function! s:expredit_normalize()
+    call PareditSmartJumpClosing(0)
+    execute 'normal!' "geli\<Cr>\<Esc>kJ"
+  endfunction
+
+  " (aa)(b)  or (aa )(b)
+  "    ^            ^
+  " ->
+  " (aa (b))
+  function! s:expredit_moveright()
+    call s:expredit_normalize()
+    execute 'normal!' "a\<Space>\<Esc>h"
+    call PareditMoveRight()
+  endfunction
   autocmd!
   autocmd FileType clojure nmap <buffer> < ,<
+  " autocmd FileType clojure nnoremap <buffer> > :<C-u>call <SID>expredit_moveright()<Cr>
   autocmd FileType clojure nmap <buffer> > ,>
   autocmd FileType clojure nmap <buffer> R ,W
   autocmd FileType clojure nmap <buffer> S ,S
@@ -2596,6 +2620,14 @@ let g:spice_highlight_group = "Underlined"
 " gentoo's vim is terrible
 let g:leave_my_textwidth_alone = 1
 
+" }}}
+" neoclojure {{{
+
+augroup vimrc-neoclojure
+  autocmd!
+  " autocmd FileType clojure setlocal omnifunc=neoclojure#complete | echo neoclojure#complete(1, '')
+  autocmd FileType clojure setlocal omnifunc=neoclojure#complete
+augroup END
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
