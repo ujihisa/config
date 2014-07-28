@@ -2627,6 +2627,7 @@ augroup vimrc-neoclojure
   autocmd!
   " autocmd FileType clojure setlocal omnifunc=neoclojure#complete | echo neoclojure#complete(1, '')
   autocmd FileType clojure setlocal omnifunc=neoclojure#complete
+  " autocmd FileType clojure setlocal omnifunc=neoclojure#complete_timed
 augroup END
 " }}}
 " __END__  "{{{1
