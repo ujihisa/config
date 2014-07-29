@@ -15,14 +15,15 @@ if has('lua')
   NeoBundle 'Shougo/neocomplete'
 else
   NeoBundle 'Shougo/neocomplcache'
-  NeoBundle 'Shougo/neocomplcache-rsense'
 endif
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'unix' : 'make -f make_unix.mak'}}
 " NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/vesting'
@@ -89,7 +90,6 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'shiracha/shiracha-vim'
-NeoBundle 'kana/vim-smartword'
 NeoBundle 'rhysd/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -126,7 +126,6 @@ NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
       \ 'autoload': {'filetypes' : 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
-" NeoBundle 'bitbucket:kovisoft/paredit'
 NeoBundle 'kovisoft/slimv'
 NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
@@ -811,7 +810,7 @@ let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), 
 let g:quickrun_config.clojure = {
       \ 'type': 'clojure/process_manager',
       \ 'command': printf(
-      \   'java -cp %s:/usr/share/clojure-1.5/lib/clojure.jar clojure.main',
+      \   'java -cp %s:/usr/share/clojure-1.6/lib/clojure.jar clojure.main',
       \   join(s:clojure_libs, ':'))}
 
 " let g:quickrun_config.scala = {
@@ -1437,11 +1436,6 @@ endfunction
 "        \ {'text': ' ' . substitute(string(result), '\n', "", "")}]
 "endfunction
 "call echodoc#register('clojure', s:clojure_doc_dict)
-" }}}
-" rsense {{{
-if filereadable(expand('~/git/rsense/bin/rsense'))
-  let g:neocomplcache#sources#rsense#home_directory = expand('~/git/rsense')
-endif
 " }}}
 " testing neco-ghc {{{
 "nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
@@ -2117,7 +2111,7 @@ let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
       \     ['all', 'Unite -no-start-insert -horizontal -log neobundle/update:all'],
-      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplcache']
+      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplete neobundle/update:neosnippet']
       \   ]
       \ }
 let g:unite_source_menu_menus.quickrun_set = {
