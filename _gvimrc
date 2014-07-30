@@ -187,4 +187,9 @@ if 0
   augroup END
 endif
 " }}}
+" MacBook Pro Gentoo dirty hack {{{
+if executable(expand('~/bin/tmux-send-keys'))
+  call vimproc#system_bg(expand('~/bin/tmux-send-keys'))
+endif
+" }}}
 " vim: foldmethod=marker
