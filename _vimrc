@@ -2537,8 +2537,11 @@ augroup vimrc-paredit-clojure
   endfunction
   autocmd!
   autocmd FileType clojure nmap <buffer> < ,<
-  " autocmd FileType clojure nnoremap <buffer> > :<C-u>call <SID>expredit_moveright()<Cr>
+  autocmd FileType clojure nnoremap <buffer> <M-9> :<C-u>silent call PareditMoveLeft()<Cr>
+  autocmd FileType clojure inoremap <buffer> <M-9> <Esc>:<C-u>call PareditMoveLeft()<Cr>
   autocmd FileType clojure nmap <buffer> > ,>
+  autocmd FileType clojure nnoremap <buffer> <M-0> :<C-u>silent call PareditMoveRight()<Cr>
+  autocmd FileType clojure inoremap <buffer> <M-0> <Esc>:<C-u>call PareditMoveRight()<Cr>
   autocmd FileType clojure nmap <buffer> R ,W
   autocmd FileType clojure nmap <buffer> S ,S
 augroup END
