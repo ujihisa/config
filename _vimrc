@@ -741,7 +741,8 @@ call smartinput#map_to_trigger('i', 'g', 'g', 'g')
 call smartinput#define_rule({
       \   'at': '^bi\%#',
       \   'char': 'g',
-      \   'input': '<BS><BS>Big'})
+      \   'input': '<BS><BS>Big',
+      \   'filetype': ['vim']})
 
 command! Big wincmd _ | wincmd |
 " }}}
