@@ -133,7 +133,7 @@ NeoBundle 'Shougo/neomru.vim', {
 NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
-NeoBundle 'osyo-manga/vim-spice'
+NeoBundle 'osyo-manga/vim-brightest'
 NeoBundle 'ujihisa/neoclojure.vim'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
@@ -463,7 +463,7 @@ call smartinput#define_rule({
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
 if has('lua')
-  inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . (pumvisible() ? '' : "\<BS>")
+  inoremap <expr> <Plug>(vimrc_bs) neocomplete#cancel_popup() . (pumvisible() ? '' : "\<BS>")
 else
   inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
 endif
@@ -2606,8 +2606,8 @@ endfunction
 " }}}
 " mongodb
 " let b:quickrun_config = {'cmdopt': 'streaming_service', 'exec': 'cat %s | %c %o %a'}
-" manga-spice {{{
-let g:spice_highlight_group = "Underlined"
+" manga-brightest {{{
+let g:brightest_highlight = {'group': 'Underlined'}
 " }}}
 " gentoo {{{
 
