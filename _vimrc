@@ -2607,7 +2607,8 @@ endfunction
 " mongodb
 " let b:quickrun_config = {'cmdopt': 'streaming_service', 'exec': 'cat %s | %c %o %a'}
 " manga-brightest {{{
-let g:brightest_highlight = {'group': 'Underlined'}
+let g:brightest#highlight = {
+      \   "group" : "BrightestUnderline"}
 " }}}
 " gentoo {{{
 
