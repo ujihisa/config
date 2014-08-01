@@ -812,6 +812,9 @@ let g:quickrun_config.clojure = {
       \ 'command': printf(
       \   'java -cp %s:/usr/share/clojure-1.6/lib/clojure.jar clojure.main',
       \   join(s:clojure_libs, ':'))}
+let g:quickrun_config.clojure = {
+      \ 'runner': 'neoclojure', 'command': 'dummy',
+      \ 'tempfile'  : '%{tempname()}.clj'}
 
 " let g:quickrun_config.scala = {
 "       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
@@ -2628,6 +2631,12 @@ augroup vimrc-neoclojure
   autocmd FileType clojure setlocal omnifunc=neoclojure#complete
   " autocmd FileType clojure setlocal omnifunc=neoclojure#complete_timed
 augroup END
+
+" let g:neocomplete#force_omni_input_patterns.clojure = '\.\|/'
+let g:neocomplete#sources#omni#input_patterns = get(g:, 'neocomplete#sources#omni#input_patterns', {})
+let g:neocomplete#sources#omni#input_patterns.clojure = '\.\|/'
+
+let g:neoclojure_autowarmup = 1
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
