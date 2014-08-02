@@ -373,6 +373,9 @@ nmap <M-o> <Plug>(openbrowser-open)
 " yank without newlines
 vnoremap gy y:<C-u>let @" = substitute(@", "\n\s\*", ' ', 'g')<Cr>
 
+" go insert new line below directly from insert mode
+inoremap <M-o> <Esc>o<Esc>
+
 " }}}
 " kana/vim-smartinput {{{
 call smartinput_endwise#define_default_rules()
@@ -2544,8 +2547,8 @@ augroup vimrc-paredit-clojure
   autocmd FileType clojure nnoremap <buffer> <M-9> :<C-u>silent call PareditMoveLeft()<Cr>
   autocmd FileType clojure inoremap <buffer> <M-9> <Esc>:<C-u>call PareditMoveLeft()<Cr>
   autocmd FileType clojure nmap <buffer> > ,>
-  autocmd FileType clojure nnoremap <buffer> <M-0> :<C-u>silent call PareditMoveRight()<Cr>
-  autocmd FileType clojure inoremap <buffer> <M-0> <Esc>:<C-u>call PareditMoveRight()<Cr>
+  autocmd FileType clojure nnoremap <buffer> <M-0> :<C-u>silent call PareditMoveRight()<Cr>:<C-u>silent call poslist#move_pos(1)<CR>
+  autocmd FileType clojure inoremap <buffer> <M-0> <Esc>:<C-u>silent call PareditMoveRight()<Cr>:<C-u>silent call poslist#move_pos(1)<CR>
   autocmd FileType clojure nmap <buffer> R ,W
   autocmd FileType clojure nmap <buffer> S ,S
 augroup END
@@ -2628,9 +2631,7 @@ let g:leave_my_textwidth_alone = 1
 
 augroup vimrc-neoclojure
   autocmd!
-  " autocmd FileType clojure setlocal omnifunc=neoclojure#complete | echo neoclojure#complete(1, '')
-  autocmd FileType clojure setlocal omnifunc=neoclojure#complete
-  " autocmd FileType clojure setlocal omnifunc=neoclojure#complete_timed
+  autocmd FileType clojure setlocal omnifunc=neoclojure#complete#omni
 augroup END
 
 " let g:neocomplete#force_omni_input_patterns.clojure = '\.\|/'
