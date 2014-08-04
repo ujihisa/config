@@ -137,8 +137,9 @@ NeoBundle 'osyo-manga/vim-brightest'
 NeoBundle 'ujihisa/neoclojure.vim'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
-      \ ['ft-mongo', 'metaffer', 'cloft'])
+      \ ['ft-mongo', 'metaffer'])
 NeoBundle 'chase/vim-ansible-yaml'
+" NeoBundle 'rbtnn/mario.vim'
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -2473,6 +2474,9 @@ let g:clang_auto_select = 0
 
 " mine
 let g:clang_user_options = '-std=c++11'
+
+
+imap <C-l> <Plug>(neocomplete_start_unite_complete)
 
 " }}}
 " d.vim {{{
