@@ -140,6 +140,7 @@ call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer'])
 NeoBundle 'chase/vim-ansible-yaml'
 " NeoBundle 'rbtnn/mario.vim'
+NeoBundle 'kmnk/vim-unite-giti'
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -666,7 +667,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
   nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
-  nnoremap sf :<C-u>Unite file -default-action=split<Cr>
+  nnoremap sf :<C-u>UniteWithBufferDir file_rec -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
   nnoremap sre :<C-u>Unite ref/man ref/hoogle ref/pydoc -default-action=split<Cr>
