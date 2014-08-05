@@ -2568,7 +2568,7 @@ nnoremap <M-o> O
 " slimv {{{
 let g:slimv_disable_clojure = 1
 " }}}
-" ansible {{{
+" ansible gf {{{
 
 function! Vimrc_ansible_includeexpr(fname)
   let isfname_bak = &g:isfname
@@ -2619,8 +2619,6 @@ function! HootsuiteMysqlQuickrunSetup()
         \ }
 endfunction
 " }}}
-" mongodb
-" let b:quickrun_config = {'cmdopt': 'streaming_service', 'exec': 'cat %s | %c %o %a'}
 " manga-brightest {{{
 let g:brightest#highlight = {
       \   "group" : "BrightestUnderline"}
