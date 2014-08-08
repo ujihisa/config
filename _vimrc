@@ -139,7 +139,9 @@ NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer'])
 NeoBundle 'chase/vim-ansible-yaml'
-" NeoBundle 'rbtnn/mario.vim'
+NeoBundle 'rbtnn/mario.vim', {
+      \ 'depends': [
+      \   'rbtnn/game_engine.vim'] }
 NeoBundle 'kmnk/vim-unite-giti'
 
 " call neobundle#local("~/.vimbundles", {})
