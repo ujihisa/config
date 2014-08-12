@@ -75,7 +75,7 @@ NeoBundle 'osyo-manga/jplus'
 " let g:snowdrop#libclang#default_binding = "python_interpreter"
 NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'deris/rengbang'
-NeoBundle 'thinca/vim-portal'
+" NeoBundle 'thinca/vim-portal'
 if has('python')
   NeoBundle 'iyf/vimrepress'
 endif
