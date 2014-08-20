@@ -143,6 +143,9 @@ NeoBundle 'rbtnn/mario.vim', {
       \ 'depends': [
       \   'rbtnn/game_engine.vim'] }
 NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'kana/vim-operator-replace', {
+      \ 'depends': [
+      \   'kana/vim-operator-user'] }
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -233,6 +236,7 @@ nnoremap # :<C-u>set hlsearch<Return>#
 command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
 nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
 
+vmap p <Plug>(operator-replace)
 
 nnoremap -- :<C-u>e %:h<Cr>
 
