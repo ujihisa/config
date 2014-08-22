@@ -2649,6 +2649,9 @@ let g:neocomplete#sources#omni#input_patterns.clojure = '\.\|/'
 
 let g:neoclojure_autowarmup = 1
 " }}}
+" calendar {{{
+let g:calendar_first_day = 'sunday'
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
