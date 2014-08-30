@@ -82,6 +82,12 @@ endif
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+NeoBundleLazy 'lambdalisue/vim-gista', {
+      \ 'autoload': {
+      \    'commands': ['Gista'],
+      \    'mappings': '<Plug>(gista-',
+      \    'unite_sources': 'gista',
+      \}}
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
