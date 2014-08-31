@@ -2072,7 +2072,7 @@ function! s:vimrc_int_sbt()
   syntax match intsbtPromptBody /.*/ contained
   syntax match intsbtPromptHead /^> / contained
 
-  syntax match intsbtDebug /^\[debug\] .*/ contains=intsbtDebugHead,intsbtDebugBody
+  syntax match intsbtDebug /^\[debug\] .*\|^\d\d:\d\d:\d\d/ contains=intsbtDebugHead,intsbtDebugBody
   syntax match intsbtDebugBody /.*/ contained
   syntax match intsbtDebugHead /\[debug\]/ contained
 
