@@ -898,6 +898,8 @@ nnoremap <silent> <Space>ga :<C-u>Gwrite<Cr>
 nnoremap <Space>gc :<C-u>Gcommit --verbose<Cr>
 "nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
 nnoremap <Space>gp :<C-u>Git push
+
+command! FugitiveIsTerrible unlet b:git_dir | edit
 " }}}
 " TeX Supports {{{
 " F5 to --
@@ -1651,8 +1653,12 @@ let g:vimfiler_as_default_explorer = 1
 
 autocmd FileType vimfiler call s:vimfiler_local()
 function! s:vimfiler_local()
-  nunmap <buffer> L
-  nunmap <buffer> H
+  silent! nunmap <buffer> L
+  silent! nunmap <buffer> H
+
+  " don't loop j/k
+  silent! nunmap <buffer> j
+  silent! nunmap <buffer> k
 endfunction
 " }}}
 " :TOhtmlAndBrowse {{{
