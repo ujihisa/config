@@ -2492,28 +2492,6 @@ augroup vimrc-d
   autocmd FileType d setl expandtab shiftwidth=4 tabstop=4 softtabstop=4
 augroup END
 " }}}
-" {{{
-" -- list of plugins not managed by neobundle --
-" clingre.vim
-" gauche.vim
-"
-" git-vim
-" haskellhisa
-" hootsuite
-" leiningen.vim
-" luajikken.vim
-" phpconceal
-" sound-volume.vim
-" uj-textile
-" unite-jjj
-" unite-lein
-" unite-systemctl
-"
-" vimlint
-" vimshell-erlang
-" vimshell-git
-" vimshell-repl
-" }}}
 " textobj-wiw {{{
 
 " doesn't seem to be working though...
