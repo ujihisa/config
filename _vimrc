@@ -21,6 +21,7 @@ NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/tabpagebuffer.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'unix' : 'make -f make_unix.mak'}}
