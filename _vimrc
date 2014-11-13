@@ -152,7 +152,8 @@ NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'kana/vim-operator-replace', {
       \ 'depends': [
       \   'kana/vim-operator-user'] }
-NeoBundle 'syngan/vim-vimlint'
+NeoBundle 'syngan/vim-vimlint', {
+      \ 'depends': 'ynkdir/vim-vimlparser'}
 
 " call neobundle#local("~/.vimbundles", {})
 
