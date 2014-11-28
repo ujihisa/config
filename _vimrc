@@ -1349,7 +1349,7 @@ if isdirectory(expand('~/bin'))
 endif
 
 AddPath /home/ujihisa/git/termtter/bin
-AddPath /home/ujihisa/git/ruby/local/bin
+" AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
 AddPath /home/ujihisa/git/Gyazo-for-Linux/
 " }}}
