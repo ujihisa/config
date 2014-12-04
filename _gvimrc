@@ -20,8 +20,8 @@ let g:unite_colorscheme_command = 'GvimrcColorscheme'
 " GvimrcColorscheme koehler
 " GvimrcColorscheme mrkn256
 " GvimrcColorscheme neverland2-darker
-GvimrcColorscheme aldmeris
-" GvimrcColorscheme neverland-darker
+" GvimrcColorscheme aldmeris
+GvimrcColorscheme neverland-darker
 " GvimrcColorscheme luna
 " GvimrcColorscheme newspaper
 " GvimrcColorscheme monokai

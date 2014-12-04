@@ -22,9 +22,12 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/tabpagebuffer.vim'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'unix' : 'make -f make_unix.mak'}}
+NeoBundle 'Shougo/vimproc', {'build': {
+      \     'windows': 'tools\\update-dll-mingw',
+      \     'cygwin': 'make -f make_cygwin.mak',
+      \     'mac': 'make -f make_mac.mak',
+      \     'linux': 'make',
+      \     'unix': 'gmake'}}
 " NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/vesting'
@@ -154,6 +157,7 @@ NeoBundle 'kana/vim-operator-replace', {
       \   'kana/vim-operator-user'] }
 NeoBundle 'syngan/vim-vimlint', {
       \ 'depends': 'ynkdir/vim-vimlparser'}
+NeoBundle 'cohama/agit.vim'
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -167,11 +171,13 @@ if !has_key(g:, 'V')
 endif
 " }}}
 " vimproc {{{
-if g:V.is_mac()
-  " TODO
-else
-  " let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/autoload/vimproc_unix.so')
-endif
+
+" if g:V.is_mac()
+"   " TODO
+" else
+"   " let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/autoload/vimproc_unix.so')
+" endif
+
 " }}}
 " settings {{{
 set encoding=utf-8
@@ -1573,7 +1579,13 @@ command! Letv let V = vital#__latest__#new() | echo 'V: ' . string(keys(V))
 " setl list is very often {{{
 
 " nnoremap ` :<C-u>setl list!<Cr>
-nnoremap ` :<C-u>setl wrap!<Cr>
+function! s:toggle_wrap()
+  setlocal wrap!
+  if exists('b:interactive.terminal.wrap')
+    let b:interactive.terminal.wrap = &l:wrap
+  endif
+endfunction
+nnoremap ` :<C-u>silent call <SID>toggle_wrap()<Cr>
 " }}}
 " too much t). I dont' use ). ) should be t). {{{
 onoremap ) t)
