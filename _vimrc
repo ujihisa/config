@@ -1758,6 +1758,9 @@ let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
 function! s:vimshell_settings()
   if s:is_gentoo
     call vimshell#set_alias('time', 'exe time -p')
+
+    let xfce4_docker_cmd = 'xfce4-terminal --maximize -e "docker exec -it `docker ps -lq` /bin/bash" && wmctrl -a `wmctrl -l | tail -1 | sed "s/ .*//"` -i'
+    call vimshell#set_alias('dockersh', printf('sh -c %s', string(xfce4_docker_cmd)))
   endif
 
   " from vimshell's doc
