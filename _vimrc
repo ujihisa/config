@@ -488,7 +488,8 @@ call smartinput#define_rule({
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
 if has('lua')
-  inoremap <expr> <Plug>(vimrc_bs) neocomplete#cancel_popup() . (pumvisible() ? '' : "\<BS>")
+  " inoremap <expr> <Plug>(vimrc_bs) neocomplete#cancel_popup() . (pumvisible() ? '' : "\<BS>")
+  inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
 else
   inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
 endif
@@ -2583,7 +2584,7 @@ augroup END
 " nnoremap <M-0> :<C-u>echo synIDattr(synID(line("."), col("."), 0), "name")<Cr>
 " inoremap <M-0> <Esc>:echo synIDattr(synID(line("."), col("."), 0), "name")<Cr>
 
-nnoremap <M-o> O
+" nnoremap <M-o> O
 
 " }}}
 " slimv {{{
