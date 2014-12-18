@@ -158,6 +158,9 @@ NeoBundle 'kana/vim-operator-replace', {
 NeoBundle 'syngan/vim-vimlint', {
       \ 'depends': 'ynkdir/vim-vimlparser'}
 NeoBundle 'cohama/agit.vim'
+NeoBundleLazy 'haya14busa/incsearch.vim', {
+      \   'autoload': {
+      \     'mappings': ['<Plug>(incsearch-']}}
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -242,8 +245,11 @@ if g:V.is_mac()
 else
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
 end
-nnoremap / :<C-u>set hlsearch<Return>/
-nnoremap ? :<C-u>set hlsearch<Return>?
+
+" insearch uses them
+" nnoremap / :<C-u>set hlsearch<Return>/
+" nnoremap ? :<C-u>set hlsearch<Return>?
+
 nnoremap * :<C-u>set hlsearch<Return>*
 nnoremap # :<C-u>set hlsearch<Return>#
 
@@ -2686,6 +2692,12 @@ function! s:experimental_start()
   endwhile
 endfunction
 " echo s:experimental_start()
+" }}}
+" incsearch {{{
+
+nmap /  <Plug>(incsearch-forward)
+nmap ?  <Plug>(incsearch-backward)
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
