@@ -65,8 +65,8 @@ NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-NeoBundleLazy 'AndrewRadev/switch.vim', {
-      \ 'autoload': {'commands': ['Switch']}}
+" NeoBundleLazy 'AndrewRadev/switch.vim', {
+"       \ 'autoload': {'commands': ['Switch']}}
 NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
       \ 'autoload': {'mappings': ['gS', 'gJ']}}
 NeoBundle 'Pychimp/vim-luna'
