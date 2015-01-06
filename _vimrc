@@ -158,9 +158,10 @@ NeoBundle 'kana/vim-operator-replace', {
 NeoBundle 'syngan/vim-vimlint', {
       \ 'depends': 'ynkdir/vim-vimlparser'}
 NeoBundle 'cohama/agit.vim'
-NeoBundleLazy 'haya14busa/incsearch.vim', {
-      \   'autoload': {
-      \     'mappings': ['<Plug>(incsearch-']}}
+NeoBundleLazy 'haya14busa/incsearch.vim'
+" NeoBundleLazy 'haya14busa/incsearch.vim', {
+"       \   'autoload': {
+"       \     'mappings': ['<Plug>(incsearch-']}}
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -239,12 +240,15 @@ function! s:is_display_landscape()
 endfunction
 " }}}
 " mappings {{{
+
+let g:incsearch#auto_nohlsearch = 1
 if g:V.is_mac()
   let g:transparency = 10
   " for MacVim's bug
   nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 else
-  nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
+  " incsearch
+  " nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
 end
 
 " insearch uses them
@@ -2698,6 +2702,12 @@ endfunction
 
 nmap /  <Plug>(incsearch-forward)
 nmap ?  <Plug>(incsearch-backward)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 " }}}
 " __END__  "{{{1
