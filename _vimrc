@@ -158,7 +158,7 @@ NeoBundle 'kana/vim-operator-replace', {
 NeoBundle 'syngan/vim-vimlint', {
       \ 'depends': 'ynkdir/vim-vimlparser'}
 NeoBundle 'cohama/agit.vim'
-NeoBundleLazy 'haya14busa/incsearch.vim'
+NeoBundle 'haya14busa/incsearch.vim'
 " NeoBundleLazy 'haya14busa/incsearch.vim', {
 "       \   'autoload': {
 "       \     'mappings': ['<Plug>(incsearch-']}}
@@ -254,9 +254,8 @@ end
 " insearch uses them
 " nnoremap / :<C-u>set hlsearch<Return>/
 " nnoremap ? :<C-u>set hlsearch<Return>?
-
-nnoremap * :<C-u>set hlsearch<Return>*
-nnoremap # :<C-u>set hlsearch<Return>#
+" nnoremap * :<C-u>set hlsearch<Return>*
+" nnoremap # :<C-u>set hlsearch<Return>#
 
 command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
 nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
