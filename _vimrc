@@ -765,6 +765,8 @@ function! s:unite_my_settings()
   silent! iunmap <buffer> <Up>
   silent! iunmap <buffer> <Down>
 
+  silent! nunmap <buffer> <Space>
+
   " swapping q and Q
   nmap <buffer> Q <Plug>(unite_exit)
   nmap <buffer> q <Plug>(unite_all_exit)
