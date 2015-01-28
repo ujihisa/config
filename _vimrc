@@ -142,7 +142,8 @@ NeoBundle 'Shougo/neomru.vim', {
 NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
-NeoBundle 'osyo-manga/vim-brightest'
+" NeoBundle 'osyo-manga/vim-brightest'
+NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'ujihisa/neoclojure.vim'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
@@ -723,8 +724,6 @@ augroup vimrc-vim-resize
         \  'start_insert': 1})
 augroup END
 
-" g:unite_source_file_rec_ignore_pattern is deprecated
-"let g:unite_source_file_rec_ignore_pattern = 'phpdoc\|\%(^\|/\)\.$\|\~$\|\.\%(o\|exe\|dll\|bak\|sw[po]\|class\)$\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'
 
 " I wanted to simply refer the default ignore pattern with using g:unite_source_file_rec_ignore_pattern, but unite sets it lazily.
 " here I force unite defining file_rec and referes the default value.
@@ -735,9 +734,12 @@ if 0
   call unite#custom#source('file_rec', 'ignore_pattern', s:file_rec_ignore_pattern)
   call unite#custom#source('grep', 'ignore_pattern', s:file_rec_ignore_pattern)
 else
-  let s:file_rec_ignore_globs = ['**/target/**', 'lib_managed']
-  call unite#custom#source('file_rec', 'ignore_globs', s:file_rec_ignore_globs)
-  call unite#custom#source('grep', 'ignore_globs', s:file_rec_ignore_globs)
+  " let s:unite_file_rec_ignore_globs = unite#sources#rec#define()[0]['ignore_globs'] + ['**/target/**', 'lib_managed']
+  let s:unite_file_rec_ignore_globs = ['**/target/**', 'lib_managed']
+  call unite#custom#source('file_rec', 'ignore_globs', s:unite_file_rec_ignore_globs)
+
+  let s:unite_grep_ignore_globs = unite#sources#grep#define()['ignore_globs'] + ['**/target/**', 'lib_managed']
+  call unite#custom#source('grep', 'ignore_globs', s:unite_grep_ignore_globs)
 endif
 
 let g:unite_source_file_rec_max_cache_files = 9000
@@ -746,7 +748,7 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts =
         \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-        \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'' --ignore tags'
   let g:unite_source_grep_recursive_opt = ''
 endif
 
