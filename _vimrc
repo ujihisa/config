@@ -863,7 +863,8 @@ let g:quickrun_config.clojure = {
       \   join(s:clojure_libs, ':'))}
 let g:quickrun_config.clojure = {
       \ 'runner': 'neoclojure', 'command': 'dummy',
-      \ 'tempfile'  : '%{tempname()}.clj'}
+      \ 'tempfile': '%{tempname()}.clj'}
+      " \ 'unnamed_projdir': '/tmp/neoclojure-quickrun'}
 
 " let g:quickrun_config.scala = {
 "       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
