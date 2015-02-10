@@ -1366,6 +1366,7 @@ AddPath /usr/bin
 AddPath /usr/local/bin
 AddPath /sbin
 AddPath /usr/sbin
+AddPath ~/.vimbundles/themis/bin/
 
 if isdirectory(expand('~/bin'))
   AddPath ~/bin
