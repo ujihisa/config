@@ -2673,7 +2673,7 @@ let g:leave_my_textwidth_alone = 1
 
 augroup vimrc-neoclojure
   autocmd!
-  autocmd FileType clojure setlocal omnifunc=neoclojure#complete#omni
+  autocmd FileType clojure setlocal omnifunc=neoclojure#complete#omni_auto
 augroup END
 
 " let g:neocomplete#force_omni_input_patterns.clojure = '\.\|/'
