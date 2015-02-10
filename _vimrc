@@ -160,6 +160,7 @@ NeoBundle 'syngan/vim-vimlint', {
       \ 'depends': 'ynkdir/vim-vimlparser'}
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle 'thinca/vim-themis'
 " NeoBundleLazy 'haya14busa/incsearch.vim', {
 "       \   'autoload': {
 "       \     'mappings': ['<Plug>(incsearch-']}}
@@ -636,7 +637,7 @@ endif
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 
 let g:neocomplcache_auto_completion_start_length = 1
-let g:neocomplete#auto_completion_start_length = 1
+" let g:neocomplete#auto_completion_start_length = 1
 
 let g:neocomplcache_skip_auto_completion_time = "" " disabling it
 let g:neocomplete#skip_auto_completion_time = "" " disabling it
@@ -2712,6 +2713,51 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" }}}
+" PM3 -- just for now {{{
+
+if 0
+  function! s:cpcp() abort
+    let s:V = vital#of('vital')
+    let s:CP = s:V.import('ConcurrentProcess')
+
+    if !isdirectory('/tmp/pm3')
+      call mkdir('/tmp/pm3')
+    endif
+    let p = s:CP.of('lein repl', '/tmp/pm3', [
+          \ ['*read*', '_', '.*=>\s*'],
+          \ ['*writeln*', '(clojure.main/repl :prompt #(print "\nuser=>"))'],
+          \ ['*read*', 'x', 'user=>']])
+
+    while 1
+      call s:CP.tick(p)
+
+      if s:CP.is_done(p, 'x')
+        call s:CP.takeout(p, 'x')
+        break
+      endif
+    endwhile
+
+    call s:CP.queue(p, [
+          \ ['*writeln*', '(print "hello, world")'],
+          \ ['*read*', 'x', 'user=>']])
+
+    while 1
+      call s:CP.tick(p)
+
+      if s:CP.is_done(p, 'x')
+        let [out, err] = s:CP.takeout(p, 'x')
+        echomsg string(['result', out, err])
+        break
+      endif
+    endwhile
+
+    echomsg string(['done'])
+    call s:CP.log_dump(p)
+  endfunction
+  nnoremap <Space>[ :<C-u>call <SID>cpcp()<Cr>
+endif
 
 " }}}
 " __END__  "{{{1
