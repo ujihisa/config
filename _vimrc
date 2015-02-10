@@ -140,7 +140,7 @@ NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
       \   'Shougo/unite.vim']}
 NeoBundle 'jimenezrick/vimerl'
-NeoBundle 'thinca/vim-threes'
+" NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
 " NeoBundle 'osyo-manga/vim-brightest'
 NeoBundle 'itchyny/vim-cursorword'
@@ -149,9 +149,9 @@ NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer'])
 NeoBundle 'chase/vim-ansible-yaml'
-NeoBundle 'rbtnn/mario.vim', {
-      \ 'depends': [
-      \   'rbtnn/game_engine.vim'] }
+" NeoBundle 'rbtnn/mario.vim', {
+"       \ 'depends': [
+"       \   'rbtnn/game_engine.vim'] }
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'kana/vim-operator-replace', {
       \ 'depends': [
@@ -1955,34 +1955,45 @@ function! VitalVimBuffer_all()
 endfunction
 " }}}
 " scala sbt interaction {{{
-function! s:start_sbt()
-  if !has_key(t:, 'vsm_cmds')
-    "let t:vsm_cmds = [input('t:vsm_cmds[0] = ')]
-    let t:vsm_cmds = ['compile']
-  endif
+function! s:start_sbt(vsm_cmds) abort
   execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
   execute 'VimShellInteractive sbt'
   stopinsert
-  let t:sbt_bufname = bufname('%')
+  let t:vsm_bufname = bufname('%')
   wincmd H
   wincmd p
 endfunction
 
-function! s:sbt_run()
-  let sbt_bufname = get(t:, 'sbt_bufname', '*not-found*')
-  if sbt_bufname == '*not-found*'
-    call s:start_sbt()
+function! s:sbt_run(vsm_cmds) abort
+  let vsm_bufname = get(t:, 'vsm_bufname', '*not-found*')
+  if vsm_bufname == '*not-found*'
+    call s:start_sbt(a:vsm_cmds)
+    call s:sbt_run(a:vsm_cmds)
   else
-    if !has_key(t:, 'vsm_cmds')
-      echoerr 'please give t:vsm_cmds a list'
-      return
-    endif
+    let vsm_cmds = copy(a:vsm_cmds) " copy for later modifications
+
+    " detect subproject
+    let known_subprojects = [
+          \ 'crypto-common',
+          \ 'sdk-crypto',
+          \ 'sdk-kms',
+          \ 'service-crypto',
+          \ 'service-crypto-root']
+    for subproject in known_subprojects
+      if expand('%:.') =~ subproject
+        call map(vsm_cmds, printf('"%s/" . v:val', subproject))
+        break
+      endif
+    endfor
 
     " go to the window
-    let wn = bufwinnr(sbt_bufname)
-    if wn == -1
+    let wn = bufwinnr(vsm_bufname)
+    if !bufexists(vsm_bufname)
+      unlet! t:vsm_bufname
+      return s:sbt_run(a:vsm_cmds) " retry
+    elseif wn == -1
       echo "buffer exists but window doesn't exist. opening it."
-      execute 'sbuffer' sbt_bufname
+      execute 'sbuffer' vsm_bufname
       wincmd H
     else
       execute wn . 'wincmd w'
@@ -1991,8 +2002,8 @@ function! s:sbt_run()
     " make sure if it's vimshell
     if !has_key(b:, 'interactive')
       close
-      unlet t:sbt_bufname
-      call s:sbt_run()
+      unlet t:vsm_bufname
+      call s:sbt_run(a:vsm_cmds)
       return
     endif
 
@@ -2000,16 +2011,16 @@ function! s:sbt_run()
     " go back to the previous window
     wincmd p
 
-    call vimshell#interactive#set_send_buffer(sbt_bufname)
+    call vimshell#interactive#set_send_buffer(vsm_bufname)
     call vimshell#interactive#clear()
-    call vimshell#interactive#send(t:vsm_cmds)
+    call vimshell#interactive#send(vsm_cmds)
     " explosion
     "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
   endif
 endfunction
 
 function! s:vimrc_scala()
-  nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+  nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run(get(t:, 'vsm_cmds', ['compile']))<Cr>
 endfunction
 
 augroup vimrc_scala
@@ -2676,6 +2687,9 @@ augroup vimrc-neoclojure
   autocmd FileType clojure setlocal omnifunc=neoclojure#complete#omni_auto
 augroup END
 
+" let g:neocomplete#sources#omni#functions = get(g:, 'neocomplete#sources#omni#functions', {})
+" let g:neocomplete#sources#omni#functions.clojure = 'neoclojure#complete#omni_auto'
+
 " let g:neocomplete#force_omni_input_patterns.clojure = '\.\|/'
 let g:neocomplete#sources#omni#input_patterns = get(g:, 'neocomplete#sources#omni#input_patterns', {})
 let g:neocomplete#sources#omni#input_patterns.clojure = '\.\|/'
@@ -2716,7 +2730,7 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " }}}
-" PM3 -- just for now {{{
+" PM3 (concproc) -- just for now {{{
 
 if 0
   function! s:cpcp() abort
@@ -2726,36 +2740,36 @@ if 0
     if !isdirectory('/tmp/pm3')
       call mkdir('/tmp/pm3')
     endif
-    let p = s:CP.of('lein repl', '/tmp/pm3', [
+    let label = s:CP.of('lein repl', '/tmp/pm3', [
           \ ['*read*', '_', '.*=>\s*'],
           \ ['*writeln*', '(clojure.main/repl :prompt #(print "\nuser=>"))'],
           \ ['*read*', 'x', 'user=>']])
 
     while 1
-      call s:CP.tick(p)
+      call s:CP.tick(label)
 
-      if s:CP.is_done(p, 'x')
-        call s:CP.takeout(p, 'x')
+      if s:CP.is_done(label, 'x')
+        call s:CP.takeout(label, 'x')
         break
       endif
     endwhile
 
-    call s:CP.queue(p, [
+    call s:CP.queue(label, [
           \ ['*writeln*', '(print "hello, world")'],
           \ ['*read*', 'x', 'user=>']])
 
     while 1
-      call s:CP.tick(p)
+      call s:CP.tick(label)
 
-      if s:CP.is_done(p, 'x')
-        let [out, err] = s:CP.takeout(p, 'x')
+      if s:CP.is_done(label, 'x')
+        let [out, err] = s:CP.takeout(label, 'x')
         echomsg string(['result', out, err])
         break
       endif
     endwhile
 
     echomsg string(['done'])
-    call s:CP.log_dump(p)
+    call s:CP.log_dump(label)
   endfunction
   nnoremap <Space>[ :<C-u>call <SID>cpcp()<Cr>
 endif
