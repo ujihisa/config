@@ -2775,6 +2775,13 @@ if 0
 endif
 
 " }}}
+" cursorword {{{
+augroup vimrc-cursorword
+  autocmd!
+  autocmd WinLeave * let b:cursorword = 0 | call cursorword#matchadd()
+  autocmd WinEnter * let b:cursorword = 1
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
