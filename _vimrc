@@ -2732,7 +2732,7 @@ map g# <Plug>(incsearch-nohl-g#)
 " }}}
 " PM3 (concproc) -- just for now {{{
 
-if 0
+" if 0
   function! s:cpcp() abort
     let s:V = vital#of('vital')
     let s:CP = s:V.import('ConcurrentProcess')
@@ -2745,34 +2745,20 @@ if 0
           \ ['*writeln*', '(clojure.main/repl :prompt #(print "\nuser=>"))'],
           \ ['*read*', 'x', 'user=>']])
 
-    while 1
-      call s:CP.tick(label)
-
-      if s:CP.is_done(label, 'x')
-        call s:CP.takeout(label, 'x')
-        break
-      endif
-    endwhile
+    echo s:CP.consume_all_blocking(label, 'x', 1)
 
     call s:CP.queue(label, [
           \ ['*writeln*', '(print "hello, world")'],
           \ ['*read*', 'x', 'user=>']])
 
-    while 1
-      call s:CP.tick(label)
-
-      if s:CP.is_done(label, 'x')
-        let [out, err] = s:CP.takeout(label, 'x')
-        echomsg string(['result', out, err])
-        break
-      endif
-    endwhile
+    let [out, err, timedout_p] = s:CP.consume_all_blocking(label, 'x', 30)
+    echomsg string(['result', out, err, timedout_p])
 
     echomsg string(['done'])
     call s:CP.log_dump(label)
   endfunction
   nnoremap <Space>[ :<C-u>call <SID>cpcp()<Cr>
-endif
+" endif
 
 " }}}
 " cursorword {{{
