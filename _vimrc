@@ -2737,25 +2737,10 @@ map g# <Plug>(incsearch-nohl-g#)
     let s:V = vital#of('vital')
     let s:CP = s:V.import('ConcurrentProcess')
 
-    if !isdirectory('/tmp/pm3')
-      call mkdir('/tmp/pm3')
-    endif
-    let label = s:CP.of('lein repl', '/tmp/pm3', [
-          \ ['*read*', '_', '.*=>\s*'],
-          \ ['*writeln*', '(clojure.main/repl :prompt #(print "\nuser=>"))'],
-          \ ['*read*', 'x', 'user=>']])
-
-    echo s:CP.consume_all_blocking(label, 'x', 1)
-
-    call s:CP.queue(label, [
-          \ ['*writeln*', '(print "hello, world")'],
-          \ ['*read*', 'x', 'user=>']])
-
-    let [out, err, timedout_p] = s:CP.consume_all_blocking(label, 'x', 30)
-    echomsg string(['result', out, err, timedout_p])
-
-    echomsg string(['done'])
-    call s:CP.log_dump(label)
+    let label = s:CP.of('sh -c "sleep 2; echo done"', '', [
+          \ ['*read-all*', 'x']])
+    echomsg string([s:CP.consume(label, 'x')])
+    echomsg string([s:CP.consume_all_blocking(label, 'x', 3)])
   endfunction
   nnoremap <Space>[ :<C-u>call <SID>cpcp()<Cr>
 " endif
