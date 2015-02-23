@@ -11,11 +11,7 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/echodoc'
-if has('lua')
-  NeoBundle 'Shougo/neocomplete'
-else
-  NeoBundle 'Shougo/neocomplcache'
-endif
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
@@ -499,18 +495,14 @@ call smartinput#define_rule({
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
-if has('lua')
-  " inoremap <expr> <Plug>(vimrc_bs) neocomplete#cancel_popup() . (pumvisible() ? '' : "\<BS>")
-  inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
-else
-  inoremap <expr> <Plug>(vimrc_bs) neocomplcache#close_popup() . (pumvisible() ? '' : "\<BS>")
-endif
+
+" inoremap <expr> <Plug>(vimrc_bs) neocomplete#cancel_popup() . (pumvisible() ? '' : "\<BS>")
+inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
 imap <S-BS> <Plug>(vimrc_bs)
 "function! s:wrapmap(key)
 "  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
 "endfunction
 
-"inoremap <expr> <s-space> pumvisible() ? neocomplcache#close_popup() . ' ' : ' '
 " }}}
 " Cr in Insert Mode always means newline {{{
 if 0
@@ -608,38 +600,15 @@ vmap <C-o> <Plug>(poslist-prev-pos)
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
 " Neocomplecache/Neocomplete {{{
-let g:neocomplcache_enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
-"inoremap <expr><silent><C-y> neocomplcache#undo_completion()
-"let g:neocomplcache_manual_completion_length = 2
-let g:neocomplcache_source_completion_length = {
-      \ 'include_complete': 1}
-let g:neocomplcache_source_rank = {
-      \ 'include_complete': 11}
-
-let g:neocomplcache_max_list = 200
 let g:neocomplete#max_list = 200
 
-let g:neocomplcache_max_keyword_width = 70
-let g:neocomplete#max_keyword_width = 70
-"let g:neocomplcache_enable_smart_case = 1
-"let g:neocomplcache_enable_ignore_case = 0
-let g:neocomplcache_text_mode_filetypes = {}
-let g:neocomplcache_text_mode_filetypes.markdown = 1
-if has('lua')
-  imap <M-l> <Plug>(neocomplete_start_unite_complete)
-else
-  imap <M-l> <Plug>(neocomplcache_start_unite_complete)
-endif
+imap <M-l> <Plug>(neocomplete_start_unite_complete)
 " see also
 "   * snippets section
 
 autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 
-let g:neocomplcache_auto_completion_start_length = 1
-" let g:neocomplete#auto_completion_start_length = 1
-
-let g:neocomplcache_skip_auto_completion_time = "" " disabling it
 let g:neocomplete#skip_auto_completion_time = "" " disabling it
 
 let g:necoghc_enable_detailed_browse = 1
@@ -674,11 +643,7 @@ command! -nargs=0 Ctags call Ctags()
 function! Ctags()
   let cmdname = globpath(&rtp, 'plugin/vimproc.vim') != '' ? 'VimProcBang' : '!'
   execute cmdname 'ctags -R'
-  if has('lua')
-    NeoCompleteTagMakeCache
-  else
-    NeoComplCacheCachingTags
-  endif
+  NeoCompleteTagMakeCache
 endfunction
 
 " }}}
@@ -1196,11 +1161,7 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  if has('lua')
-    inoremap <buffer><expr> \ neocomplete#close_popup() . <SID>cmdwin_backslash()
-  else
-    inoremap <buffer><expr> \ neocomplcache#close_popup() . <SID>cmdwin_backslash()
-  endif
+  inoremap <buffer><expr> \ neocomplete#close_popup() . <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
