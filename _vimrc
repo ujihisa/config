@@ -231,6 +231,11 @@ set synmaxcol=700
 set history=1000
 set display=lastline
 
+" Some ftplugin sets tw=78 is tw is 0. Set this to extremely high
+" so that those ftplugins give up.
+"   bad e.g. /usr/share/vim/vim74/ftplugin/gitcommit.vim
+set textwidth=9999999999999
+
 " }}}
 " landscape / portrait detect {{{
 function! s:is_display_landscape()
@@ -496,12 +501,9 @@ call smartinput#define_rule({
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
 
-" inoremap <expr> <Plug>(vimrc_bs) neocomplete#cancel_popup() . (pumvisible() ? '' : "\<BS>")
-inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
-imap <S-BS> <Plug>(vimrc_bs)
-"function! s:wrapmap(key)
-"  return pumvisible() ? "\<Plug>(vimrc_bs)" : a:key
-"endfunction
+" inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
+" imap <S-BS> <Plug>(vimrc_bs)
+inoremap <expr> <BS> neocomplete#smart_close_popup() . "\<BS>"
 
 " }}}
 " Cr in Insert Mode always means newline {{{
@@ -541,7 +543,9 @@ augroup vimrc-vimshell
 augroup END
 
 function! s:vimshell_local()
-  imap <buffer><expr> <BS>  pumvisible() ? "\<Plug>(vimrc_bs)" : "\<Plug>(vimshell_another_delete_backward_char)"
+  imap <buffer><expr> <BS>  pumvisible() ?
+        \ (neocomplete#close_popup() . "\<BS>") :
+        \ "\<Plug>(vimshell_another_delete_backward_char)"
   " to use smartinput
   " iunmap <buffer> <Bs>
 
@@ -1157,7 +1161,9 @@ function! s:init_cmdwin()
   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "I added
-  imap     <buffer><expr><BS> col('.') == 1 ? "\<Plug>(vimrc_cmdwin_close)" : "\<Plug>(vimrc_bs)"
+  imap <buffer><expr><BS> col('.') == 1 ?
+        \ "\<Plug>(vimrc_cmdwin_close)" :
+        \ (neocomplete#close_popup() . "\<BS>")
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
@@ -1940,7 +1946,8 @@ function! s:sbt_run(vsm_cmds) abort
           \ 'sdk-kms',
           \ 'service-crypto',
           \ 'crypto-cli',
-          \ 'service-crypto-root']
+          \ 'service-crypto-root',
+          \ 'util-core']
     for subproject in known_subprojects
       if expand('%:.') =~ subproject
         call map(vsm_cmds, printf('v:val == "reload" ? v:val : "%s/" . v:val', subproject))
@@ -1975,7 +1982,8 @@ function! s:sbt_run(vsm_cmds) abort
 
     call vimshell#interactive#set_send_buffer(vsm_bufname)
     call vimshell#interactive#clear()
-    call vimshell#interactive#send(vsm_cmds)
+    let joined_vsm_cmds = "; " . join(vsm_cmds, '; ')
+    call vimshell#interactive#send(joined_vsm_cmds)
     " explosion
     "call vimproc#system_bg('curl -s http://localhost:8080/requests/status.xml?command=pl_play')
   endif
