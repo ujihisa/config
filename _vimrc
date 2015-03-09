@@ -160,6 +160,7 @@ NeoBundle 'thinca/vim-themis'
 " NeoBundleLazy 'haya14busa/incsearch.vim', {
 "       \   'autoload': {
 "       \     'mappings': ['<Plug>(incsearch-']}}
+NeoBundle 'kana/vim-altr'
 
 " call neobundle#local("~/.vimbundles", {})
 
@@ -2722,6 +2723,12 @@ augroup vimrc-cursorword
   autocmd WinLeave * let b:cursorword = 0 | call cursorword#matchadd()
   autocmd WinEnter * let b:cursorword = 1
 augroup END
+" }}}
+" kana-altr {{{
+call altr#define('main/scala/**/%.scala', 'test/scala/**/%Test.scala')
+
+nmap <M-`> <Plug>(altr-forward)
+imap <M-`> <Plug>(altr-forward)
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
