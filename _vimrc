@@ -2730,6 +2730,9 @@ call altr#define('main/scala/**/%.scala', 'test/scala/**/%Test.scala')
 nmap <M-`> <Plug>(altr-forward)
 imap <M-`> <Plug>(altr-forward)
 " }}}
+" kana-operator-replace {{{
+map _  <Plug>(operator-replace)
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
