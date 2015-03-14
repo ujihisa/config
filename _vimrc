@@ -529,7 +529,8 @@ nmap <Space>v <Plug>(vimshell_split_switch)
 "nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
 
 " close vimshell from anywhere
-nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
+" nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
+nnoremap <space>V :<C-u>VimShellClose<Cr>
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
