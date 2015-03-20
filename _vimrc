@@ -2734,6 +2734,9 @@ imap <M-`> <Plug>(altr-forward)
 " kana-operator-replace {{{
 map _  <Plug>(operator-replace)
 " }}}
+" expand_region {{{
+nmap - <Plug>(expand_region_shrink)
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
