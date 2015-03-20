@@ -2737,6 +2737,28 @@ map _  <Plug>(operator-replace)
 " expand_region {{{
 nmap - <Plug>(expand_region_shrink)
 " }}}
+" ujihisa-scala {{{
+
+function! s:ujihisa_scala_yank_current_package() abort
+  let search_maxln = 3 " assumption: package declaration must be at line 1 to 3
+  for i in range(1, search_maxln)
+    let package = matchstr(getline(i), '^\s*package\s\+\zs.*')
+    if len(package)
+      break
+    endif
+  endfor
+
+  if len(package)
+    echo printf('Yanked %s', string(package))
+    let @@ = package
+  else
+    echoerr printf('No package declaration found til line %d of this file!', search_maxln)
+  endif
+endfunction
+
+command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_package()
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
