@@ -416,6 +416,8 @@ inoremap <M-o> <Esc>o<Esc>
 " kana/vim-smartinput {{{
 call smartinput_endwise#define_default_rules()
 
+call smartinput#map_to_trigger('i', '<Plug>(vimrc-smartinput-bs)', '<Bs>', '<Bs>')
+
 " jlj = <Esc>
 call smartinput#map_to_trigger('i', 'j', 'j', 'j')
 call smartinput#define_rule({
@@ -504,7 +506,7 @@ inoremap <M-=> =
 
 " inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
 " imap <S-BS> <Plug>(vimrc_bs)
-inoremap <expr> <BS> neocomplete#smart_close_popup() . "\<BS>"
+imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 
 " }}}
 " Cr in Insert Mode always means newline {{{
