@@ -156,6 +156,7 @@ NeoBundle 'syngan/vim-vimlint', {
       \ 'depends': 'ynkdir/vim-vimlparser'}
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle 'haya14busa/vim-asterisk'
 NeoBundle 'thinca/vim-themis'
 " NeoBundleLazy 'haya14busa/incsearch.vim', {
 "       \   'autoload': {
@@ -372,7 +373,7 @@ nnoremap <Space>I $i
 nnoremap X ^x
 nnoremap cp Pjdd
 
-nnoremap // /^
+" nnoremap // /^
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 
 nnoremap <Space>n :<C-u>new<Cr>
@@ -2692,16 +2693,22 @@ function! s:experimental_start()
 endfunction
 " echo s:experimental_start()
 " }}}
-" incsearch {{{
+" incsearch + asterisk {{{
 
 nmap /  <Plug>(incsearch-forward)
 nmap ?  <Plug>(incsearch-backward)
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+
+map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)
+map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)
+map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)
+map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)
+
+map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 
 " }}}
 " PM3 (concproc) -- just for now {{{
