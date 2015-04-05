@@ -831,7 +831,7 @@ let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
 
 let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), "\n")
 let g:quickrun_config.clojure = {
-      \ 'type': 'clojure/process_manager',
+      \ 'type': 'clojure/concurrent_process',
       \ 'command': printf(
       \   'java -cp %s:/usr/share/clojure-1.6/lib/clojure.jar clojure.main',
       \   join(s:clojure_libs, ':'))}
@@ -843,7 +843,7 @@ let g:quickrun_config.clojure = {
 " let g:quickrun_config.scala = {
 "       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
 
-let g:quickrun_config.scala = {'type': 'scala/process_manager'}
+let g:quickrun_config.scala = {'type': 'scala/concurrent_process'}
 
 let g:quickrun_config.cpp = {
       \ 'type': 'cpp/clang++',
@@ -2298,9 +2298,9 @@ endfunction
 let g:quickrun_config.spin = {
       \ 'command': '~/git/spin.vim/bin/spin serve -Itest',
       \ 'cmdopt': '-Itest',
-      \ 'runner': 'process_manager',
-      \ 'runner/process_manager/load': '["%s"]',
-      \ 'runner/process_manager/prompt': 'spin>>>>> ',
+      \ 'runner': 'concurrent_process',
+      \ 'runner/concurrent_process/load': '["%s"]',
+      \ 'runner/concurrent_process/prompt': 'spin>>>>> ',
       \ }
 " }}}
 " mongodb {{{
