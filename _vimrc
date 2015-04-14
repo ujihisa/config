@@ -73,7 +73,7 @@ NeoBundle 'osyo-manga/jplus'
 " NeoBundle 'osyo-manga/snowdrop'
 " let g:snowdrop#libclang_directory = '/usr/lib64'
 " let g:snowdrop#libclang#default_binding = "python_interpreter"
-NeoBundle 'rbtnn/puyo.vim'
+" NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'deris/rengbang'
 " NeoBundle 'thinca/vim-portal'
 if has('python')
@@ -90,7 +90,7 @@ NeoBundleLazy 'lambdalisue/vim-gista', {
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
-NeoBundle 'ujihisa/quicklearn'
+" NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
