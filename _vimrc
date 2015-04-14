@@ -143,7 +143,7 @@ NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'ujihisa/neoclojure.vim'
 " NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
-      \ ['ft-mongo', 'metaffer'])
+      \ ['ft-mongo', 'metaffer', 'neochat.vim'])
 NeoBundle 'chase/vim-ansible-yaml'
 " NeoBundle 'rbtnn/mario.vim', {
 "       \ 'depends': [
@@ -2767,6 +2767,8 @@ endfunction
 
 command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_package()
 
+" }}}
+" neochat {{{
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
