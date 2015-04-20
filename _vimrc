@@ -710,10 +710,10 @@ if 0
   call unite#custom#source('grep', 'ignore_pattern', s:file_rec_ignore_pattern)
 else
   " let s:unite_file_rec_ignore_globs = unite#sources#rec#define()[0]['ignore_globs'] + ['**/target/**', 'lib_managed']
-  let s:unite_file_rec_ignore_globs = ['**/target/**', 'lib_managed']
+  let s:unite_file_rec_ignore_globs = ['**/target/**', 'lib_managed', '.vagrant/**']
   call unite#custom#source('file_rec', 'ignore_globs', s:unite_file_rec_ignore_globs)
 
-  let s:unite_grep_ignore_globs = unite#sources#grep#define()['ignore_globs'] + ['**/target/**', 'lib_managed']
+  let s:unite_grep_ignore_globs = unite#sources#grep#define()['ignore_globs'] + ['**/target/**', 'lib_managed', '.vagrant']
   call unite#custom#source('grep', 'ignore_globs', s:unite_grep_ignore_globs)
 endif
 
@@ -723,7 +723,7 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts =
         \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'' --ignore tags'
+        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'' --ignore tags --ignore target'
   let g:unite_source_grep_recursive_opt = ''
 endif
 
