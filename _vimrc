@@ -681,7 +681,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap su :<C-u>Unite history/command source command<Cr>
   nnoremap sp :<C-u>Unite process -no-split -buffer-name=process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
-  nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
+  " nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
   "nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
@@ -805,6 +805,7 @@ augroup END
 let g:quickrun_no_default_key_mappings = 0 " suspend to map <leader>r
 nmap <Space>r <Plug>(quickrun)
 vmap <Space>r <Plug>(quickrun)
+nmap <Space>R <Plug>(quickrun-op)
 
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
