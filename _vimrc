@@ -1673,6 +1673,9 @@ function! s:vimfiler_local()
   " don't loop j/k
   silent! nunmap <buffer> j
   silent! nunmap <buffer> k
+
+  " default is g?
+  nmap <buffer> ? <Plug>(vimfiler_help)
 endfunction
 " }}}
 " :TOhtmlAndBrowse {{{
