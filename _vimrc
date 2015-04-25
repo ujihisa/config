@@ -76,9 +76,6 @@ NeoBundle 'osyo-manga/jplus'
 " NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'deris/rengbang'
 " NeoBundle 'thinca/vim-portal'
-if has('python')
-  NeoBundle 'iyf/vimrepress'
-endif
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
