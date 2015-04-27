@@ -2772,6 +2772,10 @@ command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_pack
 " }}}
 " neochat {{{
 " }}}
+" go {{{
+let $GOPATH = expand('~/goprojects')
+let $PATH = printf('%s/bin:%s', $GOPATH, $PATH)
+" }}}
 "fatih/vim-go {{{
 
 " enable af and if
