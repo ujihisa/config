@@ -55,7 +55,8 @@ NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'ujihisa/tabpagecolorscheme'
-NeoBundle 'fsouza/go.vim'
+" NeoBundle 'fsouza/go.vim'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'basyura/J6uil.vim'
@@ -2771,6 +2772,16 @@ command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_pack
 " }}}
 " neochat {{{
 " }}}
+"fatih/vim-go {{{
+
+" enable af and if
+let g:go_textobj_enabled = 1
+
+augroup vimrc-go
+  autocmd!
+  autocmd FileType go setlocal nolist
+augroup END
+"}}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
