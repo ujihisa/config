@@ -843,7 +843,7 @@ let g:quickrun_config.clojure = {
 " let g:quickrun_config.scala = {
 "       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
 
-let g:quickrun_config.scala = {'type': 'scala/concurrent_process'}
+let g:quickrun_config.scala = {'type': 'scala/concurrent_process', 'command': 'scala-2.11'}
 
 let g:quickrun_config.cpp = {
       \ 'type': 'cpp/clang++',
