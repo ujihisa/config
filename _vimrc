@@ -78,6 +78,8 @@ NeoBundle 'osyo-manga/jplus'
 NeoBundle 'deris/rengbang'
 " NeoBundle 'thinca/vim-portal'
 NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'lambdalisue/vim-gita'
+
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundleLazy 'lambdalisue/vim-gista', {
@@ -235,6 +237,9 @@ set display=lastline
 " so that those ftplugins give up.
 "   bad e.g. /usr/share/vim/vim74/ftplugin/gitcommit.vim
 set textwidth=9999999999999
+
+" scala
+set wildignore+=*/target/*
 
 " }}}
 " landscape / portrait detect {{{
@@ -878,6 +883,7 @@ augroup END
 "nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
 nnoremap <Space>gd :<C-u>Gdiff<Cr>
 nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter> " motemen's
+" nnoremap <Space>gs :<C-u>Gita status<Cr>
 nnoremap <Space>gs :<C-u>Gstatus<Cr>
 nnoremap <Space>gh :<C-u>call <SID>vimrc_git_show()<Cr>
 
