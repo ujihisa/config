@@ -418,6 +418,43 @@ inoremap <M-o> <Esc>o<Esc>
 
 " }}}
 " kana/vim-smartinput {{{
+
+" call smartinput#clear_rules()
+let g:smartinput_no_default_key_mappings = 1
+
+function! s:vimrc_smartinput_rules_add(x, ys) abort
+  call smartinput#map_to_trigger('i', a:x[0], a:x[0], a:x[0])
+  call smartinput#map_to_trigger('i', a:x[1], a:x[1], a:x[1])
+  for y in a:ys
+    call smartinput#define_rule(y)
+  endfor
+endfunction
+" excerpt from smartinput itself
+call s:vimrc_smartinput_rules_add('()', [
+\   {'at': '\%#', 'char': '(', 'input': '()<Left>'},
+\   {'at': '\%#\_s*)', 'char': ')', 'input': '<C-r>=smartinput#_leave_block('')'')<Enter><Right>'},
+\   {'at': '(\%#)', 'char': '<BS>', 'input': '<BS><Del>'},
+\   {'at': '()\%#', 'char': '<BS>', 'input': '<BS><BS>'},
+\   {'at': '\\\%#', 'char': '(', 'input': '('},
+\   {'at': '(\%#)', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'},
+\ ])
+call s:vimrc_smartinput_rules_add('[]', [
+\   {'at': '\%#', 'char': '[', 'input': '[]<Left>'},
+\   {'at': '\%#\_s*\]', 'char': ']', 'input': '<C-r>=smartinput#_leave_block('']'')<Enter><Right>'},
+\   {'at': '\[\%#\]', 'char': '<BS>', 'input': '<BS><Del>'},
+\   {'at': '\[\]\%#', 'char': '<BS>', 'input': '<BS><BS>'},
+\   {'at': '\\\%#', 'char': '[', 'input': '['},
+\ ])
+call s:vimrc_smartinput_rules_add('{}', [
+\   {'at': '\%#', 'char': '{', 'input': '{}<Left>'},
+\   {'at': '\%#\_s*}', 'char': '}', 'input': '<C-r>=smartinput#_leave_block(''}'')<Enter><Right>'},
+\   {'at': '{\%#}', 'char': '<BS>', 'input': '<BS><Del>'},
+\   {'at': '{}\%#', 'char': '<BS>', 'input': '<BS><BS>'},
+\   {'at': '\\\%#', 'char': '{', 'input': '{'},
+\   {'at': '{\%#}', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'},
+\ ])
+
+
 call smartinput_endwise#define_default_rules()
 
 call smartinput#map_to_trigger('i', '<Plug>(vimrc-smartinput-bs)', '<Bs>', '<Bs>')
