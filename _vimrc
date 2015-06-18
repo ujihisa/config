@@ -239,7 +239,8 @@ set display=lastline
 set textwidth=9999999999999
 
 " scala
-set wildignore+=*/target/*
+" set wildignore+=*/target/*
+"   disabled because this also disables <C-x><C-f> :(
 
 " }}}
 " landscape / portrait detect {{{
