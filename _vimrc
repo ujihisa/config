@@ -872,12 +872,12 @@ let g:quickrun_config['markdown'] = {
 let g:quickrun_config.lua = {'type': 'lua/vim'}
 let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
 
-let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), "\n")
-let g:quickrun_config.clojure = {
-      \ 'type': 'clojure/concurrent_process',
-      \ 'command': printf(
-      \   'java -cp %s:/usr/share/clojure-1.6/lib/clojure.jar clojure.main',
-      \   join(s:clojure_libs, ':'))}
+" let s:clojure_libs = split(glob('~/.m2/repository/org/clojure/core.*/*/*.jar'), "\n")
+" let g:quickrun_config.clojure = {
+"       \ 'type': 'clojure/concurrent_process',
+"       \ 'command': printf(
+"       \   'java -cp %s:/usr/share/clojure-1.6/lib/clojure.jar clojure.main',
+"       \   join(s:clojure_libs, ':'))}
 let g:quickrun_config.clojure = {
       \ 'runner': 'neoclojure', 'command': 'dummy',
       \ 'tempfile': '%{tempname()}.clj'}
