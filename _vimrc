@@ -1998,7 +1998,11 @@ function! s:sbt_run(vsm_cmds) abort
           \ 'service-crypto',
           \ 'crypto-cli',
           \ 'service-crypto-root',
-          \ 'util-core']
+          \ 'util-core',
+          \ 'service-member',
+          \ 'sdk-member',
+          \ 'member-common',
+          \ 'test-integration-member']
     for subproject in known_subprojects
       if expand('%:.') =~ subproject
         call map(vsm_cmds, printf('v:val == "reload" ? v:val : "%s/" . v:val', subproject))
