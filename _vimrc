@@ -82,11 +82,11 @@ NeoBundle 'tpope/vim-fugitive'
 
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-NeoBundleLazy 'lambdalisue/vim-gista', {
-      \ 'autoload': {
-      \    'commands': ['Gista'],
-      \    'mappings': '<Plug>(gista-',
-      \    'unite_sources': 'gista'}}
+" NeoBundleLazy 'lambdalisue/vim-gista', {
+"       \ 'autoload': {
+"       \    'commands': ['Gista'],
+"       \    'mappings': '<Plug>(gista-',
+"       \    'unite_sources': 'gista'}}
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
@@ -2118,8 +2118,10 @@ augroup END
 " }}}
 " clojure {{{
 
-" for clojure.tools.cli/cli
-let g:clojure#indent#special = '\<cli$'
+" for
+" * clojure.tools.cli/cli
+" * anything that begins with def
+let g:clojure#indent#special = '\<cli\|def.\*$'
 
 " }}}
 " filetype make {{{
@@ -2786,6 +2788,7 @@ augroup END
 " }}}
 " kana-altr {{{
 call altr#define('main/scala/**/%.scala', 'test/scala/**/%Test.scala')
+call altr#define('src/**/%.clj', 'test/**/%_test.clj')
 
 nmap <M-`> <Plug>(altr-forward)
 imap <M-`> <Plug>(altr-forward)
