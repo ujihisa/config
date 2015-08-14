@@ -5,13 +5,16 @@ if has('vim_starting')
   set runtimepath+=~/.vimbundles/neobundle.vim
 endif
 
-call neobundle#rc(expand('~/.vimbundles'))
+call neobundle#begin(expand('~/.vimbundles'))
 
 let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/echodoc'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neco-syntax'
+NeoBundle 'Shougo/neco-vim'
+NeoBundle 'Shougo/neoinclude.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
@@ -163,6 +166,7 @@ NeoBundle 'thinca/vim-themis'
 "       \     'mappings': ['<Plug>(incsearch-']}}
 NeoBundle 'kana/vim-altr'
 
+call neobundle#end()
 " call neobundle#local("~/.vimbundles", {})
 
 filetype plugin indent on
@@ -174,19 +178,9 @@ if !has_key(g:, 'V')
   call extend(g:V, g:V.import('Prelude'))
 endif
 " }}}
-" vimproc {{{
-
-" if g:V.is_mac()
-"   " TODO
-" else
-"   " let g:vimproc_dll_path = expand('~/.vimbundles/vimproc/autoload/vimproc_unix.so')
-" endif
-
-" }}}
 " settings {{{
 set encoding=utf-8
 set termencoding=utf-8
-"set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 set ignorecase
 set smartcase
