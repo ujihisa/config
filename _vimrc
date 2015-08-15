@@ -946,39 +946,6 @@ nnoremap <Space>gp :<C-u>Git push
 
 command! FugitiveIsTerrible unlet b:git_dir | edit
 " }}}
-" TeX Supports {{{
-" F5 to --
-"augroup LatexSuite
-"  au LatexSuite User LatexSuiteFileType
-"   \ imap <silent> <buffer> -- <Plug>Tex_FastEnvironmentInsert
-"augroup END
-" lates-suite is so evil. don't use it.
-
-" LaTeX-Suite
-let g:Tex_SmartKeyQuote = 0
-
-" beamer.tex support
-let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,frame,'
-            \. 'subsection,subsubsection,paragraph'
-
-" flymake/tex
-"augroup FlymakeTex
-"  autocmd!
-"  autocmd BufWritePost *.tex silent !rake tex &>/dev/null &
-"augroup END
-
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_FormatDependency_pdf = 'bib,dvi'
-let g:Tex_CompileRule_bib = 'bibtex $*.aux'
-let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
-if has('mac')
-  let g:Tex_CompileRule_dvi = 'platex -kanji=utf8 -interaction=nonstopmode $*'
-  let g:Tex_ViewRule_pdf = 'open'
-else
-  let g:Tex_CompileRule_dvi = '/opt/ptexlive/bin/platex -kanji=utf8 -interaction=nonstopmode $*'
-  let g:Tex_ViewRule_pdf = 'acroread'
-endif
-" }}}
 " html {{{
 function! s:HtmlEscape()
   silent s/&/\&amp;/eg
