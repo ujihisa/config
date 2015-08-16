@@ -2699,8 +2699,8 @@ augroup END
 call altr#define('main/scala/**/%.scala', 'test/scala/**/%Test.scala')
 call altr#define('src/**/%.clj', 'test/**/%_test.clj')
 
-nmap <M-`> <Plug>(altr-forward)
-imap <M-`> <Plug>(altr-forward)
+nmap <M-r> <Plug>(altr-forward)
+imap <M-r> <Plug>(altr-forward)
 " }}}
 " kana-operator-replace {{{
 map _  <Plug>(operator-replace)
