@@ -545,15 +545,6 @@ inoremap <M-=> =
 imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 
 " }}}
-" Cr in Insert Mode always means newline {{{
-if 0
-  function! CrInInsertModeAlwaysMeansNewline()
-    let a = "\<CR>X\<BS>"
-    return pumvisible() ? neocomplcache#close_popup() . a : a
-  endfunction
-  inoremap <expr> <CR> CrInInsertModeAlwaysMeansNewline()
-endif
-" }}}
 " vimshell {{{
 function! EmptyBufferP()
   return expand('%') == '' && !&modified
@@ -650,8 +641,6 @@ let g:neocomplete#max_list = 200
 imap <M-l> <Plug>(neocomplete_start_unite_complete)
 " see also
 "   * snippets section
-
-autocmd FileType haskell nnoremap <buffer> <C-l> :<C-u>NeoComplCacheCachingGhc<Cr>
 
 let g:neocomplete#skip_auto_completion_time = "" " disabling it
 
@@ -1399,47 +1388,6 @@ command! -nargs=1 HaskellType echo s:haskell_type(expand('%'), <q-args>)
 " }}}
 " echodoc {{{
 let g:echodoc_enable_at_startup = 0
-let g:echodoc_hoogle_cache = {}
-let s:doc_dict = {
-      \ 'name': 'haskell',
-      \ 'rank': 10,
-      \ 'filetypes' : {'haskell': 1},
-      \ }
-function! s:doc_dict.search(cur_text)
-  let tmp = matchlist(a:cur_text, "\\([a-z][a-z0-9.'_]*\\)\\s*$")
-  let tmp = filter(tmp, 'v:val != ""')
-  if len(tmp) == 2
-    let query = tmp[1]
-  else
-    return []
-  endif
-  let result = s:haskell_type(expand('%'), query)
-  if has_key(result, 'left')
-    return []
-  endif
-  return [{'text': query, 'highlight': 'Identifier'}, {'text': ' :: ' . substitute(result.right, "\n", "", "")}]
-
-  if mode() !=# 'i'
-    echo a:cur_text
-    let query .= neocomplcache#get_next_keyword()
-  endif
-  if len(query) < 3
-    return []
-  endif
-  let the_type = s:hoogle(query)
-  if split(the_type, ' ')[1] == query
-    return [{'text': the_type}]
-  else
-    return []
-  endif
-endfunction
-function! s:hoogle(cur_text)
-  if !has_key(g:echodoc_hoogle_cache, a:cur_text)
-    let g:echodoc_hoogle_cache[a:cur_text] = split(neocomplcache#system('hoogle ' . a:cur_text), "\n")[0]
-  endif
-  return g:echodoc_hoogle_cache[a:cur_text]
-endfunction
-"call echodoc#register('haskell', s:doc_dict)
 " }}}
 " echodoc for clojure {{{
 "let s:clojure_doc_dict = {
