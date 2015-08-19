@@ -241,6 +241,8 @@ set display=lastline
 "   bad e.g. /usr/share/vim/vim74/ftplugin/gitcommit.vim
 set textwidth=9999999999999
 
+set nobackup
+
 " scala
 " set wildignore+=*/target/*
 "   disabled because this also disables <C-x><C-f> :(
@@ -1732,19 +1734,19 @@ augroup vimshell-settings
   autocmd FileType vimshell call s:vimshell_settings()
 augroup END
 " }}}
-" platform-dependencies {{{
-if s:is_gentoo
-  " col('$') <= col('.'): at the end of line or not, considering virtualedit.
+" copy&paste {{{
 
-  " it didn't work for some reason...
-  " nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
-  " inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
-  " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
-  imap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+" col('$') <= col('.'): at the end of line or not, considering virtualedit.
 
-  vnoremap <M-c> "+y
-  set lsp=2
-endif
+" it didn't work for some reason...
+" nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
+" inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
+" imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
+imap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+
+vnoremap <M-c> "+y
+set linespace=2
+
 " }}}
 " jruby {{{
 function! VimrcJruby()
