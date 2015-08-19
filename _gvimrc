@@ -64,7 +64,7 @@ endfunction
 nnoremap <M-0> :<C-u>call <SID>set_default_guifonts()<Cr>
 
 if g:V.is_mac()
-  set transparency=5
+  set transparency=2
   let g:transparency = &transparency
 endif
 "set guioptions-=e
