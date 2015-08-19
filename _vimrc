@@ -1,3 +1,6 @@
+if !has('gui')
+  finish
+endif
 "
 " neobundle {{{
 if has('vim_starting')
@@ -21,12 +24,17 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/tabpagebuffer.vim'
-NeoBundle 'Shougo/vimproc', {'build': {
-      \     'windows': 'tools\\update-dll-mingw',
-      \     'cygwin': 'make -f make_cygwin.mak',
-      \     'mac': 'make -f make_mac.mak',
-      \     'linux': 'make',
-      \     'unix': 'gmake'}}
+if has('mac')
+  call neobundle#local("~/.vimbundles2", {},
+        \ ['vimproc'])
+else
+  NeoBundle 'Shougo/vimproc', {'build': {
+        \     'windows': 'tools\\update-dll-mingw',
+        \     'cygwin': 'make -f make_cygwin.mak',
+        \     'mac': 'make -f make_mac.mak',
+        \     'linux': 'make',
+        \     'unix': 'gmake'}}
+endif
 " NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/vesting'
@@ -2747,6 +2755,12 @@ augroup vimrc-go
   autocmd FileType go setlocal nolist
 augroup END
 "}}}
+" macvim {{{
+augroup vimrc-macvim
+  autocmd!
+  autocmd BufEnter * set macmeta
+augroup END
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
