@@ -143,7 +143,7 @@ NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
       \ 'autoload': {'filetypes' : 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
-NeoBundle 'kovisoft/slimv'
+" NeoBundle 'kovisoft/slimv'
 NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
       \   'Shougo/unite.vim']}

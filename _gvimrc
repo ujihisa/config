@@ -137,6 +137,7 @@ function! GvimrcVimshellColor()
 endfunction
 " }}}
 " transparency adjustment based on window focus {{{
+if 0
 augroup dualvim
   autocmd!
   if has('mac')
@@ -144,6 +145,7 @@ augroup dualvim
     autocmd FocusLost * set transparency=50
   endif
 augroup END
+endif
 " }}}
 " scala syntax tweaks {{{
 "highlight scalaNameDefinition gui=underline
