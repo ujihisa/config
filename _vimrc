@@ -415,6 +415,7 @@ snoremap <M-g>g <C-g>
 nnoremap <M-g>f <C-w><C-f>
 
 nmap <M-o> <Plug>(openbrowser-open)
+vmap <M-o> <Plug>(openbrowser-open)
 
 " yank without newlines
 vnoremap gy y:<C-u>let @" = substitute(@", "\n\s\*", ' ', 'g')<Cr>
@@ -2758,10 +2759,12 @@ augroup vimrc-go
 augroup END
 "}}}
 " macvim {{{
-augroup vimrc-macvim
-  autocmd!
-  autocmd BufEnter * set macmeta
-augroup END
+if g:V.is_mac()
+  augroup vimrc-macvim
+    autocmd!
+    autocmd BufEnter * set macmeta
+  augroup END
+endif
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
