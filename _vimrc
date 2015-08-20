@@ -2711,10 +2711,37 @@ augroup END
 " }}}
 " kana-altr {{{
 call altr#define('main/scala/**/%.scala', 'test/scala/**/%Test.scala')
-call altr#define('src/**/%.clj', 'test/**/%_test.clj')
+call altr#define('src/%/%.clj', 'test/%/%_test.clj')
 
 nmap <M-r> <Plug>(altr-forward)
 imap <M-r> <Plug>(altr-forward)
+
+
+" Experimental use of altr to create corresponding file
+
+function! s:altr_guess_forward_file(bufname) abort
+  for r in altr#_sort_rules(altr#_rule_table())
+    let [matchedp, match] = altr#_match_with_buffer_name(r, a:bufname)
+    if matchedp
+      let placeholders = filter(match[1 :], 'len(v:val)')
+      let forward = r['forward_pattern']
+      for placeholder in placeholders
+        let forward = substitute(forward, '%', placeholder, '')
+      endfor
+      return forward
+    endif
+  endfor
+endfunction
+
+function! s:altr_open_forward_file(bufname) abort
+  let fname = s:altr_guess_forward_file(a:bufname)
+  if len(fname)
+    execute 'edit' fname
+  endif
+endfunction
+
+nnoremap <M-R> :<C-u>call <SID>altr_open_forward_file(expand('%'))<Cr>
+
 " }}}
 " kana-operator-replace {{{
 map _  <Plug>(operator-replace)
