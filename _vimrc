@@ -759,7 +759,7 @@ let g:unite_source_file_rec_max_cache_files = 9000
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts =
-        \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+        \ '-i --vimgrep --hidden --ignore ' .
         \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'' --ignore tags --ignore target'
   let g:unite_source_grep_recursive_opt = ''
 endif
@@ -882,7 +882,8 @@ let g:quickrun_config.clojure = {
 " let g:quickrun_config.scala = {
 "       \ 'cmdopt': g:quickrun#default_config.scala.cmdopt . ' -deprecation'}
 
-let g:quickrun_config.scala = {'type': 'scala/concurrent_process', 'command': 'scala-2.11'}
+" let g:quickrun_config.scala = {'type': 'scala/concurrent_process', 'command': 'scala-2.11'}
+let g:quickrun_config.scala = {'type': 'scala/concurrent_process', 'command': 'sbt console'}
 
 let g:quickrun_config.cpp = {
       \ 'type': 'cpp/clang++',
