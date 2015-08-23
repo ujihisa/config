@@ -144,6 +144,7 @@ NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
 " NeoBundle 'kovisoft/slimv'
+NeoBundle 'guns/vim-sexp'
 NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
       \   'Shougo/unite.vim']}
@@ -2635,6 +2636,7 @@ let g:leave_my_textwidth_alone = 1
 augroup vimrc-neoclojure
   autocmd!
   autocmd FileType clojure setlocal omnifunc=neoclojure#complete#omni_auto
+  autocmd FileType clojure nnoremap <Space><M-r> :<C-u>call neoclojure#killall()<Cr>
 augroup END
 
 " let g:neocomplete#sources#omni#functions = get(g:, 'neocomplete#sources#omni#functions', {})
@@ -2794,6 +2796,20 @@ if g:V.is_mac()
     autocmd BufEnter * set macmeta
   augroup END
 endif
+" }}}
+" vim-sexp {{{
+
+let g:sexp_mappings = {}
+
+" Default is <M-k>
+let g:sexp_mappings['sexp_swap_list_backward'] = ''
+" Default is <M-j>
+let g:sexp_mappings['sexp_swap_list_forward'] = ''
+" Default is <M-h>
+let g:sexp_mappings['sexp_swap_element_backward'] = ''
+" Default is <M-j>
+let g:sexp_mappings['sexp_swap_element_forward'] = ''
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
