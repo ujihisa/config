@@ -349,7 +349,9 @@ nnoremap co zo
 nnoremap cc zc
 
 
-nnoremap <M-a> ggVG
+" use mark `m for <M-a>, and <M-c>
+nnoremap <M-a> mmggVG
+vnoremap <M-c> "+yG`m
 
 "inoremap <expr> k smartchr#one_of('k', "\<Esc>")
 
@@ -1748,7 +1750,6 @@ augroup END
 " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
 imap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
 
-vnoremap <M-c> "+y
 set linespace=2
 
 " }}}
@@ -2393,8 +2394,9 @@ augroup END
 
 " }}}
 " AndrewRadev/switch {{{
-nnoremap <silent><M-i> :<C-u>Switch<Cr>
-inoremap <silent><M-i> <Esc>:Switch<Cr>a
+
+" nnoremap <silent><M-i> :<C-u>Switch<Cr>
+" inoremap <silent><M-i> <Esc>:Switch<Cr>a
 
 augroup vimrc-scala-switch
   autocmd!
@@ -2809,6 +2811,8 @@ let g:sexp_mappings['sexp_swap_list_forward'] = ''
 let g:sexp_mappings['sexp_swap_element_backward'] = ''
 " Default is <M-j>
 let g:sexp_mappings['sexp_swap_element_forward'] = ''
+
+let g:sexp_mappings['sexp_round_head_wrap_list'] = '<M-i>'
 
 " }}}
 " __END__  "{{{1
