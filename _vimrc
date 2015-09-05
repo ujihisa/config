@@ -2058,7 +2058,10 @@ augroup END
 " }}}
 " concealedyank.vim {{{
 vnoremap <Plug>(vimrc-yankprefix-clipboard) "+
-vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)
+vnoremap <Plug>(vimrc-go-back-to-mark) Gmm
+" vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)
+
+vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)<Plug>(vimrc-go-back-to-mark)
 " }}}
 " iexe-sbt {{{
 function! s:vimrc_int_sbt()
