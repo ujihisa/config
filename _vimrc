@@ -476,6 +476,13 @@ call smartinput#define_rule({
       \   'char': 'j',
       \   'input': '<BS><BS><Esc>'})
 
+" uiu = ()
+call smartinput#map_to_trigger('i', 'u', 'u', 'u')
+call smartinput#define_rule({
+      \   'at': 'ui\%#',
+      \   'char': 'u',
+      \   'input': '<BS><BS>()<Left>'})
+
 " {{ in scala string literal = ${}
 call smartinput#map_to_trigger('i', '{', '{', '{')
 call smartinput#define_rule({
