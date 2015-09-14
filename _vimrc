@@ -2431,7 +2431,7 @@ vmap s <Plug>VSurround
 vmap ( <Plug>VSurround(
 vmap [ <Plug>VSurround[
 vmap ' <Plug>VSurround'
-vmap " <Plug>VSurround"
+" vmap " <Plug>VSurround"
 vmap ` <Plug>VSurround`
 
 " }}}
