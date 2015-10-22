@@ -1,7 +1,7 @@
-if !has('gui')
+if !has('gui') " {{{
   finish
 endif
-"
+" }}}
 " neobundle {{{
 if has('vim_starting')
   set nocompatible
