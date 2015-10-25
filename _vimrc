@@ -1982,6 +1982,7 @@ endfunction
 augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
+  autocmd FileType sbt.scala call s:vimrc_scala()
 augroup END
 " }}}
 " clojure leininge integrate (deadcopy from scala. really bad.) {{{
