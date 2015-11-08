@@ -561,8 +561,6 @@ call smartinput#define_rule({
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
 
-" inoremap <expr> <Plug>(vimrc_bs) neocomplete#close_popup() . "\<BS>"
-" imap <S-BS> <Plug>(vimrc_bs)
 imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 
 " }}}
@@ -596,7 +594,7 @@ augroup END
 
 function! s:vimshell_local()
   imap <buffer><expr> <BS>  pumvisible() ?
-        \ (neocomplete#close_popup() . "\<BS>") :
+        \ "\<C-y>\<BS>" :
         \ "\<Plug>(vimshell_another_delete_backward_char)"
   " to use smartinput
   " iunmap <buffer> <Bs>
@@ -1184,7 +1182,9 @@ function! s:init_cmdwin()
   "I added
   imap <buffer><expr><BS> col('.') == 1 ?
         \ "\<Plug>(vimrc_cmdwin_close)" :
-        \ (neocomplete#close_popup() . "\<BS>")
+        \ pumvisible() ?
+        \   "\<C-y>\<BS>" :
+        \   "\<BS>"
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
