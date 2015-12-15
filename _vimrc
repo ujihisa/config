@@ -242,6 +242,7 @@ set display=lastline
 set textwidth=9999999999999
 
 set nobackup
+set spelllang=en,cjk
 
 " scala
 " set wildignore+=*/target/*
