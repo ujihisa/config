@@ -1357,7 +1357,7 @@ AddPath /sbin
 AddPath /usr/sbin
 AddPath ~/.vimbundles/themis/bin/
 " pip install --user
-AddPath ~/.local/bin/vint
+AddPath ~/.local/bin
 
 if isdirectory(expand('~/bin'))
   AddPath ~/bin
