@@ -865,7 +865,7 @@ let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './
 "       \ 'tempfile': '%{tempname()}.textile',
 "       \ 'exec': ['%c %s > %s:p:r.html', 'open %s:p:r.html', 'sleep 1', 'rm %s:p:r.html'] }
 
-let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
+" let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 
 let g:quickrun_config['markdown'] = {
       \ 'type': 'markdown/pandoc',
@@ -1367,6 +1367,7 @@ AddPath /home/ujihisa/git/termtter/bin
 " AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
 AddPath /home/ujihisa/git/Gyazo-for-Linux/
+AddPath ~/.gem/bin
 " }}}
 " macvim proportional {{{
 function! Proportional()
