@@ -567,7 +567,7 @@ imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)
 " }}}
 " vimshell {{{
 function! EmptyBufferP()
-  return expand('%') == '' && !&modified
+  return expand('%') ==# '' && !&modified
 endfunction
 "nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
 "nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
@@ -1572,9 +1572,12 @@ vnoremap ] t]
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " }}}
 " MacVim is unko {{{
-let rtp = split(&rtp, ',')
-unlet rtp[index(rtp, '/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya')]
-let &rtp = join(rtp, ',')
+function! s:macvim_is_unko() abort
+  let rtp = split(&rtp, ',')
+  unlet rtp[index(rtp, '/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya')]
+  let &rtp = join(rtp, ',')
+endfunction
+call s:macvim_is_unko()
 " }}}
 " golden ratio {{{
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
