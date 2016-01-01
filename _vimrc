@@ -1909,7 +1909,7 @@ endfunction
 " scala sbt interaction {{{
 function! s:start_sbt(vsm_cmds) abort
   execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
-  execute 'VimShellInteractive sbt'
+  execute 'VimShellInteractive sbt -no-colors'
   stopinsert
   let t:vsm_bufname = bufname('%')
   wincmd H
