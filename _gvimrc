@@ -45,14 +45,10 @@ if g:V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h12
   "set guifontwide=Septmber-M-MonoKyohkan:h18
-elseif vimproc#system('hostname') =~ '^mbr'
+" elseif vimproc#system('hostname') =~ '^mbr'
+else
   let &guifont = 'Menlo Bold 9'
   let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 9'
-else
-  "let &guifont = 'Anonymous Pro Bold 14'
-  "let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
-  let &guifont = 'Menlo Bold 10'
-  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 10'
 endif
 let s:gvimrc_default_fonts = {
       \ 'guifont': &guifont,
