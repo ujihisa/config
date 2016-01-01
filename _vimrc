@@ -181,6 +181,11 @@ call neobundle#end()
 filetype plugin indent on
 
 " }}}
+" augroup ujihisa-vimrc {{{
+augroup ujihisa-vimrc
+  autocmd!
+augroup END
+" }}}
 " g:V {{{
 if !has_key(g:, 'V')
   let g:V = vital#of('vital')
@@ -195,9 +200,6 @@ set ignorecase
 set smartcase
 set number
 set ruler
-set autoindent
-set nosmartindent
-set nocindent
 set shiftwidth=2
 set tabstop=2
 set expandtab
@@ -247,6 +249,17 @@ set spelllang=en,cjk
 " scala
 " set wildignore+=*/target/*
 "   disabled because this also disables <C-x><C-f> :(
+
+" }}}
+" indent for undefined filetype buffers {{{
+
+augroup ujihisa-vimrc
+  " 'autoindent', 'smartindent', 'cindent', and 'indentexpr' options are local to buffer.
+
+  " Disable i_: to indent current line.
+  autocmd BufNew * setlocal cindent
+  autocmd BufNew * setlocal cinkeys-=:
+augroup END
 
 " }}}
 " landscape / portrait detect {{{
