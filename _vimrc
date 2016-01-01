@@ -224,8 +224,7 @@ set directory-=.
 " http://vim-users.jp/2010/07/hack162/
 if has('persistent_undo')
   set undodir=~/.vimundo
-  augroup vimrc-undofile
-    autocmd!
+  augroup ujihisa-vimrc
     autocmd BufReadPre ~/* setlocal undofile
   augroup END
 endif
@@ -601,8 +600,7 @@ let g:vimshell_scrollback_limit = 4000
 let g:vimshell_interactive_update_time = 400
 let g:vimshell_max_command_history = 100000 " default is 1000
 
-augroup vimrc-vimshell
-  autocmd!
+augroup ujihisa-vimrc
   autocmd FileType vimshell call s:vimshell_local()
 augroup END
 
@@ -682,8 +680,7 @@ let g:neocomplete#lock_iminsert = 1
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
-augroup vimrc-local
-  autocmd!
+augroup ujihisa-vimrc
   autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
 
@@ -743,8 +740,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
   "nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
-augroup vimrc-vim-resize
-  autocmd!
+augroup ujihisa-vimrc
   autocmd GUIEnter *
         \ call unite#custom#profile('default', 'context', {
         \  'vertical': 1,
@@ -810,8 +806,7 @@ function! s:unite_my_settings()
   nmap <buffer> p <Plug>(unite_print_candidate)
 endfunction
 
-augroup vimrc-unite
-  autocmd!
+augroup ujihisa-vimrc
   autocmd FileType unite call s:unite_my_settings()
 augroup END
 " }}}
@@ -1112,8 +1107,10 @@ function! DoMspec()
 endfunction
 " }}}
 " Haskell Tag {{{
-" see also: ~/bin/update-cabal-tags
-set tag+=~/.cabal/tags
+if 0
+  " see also: ~/bin/update-cabal-tags
+  set tag+=~/.cabal/tags
+endif
 " }}}
 " thinca vim development environment {{{
 " http://d.hatena.ne.jp/thinca/20100216/1266294717
