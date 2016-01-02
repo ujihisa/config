@@ -200,8 +200,6 @@ set ignorecase
 set smartcase
 set number
 set ruler
-set shiftwidth=2
-set tabstop=2
 set expandtab
 set hlsearch
 set splitbelow
@@ -258,6 +256,9 @@ augroup ujihisa-vimrc
   " Disable i_: to indent current line.
   autocmd BufNew * setlocal cindent
   autocmd BufNew * setlocal cinkeys-=:
+
+  autocmd BufNew * setlocal shiftwidth=4
+  autocmd BufNew * setlocal tabstop=4
 augroup END
 
 " }}}
@@ -1251,7 +1252,7 @@ endfunction
 "  nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " }}}
 " few {{{
-function s:vimrc_few()
+function! s:vimrc_few() abort
   let path = expand('~/git/few/bin/few')
   if filereadable(path)
     execute 'QuickRun ruby' path
@@ -1351,7 +1352,7 @@ call unite#define_source(s:unite_source)
 function! ForFastCycle()
   Unite evalruby
 endfunction
-command -nargs=0 ForFastCycle call ForFastCycle()
+command! -nargs=0 ForFastCycle call ForFastCycle()
 if 0
   nnoremap <D-j> :<C-u>ForFastCycle<Cr>
   nnoremap <D-k> :<C-u>qa!<Cr>
@@ -1473,7 +1474,7 @@ let $MANPAGER='cat'
 let g:ref_clojure_use_persistent = 1
 " }}}
 " special git log viewer {{{
-function! s:git_log_viewer()
+function! s:git_log_viewer() abort
   if s:is_display_landscape()
     vnew
   else
@@ -1485,15 +1486,17 @@ function! s:git_log_viewer()
   setl foldmethod=expr
   setl foldexpr=getline(v:lnum)!~'^commit'
 endfunction
+
 command! GitLogViewer call s:git_log_viewer()
 
-function s:cd_pull_log(path)
+function! s:cd_pull_log(path) abort
   tabnew
   execute 'cd' expand(a:path)
   VimShell
   GitLogViewer
   wincmd L
 endfunction
+
 command! -nargs=1 CdPullLog call s:cd_pull_log(<q-args>)
 " }}}
 " disable macvim vimrc_examples {{{
@@ -2482,10 +2485,9 @@ vmap <M-.> <Plug>(caw:i:toggle)gv
 vmap <M-,> <Plug>(caw:i:uncomment)gv
 " }}}
 " vitalista.vim {{{
-
-function! s:vitalista()
-  if !neobundle#is_installed('vital.vim')
-    g:V.import('Vim.Message').error('vital.vim not installed globally.')
+function! s:vitalista() abort
+  if empty(neobundle#get('vital.vim'))
+    call g:V.import('Vim.Message').error('vital.vim not installed globally.')
     return
   endif
 
@@ -2502,7 +2504,7 @@ endfunction
 
 augroup vitalista
   autocmd!
-  autocmd FileType vim call s:vitalista()
+  " autocmd FileType vim call <SID>vitalista()
 augroup END
 
 " }}}
