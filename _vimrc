@@ -235,6 +235,12 @@ set synmaxcol=700
 set history=1000
 set display=lastline
 
+setglobal cindent
+setglobal cinkeys-=:
+
+setglobal shiftwidth=4
+setglobal tabstop=4
+
 " Some ftplugin sets tw=78 is tw is 0. Set this to extremely high
 " so that those ftplugins give up.
 "   bad e.g. /usr/share/vim/vim74/ftplugin/gitcommit.vim
@@ -246,15 +252,6 @@ set spelllang=en,cjk
 " scala
 " set wildignore+=*/target/*
 "   disabled because this also disables <C-x><C-f> :(
-
-" }}}
-" indent for undefined filetype buffers {{{
-
-setglobal cindent
-setglobal cinkeys-=:
-
-setglobal shiftwidth=4
-setglobal tabstop=4
 
 " }}}
 " landscape / portrait detect {{{
