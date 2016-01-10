@@ -250,16 +250,11 @@ set spelllang=en,cjk
 " }}}
 " indent for undefined filetype buffers {{{
 
-augroup ujihisa-vimrc
-  " 'autoindent', 'smartindent', 'cindent', and 'indentexpr' options are local to buffer.
+setglobal cindent
+setglobal cinkeys-=:
 
-  " Disable i_: to indent current line.
-  autocmd BufNew * setlocal cindent
-  autocmd BufNew * setlocal cinkeys-=:
-
-  autocmd BufNew * setlocal shiftwidth=4
-  autocmd BufNew * setlocal tabstop=4
-augroup END
+setglobal shiftwidth=4
+setglobal tabstop=4
 
 " }}}
 " landscape / portrait detect {{{
