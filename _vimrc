@@ -2780,7 +2780,7 @@ nnoremap <M-R> :<C-u>call <SID>altr_open_forward_file(expand('%'))<Cr>
 map _  <Plug>(operator-replace)
 " }}}
 " expand_region {{{
-nmap - <Plug>(expand_region_shrink)
+" nmap - <Plug>(expand_region_shrink)
 " }}}
 " ujihisa-scala {{{
 
