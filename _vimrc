@@ -107,7 +107,7 @@ NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'shiracha/shiracha-vim'
 NeoBundle 'rhysd/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
-NeoBundle 'terryma/vim-expand-region'
+" NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/unite-equery'
 NeoBundle 'ujihisa/unite-font'
@@ -2842,6 +2842,38 @@ let g:sexp_mappings['sexp_swap_element_backward'] = ''
 let g:sexp_mappings['sexp_swap_element_forward'] = ''
 
 let g:sexp_mappings['sexp_round_head_wrap_list'] = '<M-i>'
+
+" }}}
+" {{{ GithubPRTemplate
+
+" Returns a markdown-ish summary of your git commit messages
+" (1) Extract all commits since the newest commit in the `origin`
+" (2) Do some text processing, assuming commit messages are like this:
+"       "Short summary\n\n* details"
+" (3) Return multiple lines as a list of strings
+function! s:github_pullreq_review_template() abort
+  let git_log_text = vimproc#system('git log origin..HEAD')
+  let result = []
+  for line in split(git_log_text, "\n")
+    if line =~# '^    \u'
+      let result += ['* ' . line[4:]]
+    elseif line =~# '^    $'
+    elseif line =~# '^    '
+      let result += [line]
+    elseif line =~# '^commit'
+    endif
+  endfor
+  return result
+endfunction
+
+function! s:GithubPRTemplate() abort
+  let lines = s:github_pullreq_review_template()
+  new
+  setfiletype markdown
+  call append(0, lines)
+endfunction
+
+command! -nargs=0 GithubPRTemplate call <SID>GithubPRTemplate()
 
 " }}}
 " __END__  "{{{1
