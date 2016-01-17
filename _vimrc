@@ -40,7 +40,7 @@ NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/vesting'
 NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
+" NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
