@@ -233,6 +233,7 @@ set updatetime=500
 set timeoutlen=300
 set synmaxcol=700
 set history=1000
+set viminfo+=:1000
 set display=lastline
 
 setglobal cindent
