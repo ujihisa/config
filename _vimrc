@@ -134,12 +134,6 @@ NeoBundle 'ujihisa/ft-cmake'
 NeoBundle 'Rip-Rip/clang_complete'
 NeoBundleLazy 'vim-jp/cpp-vim', {
       \ 'autoload': {'filetypes': 'cpp'}}
-NeoBundleLazy 'osyo-manga/unite-boost-online-doc', {
-      \ 'depends': [
-      \   'Shougo/unite.vim',
-      \   'tyru/open-browser.vim',
-      \   'mattn/webapi-vim'],
-      \ 'autoload': {'filetypes' : 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
 " NeoBundle 'kovisoft/slimv'
