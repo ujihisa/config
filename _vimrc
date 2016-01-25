@@ -2540,6 +2540,7 @@ xmap ,w <Plug>(textobj-wiw-n)
 xmap ,e <Plug>(textobj-wiw-p)
 omap ,w <Plug>(textobj-wiw-n)
 omap ,e <Plug>(textobj-wiw-p)
+nmap ,w <Plug>(textobj-wiw-n)
 
 " }}}
 " unite-include-reversed {{{
