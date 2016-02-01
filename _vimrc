@@ -233,8 +233,8 @@ set display=lastline
 setglobal cindent
 setglobal cinkeys-=:
 
-setglobal shiftwidth=4
-setglobal tabstop=4
+setglobal shiftwidth=2
+setglobal tabstop=2
 
 " Some ftplugin sets tw=78 is tw is 0. Set this to extremely high
 " so that those ftplugins give up.
@@ -607,7 +607,9 @@ function! s:vimshell_local()
   inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
 endfunction
 
-autocmd FileType int-* call s:vimshell_iexe() " TODO
+augroup ujihisa-vimrc
+  autocmd FileType int-* call s:vimshell_iexe() " TODO
+augroup END
 function! s:vimshell_iexe()
   "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
   nmap <buffer> j <Plug>(vimshell_int_next_prompt)
@@ -2061,6 +2063,10 @@ augroup END
 " * clojure.tools.cli/cli
 " * anything that begins with def
 let g:clojure#indent#special = '\<cli\|def.\*$'
+
+augroup ujihisa-vimrc
+  autocmd FileType clojure setlocal tabstop=2 shiftwidth=2
+augroup END
 
 " }}}
 " filetype make {{{
