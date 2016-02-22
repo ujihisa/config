@@ -14,10 +14,11 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/echodoc'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neco-syntax'
-NeoBundle 'Shougo/neco-vim'
-NeoBundle 'Shougo/neoinclude.vim'
+NeoBundle 'Shougo/neocomplete', {'depends': [
+      \ 'Shougo/neoinclude.vim',
+      \ 'Shougo/neco-syntax',
+      \ 'Shougo/neco-vim',
+      \ 'Shougo/neopairs.vim']}
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
@@ -2869,6 +2870,9 @@ endfunction
 
 command! -nargs=0 GithubPRTemplate call <SID>GithubPRTemplate()
 
+" }}}
+" neopairs {{{
+let g:neopairs#enable = 1
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
