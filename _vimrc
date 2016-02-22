@@ -404,6 +404,7 @@ vnoremap > >gv
 " paste in insert mode is <C-o>p while paste in command-line mode is <C-r>".
 " it's confusing.
 cnoremap <C-o>p <C-r>"
+cnoremap <M-v> <C-r>+
 " for speedup
 nnoremap /<C-o>p /<C-r>"
 
