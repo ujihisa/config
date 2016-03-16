@@ -437,6 +437,11 @@ inoremap <M-o> <Esc>o<Esc>
 " kana/vim-smartinput {{{
 
 if s:vimrc_use_lexima
+  " jlj = <Esc>
+  call lexima#add_rule({
+        \   'at': 'jl\%#',
+        \   'char': 'j',
+        \   'input': '<BS><BS><Esc>'})
 elseif
   " call smartinput#clear_rules()
   let g:smartinput_no_default_key_mappings = 1
@@ -573,7 +578,7 @@ inoremap <M-=> =
 
 if s:vimrc_use_lexima
   " TODO
-elsif
+elseif
   imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 endif
 " }}}
