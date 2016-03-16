@@ -46,7 +46,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
-let s:vimrc_use_lexima = 1
+let s:vimrc_use_lexima = 0
 if s:vimrc_use_lexima
   NeoBundle 'cohama/lexima.vim'
 else
@@ -442,7 +442,7 @@ if s:vimrc_use_lexima
         \   'at': 'jl\%#',
         \   'char': 'j',
         \   'input': '<BS><BS><Esc>'})
-elseif
+else
   " call smartinput#clear_rules()
   let g:smartinput_no_default_key_mappings = 1
 
@@ -578,7 +578,7 @@ inoremap <M-=> =
 
 if s:vimrc_use_lexima
   " TODO
-elseif
+else
   imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 endif
 " }}}
