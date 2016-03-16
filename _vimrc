@@ -436,7 +436,8 @@ inoremap <M-o> <Esc>o<Esc>
 " }}}
 " kana/vim-smartinput {{{
 
-if !s:vimrc_use_lexima
+if s:vimrc_use_lexima
+elseif
   " call smartinput#clear_rules()
   let g:smartinput_no_default_key_mappings = 1
 
@@ -564,14 +565,16 @@ if !s:vimrc_use_lexima
   "       \   'char': '<Bs>',
   "       \   'input': '<Plug>(vimshell_another_delete_backward_char)',
   "       \   'filetype': ['vimshell']})
+endif
+"}}}
+" = for completion and <bs> for cancel {{{
+inoremap <expr> = pumvisible() ? "\<C-n>" : '='
+inoremap <M-=> =
 
-  "}}}
-  " = for completion and <bs> for cancel {{{
-  inoremap <expr> = pumvisible() ? "\<C-n>" : '='
-  inoremap <M-=> =
-
+if s:vimrc_use_lexima
+  " TODO
+elsif
   imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
-
 endif
 " }}}
 " vimshell {{{
