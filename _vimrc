@@ -2491,10 +2491,10 @@ let g:quickrun_config['moon/moonc'] = {
 " }}}
 " tyru/caw.vim {{{
 let g:caw_no_default_keymappings = 1
-nmap <M-.> <Plug>(caw:i:toggle)
-nmap <M-,> <Plug>(caw:i:uncomment)
-vmap <M-.> <Plug>(caw:i:toggle)gv
-vmap <M-,> <Plug>(caw:i:uncomment)gv
+nmap <M-.> <Plug>(caw:tildepos:toggle)
+nmap <M-,> <Plug>(caw:tildepos:uncomment)
+vmap <M-.> <Plug>(caw:tildepos:toggle)gv
+vmap <M-,> <Plug>(caw:tildepos:uncomment)gv
 " }}}
 " vitalista.vim {{{
 function! s:vitalista() abort
