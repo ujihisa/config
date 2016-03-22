@@ -95,6 +95,10 @@ NeoBundle 'osyo-manga/jplus'
 NeoBundle 'deris/rengbang'
 " NeoBundle 'thinca/vim-portal'
 NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'kamichidu/vim-unite-javaimport', {
+      \ 'depends': [
+      \   'kamichidu/vim-javaclasspath']}
 " NeoBundle 'lambdalisue/vim-gita'
 
 NeoBundle 'mopp/autodirmake.vim'
