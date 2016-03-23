@@ -54,6 +54,7 @@ else
   NeoBundle 'cohama/vim-smartinput-endwise'
 endif
 NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'haya14busa/revital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
 NeoBundle 'thinca/vim-quickrun'
