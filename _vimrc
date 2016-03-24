@@ -1066,15 +1066,6 @@ function! s:left_space()
   endif
 endfunction
 " }}}
-" Say supports {{{
-command! Say silent execute '!say "' . escape(getline('.'), '"') . '" &>/dev/null &'
-augroup SayCurrentLine
-  autocmd!
-  autocmd FileType say nnoremap <buffer> j j:Say<Cr>
-  autocmd FileType say nnoremap <buffer> k k:Say<Cr>
-augroup END
-
-" }}}
 " Substitute all spaces for indentation to underlines {{{
 "
 " before:
