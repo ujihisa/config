@@ -2816,6 +2816,10 @@ let g:sexp_mappings['sexp_swap_element_forward'] = ''
 
 let g:sexp_mappings['sexp_round_head_wrap_list'] = '<M-i>'
 
+augroup ujihisa-vimrc
+  autocmd FileType clojure imap <buffer> <M-S-l> <Esc><M-S-l>
+augroup END
+
 " }}}
 " {{{ GithubPRTemplate
 
