@@ -108,13 +108,6 @@ if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
 " }}}
-" macvim specific {{{
-if g:V.is_mac()
-  nnoremap <SwipeLeft> gT
-  nnoremap <SwipeRight> gt
-  "set fullscreen
-  WindowsizeMaximize13
-endif
 if has('gui')
   " termtter {{{
   if 0
