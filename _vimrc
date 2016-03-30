@@ -1325,43 +1325,6 @@ endfunction
 
 call unite#define_source(s:unite_source)
 " }}}
-" unite-evalruby {{{
-"let s:unite_source = {
-"      \ 'name': 'evalruby',
-"      \ 'is_volatile': 1,
-"      \ 'required_pattern_length': 1,
-"      \ 'max_candidates': 30,
-"      \ }
-"
-"function! s:unite_source.gather_candidates(args, context)
-"  if a:context.input[-1:] == '.'
-"    let methods = split(
-"          \ unite#util#system(printf('ruby -e "puts %s.methods"', a:context.input[:-2])),
-"          \ "\n")
-"    call map(methods, printf("'%s' . v:val", a:context.input))
-"  else
-"    let methods = [a:context.input]
-"  endif
-"  return map(methods, '{
-"        \ "word": v:val,
-"        \ "source": "evalruby",
-"        \ "kind": "command",
-"        \ "action__command": printf("!ruby -e \"p %s\"", v:val),
-"        \ }')
-"endfunction
-"
-"call unite#define_source(s:unite_source)
-" }}}
-" for fast cycle {{{
-function! ForFastCycle()
-  Unite evalruby
-endfunction
-command! -nargs=0 ForFastCycle call ForFastCycle()
-if 0
-  nnoremap <D-j> :<C-u>ForFastCycle<Cr>
-  nnoremap <D-k> :<C-u>qa!<Cr>
-endif
-" }}}
 let g:shadow_debug = 1
 " PATH {{{
 command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
