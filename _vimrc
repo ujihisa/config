@@ -1727,6 +1727,7 @@ function! s:vimshell_settings()
   " <Cr> expands snippet!
   imap <buffer><expr> <CR> neosnippet#expandable() ?
       \ "\<Plug>(neosnippet_expand)\<Plug>(vimshell_enter)" : "\<Plug>(vimshell_enter)"
+  inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
 endfunction
 augroup vimshell-settings
   autocmd!
