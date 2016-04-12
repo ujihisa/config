@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<root>
+  <list>
+    <item>
+      <name>Command-D to Command-Tab</name>
+      <identifier>private.command_d_to_command_tab</identifier>
+      <autogen>--KeyToKey--
+        KeyCode::D, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND,
+        KeyCode::TAB, ModifierFlag::COMMAND_L</autogen>
+    </item>
+    <item>
+      <name>Command-E to Shift-Command-Tab</name>
+      <identifier>private.command_e_to_shift_command_tab</identifier>
+      <autogen>--KeyToKey--
+        KeyCode::E, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND,
+        KeyCode::TAB, ModifierFlag::COMMAND_L | VK_SHIFT</autogen>
+    </item>
+    <item>
+      <name>Chrome Command-J/K</name>
+      <identifier>private.chrome_command_j_k</identifier>
+      <only>GOOGLE_CHROME</only>
+      <autogen>--KeyToKey--
+        KeyCode::J, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND | ModifierFlag::NONE,
+        KeyCode::BRACKET_RIGHT, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::K, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND | ModifierFlag::NONE,
+        KeyCode::BRACKET_LEFT, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L</autogen>
+    </item>
+    <item>
+      <name>Vim Use both Cmd/Opt as Opt, except for D/E/Tab/`/M/N, and except for just Cmd_R</name>
+      <identifier>private.vim_command_opt</identifier>
+      <only>VI</only>
+
+      <!-- Vim magic for kana. This has to be before others. -->
+      <autogen>__KeyOverlaidModifier__ KeyCode::COMMAND_R, KeyCode::OPTION_R, KeyCode::VK_JIS_TOGGLE_EISUU_KANA</autogen>
+
+      <!-- The main -->
+      <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+      <autogen>__KeyToKey__ KeyCode::COMMAND_R, KeyCode::OPTION_L</autogen>
+
+      <!-- Exceptions -->
+      <autogen>--KeyToKey--
+        KeyCode::D, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
+        KeyCode::TAB, ModifierFlag::COMMAND_L</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::E, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
+        KeyCode::TAB, ModifierFlag::COMMAND_L | VK_SHIFT</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::TAB, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
+        KeyCode::TAB, ModifierFlag::COMMAND_L</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::BACKQUOTE, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
+        KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::M, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
+        KeyCode::M, ModifierFlag::COMMAND_L</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::N, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
+        KeyCode::N, ModifierFlag::COMMAND_L</autogen>
+    </item>
+  </list>
+</root>
