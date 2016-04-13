@@ -242,7 +242,8 @@ set viminfo+=:1000
 set display=lastline
 
 setglobal cindent
-setglobal cinkeys-=:
+" setglobal cinkeys-=:
+setglobal cinkeys=
 
 setglobal shiftwidth=2
 setglobal tabstop=2
