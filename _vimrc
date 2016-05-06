@@ -957,7 +957,8 @@ function! s:vimrc_git_show()
   new
   VimProcRead git show
   normal! dd
-  set filetype=git-log.git-diff
+  " set filetype=git-log.git-diff
+  set filetype=git
   nnoremap <buffer> q :<C-u>quit!<Cr>
   setl nomodifiable readonly
 endfunction
