@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <root>
+  <appdef>
+    <appname>HIPCHAT</appname>
+    <equal>com.hipchat.HipChat</equal>
+  </appdef>
   <list>
     <item>
       <name>Command-D to Command-Tab</name>
@@ -57,6 +61,17 @@
       <autogen>--KeyToKey--
         KeyCode::N, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_OPTION,
         KeyCode::N, ModifierFlag::COMMAND_L</autogen>
+    </item>
+    <item>
+      <name>HipChat Command-J/K</name>
+      <identifier>private.hipchat_command_j_k</identifier>
+      <only>HIPCHAT</only>
+      <autogen>--KeyToKey--
+        KeyCode::J, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND | ModifierFlag::NONE,
+        KeyCode::BRACKET_RIGHT, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L</autogen>
+      <autogen>--KeyToKey--
+        KeyCode::K, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND | ModifierFlag::NONE,
+        KeyCode::BRACKET_LEFT, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L</autogen>
     </item>
   </list>
 </root>
