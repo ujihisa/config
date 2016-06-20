@@ -737,7 +737,6 @@ endfunction
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
   nnoremap sS :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
-  " nnoremap sS :<C-u>Unite file_rec/async:! -default-action=split -direction=rightbelow<Cr>
   nnoremap ss :<C-u>Unite file_rec/git file -default-action=split -direction=rightbelow -hide-source-names<Cr>
   nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
