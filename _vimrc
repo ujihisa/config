@@ -22,7 +22,7 @@ NeoBundle 'Shougo/neocomplete', {'depends': [
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
-NeoBundle 'Shougo/vimfiler'
+" NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/tabpagebuffer.vim'
 if has('mac')
@@ -1625,20 +1625,22 @@ endfunction
 nnoremap <space>` :<C-u>setl conceallevel=0<Cr>
 " }}}
 " vimfiler {{{
-let g:vimfiler_as_default_explorer = 1
+if 0
+  let g:vimfiler_as_default_explorer = 1
 
-autocmd FileType vimfiler call s:vimfiler_local()
-function! s:vimfiler_local()
-  silent! nunmap <buffer> L
-  silent! nunmap <buffer> H
+  autocmd FileType vimfiler call s:vimfiler_local()
+  function! s:vimfiler_local()
+    silent! nunmap <buffer> L
+    silent! nunmap <buffer> H
 
-  " don't loop j/k
-  silent! nunmap <buffer> j
-  silent! nunmap <buffer> k
+    " don't loop j/k
+    silent! nunmap <buffer> j
+    silent! nunmap <buffer> k
 
-  " default is g?
-  nmap <buffer> ? <Plug>(vimfiler_help)
-endfunction
+    " default is g?
+    nmap <buffer> ? <Plug>(vimfiler_help)
+  endfunction
+endif
 " }}}
 " :TOhtmlAndBrowse {{{
 " http://d.hatena.ne.jp/tyru/20110710/tenuki
