@@ -635,8 +635,10 @@ augroup ujihisa-vimrc
 augroup END
 function! s:vimshell_iexe()
   "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
-  nmap <buffer> j <Plug>(vimshell_int_next_prompt)
-  nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
+  if 0 " Let's se..
+    nmap <buffer> j <Plug>(vimshell_int_next_prompt)
+    nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
+  endif
   inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
 endfunction
 
@@ -1897,7 +1899,9 @@ endfunction
 " scala sbt interaction {{{
 function! s:start_sbt(vsm_cmds) abort
   execute 'normal' "\<Plug>(vimshell_split_switch)\<Plug>(vimshell_hide)"
-  execute 'VimShellInteractive sbt -no-colors'
+  " execute 'VimShellInteractive sbt -no-colors'
+  execute 'VimShellInteractive bash -c "TEST_TARGET=dev exec sbt"'
+  " execute 'VimShellInteractive bash -c "TEST_TARGET=stage exec sbt"'
   stopinsert
   let t:vsm_bufname = bufname('%')
   wincmd H
@@ -2067,8 +2071,8 @@ vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)<Plug
 " }}}
 " iexe-sbt {{{
 function! s:vimrc_int_sbt()
-  nunmap <buffer> j
-  nunmap <buffer> k
+  nunmap! <buffer> j
+  nunmap! <buffer> k
 
   syntax case ignore
 

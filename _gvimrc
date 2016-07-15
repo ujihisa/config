@@ -27,7 +27,8 @@ GvimrcColorscheme aldmeris
 " GvimrcColorscheme monokai
 
 if g:V.is_mac()
-  GvimrcColorscheme macvim
+  " GvimrcColorscheme macvim
+  GvimrcColorscheme newspaper
   "  for macvim.vim
   hi! link Error WarningMsg
   hi VertSplit    gui=NONE guifg=DarkSlateGray guibg=NONE
