@@ -72,7 +72,7 @@ NeoBundle 'ujihisa/ref-hoogle'
 NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
-NeoBundle 'ujihisa/tabpagecolorscheme'
+" NeoBundle 'ujihisa/tabpagecolorscheme'
 " NeoBundle 'fsouza/go.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/groovyindent'
@@ -1668,17 +1668,6 @@ function! s:TOhtmlAndBrowse()
   endtry
   "sleep 1
   "call delete(expand('%'))
-endfunction
-" }}}
-" keynote integration {{{
-command! -nargs=0 TOkeynote call s:keynote()
-function! s:keynote()
-  let before = g:colors_name
-  Tcolorscheme martin_krischik
-  ToggleRaibowParenthesis
-  setl conceallevel=0
-  TOhtmAndBrowse
-  execute "Tcolorscheme" before
 endfunction
 " }}}
 " ENV {{{

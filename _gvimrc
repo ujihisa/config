@@ -14,7 +14,7 @@ function! s:gvimrc_colorscheme(colors_name)
   endif
 endfunction
 
-command! -nargs=1 GvimrcColorscheme Tcolorscheme <args> | call <SID>gvimrc_colorscheme(<q-args>)
+command! -nargs=1 GvimrcColorscheme colorscheme <args> | call <SID>gvimrc_colorscheme(<q-args>)
 let g:unite_colorscheme_command = 'GvimrcColorscheme'
 
 if g:V.is_mac()
