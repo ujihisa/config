@@ -17,24 +17,26 @@ endfunction
 command! -nargs=1 GvimrcColorscheme Tcolorscheme <args> | call <SID>gvimrc_colorscheme(<q-args>)
 let g:unite_colorscheme_command = 'GvimrcColorscheme'
 
-" GvimrcColorscheme koehler
-" GvimrcColorscheme mrkn256
-" GvimrcColorscheme neverland2-darker
-GvimrcColorscheme aldmeris
-" GvimrcColorscheme neverland-darker
-" GvimrcColorscheme luna
-" GvimrcColorscheme newspaper
-" GvimrcColorscheme monokai
-
 if g:V.is_mac()
+  set background=light
   " GvimrcColorscheme macvim
   GvimrcColorscheme newspaper
-  "  for macvim.vim
-  hi! link Error WarningMsg
-  hi VertSplit    gui=NONE guifg=DarkSlateGray guibg=NONE
-  hi StatusLineNC gui=NONE guifg=SlateGray guibg=Gray5
-  hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
-  hi MatchParen   guifg=White guibg=Gray25
+
+  "  for macvim.vim with dark
+  "hi! link Error WarningMsg
+  "hi VertSplit    gui=NONE guifg=DarkSlateGray guibg=NONE
+  "hi StatusLineNC gui=NONE guifg=SlateGray guibg=Gray5
+  "hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
+  "hi MatchParen   guifg=White guibg=Gray25
+else
+  " GvimrcColorscheme koehler
+  " GvimrcColorscheme mrkn256
+  " GvimrcColorscheme neverland2-darker
+  GvimrcColorscheme aldmeris
+  " GvimrcColorscheme neverland-darker
+  " GvimrcColorscheme luna
+  " GvimrcColorscheme newspaper
+  " GvimrcColorscheme monokai
 endif
 
 

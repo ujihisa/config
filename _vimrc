@@ -210,7 +210,6 @@ set hlsearch
 set splitbelow
 set splitright
 set switchbuf=useopen
-set background=dark
 syntax enable
 set wildmode=list:longest
 set list
