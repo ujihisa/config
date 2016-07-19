@@ -20,7 +20,8 @@ let g:unite_colorscheme_command = 'GvimrcColorscheme'
 if g:V.is_mac()
   set background=light
   " GvimrcColorscheme macvim
-  GvimrcColorscheme newspaper
+  " GvimrcColorscheme newspaper
+  GvimrcColorscheme solarized
 
   "  for macvim.vim with dark
   "hi! link Error WarningMsg
