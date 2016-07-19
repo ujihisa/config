@@ -2059,8 +2059,8 @@ vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)<Plug
 " }}}
 " iexe-sbt {{{
 function! s:vimrc_int_sbt()
-  nunmap! <buffer> j
-  nunmap! <buffer> k
+  silent nunmap <buffer> j
+  silent nunmap <buffer> k
 
   syntax case ignore
 
