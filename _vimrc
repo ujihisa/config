@@ -2323,12 +2323,6 @@ if 0
   endfunction
 endif
 " }}}
-" debug quickrun/process_manager {{{
-function! VimrcStopProcess(type)
-  "echo vital#of('quickrun').import('ProcessManager').stop('clojure/process_manager')
-  echo vital#of('quickrun').import('ProcessManager').stop(a:type)
-endfunction
-" }}}
 " Database.SQLite {{{
 " let g:S = g:V.import('Database.SQLite')
 " call g:S.debug_mode_to(1)
@@ -2649,25 +2643,6 @@ let g:neoclojure_autowarmup = 1
 " }}}
 " calendar {{{
 let g:calendar_first_day = 'sunday'
-" }}}
-" experimental {{{
-function! s:experimental_start()
-  let l:P = g:V.import('ProcessManager')
-  let p = l:P.of('abcabc', 'ssh kokoro -tt /bin/bash')
-  call p.reserve_wait(['.*\$\(\e[.\{-}m\)\? $'])
-        \.reserve_writeln('ls; echo')
-        \.reserve_read(['.*\$\(\e[.\{-}m\)\? $'])
-  while 1
-    let result = p.go_bulk()
-    if result.done
-      return [substitute(result.out, printf("^%s; echo\r\n", 'ls'), '', 'm'), result.err]
-    elseif result.fail
-      call p.shutdown()
-      return
-    endif
-  endwhile
-endfunction
-" echo s:experimental_start()
 " }}}
 " incsearch + asterisk {{{
 
