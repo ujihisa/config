@@ -139,7 +139,6 @@ NeoBundleLazy 'thinca/vim-painter', {
 NeoBundleLazy 'Shougo/javacomplete'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'ujihisa/vimport'
-NeoBundle 'leafo/moonscript-vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'ujihisa/ft-cmake'
 NeoBundle 'Rip-Rip/clang_complete'
@@ -2414,28 +2413,6 @@ vmap [ <Plug>VSurround[
 vmap ' <Plug>VSurround'
 " vmap " <Plug>VSurround"
 vmap ` <Plug>VSurround`
-
-" }}}
-" moonscript {{{
-
-if isdirectory(expand('~/.luarocks/bin')) && $PATH !~ 'luarocks'
-  let $PATH = expand('~/.luarocks/bin') . ':' . $PATH
-endif
-let g:quickrun_config.moon = {
-      \ 'command': 'moon'
-      \ }
-let g:quickrun_config['moon/moonc'] = {
-      \ 'exec': '%c %o %s:.',
-      \ 'command': 'moonc',
-      \ 'cmdopt': '-p'}
-
-" moonscript on vim
-"let g:quickrun_config['moon/vim'] = {
-"      \ 'exec': ['moonc -p ']
-"      \ 'command': '',
-"      \ 'hook/eval/template': "echo %s",
-"      \ 'runner': 'vimscript',
-"      \ }
 
 " }}}
 " tyru/caw.vim {{{
