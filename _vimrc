@@ -2656,6 +2656,12 @@ map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 
 " }}}
 " cursorword {{{
+
+" disable on MacVim
+if g:V.is_mac
+  let g:loaded_cursorword = 1
+endif
+
 augroup vimrc-cursorword
   autocmd!
   autocmd WinLeave * let b:cursorword = 0 | call cursorword#matchadd()
