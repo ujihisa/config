@@ -254,6 +254,9 @@ set textwidth=9999999999999
 set nobackup
 set spelllang=en,cjk
 
+" MacVim default is 5. Stupid
+set scrolloff=0
+
 " scala
 " set wildignore+=*/target/*
 "   disabled because this also disables <C-x><C-f> :(
@@ -1210,6 +1213,8 @@ function! s:init_cmdwin()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  nnoremap! <Space>q :<C-u>quit<Cr>
 
   startinsert!
 endfunction
