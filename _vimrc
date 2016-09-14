@@ -325,8 +325,8 @@ nnoremap <C-j> j
 nnoremap <C-k> k
 
 nnoremap <Space>w :<C-u>write<Cr>
-" nnoremap <Space>q :<C-u>quit<Cr>
-nnoremap <Space>q :<C-u>hide<Cr>
+nnoremap <Space>q :<C-u>quit<Cr>
+" nnoremap <Space>q :<C-u>hide<Cr>
 nnoremap <Space>Q :<C-u>quit!<Cr>
 nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
 "nnoremap <Space>] <C-w>]
@@ -1214,7 +1214,7 @@ function! s:init_cmdwin()
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-  nnoremap! <Space>q :<C-u>quit<Cr>
+  " nnoremap! <Space>q :<C-u>quit<Cr>
 
   startinsert!
 endfunction
