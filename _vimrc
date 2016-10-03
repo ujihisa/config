@@ -1811,7 +1811,7 @@ augroup END
 function! s:vimrc_javascript()
   setl ts=4
   setl sw=4
-  setl noexpandtab
+  setl expandtab
   setl nolist
 
   "inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
