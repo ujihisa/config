@@ -273,7 +273,7 @@ let g:incsearch#auto_nohlsearch = 1
 if g:V.is_mac()
   let g:transparency = 10
   " for MacVim's bug
-  nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
+  " nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
 else
   " incsearch
   " nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
