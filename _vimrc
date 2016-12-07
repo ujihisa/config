@@ -2664,7 +2664,7 @@ map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 " cursorword {{{
 
 " disable on MacVim
-if g:V.is_mac
+if g:V.is_mac()
   let g:loaded_cursorword = 1
 endif
 
