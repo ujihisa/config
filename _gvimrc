@@ -49,7 +49,9 @@ if g:V.is_mac()
   "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h12
   "set guifontwide=Septmber-M-MonoKyohkan:h18
-" elseif vimproc#system('hostname') =~ '^mbr'
+elseif vimproc#system('hostname') =~ '^linari'
+  let &guifont = 'Menlo Bold 12'
+  let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
 else
   let &guifont = 'Menlo Bold 9'
   let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 9'
