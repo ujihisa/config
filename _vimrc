@@ -178,6 +178,7 @@ NeoBundle 'thinca/vim-themis'
 "       \   'autoload': {
 "       \     'mappings': ['<Plug>(incsearch-']}}
 NeoBundle 'kana/vim-altr'
+NeoBundle 'reedes/vim-colors-pencil'
 
 call neobundle#end()
 " call neobundle#local("~/.vimbundles", {})
@@ -1457,7 +1458,7 @@ function! s:git_log_viewer() abort
   endif
   "VimProcRead git log -u 'HEAD@{1}..HEAD' --reverse
   VimProcRead git log -u 'ORIG_HEAD..HEAD' --
-  set filetype=git-log.git-diff
+  set filetype=git.git-log.git-diff
   setl foldmethod=expr
   setl foldexpr=getline(v:lnum)!~'^commit'
 endfunction
