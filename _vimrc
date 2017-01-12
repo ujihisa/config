@@ -1353,6 +1353,7 @@ AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
 AddPath /home/ujihisa/git/Gyazo-for-Linux/
 AddPath ~/.gem/bin
+AddPath ~/.rbenv/shims
 " }}}
 " macvim proportional {{{
 function! Proportional()
@@ -2814,6 +2815,13 @@ command! -nargs=0 GithubPRTemplate call <SID>GithubPRTemplate()
 " }}}
 " neopairs {{{
 let g:neopairs#enable = 1
+" }}}
+" gitcommit.vim is evil {{{
+
+augroup ujihisa-vimrc
+  autocmd FileType gitcommit set textwidth=9999999999999
+augroup END
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
