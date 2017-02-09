@@ -179,6 +179,7 @@ NeoBundle 'thinca/vim-themis'
 "       \     'mappings': ['<Plug>(incsearch-']}}
 NeoBundle 'kana/vim-altr'
 NeoBundle 'reedes/vim-colors-pencil'
+NeoBundle 'yuku-t/vim-ref-ri'
 
 call neobundle#end()
 " call neobundle#local("~/.vimbundles", {})
