@@ -1354,7 +1354,8 @@ AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
 AddPath /home/ujihisa/git/Gyazo-for-Linux/
 AddPath ~/.gem/bin
-AddPath ~/.rbenv/shims
+" AddPath ~/.rbenv/shims
+AddPath ~/.rbenv/versions/2.3.1/bin/
 " }}}
 " macvim proportional {{{
 function! Proportional()
