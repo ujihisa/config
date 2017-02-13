@@ -155,15 +155,11 @@ NeoBundle 'cohama/agit.vim'
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'haya14busa/vim-asterisk'
 NeoBundle 'thinca/vim-themis'
-" NeoBundleLazy 'haya14busa/incsearch.vim', {
-"       \   'autoload': {
-"       \     'mappings': ['<Plug>(incsearch-']}}
 NeoBundle 'kana/vim-altr'
 NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
 
 call neobundle#end()
-" call neobundle#local("~/.vimbundles", {})
 
 filetype plugin indent on
 
@@ -1417,10 +1413,6 @@ let g:echodoc_enable_at_startup = 0
 "nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
 " }}}
 " vim-ref {{{
-let g:ref_phpmanual_path = expand("~/src/php-chunked-xhtml/")
-let g:ref_phpmanual_cmd = 'elinks -dump -dump-charset utf-8 -no-numbering -no-references %s' " charset is important
-"let g:ref_man_cmd = "man -P cat"
-" let g:ref_erlang_manpath = '/usr/local/share/man'
 let $MANPAGER='cat'
 "call ref#rmcache()
 
@@ -1573,63 +1565,8 @@ call unite#define_source(s:unite_source)
 " quickrun + haskell = infinite loop {{{
 command! -nargs=0 KillHaskell execute '!killall runghc' | execute '!killall ghc'
 " }}}
-" remote {{{
-function! s:_vim(x)
-  if filereadable('/Applications/MacVim.app/Contents/MacOS/Vim')
-    return g:V.system('/Applications/MacVim.app/Contents/MacOS/Vim ' . a:x)
-  endif
-endfunction
-
-function! s:new(...)
-  let name = a:0 == 1 ? a:1 : s:_remote_name()
-  return {'name': name, 'send': function('s:_send'), 'focus': function('s:_focus')}
-endfunction
-
-function! s:_send(key) dict
-  return s:_vim('--servername ' . self.name . ' --remote-send ' . string(a:key))
-endfunction
-
-function! s:_focus() dict
-  VimProcBang open ~/.vim/macvimfocus.app
-endfunction
-
-function! s:_remote_name()
-  for server in split(s:_vim('--serverlist'), "\n")
-    if server !=# v:servername
-      return server
-    endif
-  endfor
-  call g:V.print_error('No remote server')
-endfunction
-
-function! VimrcRemoteInit()
-  let remote = s:new()
-  " echo remote.send('<Esc>:h client-server<Cr>')
-  command! -nargs=* R call remote.send('<Esc>:' . <q-args> . '<Cr>') | call remote.focus()
-  nnoremap <silent><space>[ :<C-u>VimProcBang osascript ~/.vim/macvimfocus.scpt<Cr>
-endfunction
-
-" }}}
 " conceallevel changer {{{
 nnoremap <space>` :<C-u>setl conceallevel=0<Cr>
-" }}}
-" vimfiler {{{
-if 0
-  let g:vimfiler_as_default_explorer = 1
-
-  autocmd FileType vimfiler call s:vimfiler_local()
-  function! s:vimfiler_local()
-    silent! nunmap <buffer> L
-    silent! nunmap <buffer> H
-
-    " don't loop j/k
-    silent! nunmap <buffer> j
-    silent! nunmap <buffer> k
-
-    " default is g?
-    nmap <buffer> ? <Plug>(vimfiler_help)
-  endfunction
-endif
 " }}}
 " :TOhtmlAndBrowse {{{
 " http://d.hatena.ne.jp/tyru/20110710/tenuki
@@ -2349,9 +2286,6 @@ augroup END
 " just for now -- vuls {{{
 let g:unite_feedback_report_level = 2
 let g:unite_feedback_report_destination = 'http://vuls.ap01.aws.af.cm'
-" }}}
-" jruby {{{
-let $GEM_HOME = expand('~/.gem')
 " }}}
 " vimshell-benri {{{
 " let g:B = g:V.import('Vim.Buffer')
