@@ -36,12 +36,10 @@ else
         \     'linux': 'make',
         \     'unix': 'gmake'}}
 endif
-" NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/vesting'
 NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'eagletmt/ghcmod-vim'
-" NeoBundle 'git://gist.github.com/187578.git', {'directory': 'h2u_white'}
 NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
@@ -54,7 +52,7 @@ else
   NeoBundle 'cohama/vim-smartinput-endwise'
 endif
 NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'haya14busa/revital.vim'
+" NeoBundle 'haya14busa/revital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
 NeoBundle 'thinca/vim-quickrun'
@@ -66,13 +64,10 @@ NeoBundle 'thinca/vim-showtime'
 NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'chikatoike/concealedyank.vim'
 NeoBundle 'ujihisa/vimshell-ssh'
-" NeoBundle 'pasela/unite-webcolorname'
-" NeoBundle 'vim-scripts/IndentAnything'
 NeoBundle 'ujihisa/ref-hoogle'
 NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
-" NeoBundle 'ujihisa/tabpagecolorscheme'
 " NeoBundle 'fsouza/go.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/groovyindent'
@@ -80,27 +75,17 @@ NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
-" NeoBundleLazy 'AndrewRadev/switch.vim', {
-"       \ 'autoload': {'commands': ['Switch']}}
 NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
       \ 'autoload': {'mappings': ['gS', 'gJ']}}
 NeoBundle 'Pychimp/vim-luna'
-"NeoBundle 'BirdseyeSoftware/tracker.vim'
-" NeoBundle 'KamunagiChiduru/unite-javaimport'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
-" NeoBundle 'osyo-manga/snowdrop'
-" let g:snowdrop#libclang_directory = '/usr/lib64'
-" let g:snowdrop#libclang#default_binding = "python_interpreter"
-" NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'deris/rengbang'
-" NeoBundle 'thinca/vim-portal'
 NeoBundle 'tpope/vim-fugitive'
 " NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'kamichidu/vim-unite-javaimport', {
       \ 'depends': [
       \   'kamichidu/vim-javaclasspath']}
-" NeoBundle 'lambdalisue/vim-gita'
 
 NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
@@ -112,7 +97,6 @@ NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
-" NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
@@ -146,13 +130,11 @@ NeoBundleLazy 'vim-jp/cpp-vim', {
       \ 'autoload': {'filetypes': 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
-" NeoBundle 'kovisoft/slimv'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'Shougo/neomru.vim', {
       \ 'depends': [
       \   'Shougo/unite.vim']}
 NeoBundle 'jimenezrick/vimerl'
-" NeoBundle 'thinca/vim-threes'
 NeoBundle 'sickill/vim-monokai'
 " NeoBundle 'osyo-manga/vim-brightest'
 NeoBundle 'itchyny/vim-cursorword'
