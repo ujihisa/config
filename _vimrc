@@ -52,7 +52,6 @@ else
   NeoBundle 'cohama/vim-smartinput-endwise'
 endif
 NeoBundle 'vim-jp/vital.vim'
-" NeoBundle 'haya14busa/revital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
 NeoBundle 'thinca/vim-quickrun'
@@ -736,7 +735,6 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap su :<C-u>Unite history/command source command<Cr>
   nnoremap sp :<C-u>Unite process -no-split -buffer-name=process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
-  " nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
   "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
   "nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
@@ -936,7 +934,6 @@ augroup END
 "nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
 nnoremap <Space>gd :<C-u>Gdiff<Cr>
 nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter> " motemen's
-" nnoremap <Space>gs :<C-u>Gita status<Cr>
 nnoremap <Space>gs :<C-u>Gstatus<Cr>
 nnoremap <Space>gh :<C-u>call <SID>vimrc_git_show()<Cr>
 
@@ -2374,23 +2371,6 @@ augroup lein-repl
   autocmd FileType int-lein call s:ft_lein_repl()
 augroup END
 
-" }}}
-" AndrewRadev/switch {{{
-
-" nnoremap <silent><M-i> :<C-u>Switch<Cr>
-" inoremap <silent><M-i> <Esc>:Switch<Cr>a
-
-augroup vimrc-scala-switch
-  autocmd!
-  autocmd FileType scala let b:switch_custom_definitions =
-        \ [{
-        \   '\(log[ \.]\+\)info\>': '\1warn',
-        \   '\(log[ \.]\+\)warn\>': '\1error',
-        \   '\(log[ \.]\+\)error\>': '\1info'},
-        \  {
-        \   '\<extends\>': 'with',
-        \   '\<with\>': 'extends'}]
-augroup END
 " }}}
 " tpope/vim-surround {{{
 
