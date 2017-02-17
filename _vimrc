@@ -236,6 +236,8 @@ set spelllang=en,cjk
 " MacVim default is 5. Stupid
 set scrolloff=0
 
+set noballooneval
+
 " scala
 " set wildignore+=*/target/*
 "   disabled because this also disables <C-x><C-f> :(
