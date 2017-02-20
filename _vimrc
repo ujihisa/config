@@ -236,7 +236,9 @@ set spelllang=en,cjk
 " MacVim default is 5. Stupid
 set scrolloff=0
 
-set noballooneval
+if has('balloon_eval')
+  set noballooneval
+endif
 
 " scala
 " set wildignore+=*/target/*
