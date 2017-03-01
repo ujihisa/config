@@ -2726,6 +2726,20 @@ augroup ujihisa-vimrc
 augroup END
 
 " }}}
+" markdown {{{
+"
+function! s:vimrc_markdown() abort
+  setlocal tabstop=4
+  setlocal shiftwidth=4
+  setlocal softtabstop=4
+endfunction
+
+augroup ujihisa-vimrc
+  autocmd FileType markdown call s:vimrc_markdown()
+augroup END
+
+" }}}
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
