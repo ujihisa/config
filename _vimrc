@@ -4,7 +4,6 @@ endif
 " }}}
 " neobundle {{{
 if has('vim_starting')
-  set nocompatible
   set runtimepath+=~/.vimbundles/neobundle.vim
 endif
 
@@ -1162,11 +1161,16 @@ imap <M-:> <Esc><sid>(command-line-enter)
 " I added
 "nnoremap q: q:<Esc>
 
-autocmd CmdwinEnter * call s:init_cmdwin()
+augroup ujihisa-vimrc
+  autocmd CmdwinEnter * call s:init_cmdwin()
+augroup END
 
 " MacVim is shit
-autocmd CmdwinEnter * nnoremap <buffer><expr> <Cr> CmdwinRun()
-autocmd CmdwinEnter * inoremap <buffer><expr> <Cr> CmdwinRun()
+augroup ujihisa-vimrc
+  autocmd CmdwinEnter * nnoremap <buffer><expr> <Cr> CmdwinRun()
+  autocmd CmdwinEnter * inoremap <buffer><expr> <Cr> CmdwinRun()
+augroup END
+
 function! CmdwinRun()
   let a = getline(line('.'))
   return "\<Esc>\<C-c>\<C-c>:" . a . "\<Cr>"
