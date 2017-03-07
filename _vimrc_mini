@@ -1,5 +1,4 @@
 if has('vim_starting')
-  set nocompatible
   set runtimepath+=~/.vimbundles/neobundle.vim
 endif
 

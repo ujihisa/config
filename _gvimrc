@@ -1,9 +1,3 @@
-" if has('xim') && has('GUI_GTK')
-"   let $GTK_IM_MODULE = 'xim'
-"   set imactivatekey=Zenkaku_Hankaku
-"   set iminsert=0 imsearch=0
-" endif
-
 function! s:gvimrc_colorscheme(colors_name)
   if a:colors_name == 'luna'
     "highlight vimshellError gui=underline
@@ -40,15 +34,10 @@ else
   " GvimrcColorscheme monokai
 endif
 
-
-"hi StatusLineNC term=underline cterm=underline gui=undercurl guibg=NONE
-"hi VertSplit ctermbg=0 guifg=DarkSlateGray guibg=NONE
 hi Folded guibg=NONE guifg=GRAY ctermfg=0
 
 if g:V.is_mac()
-  "set guifont=Andale\ Mono:h14
   set guifont=Menlo:h12
-  "set guifontwide=Septmber-M-MonoKyohkan:h18
 elseif vimproc#system('hostname') =~ '^linari'
   let &guifont = 'Menlo Bold 12'
   let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
@@ -69,7 +58,7 @@ if g:V.is_mac()
   set transparency=2
   let g:transparency = &transparency
 endif
-"set guioptions-=e
+
 set guioptions-=T " no icons on the top of window
 set guioptions-=r " no right-hand scrollbar at any time
 set guioptions-=l " no left-hand scrollbar at any time
@@ -87,40 +76,9 @@ if g:V.is_mac()
   nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
   inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
   inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
-
-  nnoremap <swipeup> :<C-u>call <SID>relative_tranparency(5)<Cr>
-  nnoremap <swipedown> :<C-u>call <SID>relative_tranparency(-5)<Cr>
-  inoremap <swipeup> <C-o>:call <SID>relative_tranparency(5)<Cr>
-  inoremap <swipedown> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 endif
 
-
-" http://vim-users.jp/2010/01/hack120/ {{{
-let g:save_window_file = expand('~/.vimwinpos')
-augroup SaveWindow
-  autocmd!
-  autocmd VimLeavePre * call s:save_window()
-  function! s:save_window()
-    let options = [
-      \ 'set columns=' . &columns,
-      \ 'set lines=' . &lines,
-      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
-      \ ]
-    call writefile(options, g:save_window_file)
-  endfunction
-augroup END
-
-if filereadable(g:save_window_file)
-  execute 'source' g:save_window_file
-endif
-" }}}
 if has('gui')
-  " termtter {{{
-  if 0
-    VimShellInteractive termtter
-    wincmd W
-  endif
-  " }}}
   VimShell
   normal! <C-u>
   redraw!
@@ -130,17 +88,6 @@ endif
 function! GvimrcVimshellColor()
   hi! link Error WarningMsg
 endfunction
-" }}}
-" transparency adjustment based on window focus {{{
-if 0
-augroup dualvim
-  autocmd!
-  if has('mac')
-    autocmd FocusGained * set transparency=10
-    autocmd FocusLost * set transparency=50
-  endif
-augroup END
-endif
 " }}}
 " scala syntax tweaks {{{
 "highlight scalaNameDefinition gui=underline
@@ -161,30 +108,5 @@ function GuiTabLabel()
 endfunction
 
 set guitablabel=%!GuiTabLabel()
-" }}}
-" fullscreen {{{
-
-" install winctrl for gentoo
-nnoremap <M-f> :<C-u>call vimproc#system("wmctrl -r :ACTIVE: -b toggle,fullscreen")<Cr>
-inoremap <M-f> <Esc>:call vimproc#system("wmctrl -r :ACTIVE: -b toggle,fullscreen")<Cr>a
-
-if 0
-  augroup gvimrc-fullscreen
-    autocmd!
-    autocmd VimEnter *
-          \ let s:window_number =
-          \   g:V.import('Data.String').chomp(matchstr(
-          \     vimproc#system('wmctrl -a :ACTIVE: -v'),
-          \     'Using window: \zs0x.*'))
-    autocmd VimEnter * call vimproc#system(printf("wmctrl -i -r %s -b add,fullscreen", s:window_number))
-    autocmd FocusGained * echo vimproc#system(printf("wmctrl -i -r %s -b add,fullscreen", s:window_number))
-    autocmd FocusLost * echo vimproc#system(printf("wmctrl -i -r %s -b remove,fullscreen", s:window_number))
-  augroup END
-endif
-" }}}
-" MacBook Pro Gentoo dirty hack {{{
-if executable(expand('~/bin/tmux-send-keys'))
-  call vimproc#system_bg(expand('~/bin/tmux-send-keys'))
-endif
 " }}}
 " vim: foldmethod=marker
