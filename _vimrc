@@ -860,7 +860,8 @@ vmap <Space>r <Plug>(quickrun)
 nmap <Space>R <Plug>(quickrun-op)
 
 let g:quickrun_config = {}
-let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
+" let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
+let g:quickrun_config._ = {'runner': 'job', 'split': 'below'}
 
 "let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
