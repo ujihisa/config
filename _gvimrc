@@ -79,6 +79,9 @@ if g:V.is_mac()
 endif
 
 if has('gui')
+  winpos 99 0
+  set columns=500
+  set lines=100
   VimShell
   normal! <C-u>
   redraw!
