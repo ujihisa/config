@@ -66,6 +66,8 @@ set guioptions-=L " no left-hand scrollbar at any time
 set guioptions-=m " no gui menu (not for MacVim?)
 set guioptions+=c " console dialogs. no popup allowed
 
+set mouse=a " only on gui
+
 function! s:relative_tranparency(diff)
   let &transparency = a:diff + &transparency
   let g:transparency = &transparency
