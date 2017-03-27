@@ -157,6 +157,7 @@ NeoBundle 'thinca/vim-themis'
 NeoBundle 'kana/vim-altr'
 NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
+NeoBundle 'udalov/kotlin-vim'
 
 call neobundle#end()
 
