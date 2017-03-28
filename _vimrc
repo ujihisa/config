@@ -158,6 +158,7 @@ NeoBundle 'kana/vim-altr'
 NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
 NeoBundle 'udalov/kotlin-vim'
+NeoBundle 'elixir-lang/vim-elixir'
 
 call neobundle#end()
 
