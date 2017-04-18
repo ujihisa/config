@@ -2333,10 +2333,10 @@ vmap ` <Plug>VSurround`
 " }}}
 " tyru/caw.vim {{{
 let g:caw_no_default_keymappings = 1
-nmap <M-.> <Plug>(caw:tildepos:toggle)
-nmap <M-,> <Plug>(caw:tildepos:uncomment)
-vmap <M-.> <Plug>(caw:tildepos:toggle)gv
-vmap <M-,> <Plug>(caw:tildepos:uncomment)gv
+nmap <M-.> <Plug>(caw:hatpos:toggle)
+nmap <M-,> <Plug>(caw:hatpos:uncomment)
+vmap <M-.> <Plug>(caw:hatpos:toggle)gv
+vmap <M-,> <Plug>(caw:hatpos:uncomment)gv
 " }}}
 " vitalista.vim {{{
 function! s:vitalista() abort
