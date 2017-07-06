@@ -144,6 +144,7 @@ NeoBundle 'chase/vim-ansible-yaml'
 " NeoBundle 'rbtnn/mario.vim', {
 "       \ 'depends': [
 "       \   'rbtnn/game_engine.vim'] }
+" NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'kana/vim-operator-replace', {
       \ 'depends': [
@@ -159,6 +160,7 @@ NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
 NeoBundle 'udalov/kotlin-vim'
 NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'johngrib/vim-game-code-break'
 
 call neobundle#end()
 
