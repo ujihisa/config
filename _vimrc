@@ -141,10 +141,10 @@ NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer', 'neochat.vim'])
 NeoBundle 'chase/vim-ansible-yaml'
-" NeoBundle 'rbtnn/mario.vim', {
-"       \ 'depends': [
-"       \   'rbtnn/game_engine.vim'] }
-" NeoBundle 'rbtnn/puyo.vim'
+NeoBundle 'rbtnn/mario.vim', {
+      \ 'depends': [
+      \   'rbtnn/game_engine.vim'] }
+NeoBundle 'rbtnn/puyo.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'kana/vim-operator-replace', {
       \ 'depends': [
@@ -864,8 +864,8 @@ vmap <Space>r <Plug>(quickrun)
 nmap <Space>R <Plug>(quickrun-op)
 
 let g:quickrun_config = {}
-" let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
-let g:quickrun_config._ = {'runner': 'job', 'split': 'below'}
+let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
+" let g:quickrun_config._ = {'runner': 'job', 'split': 'below'}
 
 "let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
