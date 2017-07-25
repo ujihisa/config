@@ -1342,7 +1342,8 @@ AddPath /home/ujihisa/git/termtter/bin
 AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
 AddPath /home/ujihisa/git/Gyazo-for-Linux/
-AddPath ~/.gem/bin
+" AddPath ~/.gem/bin
+AddPath ~/.gem/ruby/2.4.0/bin/
 " AddPath ~/.rbenv/shims
 AddPath ~/.rbenv/versions/2.3.1/bin/
 " }}}
