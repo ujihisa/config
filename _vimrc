@@ -80,6 +80,7 @@ NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
 NeoBundle 'deris/rengbang'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'lambdalisue/gina.vim'
 " NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'kamichidu/vim-unite-javaimport', {
       \ 'depends': [
@@ -123,7 +124,7 @@ NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'ujihisa/vimport'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'ujihisa/ft-cmake'
-NeoBundle 'Rip-Rip/clang_complete'
+" NeoBundle 'Rip-Rip/clang_complete'
 NeoBundleLazy 'vim-jp/cpp-vim', {
       \ 'autoload': {'filetypes': 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
@@ -2368,6 +2369,7 @@ augroup END
 " }}}
 " clang_complete.vim {{{
 
+if 0
 " from neocomplete's doc
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
@@ -2388,6 +2390,7 @@ let g:clang_auto_select = 0
 " mine
 let g:clang_user_options = '-std=c++11'
 
+endif
 
 imap <C-l> <Plug>(neocomplete_start_unite_complete)
 
