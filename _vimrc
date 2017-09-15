@@ -79,7 +79,6 @@ NeoBundle 'Pychimp/vim-luna'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
 NeoBundle 'deris/rengbang'
-" NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'lambdalisue/gina.vim'
 " NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'kamichidu/vim-unite-javaimport', {
