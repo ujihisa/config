@@ -161,6 +161,7 @@ NeoBundle 'yuku-t/vim-ref-ri'
 NeoBundle 'udalov/kotlin-vim'
 NeoBundle 'elixir-lang/vim-elixir'
 " NeoBundle 'johngrib/vim-game-code-break'
+NeoBundle 'mrkn/vim-cruby'
 
 call neobundle#end()
 
@@ -1217,7 +1218,7 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  inoremap <buffer><expr> \ neocomplete#close_popup() . <SID>cmdwin_backslash()
+  inoremap <silent><buffer><expr> \ neocomplete#close_popup() . <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
