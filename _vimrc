@@ -160,7 +160,7 @@ NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
 NeoBundle 'udalov/kotlin-vim'
 NeoBundle 'elixir-lang/vim-elixir'
-" NeoBundle 'johngrib/vim-game-code-break'
+NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
 
 call neobundle#end()
