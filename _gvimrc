@@ -24,10 +24,12 @@ if g:V.is_mac()
   "hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
   "hi MatchParen   guifg=White guibg=Gray25
 else
+  " GvimrcColorscheme aldmeris
+  GvimrcColorscheme solarized
+
   " GvimrcColorscheme koehler
   " GvimrcColorscheme mrkn256
   " GvimrcColorscheme neverland2-darker
-  GvimrcColorscheme aldmeris
   " GvimrcColorscheme neverland-darker
   " GvimrcColorscheme luna
   " GvimrcColorscheme newspaper
