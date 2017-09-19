@@ -2293,6 +2293,9 @@ augroup vimrc-showtime
   " Just use <M-u> instead.
   autocmd FileType showtime nmap <buffer> <M-u> <Plug>(showtime-cursor)
 augroup END
+
+nnoremap <space>st :<C-u>ShowtimeResume<Cr>
+
 " }}}
 " unite-file/mru {{{
 let g:neomru#filename_format = ':~:.'
@@ -2779,6 +2782,13 @@ let g:ruby_indent_block_style = 'do'
 " netrw is evil {{{
 
 let g:netrw_nobeval = 1
+
+" }}}
+" quicklearn {{{
+
+augroup ujihisa-vimrc
+  autocmd FileType ruby nnoremap <buffer> <space>R :<C-u>Unite quicklearn -immediately<Cr>
+augroup END
 
 " }}}
 " __END__  "{{{1
