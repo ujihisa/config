@@ -225,8 +225,7 @@ set viminfo+=:1000
 set display=lastline
 
 setglobal cindent
-" setglobal cinkeys-=:
-setglobal cinkeys=
+" setglobal cinkeys=
 
 setglobal shiftwidth=2
 setglobal tabstop=2
@@ -987,7 +986,7 @@ nnoremap <Space>gh :<C-u>Gina show --opener=vsplit<Cr>
 
 nnoremap <silent> <Space>ga :<C-u>Gina add %<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose<Cr>
-nnoremap <Space>gp :<C-u>Gina push
+nnoremap <Space>gp :<C-u>Gina!! push
 
 " }}}
 " html {{{
