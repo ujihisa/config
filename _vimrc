@@ -2791,6 +2791,13 @@ augroup ujihisa-vimrc
 augroup END
 
 " }}}
+" vim-ruby does not know about ruby {{{
+
+augroup ujihisa-vimrc
+  autocmd FileType ruby set iskeyword+=?,!
+augroup END
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
