@@ -639,7 +639,7 @@ let g:vimshell_escape_colors = [
 " }}}
 " tag opens in a new window {{{
 function! s:tagjump_in_new_window()
-  execute "normal! \<C-w>\<C-]>"
+  execute "normal! \<C-w>s\<C-]>"
   "http://d.hatena.ne.jp/thinca/20110202
   "UniteWithCursorWord -immediately -no-start-insert -auto-preview -default-action=split tag
 endfunction
