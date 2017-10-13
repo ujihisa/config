@@ -164,6 +164,7 @@ NeoBundle 'udalov/kotlin-vim'
 NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
+" NeoBundle 'ujihisa/repl.vim'
 
 call neobundle#end()
 
