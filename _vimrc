@@ -2799,6 +2799,14 @@ augroup ujihisa-vimrc
 augroup END
 
 " }}}
+" kotlin {{{
+
+augroup ujihisa-vimrc
+  autocmd!
+  autocmd FileType kotlin set tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
