@@ -2806,6 +2806,9 @@ augroup ujihisa-vimrc
 augroup END
 
 " }}}
+
+tnoremap <Esc> <C-w><S-n>
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
