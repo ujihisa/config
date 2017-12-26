@@ -165,6 +165,7 @@ NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
 " NeoBundle 'ujihisa/repl.vim'
+NeoBundle 'moznion/vim-ltsv'
 
 call neobundle#end()
 
