@@ -15,6 +15,7 @@ if g:V.is_mac()
   set background=light
   " GvimrcColorscheme macvim
   " GvimrcColorscheme newspaper
+  " GvimrcColorscheme pencil
   GvimrcColorscheme solarized
 
   "  for macvim.vim with dark

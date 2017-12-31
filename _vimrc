@@ -12,7 +12,6 @@ call neobundle#begin(expand('~/.vimbundles'))
 let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
-NeoBundle 'Shougo/echodoc'
 NeoBundle 'Shougo/neocomplete', {'depends': [
       \ 'Shougo/neoinclude.vim',
       \ 'Shougo/neco-syntax',
@@ -21,7 +20,6 @@ NeoBundle 'Shougo/neocomplete', {'depends': [
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
-" NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/tabpagebuffer.vim'
 if has('mac')
@@ -36,7 +34,6 @@ else
         \     'unix': 'gmake'}}
 endif
 NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
-NeoBundle 'Shougo/vesting'
 NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'thinca/vim-ft-clojure'
@@ -67,7 +64,6 @@ NeoBundle 'ujihisa/ref-hoogle'
 NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
-" NeoBundle 'fsouza/go.vim'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
@@ -76,41 +72,27 @@ NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
       \ 'autoload': {'mappings': ['gS', 'gJ']}}
-NeoBundle 'Pychimp/vim-luna'
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
 NeoBundle 'deris/rengbang'
 NeoBundle 'lambdalisue/gina.vim'
-" NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'kamichidu/vim-unite-javaimport', {
       \ 'depends': [
       \   'kamichidu/vim-javaclasspath']}
 
 NeoBundle 'mopp/autodirmake.vim'
-NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-" NeoBundleLazy 'lambdalisue/vim-gista', {
-"       \ 'autoload': {
-"       \    'commands': ['Gista'],
-"       \    'mappings': '<Plug>(gista-',
-"       \    'unite_sources': 'gista'}}
 NeoBundle 'vim-scripts/haskell.vim'
-NeoBundle 'mrkn/mrkn256.vim', 'light_background'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
-NeoBundle 'shiracha/shiracha-vim'
 NeoBundle 'rhysd/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
 " NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'ujihisa/unite-equery'
-NeoBundle 'ujihisa/unite-font'
-NeoBundle 'ujihisa/unite-gem'
 NeoBundle 'ujihisa/unite-haskellimport'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'tpope/vim-markdown'
@@ -164,8 +146,23 @@ NeoBundle 'udalov/kotlin-vim'
 NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
-" NeoBundle 'ujihisa/repl.vim'
 NeoBundle 'moznion/vim-ltsv'
+
+if 0
+  NeoBundle 'Shougo/echodoc'
+  " NeoBundle 'ujihisa/repl.vim'
+  " NeoBundle 'Shougo/vimfiler'
+  NeoBundle 'Shougo/vesting'
+  " NeoBundle 'tpope/vim-fireplace'
+  NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+  NeoBundle 'mrkn/mrkn256.vim', 'light_background'
+  NeoBundle 'shiracha/shiracha-vim'
+  NeoBundle 'Pychimp/vim-luna'
+  NeoBundle 'ujihisa/unite-font'
+  NeoBundle 'ujihisa/unite-equery'
+  NeoBundle 'ujihisa/unite-gem'
+  NeoBundle 'kchmck/vim-coffee-script'
+endif
 
 call neobundle#end()
 
@@ -734,7 +731,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec/git file -default-action=split -direction=rightbelow -hide-source-names<Cr>
   nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
-  nnoremap sc :<C-u>Unite colorscheme font -auto-preview<Cr>
+  nnoremap sc :<C-u>Unite colorscheme -auto-preview<Cr>
   nnoremap sf :<C-u>UniteWithBufferDir file_rec -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
@@ -1247,32 +1244,6 @@ endfunction
 "  endfor
 "endfunction
 "call LoadPathFromZshrc()
-" }}}
-" guifont changer {{{
-"  function! GuifontChanger()
-"    if !exists('s:guifont_changer_index')
-"      let s:guifont_changer_index = 0
-"    else
-"      let s:guifont_changer_index += 1
-"    endif
-"    if !exists('s:guifont_changer_list')
-"      let s:guifont_changer_list = [
-"            \ 'Andale Mono:h14',
-"            \ 'Menlo:h13',
-"            \ 'Inconsolata:h14',
-"            \ 'Handwriting - Dakota:h32',
-"            \ 'Handwriting - Dakota:h64',
-"            \ ]
-"    endif
-"    let font = s:guifont_changer_list[
-"          \ s:guifont_changer_index % len(s:guifont_changer_list)]
-"    let cmd = "set guifont=" . substitute(font, " ", "\\\\ ", 'g')
-"    execute cmd
-"    call WindowsizeMaximize13()
-"    echo cmd " for some reason it doesn't show up...
-"  endfunction
-"  "command! -nargs=0 GuifontChanger call GuifontChanger()
-"  nnoremap <Space>ff :<C-u>call GuifontChanger()<Cr>
 " }}}
 " few {{{
 function! s:vimrc_few() abort
@@ -2014,8 +1985,6 @@ augroup END
 " concealedyank.vim {{{
 vnoremap <Plug>(vimrc-yankprefix-clipboard) "+
 vnoremap <Plug>(vimrc-go-back-to-mark) Gmm
-" vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)
-
 vmap <M-c> <Plug>(vimrc-yankprefix-clipboard)<Plug>(operator-concealedyank)<Plug>(vimrc-go-back-to-mark)
 " }}}
 " iexe-sbt {{{
@@ -2071,33 +2040,6 @@ augroup END
 " }}}
 " unite-menu {{{
 let g:unite_source_menu_menus = {}
-"let g:unite_source_menu_menus.test = {
-"      \     'description' : 'Test menu',
-"      \ }
-"let g:unite_source_menu_menus.test.candidates = {
-"      \   'ghci'      : 'VimShellInteractive ghci',
-"      \ }
-"function g:unite_source_menu_menus.test.map(key, value)
-"  return {
-"      \       'word' : a:key, 'kind' : 'command',
-"      \       'action__command' : a:value,
-"      \     }
-"endfunction
-"
-"let g:unite_source_menu_menus.test2 = {
-"      \     'description' : 'Test menu2',
-"      \ }
-"let g:unite_source_menu_menus.test2.command_candidates = {
-"      \   'python'    : 'VimShellInteractive python',
-"      \ }
-"
-"let g:unite_source_menu_menus.test3 = {
-"      \     'description' : 'Test menu3',
-"      \ }
-"let g:unite_source_menu_menus.test3.command_candidates = [
-"      \   ['ruby', 'VimShellInteractive python'],
-"      \   ['python', 'VimShellInteractive python'],
-"      \ ]
 let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
@@ -2120,12 +2062,6 @@ let g:unite_source_menu_menus.myset = {
       \ }
 
 nnoremap <silent> sn  :<C-u>Unite menu -buffer-name=menu<CR>
-" }}}
-" clojure completion candidates {{{
-function! VimrcClojureComplCand()
-  let to_run = "(ns tmp [:require [cloft.cloft]]) (doseq [k (keys (ns-publics 'cloft.cloft))] (println (str \"c/\" k))) (System/exit 0)"
-  return vimproc#system(printf('java -cp `lein classpath` clojure.main -e "%s"', to_run))
-endfunction
 " }}}
 " groovy {{{
 augroup vimrc-groovy
@@ -2194,17 +2130,6 @@ endfunction
 nnoremap <silent><C-q> :<C-u>call <SID>scrot()<Cr>
 inoremap <silent><expr> <C-q> <SID>scrot()
 " }}}
-" esparse {{{
-function! s:vimrc_esparse()
-  if filereadable('/usr/local/share/npm/bin/esparse')
-    " Mac
-    let b:quickrun_config = {'command': '/usr/local/share/npm/bin/esparse'}
-  elseif filereadable('/home/ujihisa/node_modules/esprima/bin/esparse.js')
-    let b:quickrun_config = {'command': '/home/ujihisa/node_modules/esprima/bin/esparse.js'}
-  endif
-endfunction
-
-" }}}
 " fontzoom {{{
 let g:fontzoom_no_default_key_mappings = 1
 nmap <M--> <Plug>(fontzoom-smaller)
@@ -2229,15 +2154,6 @@ function! s:j6uil_settings()
   nmap <silent> <buffer> i <Plug>(J6uil_open_say_buffer)
   "imap <silent> <buffer> <Cr> <Esc><Cr>
 endfunction
-" }}}
-" spin.vim (rails) {{{
-let g:quickrun_config.spin = {
-      \ 'command': '~/git/spin.vim/bin/spin serve -Itest',
-      \ 'cmdopt': '-Itest',
-      \ 'runner': 'concurrent_process',
-      \ 'runner/concurrent_process/load': '["%s"]',
-      \ 'runner/concurrent_process/prompt': 'spin>>>>> ',
-      \ }
 " }}}
 " mongodb {{{
 "function! s:vimrc_filetype_mongodb()
