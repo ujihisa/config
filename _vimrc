@@ -12,7 +12,14 @@ call neobundle#begin(expand('~/.vimbundles'))
 let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
-NeoBundle 'Shougo/neocomplete', {'depends': [
+" NeoBundle 'Shougo/neocomplete', {'depends': [
+"       \ 'Shougo/neoinclude.vim',
+"       \ 'Shougo/neco-syntax',
+"       \ 'Shougo/neco-vim',
+"       \ 'Shougo/neopairs.vim']}
+NeoBundle 'Shougo/deoplete.nvim', {'depends': [
+      \ 'roxma/nvim-yarp',
+      \ 'roxma/vim-hug-neovim-rpc',
       \ 'Shougo/neoinclude.vim',
       \ 'Shougo/neco-syntax',
       \ 'Shougo/neco-vim',
@@ -574,7 +581,7 @@ inoremap <M-=> =
 if s:vimrc_use_lexima
   " TODO
 else
-  imap <expr> <BS> neocomplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
+  imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 endif
 " }}}
 " vimshell {{{
@@ -669,9 +676,12 @@ vmap <C-o> <Plug>(poslist-prev-pos)
 " remote {{{
 command! -nargs=1 RunOnVm !run_on_vm <args> %
 " }}}
-" Neocomplecache/Neocomplete {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#max_list = 200
+" Neocomplecache/Neocomplete/Deoplete {{{
+
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#max_list = 200
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_list = 200
 
 imap <M-l> <Plug>(neocomplete_start_unite_complete)
 " see also
@@ -1218,7 +1228,7 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  inoremap <silent><buffer><expr> \ neocomplete#close_popup() . <SID>cmdwin_backslash()
+  inoremap <silent><buffer><expr> \ deoplete#close_popup() . <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -2309,28 +2319,6 @@ augroup END
 " }}}
 " clang_complete.vim {{{
 
-if 0
-" from neocomplete's doc
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_overwrite_completefunc = 1
-let g:neocomplete#force_omni_input_patterns.c =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.cpp =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#force_omni_input_patterns.objc =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.objcpp =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-"let g:clang_use_library = 1
-
-" mine
-let g:clang_user_options = '-std=c++11'
-
-endif
 
 imap <C-l> <Plug>(neocomplete_start_unite_complete)
 
@@ -2472,10 +2460,6 @@ augroup vimrc-neoclojure
   autocmd FileType clojure nnoremap <Space><M-r> :<C-u>call neoclojure#killall()<Cr>
 augroup END
 
-" let g:neocomplete#sources#omni#functions = get(g:, 'neocomplete#sources#omni#functions', {})
-" let g:neocomplete#sources#omni#functions.clojure = 'neoclojure#complete#omni_auto'
-
-" let g:neocomplete#force_omni_input_patterns.clojure = '\.\|/'
 let g:neocomplete#sources#omni#input_patterns = get(g:, 'neocomplete#sources#omni#input_patterns', {})
 let g:neocomplete#sources#omni#input_patterns.clojure = '\.\|/'
 
