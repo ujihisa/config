@@ -91,7 +91,7 @@ NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'ujihisa/neco-look'
+" NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'rhysd/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
 " NeoBundle 'terryma/vim-expand-region'
