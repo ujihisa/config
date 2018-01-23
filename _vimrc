@@ -691,6 +691,13 @@ let g:neocomplete#skip_auto_completion_time = "" " disabling it
 
 let g:necoghc_enable_detailed_browse = 1
 let g:neocomplete#lock_iminsert = 1
+
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
