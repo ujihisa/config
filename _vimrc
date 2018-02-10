@@ -28,6 +28,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/deol.nvim'
 NeoBundle 'Shougo/tabpagebuffer.vim'
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
@@ -2717,6 +2718,11 @@ augroup END
 augroup ujihisa-vimrc
   autocmd FileType kotlin set tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
+
+" }}}
+" deol {{{
+
+let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
 
 " }}}
 
