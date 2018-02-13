@@ -1360,7 +1360,7 @@ if has('mac')
   AddPath ~/.gem/ruby/2.4.0/bin/
 else
   AddPath ~/.rbenv/shims
-  AddPath ~/.rbenv/versions/2.5.0/bin
+  " AddPath ~/.rbenv/versions/2.5.0/bin
 endif
 " }}}
 " macvim proportional {{{
