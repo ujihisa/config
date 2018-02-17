@@ -606,6 +606,7 @@ let g:vimshell_split_command = 'split'
 let g:vimshell_scrollback_limit = 4000
 let g:vimshell_interactive_update_time = 400
 let g:vimshell_max_command_history = 100000 " default is 1000
+let g:vimshell_editor_command = 'vim' " do not use 'gvim -g  --servername=GVIM --remote-tab-wait-silent'
 
 augroup ujihisa-vimrc
   autocmd FileType vimshell call s:vimshell_local()
