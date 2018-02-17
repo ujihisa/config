@@ -103,7 +103,6 @@ NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'tpope/vim-markdown'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundleLazy 'thinca/vim-painter', {
       \ 'autoload': {
@@ -231,7 +230,7 @@ set history=1000
 set viminfo+=:1000
 set display=lastline
 
-setglobal cindent
+setglobal autoindent
 " setglobal cinkeys=
 
 setglobal shiftwidth=2
