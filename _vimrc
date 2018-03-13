@@ -699,6 +699,10 @@ function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
 
+if filereadable('/usr/local/opt/python3/bin/python3.6')
+  let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
+endif
+
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
