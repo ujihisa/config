@@ -212,7 +212,8 @@ set modeline
 set t_Co=256
 set cmdheight=3
 " http://vim-users.jp/2009/06/hack32/
-set directory-=.
+" set directory-=.
+set directory=~/tmp/
 " http://vim-users.jp/2010/07/hack162/
 if has('persistent_undo')
   set undodir=~/.vimundo
