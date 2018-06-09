@@ -1008,7 +1008,7 @@ nnoremap <Space>gh :<C-u>Gina show --opener=vsplit<Cr>
 nnoremap <silent> <Space>ga :<C-u>Gina add %<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose --opener=vsplit<Cr>
 nnoremap <Space>gp :<C-u>Gina!! push
-nnoremap <Space>go :<C-u>Gina changes HEAD~<Cr>
+nnoremap <Space>go :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
 
 " }}}
 " html {{{
