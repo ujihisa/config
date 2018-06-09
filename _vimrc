@@ -154,6 +154,8 @@ NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
 NeoBundle 'moznion/vim-ltsv'
+NeoBundle 'NLKNguyen/papercolor-theme'
+NeoBundle 'koron/translua-vim'
 
 if 0
   NeoBundle 'Shougo/echodoc'
