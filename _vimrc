@@ -1298,7 +1298,6 @@ endfunction
 
 call unite#define_source(s:unite_source)
 " }}}
-let g:shadow_debug = 1
 " PATH {{{
 command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
 
