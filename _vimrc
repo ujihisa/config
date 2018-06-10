@@ -954,49 +954,6 @@ augroup FiletypeAliases
 augroup END
 
 " }}}
-" for fugitive {{{
-if 0
-  augroup vimrc-fugitive
-    autocmd!
-    autocmd FileType gitcommit setl nolist
-  augroup END
-
-  "let g:git_command_edit = 'rightbelow vnew'
-  "nnoremap <Space>gd :<C-u>GitDiff --no-prefix --cached<Enter>
-  nnoremap <Space>gd :<C-u>Gdiff<Cr>
-  nnoremap <Space>gD :<C-u>GitDiff --no-prefix<Enter> " motemen's
-  nnoremap <Space>gs :<C-u>Gstatus<Cr>
-  nnoremap <Space>gh :<C-u>call <SID>vimrc_git_show()<Cr>
-
-  function! s:vimrc_git_show()
-    new
-    VimProcRead git show
-    normal! dd
-    " set filetype=git-log.git-diff
-    set filetype=git
-    nnoremap <buffer> q :<C-u>quit!<Cr>
-    setl nomodifiable readonly
-  endfunction
-
-  "nnoremap <Space>gS :<C-u>Git submodule foreach git status<Enter>
-
-  "nnoremap <Space>gl :<C-u>GitLog<Enter>
-  "nnoremap <Space>gL :<C-u>GitLog -u \| head -10000<Enter>
-
-  " if globpath(&rtp, 'plugin/shadow.vim') != ''
-  "   nnoremap <Space>ga :<C-u>call GitAddBoth()<Enter>
-  " else
-  "   nnoremap <Space>ga :<C-u>GitAdd<Enter>
-  " endif
-
-  nnoremap <silent> <Space>ga :<C-u>Gwrite<Cr>
-  nnoremap <Space>gc :<C-u>Gcommit --verbose<Cr>
-  "nnoremap <Space>gC :<C-u>GitCommit --amend<Enter>
-  nnoremap <Space>gp :<C-u>Git push
-
-  command! FugitiveIsTerrible unlet b:git_dir | edit
-endif
-" }}}
 " for gina {{{
 
 augroup vimrc-local
