@@ -905,11 +905,7 @@ let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './
 
 " let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
 
-let g:quickrun_config['markdown'] = {
-      \ 'type': 'markdown/pandoc',
-      \ 'cmdopt': '-s',
-      \ 'outputter': 'browser'
-      \ }
+let g:quickrun_config['markdown'] = {'outputter': 'browser'}
 
 let g:quickrun_config.lua = {'type': 'lua/vim'}
 let g:quickrun_config.javascript = {'type': 'javascript/nodejs'}
