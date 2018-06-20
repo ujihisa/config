@@ -156,6 +156,7 @@ NeoBundle 'mrkn/vim-cruby'
 NeoBundle 'moznion/vim-ltsv'
 NeoBundle 'NLKNguyen/papercolor-theme'
 NeoBundle 'koron/translua-vim'
+NeoBundle 'leafgarland/typescript-vim'
 
 if 0
   NeoBundle 'Shougo/echodoc'
@@ -1651,6 +1652,7 @@ augroup END
 " inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
 " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
 imap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+nnoremap <M-v> "+p
 
 set linespace=2
 
