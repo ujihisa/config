@@ -48,7 +48,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
-let s:vimrc_use_lexima = 0
+let s:vimrc_use_lexima = 1
 if s:vimrc_use_lexima
   NeoBundle 'cohama/lexima.vim'
 else
@@ -157,6 +157,7 @@ NeoBundle 'moznion/vim-ltsv'
 NeoBundle 'NLKNguyen/papercolor-theme'
 NeoBundle 'koron/translua-vim'
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'thinca/vim-prettyprint'
 
 if 0
   NeoBundle 'Shougo/echodoc'
@@ -443,12 +444,20 @@ inoremap <M-o> <Esc>o<Esc>
 " kana/vim-smartinput {{{
 
 if s:vimrc_use_lexima
+  " let g:lexima_enable_basic_rules = 0
+  let g:lexima_enable_basic_rules = 0
+  let g:lexima_enable_newline_rules = 1
+  let g:lexima_enable_space_rules = 0
+  let g:lexima_enable_endwise_rules = 0
+
   " jlj = <Esc>
   call lexima#add_rule({
         \   'at': 'jl\%#',
         \   'char': 'j',
         \   'input': '<BS><BS><Esc>'})
 	inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
+
+
 else
   " call smartinput#clear_rules()
   let g:smartinput_no_default_key_mappings = 1
@@ -700,10 +709,15 @@ let g:necoghc_enable_detailed_browse = 1
 let g:neocomplete#lock_iminsert = 1
 
 
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
+
+if s:vimrc_use_lexima
+  " why doesn't lexima need deoplete#close_popup()?
+else
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+end
 
 if filereadable('/usr/local/opt/python3/bin/python3.6')
   let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
@@ -2673,7 +2687,7 @@ augroup END
 " vim-ruby does not know about ruby {{{
 
 augroup ujihisa-vimrc
-  autocmd FileType ruby set iskeyword+=?,!
+  autocmd FileType ruby setlocal iskeyword+=?,!
 augroup END
 
 " }}}
