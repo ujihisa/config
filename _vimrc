@@ -448,6 +448,7 @@ if s:vimrc_use_lexima
         \   'at': 'jl\%#',
         \   'char': 'j',
         \   'input': '<BS><BS><Esc>'})
+	inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
 else
   " call smartinput#clear_rules()
   let g:smartinput_no_default_key_mappings = 1
@@ -584,6 +585,7 @@ inoremap <M-=> =
 
 if s:vimrc_use_lexima
   " TODO
+  imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-lexima-bs)"
 else
   imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
 endif
