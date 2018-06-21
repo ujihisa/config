@@ -668,9 +668,9 @@ endfunction
 
 function! s:tagjump_or_cr()
   if bufname('%') == '[Command Line]' || &buftype == 'quickfix'
-    execute "normal! \<Cr>"
+    return "\<Cr>"
   else
-    execute "normal! \<C-]>"
+    return "\<C-]>"
 
     "http://d.hatena.ne.jp/thinca/20110202
     "UniteWithCursorWord -immediately -no-start-insert -auto-preview tag
@@ -678,7 +678,7 @@ function! s:tagjump_or_cr()
 endfunction
 
 nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
-nnoremap <Cr> :<C-u>call <SID>tagjump_or_cr()<Cr>
+nnoremap <expr> <Cr> <SID>tagjump_or_cr()
 " }}}
 " unite-grep {{{
 nnoremap sg :<C-u>Unite grep:. -default-action=split<Cr>
