@@ -366,6 +366,8 @@ nnoremap cc zc
 nnoremap <M-a> mmggVG
 vnoremap <M-c> "+yG`m
 
+vnoremap Y "+y
+
 "inoremap <expr> k smartchr#one_of('k', "\<Esc>")
 
 " memo:
@@ -1220,6 +1222,8 @@ function! s:init_cmdwin()
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
   " nnoremap! <Space>q :<C-u>quit<Cr>
+
+  inoremap <expr> <C-x> expand('%:h')
 
   startinsert!
 endfunction
