@@ -1223,7 +1223,7 @@ function! s:init_cmdwin()
 
   " nnoremap! <Space>q :<C-u>quit<Cr>
 
-  inoremap <expr> <C-x> expand('%:h')
+  inoremap <buffer><expr> <C-x> expand('%:h')
 
   startinsert!
 endfunction
