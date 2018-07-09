@@ -1671,7 +1671,7 @@ augroup END
 " nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
 " inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
 " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
-imap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+inoremap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
 nnoremap <M-v> "+p
 
 set linespace=2
@@ -2708,7 +2708,7 @@ let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
 
 " }}}
 
-tnoremap <Esc> <C-w><S-n>
+tnoremap <Esc> <C-w>N
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
