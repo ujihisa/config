@@ -301,14 +301,21 @@ vmap <M-9> %
 nnoremap vv <C-v>
 "nnoremap ]p p`[=`]
 
-nnoremap sh <C-w>h:call <SID>good_width()<Cr>
+nnoremap <silent>sh :<C-u>call <SID>horizontal_move('h')<Cr>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
-nnoremap sl <C-w>l:call <SID>good_width()<Cr>
-nnoremap H <C-w>H:call <SID>good_width()<Cr>
+nnoremap <silent>sl :<C-u>call <SID>horizontal_move('l')<Cr>
+nnoremap <silent>H :<C-u>call <SID>horizontal_move('H')<Cr>
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
-nnoremap L <C-w>L:call <SID>good_width()<Cr>
+nnoremap <silent>L :<C-u>call <SID>horizontal_move('L')<Cr>
+
+" direction has to be h, l, H, or L
+function! s:horizontal_move(direction) abort
+  execute 'wincmd' a:direction
+  call <SID>good_width()
+endfunction
+
 function! s:good_width()
   let size = 84
   if winwidth(0) < size
@@ -701,7 +708,8 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_list = 200
 
-imap <M-l> <Plug>(neocomplete_start_unite_complete)
+" imap <M-l> <Plug>(neocomplete_start_unite_complete)
+
 " see also
 "   * snippets section
 
@@ -2315,7 +2323,7 @@ augroup END
 " clang_complete.vim {{{
 
 
-imap <C-l> <Plug>(neocomplete_start_unite_complete)
+" imap <C-l> <Plug>(neocomplete_start_unite_complete)
 
 " }}}
 " d.vim {{{
