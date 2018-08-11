@@ -2715,8 +2715,24 @@ augroup END
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
 
 " }}}
+" termdebug {{{
+packadd termdebug
+let g:termdebug_wide = 200
+
+augroup ujihisa-vimrc
+  autocmd TerminalOpen * call s:terminalopen_termdebug()
+augroup END
+
+" Make `TermdebugCommand /home/ujihisa/git/vim/local/bin/vim -u NONE --noplugin` handy, even with the previous tnoremap
+function! s:terminalopen_termdebug() abort
+  if bufname('%') =~# '^debugged program'
+    tnoremap <buffer> <Esc> <Esc>
+  endif
+endfunction
+" }}}
 
 tnoremap <Esc> <C-w>N
+
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
