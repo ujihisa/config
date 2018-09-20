@@ -158,6 +158,7 @@ NeoBundle 'NLKNguyen/papercolor-theme'
 NeoBundle 'koron/translua-vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'thinca/vim-prettyprint'
+NeoBundle 'koron/iferr', {'rtp': 'vim'}
 
 if 0
   NeoBundle 'Shougo/echodoc'
@@ -2729,6 +2730,12 @@ function! s:terminalopen_termdebug() abort
     tnoremap <buffer> <Esc> <Esc>
   endif
 endfunction
+" }}}
+" cruby {{{
+augroup cruby
+  autocmd!
+  autocmd BufWinEnter,BufNewFile ~/.rbenv/sources/**/*.[chy] setlocal filetype=cruby
+augroup END
 " }}}
 
 tnoremap <Esc> <C-w>N
