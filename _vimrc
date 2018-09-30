@@ -1008,6 +1008,12 @@ function! s:HtmlUnEscape()
 endfunction
 vnoremap <silent> <space>e :call <SID>HtmlEscape()<CR>
 vnoremap <silent> <space>ue :call <SID>HtmlUnEscape()<CR>
+
+" disable stupid htmlcomplete
+augroup ujihisa-vimrc
+  autocmd FileType html setlocal omnifunc=
+augroup END
+
 " }}}
 " kana's useful tab function {{{
 function! s:move_window_into_tab_page(target_tabpagenr)
