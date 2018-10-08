@@ -2743,10 +2743,12 @@ augroup cruby
   autocmd BufWinEnter,BufNewFile ~/.rbenv/sources/**/*.[chy] setlocal filetype=cruby
 augroup END
 " }}}
+" terminal {{{
 
 tnoremap <Esc> <C-w>N
+tnoremap <M-v> <C-w>"+
 
-
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
