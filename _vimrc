@@ -173,8 +173,8 @@ if 0
   NeoBundle 'ujihisa/unite-font'
   NeoBundle 'ujihisa/unite-equery'
   NeoBundle 'ujihisa/unite-gem'
-  NeoBundle 'kchmck/vim-coffee-script'
 endif
+NeoBundle 'kchmck/vim-coffee-script'
 
 call neobundle#end()
 
@@ -691,8 +691,13 @@ nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
 nnoremap <expr> <Cr> <SID>tagjump_or_cr()
 " }}}
 " unite-grep {{{
-nnoremap sg :<C-u>Unite grep:. -default-action=split<Cr>
-nnoremap sG :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>') . ' -default-action=split'<Cr>
+nnoremap SG :<C-u>Unite grep:. -default-action=split<Cr>
+nnoremap s<M-g> :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>') . ' -default-action=split'<Cr>
+nnoremap sG :<C-u>execute 'Unite grep:.:-iR:\\b' . expand('<cword>') . '\\b -default-action=split'<Cr>
+
+nnoremap S <nop>
+nnoremap sg :<C-u>Unite grep/git:. -default-action=split<Cr>
+
 " }}}
 " {{{ thinca/poslist.vim
 nmap <C-o> <Plug>(poslist-prev-pos)
@@ -822,7 +827,7 @@ else
   let s:unite_file_rec_ignore_globs = ['**/target/**', 'lib_managed', '.vagrant/**']
   call unite#custom#source('file_rec', 'ignore_globs', s:unite_file_rec_ignore_globs)
 
-  let s:unite_grep_ignore_globs = unite#sources#grep#define()['ignore_globs'] + ['**/target/**', 'lib_managed', '.vagrant']
+  let s:unite_grep_ignore_globs = unite#sources#grep#define()['ignore_globs'] + ['**/target/**', 'lib_managed', '.vagrant', './log/*']
   call unite#custom#source('grep', 'ignore_globs', s:unite_grep_ignore_globs)
 endif
 
@@ -1807,6 +1812,19 @@ augroup vimrc-yacc
   autocmd FileType yacc setl ts=8
   autocmd FileType yacc setl sw=4
 augroup END
+" }}}
+" ruby {{{
+"
+function! s:vimrc_ruby()
+  " compiler rspec
+  " setlocal makeprg=~/bin/rspec-with-docker-compose
+  nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/bin/rspec-with-docker-compose<Cr>
+endfunction
+
+augroup ujihisa-vimrc
+  autocmd FileType ruby call <SID>vimrc_ruby()
+augroup END
+
 " }}}
 " java {{{
 function! s:vimrc_java()
