@@ -1761,8 +1761,8 @@ augroup END
 " }}}
 " javascript {{{
 function! s:vimrc_javascript()
-  setl ts=4
-  setl sw=4
+  setl ts=2
+  setl sw=2
   setl expandtab
   setl nolist
 
