@@ -789,7 +789,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap ss :<C-u>Unite file_rec/git file -default-action=split -direction=rightbelow -hide-source-names<Cr>
   nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
-  nnoremap sc :<C-u>Unite colorscheme -auto-preview<Cr>
+  nnoremap sC :<C-u>Unite colorscheme -auto-preview<Cr>
   nnoremap sf :<C-u>UniteWithBufferDir file_rec -default-action=split<Cr>
   nnoremap sm :<C-u>Unite file_mru -default-action=split<Cr>
   nnoremap sb :<C-u>Unite buffer -default-action=split<Cr>
