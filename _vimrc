@@ -159,6 +159,7 @@ NeoBundle 'koron/translua-vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'thinca/vim-prettyprint'
 NeoBundle 'koron/iferr', {'rtp': 'vim'}
+" morhetz/gruvbox
 
 if 0
   NeoBundle 'Shougo/echodoc'
@@ -994,7 +995,7 @@ nnoremap <Space>gD :<C-u>Gina diff --no-prefix --opener=vsplit<Cr>
 nnoremap <Space>gs :<C-u>Gina status --opener=vsplit<Cr>
 nnoremap <Space>gh :<C-u>Gina show --opener=vsplit<Cr>
 
-nnoremap <silent> <Space>ga :<C-u>Gina add %<Cr>
+nnoremap <silent> <Space>ga :<C-u>Gina add %:p<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose --opener=vsplit<Cr>
 nnoremap <Space>gp :<C-u>Gina!! push
 nnoremap <Space>go :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
