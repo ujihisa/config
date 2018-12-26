@@ -989,7 +989,10 @@ augroup END
 augroup vimrc-local
   autocmd FileType diff nnoremap <buffer> q :<C-u>quit<Cr>
   autocmd FileType git nnoremap <buffer> q :<C-u>quit<Cr>
+  autocmd FileType gina-branch nmap <buffer> <Return> <Plug>(gina-commit-checkout-track)
+  autocmd FileType gina-branch nmap <buffer> dd <Plug>(gina-branch-delete)
 augroup END
+
 nnoremap <Space>gd :<C-u>Gina diff --opener=vsplit<Cr>
 nnoremap <Space>gD :<C-u>Gina diff --no-prefix --opener=vsplit<Cr>
 nnoremap <Space>gs :<C-u>Gina status --opener=vsplit<Cr>
@@ -999,6 +1002,8 @@ nnoremap <silent> <Space>ga :<C-u>Gina add %:p<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose --opener=vsplit<Cr>
 nnoremap <Space>gp :<C-u>Gina!! push
 nnoremap <Space>go :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
+
+nnoremap <Space>gb :<C-u>Gina branch -a --opener=vsplit<Cr>
 
 " }}}
 " html {{{
