@@ -2083,7 +2083,7 @@ let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
       \     ['all', 'Unite -no-start-insert -horizontal -log neobundle/update:all'],
-      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neocomplete neobundle/update:neosnippet']
+      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:deoplete neobundle/update:neosnippet']
       \   ]
       \ }
 let g:unite_source_menu_menus.quickrun_set = {
