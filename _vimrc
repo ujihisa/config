@@ -1001,7 +1001,8 @@ nnoremap <Space>gh :<C-u>Gina show --opener=vsplit<Cr>
 nnoremap <silent> <Space>ga :<C-u>Gina add %:p<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose --opener=vsplit<Cr>
 nnoremap <Space>gp :<C-u>Gina!! push
-nnoremap <Space>go :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
+nnoremap <Space>go :<C-u>Gina changes HEAD --opener=vsplit<Cr>
+nnoremap <Space>gO :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
 
 nnoremap <Space>gb :<C-u>Gina branch -a --opener=vsplit<Cr>
 
@@ -2771,6 +2772,16 @@ augroup END
 
 tnoremap <Esc> <C-w>N
 tnoremap <M-v> <C-w>"+
+
+" }}}
+" experimental {{{
+
+function! s:yank_current_filename_and_goto_vimshell() abort
+  let @" = expand('%')
+  VimShell
+endfunction
+
+nnoremap  <M-i> <Esc>:call <SID>yank_current_filename_and_goto_vimshell()<Cr>
 
 " }}}
 " __END__  "{{{1
