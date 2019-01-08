@@ -1,12 +1,31 @@
-if has('vim_starting')
-  set runtimepath+=~/.vimbundles/neobundle.vim
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
+if 0
+  if has('vim_starting')
+    set runtimepath+=~/.vimbundles/neobundle.vim
+  endif
+
+  call neobundle#begin(expand('~/.vimbundles'))
+
+  let g:neobundle#enable_name_conversion = 1
+  NeoBundle 'Shougo/deoplete.nvim', {'depends': [
+        \ 'roxma/nvim-yarp',
+        \ 'roxma/vim-hug-neovim-rpc',
+        \ 'Shougo/neoinclude.vim',
+        \ 'Shougo/neco-syntax',
+        \ 'Shougo/neco-vim',
+        \ 'Shougo/neopairs.vim']}
+  NeoBundle 'Shougo/vimshell'
+  NeoBundle 'Shougo/vimproc'
+  call neobundle#end()
+  " call neobundle#local("~/.vimbundles", {})
+
+  filetype plugin indent on
+
+  let g:deoplete#enable_at_startup = 1
 endif
 
-call neobundle#begin(expand('~/.vimbundles'))
-
-let g:neobundle#enable_name_conversion = 1
-NeoBundle 'Shougo/unite.vim'
-call neobundle#end()
-" call neobundle#local("~/.vimbundles", {})
-
-filetype plugin indent on
+set langmenu=en_US.UTF-8
+language messages en_US.UTF-8
+source $VIMRUNTIME/menu.vim
