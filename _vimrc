@@ -2786,6 +2786,12 @@ endfunction
 nnoremap  <M-i> <Esc>:call <SID>yank_current_filename_and_goto_vimshell()<Cr>
 
 " }}}
+" enable s also on netrw {{{
+augroup ujihisa-vimrc
+  autocmd FileType netrw nunmap <buffer> s
+augroup END
+" }}}
+" }
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
