@@ -1347,10 +1347,10 @@ call unite#define_source(s:unite_source)
 " PATH {{{
 command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
 
-AddPath /usr/bin
-AddPath /usr/local/bin
-AddPath /sbin
-AddPath /usr/sbin
+" AddPath /usr/bin
+" AddPath /usr/local/bin
+" AddPath /sbin
+" AddPath /usr/sbin
 AddPath ~/.vimbundles/themis/bin/
 " pip install --user
 AddPath ~/.local/bin
