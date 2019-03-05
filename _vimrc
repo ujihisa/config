@@ -800,6 +800,7 @@ if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap su :<C-u>Unite history/command source command<Cr>
   nnoremap sp :<C-u>Unite process -no-split -buffer-name=process<Cr>
   nnoremap sq :<C-u>UniteClose build<Cr>
+  nnoremap sr :<C-u>UniteResume<Cr>
   "nnoremap <space>M :Unite -buffer-name=build -no-focus build::
   "nnoremap <space>m :<C-u>write<Cr>:Unite -buffer-name=build -no-focus build:<Cr>
 endif
