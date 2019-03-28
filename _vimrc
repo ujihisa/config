@@ -742,6 +742,9 @@ if filereadable('/usr/local/opt/python3/bin/python3.6')
   let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
 endif
 
+" the default fuzzy search = noise
+call deoplete#custom#source('file', 'matchers', ['matcher_head'])
+
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
