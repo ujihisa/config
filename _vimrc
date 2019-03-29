@@ -744,6 +744,7 @@ endif
 
 " the default fuzzy search = noise
 call deoplete#custom#source('file', 'matchers', ['matcher_head'])
+call deoplete#custom#source('file', 'enable_buffer_path', v:false)
 
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
