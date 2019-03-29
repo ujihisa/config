@@ -746,6 +746,10 @@ endif
 call deoplete#custom#source('file', 'matchers', ['matcher_head'])
 call deoplete#custom#source('file', 'enable_buffer_path', v:false)
 
+" https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
+let g:deoplete#enable_profile = 1
+call deoplete#enable_logging('DEBUG', 'deoplete.log')
+
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
