@@ -2801,6 +2801,27 @@ augroup ujihisa-vimrc
 augroup END
 " }}}
 " }
+" rubykaigi 2019 {{{
+
+function! RubyKaigi2019() abort
+  view /home/ujihisa/git/rubykaigi2019-play-with-local-var/rubykaigi2019-play-with-local-vars.md
+  let &guifont = 'Menlo Bold 40'
+  ShowtimeStart
+endfunction
+
+function! s:indented_yank() range abort
+  let indent_depth = match(getline(a:firstline), '\S')
+  let texts = map(getline(a:firstline, a:lastline), { _, line -> line[indent_depth :] })
+  let @+ = join(texts, "\n")
+endfunction
+
+augroup ujihisa-vimrc
+  autocmd FileType showtime vnoremap <buffer> y :call <SID>indented_yank()<cr>
+  autocmd FileType showtime nunmap <buffer> <space>
+augroup END
+
+" }}}
+
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
