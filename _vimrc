@@ -1711,6 +1711,7 @@ augroup END
 " imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
 inoremap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
 nnoremap <M-v> "+p
+vnoremap <M-v> d"+p
 
 set linespace=2
 
@@ -2817,7 +2818,7 @@ endfunction
 
 augroup ujihisa-vimrc
   autocmd FileType showtime vnoremap <buffer> y :call <SID>indented_yank()<cr>
-  autocmd FileType showtime nunmap <buffer> <space>
+  autocmd FileType showtime unmap! <buffer> <space>
 augroup END
 
 " }}}
