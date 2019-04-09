@@ -2805,8 +2805,12 @@ augroup END
 " rubykaigi 2019 {{{
 
 function! RubyKaigi2019() abort
-  view /home/ujihisa/git/rubykaigi2019-play-with-local-var/rubykaigi2019-play-with-local-vars.md
-  let &guifont = 'Menlo Bold 40'
+  view $HOME/git/rubykaigi2019-play-with-local-var/rubykaigi2019-play-with-local-vars.md
+  if has('mac')
+    set guifont=Menlo:h40
+  else
+    let &guifont = 'Menlo Bold 40'
+  endif
   ShowtimeStart
 endfunction
 
