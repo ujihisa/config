@@ -2818,7 +2818,7 @@ endfunction
 
 augroup ujihisa-vimrc
   autocmd FileType showtime vnoremap <buffer> y :call <SID>indented_yank()<cr>
-  autocmd FileType showtime unmap! <buffer> <space>
+  autocmd FileType showtime silent nunmap <buffer> <space>
 augroup END
 
 " }}}
