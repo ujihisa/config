@@ -2808,11 +2808,11 @@ augroup END
 
 function! RubyKaigi2019() abort
   view $HOME/git/rubykaigi2019-play-with-local-var/rubykaigi2019-play-with-local-vars.md
-  if has('mac')
-    set guifont=Menlo:h40
-  else
-    let &guifont = 'Menlo Bold 40'
-  endif
+  " if has('mac')
+  "   set guifont=Menlo:h40
+  " else
+  "   let &guifont = 'Menlo Bold 40'
+  " endif
   ShowtimeStart
 endfunction
 
