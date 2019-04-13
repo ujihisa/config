@@ -160,6 +160,7 @@ NeoBundle 'koron/translua-vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'thinca/vim-prettyprint'
 NeoBundle 'koron/iferr', {'rtp': 'vim'}
+NeoBundle 'pocke/vim-textobj-markdown'
 " morhetz/gruvbox
 
 if 0
