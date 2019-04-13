@@ -2825,7 +2825,7 @@ endfunction
 augroup ujihisa-vimrc
   autocmd FileType showtime vnoremap <buffer> y :call <SID>indented_yank()<cr>
   autocmd FileType showtime silent nunmap <buffer> <space>
-  autocmd FileType cruby nnoremap <buffer> <space>m :<C-u>write<Cr>:VimShellSendString make<Cr>
+  autocmd FileType cruby nnoremap <buffer> <space>m :<C-u>write<Cr>:VimShellSendString make all install<Cr>
 augroup END
 
 " }}}
