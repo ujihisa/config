@@ -2822,9 +2822,24 @@ function! s:indented_yank() range abort
   let @+ = join(texts, "\n")
 endfunction
 
+function! s:showtime_tweaks() abort
+  vnoremap <buffer> y :call <SID>indented_yank()<cr>
+
+  " showtime-next
+  silent! nunmap <buffer> <space>
+
+  " showtime-first
+  silent! nunmap <buffer> 0
+
+  setl number
+endfunction
+
+" showtime tweaks
 augroup ujihisa-vimrc
-  autocmd FileType showtime vnoremap <buffer> y :call <SID>indented_yank()<cr>
-  autocmd FileType showtime silent nunmap <buffer> <space>
+  autocmd FileType showtime call <SID>showtime_tweaks()
+augroup END
+
+augroup ujihisa-vimrc
   autocmd FileType cruby nnoremap <buffer> <space>m :<C-u>write<Cr>:VimShellSendString make all install<Cr>
 augroup END
 
