@@ -30,6 +30,7 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/deol.nvim'
 NeoBundle 'Shougo/tabpagebuffer.vim'
+NeoBundle 'Shougo/vinarise.vim'
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
         \ ['vimproc'])
@@ -2823,6 +2824,7 @@ endfunction
 augroup ujihisa-vimrc
   autocmd FileType showtime vnoremap <buffer> y :call <SID>indented_yank()<cr>
   autocmd FileType showtime silent nunmap <buffer> <space>
+  autocmd FileType cruby nnoremap <buffer> <space>m :<C-u>write<Cr>:VimShellSendString make<Cr>
 augroup END
 
 " }}}
