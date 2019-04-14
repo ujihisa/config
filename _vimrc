@@ -2831,7 +2831,7 @@ function! s:showtime_tweaks() abort
   " showtime-first
   silent! nunmap <buffer> 0
 
-  setl number
+  setlocal number
 endfunction
 
 " showtime tweaks
