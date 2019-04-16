@@ -179,6 +179,8 @@ if 0
 endif
 NeoBundle 'kchmck/vim-coffee-script'
 
+call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -2831,7 +2833,10 @@ function! s:showtime_tweaks() abort
   " showtime-first
   silent! nunmap <buffer> 0
 
-  setlocal number
+  " showtime-cursor
+  silent! nunmap <buffer> s
+
+  " setlocal number
 endfunction
 
 " showtime tweaks
@@ -2842,6 +2847,10 @@ augroup END
 augroup ujihisa-vimrc
   autocmd FileType cruby nnoremap <buffer> <space>m :<C-u>write<Cr>:VimShellSendString make all install<Cr>
 augroup END
+
+let g:quickrun_config.showtime = {
+      \ 'command': 'ruby'}
+
 
 " }}}
 
