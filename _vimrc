@@ -2822,6 +2822,7 @@ function! s:indented_yank() range abort
   let indent_depth = match(getline(a:firstline), '\S')
   let texts = map(getline(a:firstline, a:lastline), { _, line -> line[indent_depth :] })
   let @+ = join(texts, "\n")
+  let @" = @+
 endfunction
 
 function! s:showtime_tweaks() abort
