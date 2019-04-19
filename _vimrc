@@ -2837,6 +2837,9 @@ function! s:showtime_tweaks() abort
   " showtime-cursor
   silent! nunmap <buffer> s
 
+  " showtime-cursor
+  silent! nunmap <buffer> $
+
   " setlocal number
 endfunction
 
