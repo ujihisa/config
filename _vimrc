@@ -2857,6 +2857,27 @@ let g:quickrun_config.showtime = {
 
 
 " }}}
+" monorepo {{{
+function! s:monorepo_p() abort
+  return getcwd() =~# 'git/monorepo'
+endfunction
+
+function! s:nofile_p() abort
+  return !filereadable(expand('%'))
+endfunction
+
+function! s:monorepo_quickrun_config() abort
+  let b:quickrun_config = {
+        \ 'command': 'doo',
+        \ 'cmdopt': 'bundle exec rails runner',
+        \ 'tempfile': 'log/for_quickrun.rb',
+        \ 'hook/sweep/files': '%S:p:r'}
+endfunction
+
+augroup ujihisa-vimrc
+  autocmd FileType ruby if s:monorepo_p() && s:nofile_p() | call s:monorepo_quickrun_config() | endif
+augroup END
+" }}}
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
