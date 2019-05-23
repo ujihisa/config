@@ -2859,7 +2859,7 @@ let g:quickrun_config.showtime = {
 " }}}
 " monorepo {{{
 function! s:monorepo_p() abort
-  return getcwd() =~# 'git/monorepo'
+  return getcwd() =~# 'git/monorepo/'
 endfunction
 
 function! s:nofile_p() abort
@@ -2867,14 +2867,36 @@ function! s:nofile_p() abort
 endfunction
 
 function! s:monorepo_quickrun_config() abort
-  let b:quickrun_config = {
-        \ 'command': 'doo',
-        \ 'cmdopt': 'bundle exec rails runner',
-        \ 'tempfile': 'log/for_quickrun.rb',
-        \ 'hook/sweep/files': '%S:p:r'}
+  if getcwd() =~# '\<schema\>'
+    if !filereadable('./bin/ujihisa_quickrun_loader.rb')
+      let contents = [
+            \ 'require "bundler/setup"',
+            \ 'require "pry"',
+            \ 'require "schema"',
+            \ 'require "factory_bot"',
+            \ 'require "faker"',
+            \ 'Schema.connect_mongodb',
+            \ 'require "schema/seed/all"',
+            \ 'require "schema/factories/seed"']
+      call writefile(contents, './bin/ujihisa_quickrun_loader.rb')
+    endif
+
+    let b:quickrun_config = {
+          \ 'command': 'doo',
+          \ 'cmdopt': 'bundle exec ruby -r ./bin/ujihisa_quickrun_loader',
+          \ 'tempfile': './for_quickrun.rb',
+          \ 'hook/sweep/files': '%S:p:r'}
+  else
+    let b:quickrun_config = {
+          \ 'command': 'doo',
+          \ 'cmdopt': 'bundle exec rails runner',
+          \ 'tempfile': 'log/for_quickrun.rb',
+          \ 'hook/sweep/files': '%S:p:r'}
+  endif
 endfunction
 
-augroup ujihisa-vimrc
+augroup ujihisa-monorepo
+  autocmd!
   autocmd FileType ruby if s:monorepo_p() && s:nofile_p() | call s:monorepo_quickrun_config() | endif
 augroup END
 " }}}
