@@ -27,8 +27,8 @@ if g:V.is_mac()
 else
   set background=light
   " GvimrcColorscheme aldmeris
-  " GvimrcColorscheme solarized
-  GvimrcColorscheme office-light
+  GvimrcColorscheme solarized
+  " GvimrcColorscheme office-light
 
   " GvimrcColorscheme koehler
   " GvimrcColorscheme mrkn256
