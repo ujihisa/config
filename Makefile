@@ -1,4 +1,4 @@
-all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data
+all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials
 
 ~/.ctags:
 	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
@@ -27,3 +27,7 @@ all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secr
 ~/.config/autokey/data:
 	mkdir -p ~/.config/autokey
 	ln -s $(HOME)/Dropbox/config-autokey-data ~/.config/autokey/data
+
+~/.aws/credentials:
+	mkdir -p ~/.aws
+	ln -s $(HOME)/Dropbox/dotfiles/aws-credentials ~/.aws/credentials
