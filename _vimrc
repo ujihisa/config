@@ -178,6 +178,7 @@ if 0
   NeoBundle 'ujihisa/unite-gem'
 endif
 NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'nightsense/office'
 
 call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
