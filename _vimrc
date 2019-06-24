@@ -1396,6 +1396,8 @@ AddPath ~/.anyenv/envs/goenv/shims
 let $ERLENV_ROOT = expand('$HOME/.anyenv/envs/erlenv')
 let $EXENV_ROOT = expand('$HOME/.anyenv/envs/exenv')
 let $GOENV_ROOT = expand('$HOME/.anyenv/envs/goenv')
+let $GOROOT = expand('$HOME/.anyenv/envs/goenv/versions/1.12.6')
+let $GOPATH = expand('$HOME/go/1.12.6')
 " }}}
 " macvim proportional {{{
 function! Proportional()
@@ -2640,10 +2642,6 @@ command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_pack
 
 " }}}
 " neochat {{{
-" }}}
-" go {{{
-let $GOPATH = expand('~/gopath')
-let $PATH = printf('%s/bin:%s', $GOPATH, $PATH)
 " }}}
 "fatih/vim-go {{{
 
