@@ -1386,6 +1386,14 @@ else
   AddPath ~/.rbenv/shims
   " AddPath ~/.rbenv/versions/2.5.0/bin
 endif
+
+AddPath ~/.anyenv/envs/erlenv/bin
+AddPath ~/.anyenv/envs/erlenv/shims
+AddPath ~/.anyenv/envs/exenv/bin
+AddPath ~/.anyenv/envs/exenv/shims
+AddPath ~/.anyenv/envs/goenv/bin
+AddPath ~/.anyenv/envs/goenv/shims
+
 " }}}
 " macvim proportional {{{
 function! Proportional()
@@ -1651,7 +1659,7 @@ endfunction
 " }}}
 " ENV {{{
 if !$LANG
-  let $LANG='en_US.UTF-8'
+  " let $LANG='en_US.UTF-8'
 endif
 " http://lingr.com/room/vim/archives/2011/09/19#message-4881743
 " }}}
