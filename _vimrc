@@ -1393,7 +1393,9 @@ AddPath ~/.anyenv/envs/exenv/bin
 AddPath ~/.anyenv/envs/exenv/shims
 AddPath ~/.anyenv/envs/goenv/bin
 AddPath ~/.anyenv/envs/goenv/shims
-
+let $ERLENV_ROOT = expand('$HOME/.anyenv/envs/erlenv')
+let $EXENV_ROOT = expand('$HOME/.anyenv/envs/exenv')
+let $GOENV_ROOT = expand('$HOME/.anyenv/envs/goenv')
 " }}}
 " macvim proportional {{{
 function! Proportional()
