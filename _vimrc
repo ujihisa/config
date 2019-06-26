@@ -2643,6 +2643,19 @@ command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_pack
 " }}}
 " neochat {{{
 " }}}
+" go {{{
+function! s:vim_go_test_or_quickrun() abort
+  if expand('%') =~# '_test.go$'
+    GoTest
+  else
+    QuickRun
+  endif
+endfunction
+
+augroup ujihisa-vimrc
+  autocmd FileType go nnoremap <Space>m :<C-u>write<Cr>:call <SID>vim_go_test_or_quickrun()<Cr>
+augroup END
+" }}}
 "fatih/vim-go {{{
 
 " enable af and if
