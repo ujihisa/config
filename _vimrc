@@ -2645,8 +2645,8 @@ command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_pack
 " }}}
 " go {{{
 function! s:vim_go_test_or_quickrun() abort
-  if expand('%') =~# '_test.go$'
-    GoTest
+  if expand('%') =~# '.go$'
+    GoTest ./...
   else
     QuickRun
   endif
