@@ -2880,8 +2880,10 @@ let g:quickrun_config.showtime = {
 
 " }}}
 " monorepo {{{
-function! s:monorepo_p() abort
-  return getcwd() =~# 'git/monorepo/'
+function! s:monorepo_ruby_p() abort
+  let cwd = getcwd()
+  return cwd =~# 'git/monorepo/' &&
+        \ filereadable(printf('%s/Gemfile', cwd))
 endfunction
 
 function! s:nofile_p() abort
@@ -2919,7 +2921,7 @@ endfunction
 
 augroup ujihisa-monorepo
   autocmd!
-  autocmd FileType ruby if s:monorepo_p() && s:nofile_p() | call s:monorepo_quickrun_config() | endif
+  autocmd FileType ruby if s:monorepo_ruby_p() && s:nofile_p() | call s:monorepo_quickrun_config() | endif
 augroup END
 " }}}
 
