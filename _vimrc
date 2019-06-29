@@ -940,10 +940,8 @@ vmap <Space>r <Plug>(quickrun)
 nmap <Space>R <Plug>(quickrun-op)
 
 let g:quickrun_config = {}
-" let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
 let g:quickrun_config._ = {'runner': 'job', 'split': 'below'}
 
-"let g:quickrun_config.coffee = {'command': 'coffee', 'exec': '%c -cpb %s'}
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
 
 let g:quickrun_config.asm = {'command': 'gcc', 'exec': ['gcc %s -o ./aaaaa', './aaaaa', 'rm ./aaaaa']}
@@ -2913,7 +2911,7 @@ function! s:monorepo_quickrun_config() abort
   else
     let b:quickrun_config = {
           \ 'command': 'doo',
-          \ 'cmdopt': 'bundle exec rails runner',
+          \ 'cmdopt': './bin/rails runner',
           \ 'tempfile': 'log/for_quickrun.rb',
           \ 'hook/sweep/files': '%S:p:r'}
   endif
