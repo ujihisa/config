@@ -752,8 +752,8 @@ call deoplete#custom#source('file', 'matchers', ['matcher_head'])
 call deoplete#custom#source('file', 'enable_buffer_path', v:false)
 
 " https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
-let g:deoplete#enable_profile = 1
-call deoplete#enable_logging('DEBUG', 'deoplete.log')
+" let g:deoplete#enable_profile = 1
+" call deoplete#enable_logging('DEBUG', 'deoplete.log')
 
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
@@ -940,7 +940,7 @@ vmap <Space>r <Plug>(quickrun)
 nmap <Space>R <Plug>(quickrun-op)
 
 let g:quickrun_config = {}
-let g:quickrun_config._ = {'runner': 'job', 'split': 'below'}
+let g:quickrun_config._ = {'runner': 'vimproc', 'split': 'below'}
 
 let g:quickrun_config.coffee = {'command': '~/node_modules/.bin/coffee', 'cmdopt': '-pb'}
 
