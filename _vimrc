@@ -1370,7 +1370,7 @@ AddPath ~/.local/bin
 if isdirectory(expand('~/bin'))
   AddPath ~/bin
 endif
-
+AddPath ~/Dropbox/bin
 AddPath /home/ujihisa/git/termtter/bin
 AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
