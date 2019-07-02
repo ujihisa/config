@@ -2658,6 +2658,7 @@ augroup END
 
 " enable af and if
 let g:go_textobj_enabled = 1
+let g:go_fmt_command = "goimports"
 
 augroup vimrc-go
   autocmd!
