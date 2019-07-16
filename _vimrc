@@ -2924,6 +2924,11 @@ augroup ujihisa-monorepo
   autocmd FileType ruby if s:monorepo_ruby_p() && s:nofile_p() | call s:monorepo_quickrun_config() | endif
 augroup END
 " }}}
+" elixir {{{
+augroup ujihisa-vimrc
+  autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:VimShellSendString mix test<Cr>
+augroup END
+" }}}
 
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
