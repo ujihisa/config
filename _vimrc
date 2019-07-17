@@ -2926,7 +2926,7 @@ augroup END
 " }}}
 " elixir {{{
 augroup ujihisa-vimrc
-  autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:VimShellSendString mix test<Cr>
+  autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:execute 'VimShellSendString mix test ' . expand('%')<Cr>
 augroup END
 " }}}
 
