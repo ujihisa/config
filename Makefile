@@ -1,4 +1,4 @@
-all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config
+all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap
 
 ~/.ctags:
 	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
@@ -38,3 +38,6 @@ all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secr
 ~/.ssh/config:
 	mkdir -p ~/.ssh
 	ln -s $(HOME)/Dropbox/dotfiles/ssh-config ~/.ssh/config
+
+~/.Xmodmap:
+	ln -s $(HOME)/Dropbox/dotfiles/xmodmap ~/.Xmodmap
