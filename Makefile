@@ -1,4 +1,4 @@
-all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.ssh/config
+all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config
 
 ~/.ctags:
 	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
@@ -32,7 +32,8 @@ all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secr
 	mkdir -p ~/.aws
 	ln -s $(HOME)/Dropbox/dotfiles/aws-credentials ~/.aws/credentials
 
-# TODO ~/.xinitrc
+~/.xinitrc:
+	ln -s $(HOME)/Dropbox/dotfiles/xinitrc ~/.xinitrc
 
 ~/.ssh/config:
 	mkdir -p ~/.ssh
