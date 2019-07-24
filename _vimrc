@@ -872,6 +872,7 @@ function! s:unite_my_settings()
   silent! nunmap <buffer> <Down>
   silent! iunmap <buffer> <Up>
   silent! iunmap <buffer> <Down>
+  silent! iunmap <buffer> <C-o>
 
   silent! nunmap <buffer> <Space>
 
@@ -2927,6 +2928,7 @@ augroup END
 " elixir {{{
 augroup ujihisa-vimrc
   autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:execute 'VimShellSendString mix test ' . expand('%')<Cr>
+  autocmd FileType elixir setlocal formatprg=mix\ format\ -
 augroup END
 " }}}
 
