@@ -1,10 +1,13 @@
-all: ~/.ctags ~/.gitconfig ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap
+all: ~/.ctags ~/.gitconfig ~/..gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap
 
 ~/.ctags:
 	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
 
 ~/.gitconfig:
 	ln -s $(HOME)/Dropbox/_gitconfig ~/.gitconfig
+
+~/.gitignore:
+	ln -s $(HOME)/Dropbox/dotfiles/gitignore ~/.gitignore
 
 ~/.gvimrc:
 	ln -s $(HOME)/git/config/_gvimrc ~/.gvimrc
