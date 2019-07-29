@@ -1,4 +1,4 @@
-all: ~/.ctags ~/.gitconfig ~/..gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap
+all: ~/.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap
 
 ~/.ctags:
 	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
