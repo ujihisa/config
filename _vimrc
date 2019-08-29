@@ -30,7 +30,6 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/deol.nvim'
 NeoBundle 'Shougo/tabpagebuffer.vim'
-NeoBundle 'Shougo/vinarise.vim'
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
         \ ['vimproc'])
@@ -128,7 +127,6 @@ NeoBundle 'sickill/vim-monokai'
 " NeoBundle 'osyo-manga/vim-brightest'
 NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'ujihisa/neoclojure.vim'
-" NeoBundle 'ujihisa/ft-mongo.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer', 'neochat.vim'])
 NeoBundle 'chase/vim-ansible-yaml'
@@ -150,7 +148,6 @@ NeoBundle 'thinca/vim-themis'
 NeoBundle 'kana/vim-altr'
 NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
-NeoBundle 'udalov/kotlin-vim'
 NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
@@ -164,6 +161,8 @@ NeoBundle 'pocke/vim-textobj-markdown'
 " morhetz/gruvbox
 
 if 0
+  NeoBundle 'Shougo/vinarise.vim'
+  NeoBundle 'udalov/kotlin-vim'
   NeoBundle 'Shougo/echodoc'
   " NeoBundle 'ujihisa/repl.vim'
   " NeoBundle 'Shougo/vimfiler'
@@ -180,7 +179,7 @@ endif
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nightsense/office'
 
-call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
+" call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
 call neobundle#end()
 
@@ -235,16 +234,12 @@ endif
 set equalalways
 set eadirection=ver
 set updatetime=500
-"set scrolljump=10
 set timeoutlen=300
 set synmaxcol=700
 set history=1000
 set viminfo+=:1000
 set display=lastline
-
 setglobal autoindent
-" setglobal cinkeys=
-
 setglobal shiftwidth=2
 setglobal tabstop=2
 
