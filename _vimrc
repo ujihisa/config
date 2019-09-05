@@ -1004,8 +1004,8 @@ augroup vimrc-local
 augroup END
 
 " nnoremap <Space>gd :<C-u>execute 'Gina diff --opener=vsplit' expand('%')<Cr>
-nnoremap <Space>gd :<C-u>Gina diff --opener=vsplit<Cr>
-nnoremap <Space>gD :<C-u>Gina diff --no-prefix --opener=vsplit<Cr>
+nnoremap <Space>gd :<C-u>Gina diff --no-prefix --opener=vsplit<Cr>
+nnoremap <Space>gD :<C-u>Gina diff --no-prefix --cached --opener=vsplit<Cr>
 nnoremap <Space>gs :<C-u>Gina status --opener=vsplit<Cr>
 nnoremap <Space>gh :<C-u>Gina show --opener=vsplit<Cr>
 
