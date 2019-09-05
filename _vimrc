@@ -1017,6 +1017,12 @@ nnoremap <Space>gO :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
 
 nnoremap <Space>gb :<C-u>Gina branch -a --opener=vsplit<Cr>
 
+" Add "--opener=vsplit" to branch/changes/grep/log
+call gina#custom#command#option(
+      \ '/\%(branch\|changes\|grep\|log\)',
+      \ '--opener', 'vsplit'
+      \)
+
 " }}}
 " html {{{
 function! s:HtmlEscape()
