@@ -25,7 +25,8 @@ if g:V.is_mac()
   "hi Pmenu        guibg=LightSteelBlue1 guibg=DarkSlateGray
   "hi MatchParen   guifg=White guibg=Gray25
 else
-  set background=light
+  set background=dark
+
   " GvimrcColorscheme aldmeris
   GvimrcColorscheme solarized
   " GvimrcColorscheme office-light
