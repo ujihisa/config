@@ -1335,7 +1335,7 @@ function! s:swap_window(curwin, targetwin)
 endfunction
 " }}}
 " copy the current file name {{{
-command! -nargs=0 CopyTheCurrentFileName let @+ = expand('%')
+nnoremap <silent> <M-c> :<C-u>let @+ = expand('%')<Cr>:echo printf("Copied %s", string(@+))<Cr>
 " }}}
 " unite-neco {{{
 let s:unite_source = {'name': 'neco'}
@@ -2132,7 +2132,6 @@ let g:unite_source_menu_menus.quickrun_set = {
 let g:unite_source_menu_menus.myset = {
       \   'description': 'from vimrc',
       \   'command_candidates': [
-      \     ['CopyTheCurrentFileName', 'CopyTheCurrentFileName'],
       \     ['GitLogViewer', 'GitLogViewer'],
       \   ],
       \ }
@@ -2811,7 +2810,7 @@ augroup END
 " }}}
 " terminal {{{
 
-tnoremap <Esc> <C-w>N
+tnoremap <silent> <Esc> <C-w>N:setlocal nonumber<Cr>
 tnoremap <M-v> <C-w>"+
 
 " }}}
