@@ -1856,7 +1856,9 @@ augroup END
 function! s:vimrc_ruby()
   " compiler rspec
   " setlocal makeprg=~/bin/rspec-with-docker-compose
-  nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/bin/rspec-with-docker-compose<Cr>
+  " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/Dropbox/bin/rspec-with-docker-compose<Cr>
+  nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
+  nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
 endfunction
 
 augroup ujihisa-vimrc
