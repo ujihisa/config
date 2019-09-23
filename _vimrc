@@ -1859,6 +1859,15 @@ function! s:vimrc_ruby()
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/Dropbox/bin/rspec-with-docker-compose<Cr>
   nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
   nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
+
+  " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
+  let b:quickrun_config = {
+        \ 'command': 'doo',
+        \ 'cmdopt': '-f ./bin/concprocsh',
+        \ 'runner': 'concurrent_process',
+        \ 'runner/concurrent_process/load': 'bundle exec rspec --no-color "%S:."',
+        \ 'runner/concurrent_process/prompt': '>>> '}
+  nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -src '%s:%d'", expand('%s'), getpos('.')[1])<Cr>
 endfunction
 
 augroup ujihisa-vimrc
