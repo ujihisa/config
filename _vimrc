@@ -1861,12 +1861,14 @@ function! s:vimrc_ruby()
   nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
-  let b:quickrun_config = {
-        \ 'command': 'doo',
-        \ 'cmdopt': '-f ./bin/concprocsh',
-        \ 'runner': 'concurrent_process',
-        \ 'runner/concurrent_process/load': 'bundle exec rspec --no-color "%S:."',
-        \ 'runner/concurrent_process/prompt': '>>> '}
+  if 0
+    let b:quickrun_config = {
+          \ 'command': 'doo',
+          \ 'cmdopt': '-f ./bin/concprocsh',
+          \ 'runner': 'concurrent_process',
+          \ 'runner/concurrent_process/load': 'bundle exec rspec --no-color "%S:."',
+          \ 'runner/concurrent_process/prompt': '>>> '}
+  endif
   nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -src '%s:%d'", expand('%s'), getpos('.')[1])<Cr>
 endfunction
 
@@ -2923,7 +2925,7 @@ function! s:monorepo_quickrun_config() abort
 
     let b:quickrun_config = {
           \ 'command': 'doo',
-          \ 'cmdopt': 'bundle exec ruby -r ./bin/ujihisa_quickrun_loader',
+          \ 'cmdopt': '-f bundle exec ruby -r ./bin/ujihisa_quickrun_loader',
           \ 'tempfile': './for_quickrun.rb',
           \ 'hook/sweep/files': '%S:p:r'}
   else
