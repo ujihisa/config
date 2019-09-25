@@ -2939,7 +2939,7 @@ function! s:monorepo_quickrun_config() abort
   else
     let b:quickrun_config = {
           \ 'command': 'doo',
-          \ 'cmdopt': './bin/rails runner',
+          \ 'cmdopt': '-f ./bin/rails runner',
           \ 'tempfile': 'log/for_quickrun.rb',
           \ 'hook/sweep/files': '%S:p:r'}
   endif
