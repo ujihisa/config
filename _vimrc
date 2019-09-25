@@ -1852,7 +1852,17 @@ augroup vimrc-yacc
 augroup END
 " }}}
 " ruby {{{
-"
+
+" monorepo
+      "\ 'cmdopt': '-f bin/concprocsh',
+      \ 'cmdopt': '-f bash -c "echo -n \">>> \"; while read line; do echo $line; eval $line; echo -n \">>> \"; done"',
+let g:quickrun_config['ruby/monorepo'] = {
+      \ 'command': 'doo',
+      \ 'runner': 'concurrent_process',
+      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.flush; x = gets; puts x; system x; end"'),
+      \ 'runner/concurrent_process/load': 'bundle exec bin/rspec --no-color "%S:."',
+      \ 'runner/concurrent_process/prompt': '>>> '}
+
 function! s:vimrc_ruby()
   " compiler rspec
   " setlocal makeprg=~/bin/rspec-with-docker-compose
@@ -1862,14 +1872,6 @@ function! s:vimrc_ruby()
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
-  " monorepo
-  "\ 'cmdopt': '-f bash -c "echo -n \\">>> \\"; while read line; do echo \$line; eval \$line; echo -n \\">>> \\"; done"',
-  let g:quickrun_config['ruby/monorepo'] = {
-        \ 'command': 'doo',
-        \ 'cmdopt': '-f bin/concprocsh',
-        \ 'runner': 'concurrent_process',
-        \ 'runner/concurrent_process/load': 'bundle exec bin/rspec --no-color "%S:."',
-        \ 'runner/concurrent_process/prompt': '>>> '}
 
   if 1
     " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -type ruby/monorepo -srcfile '%s:%d'", expand('%:p:.'), getpos('.')[1])<Cr>
