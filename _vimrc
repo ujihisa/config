@@ -1677,10 +1677,10 @@ imap <expr> <Bslash> (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite neosnippet<Cr>
-imap <M-\> <Plug>(neosnippet_jump_or_expand)
-smap <M-\> <Plug>(neosnippet_jump_or_expand)
-nmap <M-\> a<M-\>
-xmap <M-\> <Plug>(neosnippet_start_unite_snippet_target)
+imap <M-\> ~/
+" smap <M-\> <Plug>(neosnippet_jump_or_expand)
+" nmap <M-\> a<M-\>
+" xmap <M-\> <Plug>(neosnippet_start_unite_snippet_target)
 
 " only for MacBook Pro (gentoo)
 imap <C-\> <Plug>(neosnippet_jump_or_expand)
@@ -1869,6 +1869,7 @@ function! s:vimrc_ruby()
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/Dropbox/bin/rspec-with-docker-compose<Cr>
   nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
   nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
+  nnoremap <buffer> <S-space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
