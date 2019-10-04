@@ -1260,7 +1260,7 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  inoremap <silent><buffer><expr> \ deoplete#close_popup() . <SID>cmdwin_backslash()
+  " inoremap <silent><buffer><expr> \ deoplete#close_popup() . <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -1713,7 +1713,7 @@ function! s:vimshell_settings()
   " <Cr> expands snippet!
   imap <buffer><expr> <CR> neosnippet#expandable() ?
       \ "\<Plug>(neosnippet_expand)\<Plug>(vimshell_enter)" : "\<Plug>(vimshell_enter)"
-  inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+  " inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
 endfunction
 augroup vimshell-settings
   autocmd!
