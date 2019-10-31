@@ -2906,9 +2906,9 @@ let g:quickrun_config.showtime = {
 " monorepo {{{
 function! s:monorepo_ruby_p() abort
   let cwd = getcwd()
-  if cwd =~# 'git/monorepo/c.*'
-    return 0
-  endif
+  " if cwd =~# 'git/monorepo/c.*'
+  "   return 0
+  " endif
   return cwd =~# 'git/monorepo/' &&
         \ filereadable(printf('%s/Gemfile', cwd))
 endfunction
