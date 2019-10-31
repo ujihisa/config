@@ -1,10 +1,30 @@
 #!/usr/bin/bash -ex
 case "$1" in
   start*)
-    xrandr --output DP-1 --mode 1920x1080 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 96 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 48
+    case "$HOSTNAME" in
+      citadel)
+        # 1/4 -> 1/2
+        xrandr --output DP-1 --mode 1920x1080 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 96 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 48
+        ;;
+      xps13)
+        # 9/25 -> 3/5
+        xrandr --output eDP1 --mode 1920x1080 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 115 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 64
+        ;;
+      *)
+        echo "$HOSTNAME Didn't match anything"
+    esac
     ;;
   stop*)
-    xrandr --output DP-1 --mode 3840x2160 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 144 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 96
+    case "$HOSTNAME" in
+      citadel)
+        xrandr --output DP-1 --mode 3840x2160 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 144 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 96
+        ;;
+      xps13)
+        xrandr --output eDP1 --mode 3200x1800 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 192 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 128
+        ;;
+      *)
+        echo "$HOSTNAME Didn't match anything"
+    esac
     ;;
   status*)
     xrandr
