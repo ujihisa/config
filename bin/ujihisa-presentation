@@ -9,6 +9,7 @@ case "$1" in
       xps13)
         # 9/25 -> 3/5
         xrandr --output eDP1 --mode 1920x1080 -r 60 && xfconf-query -c xsettings -p /Xft/DPI -s 115 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 64
+        xrandr --output DP1 --mode 1920x1080 -r 60 # for vimconf
         ;;
       *)
         echo "$HOSTNAME Didn't match anything"
