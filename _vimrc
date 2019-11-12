@@ -216,7 +216,7 @@ set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
 set hidden
 set autoread
-set title
+set notitle
 set backspace=indent,eol,start
 set modeline
 set t_Co=256
