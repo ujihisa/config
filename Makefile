@@ -44,3 +44,6 @@ all: ~/.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc 
 
 ~/.Xmodmap:
 	ln -s $(HOME)/Dropbox/dotfiles/xmodmap ~/.Xmodmap
+
+~/.local/share/com.github.johnfactotum.Foliate:
+	ln -s $(HOME)/Dropbox/dotfiles/local-share-com.github.johnfactotum.Foliate ~/.local/share/com.github.johnfactotum.Foliate
