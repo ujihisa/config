@@ -30,10 +30,10 @@ case "$1" in
   vertical*)
     case "$HOSTNAME" in
       citadel)
-        xrandr --output DP-1 --mode 3840x2160 -r 60 --rotate right && xfconf-query -c xsettings -p /Xft/DPI -s 144 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 96
+        xrandr --output DP-1 --mode 3840x2160 -r 60 --rotate left && xfconf-query -c xsettings -p /Xft/DPI -s 144 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 96
         ;;
       xps13)
-        xrandr --output eDP1 --mode 3200x1800 -r 60 --rotate right && xfconf-query -c xsettings -p /Xft/DPI -s 192 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 128
+        xrandr --output eDP1 --mode 3200x1800 -r 60 --rotate left && xfconf-query -c xsettings -p /Xft/DPI -s 192 && xfconf-query -c xfce4-panel -p /panels/panel-1/size -s 128
         ;;
       *)
         echo "$HOSTNAME Didn't match anything"
