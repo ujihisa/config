@@ -1,4 +1,4 @@
-all: ~/.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate
+all: ~/.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config
 
 ~/.ctags:
 	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
@@ -47,3 +47,6 @@ all: ~/.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc 
 
 ~/.local/share/com.github.johnfactotum.Foliate:
 	ln -s $(HOME)/Dropbox/dotfiles/local-share-com.github.johnfactotum.Foliate ~/.local/share/com.github.johnfactotum.Foliate
+
+~/.config/fcitx/config:
+	ln -s $(HOME)/Dropbox/dotfiles/config-fcitx-config ~/.config/fcitx/config
