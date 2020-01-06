@@ -159,6 +159,7 @@ NeoBundle 'thinca/vim-prettyprint'
 NeoBundle 'koron/iferr', {'rtp': 'vim'}
 NeoBundle 'pocke/vim-textobj-markdown'
 " morhetz/gruvbox
+NeoBundle 'tyru/empty-prompt.vim'
 
 if 0
   NeoBundle 'Shougo/vinarise.vim'
@@ -2956,6 +2957,20 @@ augroup ujihisa-vimrc
   autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:execute 'VimShellSendString mix test ' . expand('%')<Cr>
   autocmd FileType elixir setlocal formatprg=mix\ format\ -
 augroup END
+" }}}
+" {{{ tyru/empty-prompt
+function! s:empty_prompt_mappings() abort
+  " If current line is empty prompt ...
+  
+  " : works as <C-w>:
+  call empty_prompt#map(#{lhs: ':', rhs: '<C-w>:<C-f>'})
+  " <Esc> works as <C-w>N
+  " call empty_prompt#map(#{lhs: '<Esc>', rhs: '<C-w>N'})
+  
+  " ... Add more mappings you like
+endfunction
+
+autocmd VimEnter * ++once call s:empty_prompt_mappings()
 " }}}
 
 " __END__  "{{{1

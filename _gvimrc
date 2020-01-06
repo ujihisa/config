@@ -91,7 +91,7 @@ if has('gui')
   set columns=500
   set lines=100
   VimShell
-  normal! <C-u>
+  " normal! <C-u>
   redraw!
 endif
 " }}}
