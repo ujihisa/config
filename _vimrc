@@ -1009,6 +1009,7 @@ nnoremap <Space>gd :<C-u>Gina diff --no-prefix --opener=vsplit<Cr>
 nnoremap <Space>gD :<C-u>Gina diff --no-prefix --cached --opener=vsplit<Cr>
 nnoremap <Space>gs :<C-u>Gina status --opener=vsplit<Cr>
 nnoremap <Space>gh :<C-u>Gina show --opener=vsplit<Cr>
+nnoremap <Space>gH :<C-u>Gina show HEAD^ --opener=vsplit<Cr>
 
 nnoremap <silent> <Space>ga :<C-u>Gina add %:p<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose --opener=vsplit<Cr>
