@@ -747,6 +747,10 @@ endif
 call deoplete#custom#source('file', 'matchers', ['matcher_head'])
 call deoplete#custom#source('file', 'enable_buffer_path', v:false)
 
+" https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
+call deoplete#custom#source('file', 'rank', 550)
+call deoplete#custom#source('vimshell', 'rank', 600)
+
 " https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
