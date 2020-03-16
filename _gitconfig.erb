@@ -1,6 +1,7 @@
 [user]
   name = ujihisa
   email = ujihisa@gmail.com
+  email = ujihisa@users.noreply.github.com
 [alias]
   l = log --name-status --color --graph
 [color]
@@ -14,4 +15,12 @@
 [push]
   default = current
 [log]
-  date = relative
+  # date = relative
+  date = iso8601
+[branch]
+  autosetuprebase = always
+[diff]
+  compactionHeuristic = true
+  noprefix = true
+[core]
+  excludesfile = ~/.gitignore
