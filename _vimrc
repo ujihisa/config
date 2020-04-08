@@ -1400,7 +1400,7 @@ AddPath ~/.anyenv/envs/exenv/bin
 AddPath ~/.anyenv/envs/exenv/shims
 AddPath ~/.anyenv/envs/goenv/bin
 AddPath ~/.anyenv/envs/goenv/shims
-AddPath ~/go/1.12.6/bin
+AddPath ~/go/1.13.1/bin
 let $ERLENV_ROOT = expand('$HOME/.anyenv/envs/erlenv')
 let $EXENV_ROOT = expand('$HOME/.anyenv/envs/exenv')
 let $GOENV_ROOT = expand('$HOME/.anyenv/envs/goenv')
