@@ -448,6 +448,12 @@ nnoremap <M-g>f <C-w><C-f>
 nmap <M-o> <Plug>(openbrowser-open)
 vmap <M-o> <Plug>(openbrowser-open)
 
+nmap <M-O> <Plug>(openbrowser-open-incognito)
+vmap <M-O> <Plug>(openbrowser-open-incognito)
+let g:openbrowser_browser_commands = [
+      \ {"name": "chromium",
+      \  "args": ["{browser}", "{uri}"]}]
+
 " yank without newlines
 vnoremap gy y:<C-u>let @" = substitute(@", "\n\s\*", ' ', 'g')<Cr>
 
