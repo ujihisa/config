@@ -20,7 +20,6 @@ NeoBundle 'Shougo/deoplete.nvim', {'depends': [
      \ 'Shougo/neco-vim',
      \ 'Shougo/neopairs.vim']}
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/deol.nvim', {'depends': [
