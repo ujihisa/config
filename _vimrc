@@ -179,6 +179,7 @@ if 0
 endif
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nightsense/office'
+NeoBundle 'MaxMEllon/vim-jsx-pretty', {'depends': 'pangloss/vim-javascript'}
 
 " call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
@@ -722,7 +723,6 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " let g:neocomplete#enable_at_startup = 1
 " let g:neocomplete#max_list = 200
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_list = 200
 
 " imap <M-l> <Plug>(neocomplete_start_unite_complete)
 
@@ -1612,14 +1612,6 @@ vnoremap ] t]
 " }}}
 " hack 104 http://vim-users.jp/2009/11/hack104/ {{{
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
-" }}}
-" MacVim is unko {{{
-function! s:macvim_is_unko() abort
-  let rtp = split(&rtp, ',')
-  unlet rtp[index(rtp, '/Applications/MacVim.app/Contents/Resources/vim/plugins/kaoriya')]
-  let &rtp = join(rtp, ',')
-endfunction
-call s:macvim_is_unko()
 " }}}
 " golden ratio {{{
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
