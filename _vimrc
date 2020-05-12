@@ -1809,6 +1809,7 @@ function! s:vimrc_javascript()
   setl nolist
 
   "inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
+  inoremap <buffer> @ this.props.
   "runtime! ftplugin/coffee.vim
 endfunction
 augroup vimrc-javascript
