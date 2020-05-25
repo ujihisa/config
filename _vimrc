@@ -124,8 +124,7 @@ NeoBundle 'Shougo/neomru.vim', {
       \   'Shougo/unite.vim']}
 NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'sickill/vim-monokai'
-" NeoBundle 'osyo-manga/vim-brightest'
-NeoBundle 'itchyny/vim-cursorword'
+" NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer', 'neochat.vim'])
@@ -631,6 +630,8 @@ endfunction
 "nmap <Space>v <Plug>(vimshell_switch)
 nmap <Space>v <Plug>(vimshell_split_switch)
 "nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
+
+nnoremap <Space>t :<C-u>terminal<Cr>
 
 " close vimshell from anywhere
 " nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
@@ -2595,16 +2596,18 @@ map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 " }}}
 " cursorword {{{
 
-" disable on MacVim
-if g:V.is_mac()
-  let g:loaded_cursorword = 1
-endif
+if 0
+  " disable on MacVim
+  if g:V.is_mac()
+    let g:loaded_cursorword = 1
+  endif
 
-augroup vimrc-cursorword
-  autocmd!
-  autocmd WinLeave * let b:cursorword = 0 | call cursorword#matchadd()
-  autocmd WinEnter * let b:cursorword = 1
-augroup END
+  augroup vimrc-cursorword
+    autocmd!
+    autocmd WinLeave * let b:cursorword = 0 | call cursorword#matchadd()
+    autocmd WinEnter * let b:cursorword = 1
+  augroup END
+endif
 " }}}
 " kana-altr {{{
 call altr#define('main/scala/**/%.scala', 'test/scala/**/%Test.scala')
