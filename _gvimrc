@@ -50,6 +50,11 @@ elseif vimproc#system('hostname') =~ '^linari'
 else
   let &guifont = 'Menlo Bold 9'
   let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 9'
+
+  if 1
+    let &guifont = 'Menlo Bold 12'
+    let &guifontwide = 'Hiragino Kaku Gothic Pro Bold 12'
+  endif
 endif
 let s:gvimrc_default_fonts = {
       \ 'guifont': &guifont,
