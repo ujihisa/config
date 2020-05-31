@@ -722,7 +722,7 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " Neocomplecache/Neocomplete/Deoplete {{{
 
 " https://github.com/Shougo/deoplete.nvim/issues/1013
-set completeopt+=noselect
+" set completeopt+=noselect
 
 " let g:neocomplete#enable_at_startup = 1
 " let g:neocomplete#max_list = 200
