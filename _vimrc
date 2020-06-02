@@ -632,6 +632,7 @@ nmap <Space>v <Plug>(vimshell_split_switch)
 "nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
 
 nnoremap <Space>t :<C-u>terminal<Cr>
+nnoremap <Space><Space>t :terminal<Cr><C-w>T
 
 " close vimshell from anywhere
 " nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
