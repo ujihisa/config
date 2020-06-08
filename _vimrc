@@ -448,8 +448,8 @@ nnoremap <M-g>f <C-w><C-f>
 nmap <M-o> <Plug>(openbrowser-open)
 vmap <M-o> <Plug>(openbrowser-open)
 
-nmap <M-O> <Plug>(openbrowser-open-incognito)
-vmap <M-O> <Plug>(openbrowser-open-incognito)
+nmap <M-S-o> <Plug>(openbrowser-open-incognito)
+vmap <M-S-o> <Plug>(openbrowser-open-incognito)
 let g:openbrowser_browser_commands = [
       \ {"name": "chromium",
       \  "args": ["{browser}", "{uri}"]}]
@@ -2285,8 +2285,8 @@ nnoremap <M-]> :<C-u>execute printf(
       \ <SID>vimrc_currentfile_maxlength(&columns * 9 / 10))<Cr>
 " }}}
 " jplus {{{
-nmap <M-J> <Plug>(jplus-input)
-vmap <M-J> <Plug>(jplus-input)
+nmap <M-S-J> <Plug>(jplus-input)
+vmap <M-S-J> <Plug>(jplus-input)
 " }}}
 " clojure-ns {{{
 if 0
@@ -2644,7 +2644,7 @@ function! s:altr_open_forward_file(bufname) abort
   endif
 endfunction
 
-nnoremap <M-R> :<C-u>call <SID>altr_open_forward_file(expand('%'))<Cr>
+nnoremap <M-S-R> :<C-u>call <SID>altr_open_forward_file(expand('%'))<Cr>
 
 " }}}
 " kana-operator-replace {{{
