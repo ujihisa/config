@@ -148,6 +148,7 @@ NeoBundle 'kana/vim-altr'
 NeoBundle 'reedes/vim-colors-pencil'
 NeoBundle 'yuku-t/vim-ref-ri'
 NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'mhinz/vim-mix-format'
 NeoBundle 'johngrib/vim-game-code-break'
 NeoBundle 'mrkn/vim-cruby'
 NeoBundle 'moznion/vim-ltsv'
@@ -179,6 +180,8 @@ endif
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nightsense/office'
 NeoBundle 'MaxMEllon/vim-jsx-pretty', {'depends': 'pangloss/vim-javascript'}
+NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
+NeoBundle 'mattn/vim-lsp-settings'
 
 " call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
@@ -2965,8 +2968,10 @@ augroup END
 " elixir {{{
 augroup ujihisa-vimrc
   autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:execute 'VimShellSendString mix test ' . expand('%')<Cr>
-  autocmd FileType elixir setlocal formatprg=mix\ format\ -
 augroup END
+
+let g:mix_format_on_save = 1
+
 " }}}
 " {{{ tyru/empty-prompt
 function! s:empty_prompt_mappings() abort
@@ -2982,7 +2987,21 @@ endfunction
 
 autocmd VimEnter * ++once call s:empty_prompt_mappings()
 " }}}
+" {{{
 
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <F2> <plug>(lsp-rename)
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
