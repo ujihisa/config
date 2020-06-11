@@ -18,12 +18,12 @@ NeoBundle 'Shougo/neobundle-vim-recipes'
 "       \ 'Shougo/neco-vim',
 "       \ 'Shougo/neopairs.vim']}
 NeoBundle 'Shougo/deoplete.nvim', {'depends': [
-      \ 'roxma/nvim-yarp',
-      \ 'roxma/vim-hug-neovim-rpc',
-      \ 'Shougo/neoinclude.vim',
-      \ 'Shougo/neco-syntax',
-      \ 'Shougo/neco-vim',
-      \ 'Shougo/neopairs.vim']}
+     \ 'roxma/nvim-yarp',
+     \ 'roxma/vim-hug-neovim-rpc',
+     \ 'Shougo/neoinclude.vim',
+     \ 'Shougo/neco-syntax',
+     \ 'Shougo/neco-vim',
+     \ 'Shougo/neopairs.vim']}
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
@@ -181,6 +181,8 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nightsense/office'
 NeoBundle 'MaxMEllon/vim-jsx-pretty', {'depends': 'pangloss/vim-javascript'}
 NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
+" NeoBundle 'prabirshrestha/asyncomplete.vim'
+" asyncomplete does not work
 NeoBundle 'mattn/vim-lsp-settings'
 
 " call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
@@ -615,11 +617,13 @@ endif
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
 
-if s:vimrc_use_lexima
-  " TODO
-  imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-lexima-bs)"
-else
-  imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
+if exists('deoplete#smart_close_popup')
+  if s:vimrc_use_lexima
+    " TODO
+    imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-lexima-bs)"
+  else
+    imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
+  endif
 endif
 " }}}
 " vimshell {{{
@@ -750,20 +754,24 @@ endfunction
 if s:vimrc_use_lexima
   " why doesn't lexima need deoplete#close_popup()?
 else
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  if exists('deoplete#close_popup')
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  endif
 end
 
 if filereadable('/usr/local/opt/python3/bin/python3.6')
   let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
 endif
 
-" the default fuzzy search = noise
-call deoplete#custom#source('file', 'matchers', ['matcher_head'])
-call deoplete#custom#source('file', 'enable_buffer_path', v:false)
+if exists('deoplete#custom#source')
+  " the default fuzzy search = noise
+  call deoplete#custom#source('file', 'matchers', ['matcher_head'])
+  call deoplete#custom#source('file', 'enable_buffer_path', v:false)
 
-" https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
-call deoplete#custom#source('file', 'rank', 550)
-call deoplete#custom#source('vimshell', 'rank', 600)
+  " https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
+  call deoplete#custom#source('file', 'rank', 550)
+  call deoplete#custom#source('vimshell', 'rank', 600)
+endif
 
 " https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
 " let g:deoplete#enable_profile = 1
@@ -3000,7 +3008,6 @@ augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
