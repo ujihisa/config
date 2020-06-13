@@ -114,8 +114,6 @@ NeoBundle 'ujihisa/vimport'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'ujihisa/ft-cmake'
 " NeoBundle 'Rip-Rip/clang_complete'
-NeoBundleLazy 'vim-jp/cpp-vim', {
-      \ 'autoload': {'filetypes': 'cpp'}}
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'guns/vim-sexp'
