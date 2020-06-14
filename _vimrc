@@ -28,7 +28,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/deol.nvim'
+NeoBundle 'Shougo/deol.nvim', {'depends': [
+     \ 'zchee/deoplete-zsh']}
 NeoBundle 'Shougo/tabpagebuffer.vim'
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
