@@ -2980,8 +2980,19 @@ augroup ujihisa-monorepo
 augroup END
 " }}}
 " elixir {{{
-augroup ujihisa-vimrc
-  autocmd FileType elixir nnoremap <Space>m :<C-u>write<Cr>:execute 'VimShellSendString mix test ' . expand('%')<Cr>
+
+function! s:elixir_mix_test() abort
+  write
+  if expand('%') =~ '^integration_test'
+    execute 'VimShellSendString env MIX_ENV=itest mix test ' . expand('%')
+  else
+    execute 'VimShellSendString mix test ' . expand('%')
+  endif
+endfunction
+
+augroup elixir-mix-test
+  autocmd!
+  autocmd FileType elixir nnoremap <buffer><silent> <Space>m :<C-u>call <SID>elixir_mix_test()<Cr>
 augroup END
 
 let g:mix_format_on_save = 1
