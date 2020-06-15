@@ -2829,6 +2829,12 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
+nnoremap <space>d :<C-u>Deol -split=horizontal<Cr><C-w>:DeolEdit<Cr>
+
+augroup deol-filetype
+  autocmd!
+  autocmd FileType zsh inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+augroup END
 
 " }}}
 " termdebug {{{
