@@ -1,3 +1,11 @@
+if &diff
+  set background=light
+  colorscheme solarized
+  let &guifont = 'Meslo LG M 9'
+
+  finish
+endif
+
 function! s:gvimrc_colorscheme(colors_name)
   if a:colors_name == 'luna'
     "highlight vimshellError gui=underline
