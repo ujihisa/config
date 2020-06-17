@@ -102,7 +102,7 @@ NeoBundle 'ujihisa/unite-haskellimport'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundleLazy 'thinca/vim-painter', {
