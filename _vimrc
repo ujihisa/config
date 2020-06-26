@@ -3029,6 +3029,27 @@ augroup lsp_install
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 " }}}
+" Terminal, be always normal {{{
+
+function! s:ujihisa_terminal_normal_enter() abort
+  if mode() == 't'
+    call feedkeys("\<C-w>N")
+  endif
+endfunction
+
+function! s:ujihisa_terminal_normal_leave() abort
+  if &buftype == 'terminal' && mode() != 't'
+    normal! i
+  end
+endfunction
+
+augroup ujihisa-terminal-normal
+  autocmd!
+  autocmd BufEnter * call s:ujihisa_terminal_normal_enter()
+  autocmd BufLeave * call s:ujihisa_terminal_normal_leave()
+augroup END
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
