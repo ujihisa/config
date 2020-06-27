@@ -3028,6 +3028,11 @@ augroup lsp_install
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+
+" mattn/vim-lsp-settings
+let g:lsp_settings_disable_suggestions = 1
+
 " }}}
 " Terminal, be always normal {{{
 
