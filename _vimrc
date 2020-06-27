@@ -3031,7 +3031,7 @@ augroup END
 
 
 " mattn/vim-lsp-settings
-let g:lsp_settings_disable_suggestions = 1
+let g:lsp_settings_enable_suggestions = 0
 
 " }}}
 " Terminal, be always normal {{{
