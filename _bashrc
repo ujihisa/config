@@ -11,7 +11,6 @@ PS1='[\u@\h \W]\$ '
 export VISUAL="vim"
 
 export PATH=/home/ujihisa/bin:$PATH:/home/ujihisa/Dropbox/bin:
-# export PATH=~/.rbenv/versions/2.3.1/bin/:$PATH
 export HISTSIZE=100000000000
 
 # https://github.com/quipper/monorepo/blob/develop/performance-processor/README.md
@@ -23,4 +22,5 @@ export PATH="$HOME/.anyenv/envs/exenv/bin:$PATH"
 eval "$(exenv init -)"
 
 AWS_PROFILE=qs
-# vim: set filetype=vim :
+export PATH=~/.rbenv/shims:$PATH
+# vim: set filetype=bash :
