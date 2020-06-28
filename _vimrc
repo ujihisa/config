@@ -1890,17 +1890,17 @@ function! s:vimrc_ruby()
   " compiler rspec
   " setlocal makeprg=~/bin/rspec-with-docker-compose
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/Dropbox/bin/rspec-with-docker-compose<Cr>
-  nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
-  nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
-  nnoremap <buffer> <S-space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
+  nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
+  nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
+  nnoremap <buffer> <S-space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
 
   if 1
     " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -type ruby/monorepo -srcfile '%s:%d'", expand('%:p:.'), getpos('.')[1])<Cr>
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -type ruby/monorepo -runner/concurrent_process/load 'bundle exec bin/rspec --no-color \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
-    nnoremap <buffer> <space>M :<C-u>write<Cr>:QuickRun -type ruby/monorepo<Cr>
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo<Cr>
+    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -type ruby/monorepo -runner/concurrent_process/load 'bundle exec bin/rspec --no-color \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
   endif
 endfunction
 
