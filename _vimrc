@@ -3025,7 +3025,7 @@ function! s:on_lsp_buffer_enabled() abort
 endfunction
 
 augroup lsp_install
-  au!
+  augroup!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
