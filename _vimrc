@@ -3043,7 +3043,7 @@ function! s:ujihisa_terminal_normal_enter() abort
 endfunction
 
 function! s:ujihisa_terminal_normal_leave() abort
-  if &buftype == 'terminal' && mode() != 't'
+  if &buftype == 'terminal' && term_getstatus('%') == 'running,normal'
     normal! i
   end
 endfunction
