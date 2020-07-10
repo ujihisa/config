@@ -12,11 +12,6 @@ call neobundle#begin(expand('~/.vimbundles'))
 let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
-" NeoBundle 'Shougo/neocomplete', {'depends': [
-"       \ 'Shougo/neoinclude.vim',
-"       \ 'Shougo/neco-syntax',
-"       \ 'Shougo/neco-vim',
-"       \ 'Shougo/neopairs.vim']}
 NeoBundle 'Shougo/deoplete.nvim', {'depends': [
      \ 'roxma/nvim-yarp',
      \ 'roxma/vim-hug-neovim-rpc',
@@ -735,19 +730,13 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " https://github.com/Shougo/deoplete.nvim/issues/1013
 " set completeopt+=noselect
 
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#max_list = 200
 let g:deoplete#enable_at_startup = 1
-
-" imap <M-l> <Plug>(neocomplete_start_unite_complete)
 
 " see also
 "   * snippets section
 
-let g:neocomplete#skip_auto_completion_time = "" " disabling it
 
 let g:necoghc_enable_detailed_browse = 1
-let g:neocomplete#lock_iminsert = 1
 
 
 function! s:my_cr_function() abort
@@ -2425,12 +2414,6 @@ augroup vitalista
   autocmd!
   " autocmd FileType vim call <SID>vitalista()
 augroup END
-
-" }}}
-" clang_complete.vim {{{
-
-
-" imap <C-l> <Plug>(neocomplete_start_unite_complete)
 
 " }}}
 " d.vim {{{
