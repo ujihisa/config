@@ -2514,26 +2514,6 @@ augroup END
 inoremap <M-?> ¿
 inoremap <M-1> ¡
 " }}}
-" mysql {{{
-function! HootsuiteMysqlQuickrunSetup()
-  if &l:filetype !=# 'mysql'
-    echoerr printf('filetype is not mysql: %s', &l:filetype)
-    return
-  endif
-
-  if !has_key(t:, 'vimrc_mysql_password')
-    let t:vimrc_mysql_password = inputsecret('password: ')
-  endif
-
-  let b:quickrun_config = {
-        \ 'exec': 'cat %s | %c %o %a',
-        \ 'command': 'mysql',
-        \ 'cmdopt': printf(
-        \   '-h 127.0.0.1 -P 3306 -u uji -p --password=%s hootsuite',
-        \   t:vimrc_mysql_password)
-        \ }
-endfunction
-" }}}
 " manga-brightest {{{
 let g:brightest#highlight = {
       \   "group" : "BrightestUnderline"}
