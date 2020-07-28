@@ -2997,12 +2997,6 @@ augroup END
 let g:lsp_settings_enable_suggestions = 0
 
 " }}}
-" disable lsp {{{
-
-" lsp on go is really unstable
-let g:lsp_auto_enable = 0
-
-" }}}
 " Terminal, be always normal {{{
 
 function! s:ujihisa_terminal_normal_enter() abort
