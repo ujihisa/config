@@ -179,6 +179,7 @@ NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
 " asyncomplete does not work
 NeoBundle 'mattn/vim-lsp-settings'
 NeoBundle 'lighttiger2505/deoplete-vim-lsp'
+NeoBundle 'vim-conf-live/pres.vim'
 
 " call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
