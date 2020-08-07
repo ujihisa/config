@@ -3021,6 +3021,11 @@ augroup END
 " }}}
 " {{{
 
+" module Aajskdfljadsklfjakdsljfklasdjfkal
+"   module Bajdfskljasklfdjaklsdjfkl
+"     class Cajskdfljaksdljfkladsjfklasjdfklasj < Hello
+"
+" Aajskdfljadsklfjakdsljfklasdjfkal\::Bajdfskljasklfdjaklsdjfkl::Cajskdfljaksdljfkladsjfklasjdfklasj
 function! s:ruby_yank_from_nested_class_to_fullpath() range abort
   let lines = getline(a:firstline, a:lastline)
   let @" = lines->map({_, line -> matchstr(line, '^\s*\(module\|class\)\s\+\zs\k\+')})->join('::')
@@ -3028,8 +3033,9 @@ endfunction
 
 augroup vimrc-ruby-yank-from-nested-class-to-fullpath
   autocmd!
-  autocmd FileType ruby vnoremap <silent><buffer> <M-8> :call <SID>ruby_yank_from_nested_class_to_fullpath()<Cr>
+  autocmd FileType ruby vnoremap <silent><buffer> <M-y> :call <SID>ruby_yank_from_nested_class_to_fullpath()<Cr>
 augroup END
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2
