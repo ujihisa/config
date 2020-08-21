@@ -3028,7 +3028,7 @@ augroup END
 " Aajskdfljadsklfjakdsljfklasdjfkal\::Bajdfskljasklfdjaklsdjfkl::Cajskdfljaksdljfkladsjfklasjdfklasj
 function! s:ruby_yank_from_nested_class_to_fullpath() range abort
   let lines = getline(a:firstline, a:lastline)
-  let @" = lines->map({_, line -> matchstr(line, '^\s*\(module\|class\)\s\+\zs\k\+')})->join('::')
+  let @" = lines->map({_, line -> matchstr(line, '^\s*\(module\|class\)\s\+\zs\k\+')})->filter({_, line -> line !=# '' })->join('::')
 endfunction
 
 augroup vimrc-ruby-yank-from-nested-class-to-fullpath
