@@ -464,7 +464,7 @@ vnoremap gy y:<C-u>let @" = substitute(@", "\n\s\*", ' ', 'g')<Cr>
 inoremap <M-o> <Esc>o<Esc>
 
 " }}}
-" kana/vim-smartinput {{{
+" lexima {{{
 
 if s:vimrc_use_lexima
   " let g:lexima_enable_basic_rules = 0
