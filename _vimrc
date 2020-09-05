@@ -1043,6 +1043,11 @@ call gina#custom#command#option(
       \ '--opener', 'vsplit'
       \)
 
+call gina#custom#mapping#nmap(
+      \ 'branch', '<BS>',
+      \ '<Plug>(gina-branch-delete)'
+      \)
+
 " }}}
 " html {{{
 function! s:HtmlEscape()
