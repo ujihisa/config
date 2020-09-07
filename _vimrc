@@ -1048,6 +1048,11 @@ call gina#custom#mapping#nmap(
       \ '<Plug>(gina-branch-delete)'
       \)
 
+call gina#custom#mapping#nmap(
+      \ 'branch', '<S-BS>',
+      \ '<Plug>(gina-branch-delete-force)'
+      \)
+
 " }}}
 " html {{{
 function! s:HtmlEscape()
@@ -3041,6 +3046,20 @@ augroup vimrc-ruby-yank-from-nested-class-to-fullpath
 augroup END
 
 " }}}
+" git without vimshell {{{
+
+function! Vimrc_remove_merged_branches() abort
+  echo system('git branch --merged && git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d')
+endfunction
+
+let g:unite_source_menu_menus.git = {
+      \   'description': 'from vimrc',
+      \   'command_candidates': [
+      \     ['vimrc_remove_merged_branches', 'call Vimrc_remove_merged_branches()'],
+      \   ],
+      \ }
+
+" }}}
 " __END__  "{{{1
-" vim: expandtab softtabstop=2 shiftwidth=2
+" vim: expandtab softtabstop=2 shiftwidth=2 :
 " vim: foldmethod=marker
