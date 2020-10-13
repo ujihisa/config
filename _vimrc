@@ -3025,6 +3025,8 @@ augroup ujihisa-terminal-normal
   autocmd!
   autocmd BufEnter * call s:ujihisa_terminal_normal_enter()
   autocmd BufLeave * call s:ujihisa_terminal_normal_leave()
+
+  autocmd TerminalOpen * nnoremap <buffer><silent> p :echo 'Experimental terminal p!'<Cr>i<C-w>"+
 augroup END
 
 " }}}
