@@ -770,6 +770,8 @@ endif
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
 
+call deoplete#custom#option('nofile_complete_filetypes', ["denite-filter", "vimshell"])
+
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
 " Load settings for eacy location.
