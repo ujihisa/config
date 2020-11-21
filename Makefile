@@ -1,7 +1,8 @@
-all: ~/.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config ~/.bashrc
+all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.vimshrc ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config ~/.bashrc
 
-~/.ctags:
-	ln -s $(HOME)/Dropbox/_ctags ~/.ctags
+~/.config/ctags/ujihisa.ctags:
+	mkdir -p ~/.config/ctags/
+	ln -s $(HOME)/Dropbox/dotfiles/ctags ~/.config/ctags/ujihisa.ctags
 
 ~/.gitconfig:
 	ln -s $(HOME)/Dropbox/_gitconfig ~/.gitconfig
