@@ -2408,9 +2408,9 @@ vmap ` <Plug>VSurround`
 " tyru/caw.vim {{{
 let g:caw_no_default_keymappings = 1
 nmap <M-.> <Plug>(caw:hatpos:toggle)
-nmap <M-,> <Plug>(caw:hatpos:uncomment)
+nmap <M-,> <Plug>(caw:wrap:comment)
 vmap <M-.> <Plug>(caw:hatpos:toggle)gv
-vmap <M-,> <Plug>(caw:hatpos:uncomment)gv
+vmap <M-,> <Plug>(caw:wrap:comment)gv
 " }}}
 " vitalista.vim {{{
 function! s:vitalista() abort
