@@ -362,12 +362,12 @@ nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1
 " nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <M-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 inoremap <silent> <M-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
-tnoremap <M-j>    <C-w>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
+tnoremap <M-j>    <Cmd>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 nnoremap <Space>ak  gT
 " nnoremap <D-k>  gT
 nnoremap <M-k>  gT
 inoremap <M-k>  <Esc>gT
-tnoremap <M-k>  <C-w>:tabprevious<Cr>
+tnoremap <M-k>  <Cmd>tabprevious<Cr>
 
 " Workaround for ;2u issue
 tnoremap <S-space> <space>
