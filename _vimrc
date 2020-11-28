@@ -369,6 +369,9 @@ nnoremap <M-k>  gT
 inoremap <M-k>  <Esc>gT
 tnoremap <M-k>  <C-w>:tabprevious<Cr>
 
+" Workaround for ;2u issue
+tnoremap <S-space> <space>
+
 nnoremap <M-[> :<C-u>e #<Cr>
 
 nnoremap <M-n> :<C-u>NeoSnippetEdit -split<Cr>
