@@ -1269,15 +1269,17 @@ augroup ujihisa-vimrc
 augroup END
 
 " MacVim is shit
-augroup ujihisa-vimrc
-  autocmd CmdwinEnter * nnoremap <buffer><expr> <Cr> CmdwinRun()
-  autocmd CmdwinEnter * inoremap <buffer><expr> <Cr> CmdwinRun()
-augroup END
+if v:false
+  augroup ujihisa-vimrc
+    autocmd CmdwinEnter * nnoremap <buffer><expr> <Cr> CmdwinRun()
+    autocmd CmdwinEnter * inoremap <buffer><expr> <Cr> CmdwinRun()
+  augroup END
 
-function! CmdwinRun()
-  let a = getline(line('.'))
-  return "\<Esc>\<C-c>\<C-c>:" . a . "\<Cr>"
-endfunction
+  function! CmdwinRun()
+    let a = getline(line('.'))
+    return "\<Esc>\<C-c>\<C-c>:" . a . "\<Cr>"
+  endfunction
+endif
 
 function! s:cmdwin_backslash()
   return matchstr(getline('.'), '\w\+') =~# '^s\(ubstitute\)\?$' ? '\' : smartchr#one_of('~/', '\')
