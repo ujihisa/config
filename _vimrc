@@ -354,8 +354,8 @@ inoremap <M-BS> <C-w>
 cnoremap <M-BS> <C-w>
 
 "nnoremap <Space>a  <Nop>
-nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
-nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
+nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
+nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
 nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
