@@ -179,6 +179,7 @@ NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
 NeoBundle 'mattn/vim-lsp-settings'
 NeoBundle 'lighttiger2505/deoplete-vim-lsp'
 NeoBundle 'vim-conf-live/pres.vim'
+NeoBundle 'machakann/vim-colorscheme-snowtrek'
 
 " call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
