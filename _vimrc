@@ -1727,8 +1727,20 @@ let g:neosnippet#snippets_directory = '~/.vimbundles/neosnippet-snippets/neosnip
 
 " }}}
 " vimshell platform-dependent aliases {{{
+
+" import aliases from bashrc for vimshell
+function! s:import_aliases_from_bashrc_for_vimshell() abort
+  let s:vimshell_aliases = []
+  for line in systemlist('bash -i -c alias')
+    let [lhs, rhs] = matchlist(line, '\(\w*\)=''\(.*\)''')[1:2]
+    let s:vimshell_aliases += [[lhs, rhs]]
+  endfor
+endfunction
+
+call s:import_aliases_from_bashrc_for_vimshell()
+
 let s:is_gentoo = vimproc#system('uname -a') =~ 'gentoo'
-function! s:vimshell_settings()
+function! s:vimshell_settings() abort
   if s:is_gentoo
     call vimshell#set_alias('time', 'exe time -p')
 
@@ -1746,7 +1758,12 @@ function! s:vimshell_settings()
   imap <buffer><expr> <CR> neosnippet#expandable() ?
       \ "\<Plug>(neosnippet_expand)\<Plug>(vimshell_enter)" : "\<Plug>(vimshell_enter)"
   inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+
+  for [lhs, rhs] in s:vimshell_aliases
+    call vimshell#set_alias(lhs, rhs)
+  endfor
 endfunction
+
 augroup vimshell-settings
   autocmd!
   autocmd FileType vimshell call s:vimshell_settings()
