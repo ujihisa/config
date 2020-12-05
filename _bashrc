@@ -23,4 +23,19 @@ eval "$(exenv init -)"
 
 AWS_PROFILE=qs
 export PATH=~/.rbenv/shims:$PATH
+
+export PATH=~/.npm-global/bin:$PATH
+
+# Aliases imported from vimshrc
+alias cp='cp -i'
+alias mv='mv -i'
+alias gss='git stash save'
+alias gsp='git stash pop'
+alias pus='git push'
+alias c='git checkout'
+alias s='git -c color.status=false status'
+alias b='git branch --no-color'
+alias co='git switch'
+alias d='git diff'
+
 # vim: set filetype=bash :
