@@ -775,7 +775,7 @@ endif
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
 
-call deoplete#custom#option('nofile_complete_filetypes', ["denite-filter", "vimshell"])
+call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'zsh'])
 
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
