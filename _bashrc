@@ -38,4 +38,7 @@ alias b='git branch --no-color'
 alias co='git switch'
 alias d='git diff'
 
+# Save bash commands immediately
+PROMPT_COMMAND='history -a;history -n'
+
 # vim: set filetype=bash :
