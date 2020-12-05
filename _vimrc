@@ -2846,6 +2846,8 @@ augroup deol-filetype
   autocmd FileType zsh inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
 augroup END
 
+let g:deol#shell_history_path = '~/.bash_history'
+
 " }}}
 " termdebug {{{
 packadd termdebug
