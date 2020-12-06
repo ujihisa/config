@@ -14,6 +14,7 @@ export PATH=/home/ujihisa/bin:$PATH:/home/ujihisa/Dropbox/bin:
 export HISTSIZE=100000000000
 
 # https://github.com/quipper/monorepo/blob/develop/performance-processor/README.md
+eval "$(rbenv init -)"
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 export PATH="$HOME/.anyenv/envs/erlenv/bin:$PATH"
@@ -25,6 +26,8 @@ AWS_PROFILE=qs
 export PATH=~/.rbenv/shims:$PATH
 
 export PATH=~/.npm-global/bin:$PATH
+
+export EDITOR="vim -u NONE -U NONE"
 
 # Aliases imported from vimshrc
 alias cp='cp -i'
