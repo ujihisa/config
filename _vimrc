@@ -3047,7 +3047,8 @@ let g:lsp_settings_enable_suggestions = 0
 
 function! s:ujihisa_terminal_normal_enter() abort
   if mode() == 't'
-    call feedkeys("\<C-w>N")
+    " call feedkeys("\<C-w>N")
+    call feedkeys("\<C-\>\<C-n>")
   endif
 endfunction
 
