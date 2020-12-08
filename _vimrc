@@ -484,7 +484,7 @@ if s:vimrc_use_lexima
         \   'at': 'jl\%#',
         \   'char': 'j',
         \   'input': '<BS><BS><Esc>'})
-	inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
+  inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
 
 
 else
