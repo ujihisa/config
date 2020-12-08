@@ -3045,26 +3045,70 @@ let g:lsp_settings_enable_suggestions = 0
 " }}}
 " Terminal, be always normal {{{
 
-function! s:ujihisa_terminal_normal_enter() abort
-  if mode() == 't'
-    " call feedkeys("\<C-w>N")
-    call feedkeys("\<C-\>\<C-n>")
-  endif
-endfunction
+if v:false
+  function! s:ujihisa_terminal_normal_enter() abort
+    if mode() == 't'
+      " call feedkeys("\<C-w>N")
+      call feedkeys("\<C-\>\<C-n>", 'n')
+    endif
+  endfunction
 
-function! s:ujihisa_terminal_normal_leave() abort
-  if &buftype == 'terminal' && term_getstatus('%') == 'running,normal'
-    normal! i
-  end
-endfunction
+  function! s:ujihisa_terminal_normal_leave() abort
+    if &buftype == 'terminal' && term_getstatus('%') == 'running,normal'
+      normal! i
+    endif
+  endfunction
 
-augroup ujihisa-terminal-normal
-  autocmd!
-  autocmd BufEnter * call s:ujihisa_terminal_normal_enter()
-  autocmd BufLeave * call s:ujihisa_terminal_normal_leave()
+  augroup ujihisa-terminal-normal
+    autocmd!
+    autocmd BufEnter * call s:ujihisa_terminal_normal_enter()
+    autocmd BufLeave * call s:ujihisa_terminal_normal_leave()
 
-  autocmd TerminalOpen * nnoremap <buffer><silent> p :echo 'Experimental terminal p!'<Cr>i<C-w>"+
-augroup END
+    autocmd TerminalOpen * nnoremap <buffer><silent> p :echo 'Experimental terminal p!'<Cr>i<C-w>"+
+  augroup END
+endif
+
+if v:false
+  function! s:vimrc_terminal_win_open() abort
+    autocmd BufEnter <buffer> call feedkeys("\<C-w>N")
+    autocmd BufLeave <buffer> normal! i
+  endfunction
+
+  augroup ujihisa-terminal-normal
+    autocmd!
+    autocmd TerminalWinOpen * call s:vimrc_terminal_win_open()
+  augroup END
+endif
+
+" thinca way
+if v:true
+  function s:on_terminal_win_open() abort
+    augroup vimrc-terminal-window
+      autocmd! * <buffer>
+      autocmd WinEnter <buffer> call s:on_terminal_win_enter()
+      autocmd WinLeave <buffer> call s:on_terminal_win_leave()
+    augroup END
+  endfunction
+
+  function s:on_terminal_win_enter() abort
+    if get(b:, 'term_normal', 0)
+      call feedkeys("\<C-\>\<C-n>", 'nt')
+      unlet b:term_normal
+    endif
+  endfunction
+
+  function s:on_terminal_win_leave() abort
+    if term_getstatus('%') is# 'running,normal'
+      let b:term_normal = 1
+      normal! i
+    endif
+  endfunction
+
+  augroup vimrc-terminal
+    autocmd!
+    autocmd TerminalWinOpen * call s:on_terminal_win_open()
+  augroup END
+endif
 
 " }}}
 " {{{
