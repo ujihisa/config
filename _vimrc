@@ -356,7 +356,19 @@ cnoremap <M-BS> <C-w>
 
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
-nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
+
+" nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
+
+function! s:space_as() abort
+  tabnew
+  pwd
+  Deol
+  call feedkeys("\<C-\>\<C-n>")
+  DeolEdit
+  " startinsert したいけどなぜか動かない
+endfunction
+
+nnoremap <Space>as  <Cmd>call <SID>space_as()<Cr>
 nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
