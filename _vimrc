@@ -2856,9 +2856,11 @@ nnoremap <space>d :<C-u>Deol -split=horizontal<Cr><C-w>:DeolEdit<Cr>
 augroup deol-filetype
   autocmd!
   autocmd FileType zsh inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+  autocmd FileType zsh inoremap <buffer> <expr><M-l>  unite#start_complete(['line'])
 augroup END
 
 let g:deol#shell_history_path = '~/.bash_history'
+let g:deol#shell_history_max = $HISTSIZE
 
 " }}}
 " termdebug {{{
