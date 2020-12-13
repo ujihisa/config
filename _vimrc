@@ -3157,6 +3157,11 @@ let g:unite_source_menu_menus.git = {
       \ }
 
 " }}}
+" create a new empty buffer with current register {{{
+
+nnoremap <silent> <Space>ap <Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
+
+" }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2 :
 " vim: foldmethod=marker
