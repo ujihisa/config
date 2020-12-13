@@ -3159,7 +3159,8 @@ let g:unite_source_menu_menus.git = {
 " }}}
 " create a new empty tab w/ buffer with current register {{{
 
-nnoremap <silent> <Space>ap <Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
+nnoremap <silent> <Space>ap  <Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
+vnoremap <silent> <Space>ap y<Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
 
 " }}}
 " __END__  "{{{1
