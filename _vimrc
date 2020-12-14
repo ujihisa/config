@@ -150,7 +150,7 @@ NeoBundle 'koron/translua-vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'thinca/vim-prettyprint'
 NeoBundle 'koron/iferr', {'rtp': 'vim'}
-NeoBundle 'pocke/vim-textobj-markdown'
+NeoBundle 'coachshea/vim-textobj-markdown'
 " morhetz/gruvbox
 NeoBundle 'tyru/empty-prompt.vim'
 
