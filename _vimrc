@@ -1785,12 +1785,18 @@ augroup END
 
 " col('$') <= col('.'): at the end of line or not, considering virtualedit.
 
-" it didn't work for some reason...
-" nnoremap <expr> <Plug>(vimrc-cmd-v-paste) col('$') <= col('.') ? '"+p' : '"+P'
-" inoremap <Plug>(vimrc-temporary-normal-mode) <C-o>
-" imap ö <Plug>(vimrc-temporary-normal-mode)<Plug>(vimrc-cmd-v-paste)
-inoremap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
-nnoremap <M-v> "+p
+
+function! s:vimrc_paste() abort
+  if getregtype('+') !=# 'v'
+    call setreg('+', getreg('+'), 'v')
+  endif
+  normal! "+Pl
+endfunction
+
+nnoremap <M-v> <Cmd>call <SID>vimrc_paste()<Cr>
+" inoremap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
+inoremap <M-v> <Cmd>call <SID>vimrc_paste()<Cr>
+
 vnoremap <M-v> d"+p
 
 set linespace=2
