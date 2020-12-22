@@ -1779,17 +1779,28 @@ augroup END
 " col('$') <= col('.'): at the end of line or not, considering virtualedit.
 
 
-function! s:vimrc_paste() abort
+function! s:vimrc_characterwisize_paste_normal() abort
   if getregtype('+') !=# 'v'
     call setreg('+', getreg('+'), 'v')
   endif
   normal! "+Pl
 endfunction
 
-nnoremap <M-v> <Cmd>call <SID>vimrc_paste()<Cr>
-" inoremap <expr> <M-v> col('$') <= col('.') ? '<C-o>"+p' : '<C-o>"+P'
-inoremap <M-v> <Cmd>call <SID>vimrc_paste()<Cr>
+nnoremap <M-v> <Cmd>call <SID>vimrc_characterwisize_paste_normal()<Cr>
 
+function! s:vimrc_characterwisize_paste_insert() abort
+  if getregtype('+') !=# 'v'
+    call setreg('+', getreg('+'), 'v')
+  endif
+
+  if col('$') <= col('.') " Dirty hack
+    normal! "+pl
+  else
+    normal! "+Pl
+  endif
+endfunction
+
+inoremap <M-v> <Cmd>call <SID>vimrc_characterwisize_paste_insert()<Cr>
 vnoremap <M-v> d"+p
 
 set linespace=2
