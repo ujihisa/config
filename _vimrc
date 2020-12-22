@@ -362,13 +362,10 @@ nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 function! s:space_as() abort
   tabnew
   pwd
-  Deol
-  call feedkeys("\<C-\>\<C-n>")
-  DeolEdit
-  " startinsert したいけどなぜか動かない
+  Deol -edit
 endfunction
 
-nnoremap <Space>as  <Cmd>call <SID>space_as()<Cr>
+nnoremap <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:Deol -edit -start-insert<Cr>
 nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
@@ -764,24 +761,20 @@ endfunction
 if s:vimrc_use_lexima
   " why doesn't lexima need deoplete#close_popup()?
 else
-  if exists('deoplete#close_popup')
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  endif
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 end
 
 if filereadable('/usr/local/opt/python3/bin/python3.6')
   let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
 endif
 
-if exists('deoplete#custom#source')
-  " the default fuzzy search = noise
-  call deoplete#custom#source('file', 'matchers', ['matcher_head'])
-  call deoplete#custom#source('file', 'enable_buffer_path', v:false)
+" the default fuzzy search = noise
+call deoplete#custom#source('file', 'matchers', ['matcher_head'])
+call deoplete#custom#source('file', 'enable_buffer_path', v:false)
 
-  " https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
-  call deoplete#custom#source('file', 'rank', 550)
-  call deoplete#custom#source('vimshell', 'rank', 600)
-endif
+" https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
+call deoplete#custom#source('file', 'rank', 550)
+call deoplete#custom#source('vimshell', 'rank', 600)
 
 " https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
 " let g:deoplete#enable_profile = 1
@@ -2857,12 +2850,12 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
-nnoremap <space>d :<C-u>Deol -split=horizontal<Cr><C-w>:DeolEdit<Cr>
+nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit<Cr>
 
 augroup deol-filetype
   autocmd!
   autocmd FileType zsh inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  autocmd FileType zsh inoremap <buffer> <expr><M-l> unite#start_complete(['line'])
+  autocmd FileType zsh inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
   autocmd FileType zsh nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
 augroup END
 
@@ -3066,7 +3059,7 @@ let g:lsp_settings_enable_suggestions = 0
 " }}}
 " Terminal, be always normal {{{
 
-if v:false
+if v:true
   function! s:ujihisa_terminal_normal_enter() abort
     if mode() == 't'
       " call feedkeys("\<C-w>N")
@@ -3102,7 +3095,7 @@ if v:false
 endif
 
 " thinca way
-if v:true
+if v:false
   function s:on_terminal_win_open() abort
     augroup vimrc-terminal-window
       autocmd! * <buffer>
@@ -3169,6 +3162,9 @@ let g:unite_source_menu_menus.git = {
 nnoremap <silent> <Space>ap  <Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
 vnoremap <silent> <Space>ap y<Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
 
+" }}}
+" prettyprint {{{
+let g:prettyprint_width = 80
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2 :

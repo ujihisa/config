@@ -100,14 +100,21 @@ if g:V.is_mac()
   inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
 endif
 
-if has('gui')
+if v:true
   winpos 99 0
   set columns=500
   set lines=100
-  VimShell
-  " normal! <C-u>
-  redraw!
+
+  " VimShell
+  " " normal! <C-u>
+  " redraw!
+
+  augroup gvimrc
+    autocmd!
+    autocmd VimEnter * Deol -edit -start-insert
+  augroup END
 endif
+
 " }}}
 " for vimshell {{{
 function! GvimrcVimshellColor()
