@@ -2861,7 +2861,7 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
-nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit<Cr>
+nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit -toggle<Cr>
 
 augroup deol-filetype
   autocmd!
