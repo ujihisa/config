@@ -40,6 +40,8 @@ alias s='git -c color.status=false status'
 alias b='git branch --no-color'
 alias co='git switch'
 alias d='git diff'
+alias gl='git pull --rebase'
+alias grh='git reset HEAD'
 
 # Save bash commands immediately
 PROMPT_COMMAND='history -a;history -n'
