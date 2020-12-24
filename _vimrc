@@ -2867,6 +2867,12 @@ augroup deol-filetype
   autocmd FileType zsh nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
 augroup END
 
+call lexima#add_rule({
+      \   'at': '^cd\%#',
+      \   'char': '<space>',
+      \   'input': '<BS><BS>:cd ',
+      \   'filetype': ['zsh']})
+
 let g:deol#shell_history_path = '~/.bash_history'
 let g:deol#shell_history_max = $HISTSIZE
 
