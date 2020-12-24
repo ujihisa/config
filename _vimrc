@@ -2867,14 +2867,15 @@ augroup deol-filetype
   autocmd FileType zsh nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
 augroup END
 
+let g:deol#shell_history_path = '~/.bash_history'
+let g:deol#shell_history_max = $HISTSIZE
+
+
 call lexima#add_rule({
       \   'at': '^cd\%#',
       \   'char': '<space>',
       \   'input': '<BS><BS>:cd ',
       \   'filetype': ['zsh']})
-
-let g:deol#shell_history_path = '~/.bash_history'
-let g:deol#shell_history_max = $HISTSIZE
 
 " }}}
 " termdebug {{{
@@ -2919,7 +2920,6 @@ augroup ujihisa-vimrc
   autocmd FileType netrw nunmap <buffer> s
 augroup END
 " }}}
-" }
 " rubykaigi 2019 {{{
 
 function! RubyKaigi2019() abort
@@ -3052,7 +3052,7 @@ endfunction
 
 autocmd VimEnter * ++once call s:empty_prompt_mappings()
 " }}}
-" {{{
+" lsp {{{
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -3139,7 +3139,7 @@ if v:false
 endif
 
 " }}}
-" {{{
+" Ruby nested module/class yank {{{
 
 " module Aajskdfljadsklfjakdsljfklasdjfkal
 "   module Bajdfskljasklfdjaklsdjfkl
