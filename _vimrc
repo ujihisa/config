@@ -1783,6 +1783,7 @@ function! s:vimrc_characterwisize_paste_normal() abort
   if getregtype('+') !=# 'v'
     call setreg('+', getreg('+'), 'v')
   endif
+
   normal! "+Pl
 endfunction
 
@@ -1793,14 +1794,10 @@ function! s:vimrc_characterwisize_paste_insert() abort
     call setreg('+', getreg('+'), 'v')
   endif
 
-  if col('$') <= col('.') " Dirty hack
-    normal! "+pl
-  else
-    normal! "+Pl
-  endif
+  return "\<C-r>+"
 endfunction
 
-inoremap <M-v> <Cmd>call <SID>vimrc_characterwisize_paste_insert()<Cr>
+inoremap <expr> <M-v> <SID>vimrc_characterwisize_paste_insert()
 vnoremap <M-v> d"+p
 
 set linespace=2
