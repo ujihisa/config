@@ -359,13 +359,7 @@ nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 
 " nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
 
-function! s:space_as() abort
-  tabnew
-  pwd
-  Deol -edit
-endfunction
-
-nnoremap <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:Deol -edit -start-insert<Cr>
+nnoremap <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:Deol -edit -start-insert -auto-cd -toggle<Cr>
 nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
@@ -2858,7 +2852,7 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
-nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit -toggle<Cr>
+nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit -toggle -auto-cd<Cr>
 
 augroup deol-filetype
   autocmd!

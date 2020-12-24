@@ -111,7 +111,7 @@ if v:true
 
   augroup gvimrc
     autocmd!
-    autocmd VimEnter * Deol -edit -start-insert -toggle
+    autocmd VimEnter * Deol -edit -start-insert -toggle -auto-cd
   augroup END
 endif
 
