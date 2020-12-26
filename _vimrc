@@ -1788,7 +1788,7 @@ function! s:vimrc_characterwisize_paste_insert() abort
     call setreg('+', getreg('+'), 'v')
   endif
 
-  return "\<C-r>+"
+  return "\<C-r>\<C-o>+"
 endfunction
 
 inoremap <expr> <M-v> <SID>vimrc_characterwisize_paste_insert()
