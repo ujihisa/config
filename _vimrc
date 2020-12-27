@@ -637,20 +637,11 @@ endif
 function! EmptyBufferP()
   return expand('%') ==# '' && !&modified
 endfunction
-"nnoremap <expr> <Space>v EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>new<Cr>:VimShell<Cr>"
-"nnoremap <expr> <Space>V EmptyBufferP() ? ":<C-u>VimShell<Cr>" : ":<C-u>vnew<Cr>:VimShell<Cr>"
 
-"nmap <Space>V <Plug>(vimshell_split_switch)
-"nmap <Space>v <Plug>(vimshell_switch)
 nmap <Space>v <Plug>(vimshell_split_switch)
-"nnoremap <Space>V :<C-u>VimShellCreate -split<Cr>
 
 nnoremap <Space>t :<C-u>terminal<Cr>
 nnoremap <Space><Space>t :terminal<Cr><C-w>T
-
-" close vimshell from anywhere
-" nmap <space>V <Plug>(vimshell_split_switch)<Plug>(vimshell_hide)
-nnoremap <space>V :<C-u>VimShellClose<Cr>
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
