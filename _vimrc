@@ -643,6 +643,7 @@ nmap <Space>v <Plug>(vimshell_split_switch)
 nnoremap <Space>t :<C-u>terminal<Cr>
 nnoremap <Space><Space>t :terminal<Cr><C-w>T
 
+
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_split_command = 'split'
@@ -2838,6 +2839,7 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
+nnoremap <space>v :<C-u>Deol -split=horizontal -start-insert -edit -toggle -auto-cd<Cr>
 nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit -toggle -auto-cd<Cr>
 
 augroup deol-filetype
