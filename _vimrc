@@ -2861,9 +2861,9 @@ let g:deol#shell_history_max = $HISTSIZE
 
 
 call lexima#add_rule({
-      \   'at': '^cd\%#',
+      \   'at': '^vim\%#',
       \   'char': '<space>',
-      \   'input': '<BS><BS>:cd ',
+      \   'input': '<BS><BS><BS>:new ',
       \   'filetype': ['zsh']})
 
 " }}}
