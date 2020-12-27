@@ -1770,9 +1770,6 @@ augroup END
 " }}}
 " copy&paste {{{
 
-" col('$') <= col('.'): at the end of line or not, considering virtualedit.
-
-
 function! s:vimrc_characterwisize_paste_normal() abort
   if getregtype('+') !=# 'v'
     call setreg('+', getreg('+'), 'v')
@@ -1793,8 +1790,6 @@ endfunction
 
 inoremap <expr> <M-v> <SID>vimrc_characterwisize_paste_insert()
 vnoremap <M-v> d"+p
-
-set linespace=2
 
 " }}}
 " jruby {{{
