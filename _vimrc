@@ -1122,6 +1122,7 @@ function! s:open_lib_and_corresponding_test(fname)
   execute "normal \<Plug>(quickrun)\<C-w>J\<C-w>7_"
 endfunction " }}}
 " gist.vim {{{
+
 if g:V.is_mac()
   let g:gist_clip_command = 'pbcopy'
 else
@@ -1129,6 +1130,7 @@ else
 endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
+
 " }}}
 command! LeftSpace call s:left_space() " {{{
 function! s:left_space()
@@ -1221,16 +1223,6 @@ if exists('g:loaded_vimrc') && g:loaded_vimrc == 0
 endif
 let g:loaded_vimrc = 1
 
-" }}}
-" ] for completion (dirty hack) {{{
-" see also: hack #135
-"augroup CloseOrCompl
-"  autocmd!
-"  autocmd BufWinEnter,BufNewFile ~/blog/dre/*.txt inoremap <buffer> <expr> ] CloseOrCompl()
-"augroup END
-
-"inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : "\<C-n>"
-" inoremap <expr> ] searchpair('\[', '', '\]', 'nbW', 'synIDattr(synID(line("."), col("."), 1), "name") =~? "String"') ? ']' : pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>"
 " }}}
 " Open junk file. by Shougo "{{{
 command! -nargs=0 JunkFile call s:open_junk_file()
