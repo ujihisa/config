@@ -1012,7 +1012,6 @@ augroup FiletypeAliases
   autocmd!
   autocmd FileType md set filetype=markdown
   autocmd FileType js set filetype=javascript
-  autocmd FileType cf set filetype=coffee
 augroup END
 
 " }}}
