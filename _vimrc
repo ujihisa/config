@@ -188,9 +188,13 @@ call neobundle#end()
 filetype plugin indent on
 
 " }}}
+" vimdiff skips vimrc load {{{
+
 if &diff
   finish
 endif
+
+" }}}
 " augroup ujihisa-vimrc {{{
 augroup ujihisa-vimrc
   autocmd!
