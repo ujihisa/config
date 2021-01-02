@@ -141,4 +141,7 @@ endfunction
 
 set guitablabel=%!GuiTabLabel()
 " }}}
+if filereadable(expand('~/Dropbox/bin/ujihisa-init.sh'))
+  silent call system('bash ~/Dropbox/bin/ujihisa-init.sh')
+endif
 " vim: foldmethod=marker
