@@ -2853,6 +2853,11 @@ call lexima#add_rule({
       \   'char': '<space>',
       \   'input': '<BS><BS><BS>:new ',
       \   'filetype': ['zsh']})
+call lexima#add_rule({
+      \   'at': '^cd\%#',
+      \   'char': '<space>',
+      \   'input': '<BS><BS>:cd ',
+      \   'filetype': ['zsh']})
 
 " }}}
 " termdebug {{{
