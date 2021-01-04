@@ -1,3 +1,4 @@
+" git/config/_vimrc_mini
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
@@ -8,21 +9,14 @@ endif
 call neobundle#begin(expand('~/.vimbundles'))
 
 let g:neobundle#enable_name_conversion = 1
-NeoBundle 'Shougo/deoplete.nvim', {'depends': [
-      \ 'roxma/nvim-yarp',
-      \ 'roxma/vim-hug-neovim-rpc',
-      \ 'Shougo/neoinclude.vim',
-      \ 'Shougo/neco-syntax',
-      \ 'Shougo/neco-vim',
-      \ 'Shougo/neopairs.vim']}
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/deol.nvim'
+
 call neobundle#end()
 
 filetype plugin indent on
 
-let g:deoplete#enable_at_startup = 1
-
 set langmenu=en_US.UTF-8
 language messages en_US.UTF-8
 source $VIMRUNTIME/menu.vim
+
+let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
