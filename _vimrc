@@ -2834,8 +2834,8 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
-nnoremap <space>v :<C-u>Deol -split=horizontal -start-insert -edit -toggle -auto-cd<Cr>
-nnoremap <space>d :<C-u>Deol -split=horizontal -start-insert -edit -toggle -auto-cd<Cr>
+nnoremap <space>v :<C-u>Deol -split=farright -start-insert -edit -toggle -auto-cd<Cr>
+nnoremap <space>d :<C-u>Deol -split=farleft -start-insert -edit -toggle -auto-cd<Cr>
 nnoremap <space><space>d :<C-u>Deol -split=vertical -start-insert -edit -toggle -auto-cd<Cr>
 
 augroup deol-filetype
@@ -3143,7 +3143,7 @@ augroup END
 " git without vimshell {{{
 
 function! Vimrc_remove_merged_branches() abort
-  echo system('git branch --merged && git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d')
+  QuickRun -runner system -exec 'git branch --merged && git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d'
 endfunction
 
 let g:unite_source_menu_menus.git = {
