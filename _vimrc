@@ -2848,7 +2848,7 @@ augroup END
 let g:deol#shell_history_path = '~/.bash_history'
 let g:deol#shell_history_max = $HISTSIZE
 
-
+if v:false
 call lexima#add_rule({
       \   'at': '^vim\%#',
       \   'char': '<space>',
@@ -2859,6 +2859,7 @@ call lexima#add_rule({
       \   'char': '<space>',
       \   'input': '<BS><BS>:cd ',
       \   'filetype': ['zsh']})
+endif
 
 " }}}
 " termdebug {{{
@@ -3056,7 +3057,7 @@ let g:lsp_settings_enable_suggestions = 0
 " }}}
 " Terminal, be always normal {{{
 
-if v:true
+if v:false " enable this again after fixing deol combination issue
   function! s:ujihisa_terminal_normal_enter() abort
     if mode() == 't'
       " call feedkeys("\<C-w>N")
