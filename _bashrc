@@ -44,7 +44,7 @@ alias gl='git pull --rebase'
 alias grh='git reset HEAD'
 
 # Save bash commands immediately
-PROMPT_COMMAND='history -a;history -n'
+PROMPT_COMMAND="${PROMPT_COMMAND}; history -a;history -n"
 
 HISTCONTROL=ignorespace
 
