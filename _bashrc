@@ -39,7 +39,7 @@ alias c='git checkout'
 alias s='git -c color.status=false status'
 alias b='git branch --no-color'
 alias co='git switch'
-alias d='git diff'
+alias d='git --no-pager diff'
 alias gl='git pull --rebase'
 alias grh='git reset HEAD'
 
