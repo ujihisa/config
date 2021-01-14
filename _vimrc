@@ -3057,7 +3057,7 @@ let g:lsp_settings_enable_suggestions = 0
 " }}}
 " Terminal, be always normal {{{
 
-if v:false " enable this again after fixing deol combination issue
+if v:true " enable this again after fixing deol combination issue
   function! s:ujihisa_terminal_normal_enter() abort
     if mode() == 't'
       " call feedkeys("\<C-w>N")
