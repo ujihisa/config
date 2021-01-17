@@ -9,14 +9,12 @@ endif
 call neobundle#begin(expand('~/.vimbundles'))
 
 let g:neobundle#enable_name_conversion = 1
-NeoBundle 'Shougo/deol.nvim'
+NeoBundle 'Shougo/deoplete.nvim', {'depends': [
+     \ 'roxma/nvim-yarp',
+     \ 'roxma/vim-hug-neovim-rpc']}
 
 call neobundle#end()
 
 filetype plugin indent on
 
-set langmenu=en_US.UTF-8
-language messages en_US.UTF-8
-source $VIMRUNTIME/menu.vim
-
-let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
+let g:deoplete#enable_at_startup = 1
