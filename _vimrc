@@ -761,6 +761,7 @@ endif
 " the default fuzzy search = noise
 call deoplete#custom#source('file', 'matchers', ['matcher_head'])
 call deoplete#custom#source('file', 'enable_buffer_path', v:false)
+call deoplete#custom#source('file', 'enable_slash_completion', v:true)
 
 " https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
 call deoplete#custom#source('file', 'rank', 550)
