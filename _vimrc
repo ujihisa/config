@@ -19,6 +19,7 @@ NeoBundle 'Shougo/deoplete.nvim', {'depends': [
      \ 'Shougo/neco-syntax',
      \ 'Shougo/neco-vim',
      \ 'Shougo/neopairs.vim']}
+NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
@@ -820,7 +821,7 @@ endfunction
 if globpath(&rtp, 'plugin/unite.vim') != ''
   nnoremap s <Nop>
   nnoremap sS :<C-u>Unite file_rec -default-action=split -direction=rightbelow<Cr>
-  nnoremap ss :<C-u>Unite file_rec/git file -default-action=split -direction=rightbelow -hide-source-names<Cr>
+  " nnoremap ss :<C-u>Unite file_rec/git file -default-action=split -direction=rightbelow -hide-source-names<Cr>
   nnoremap se :<C-u>Unite file_rec/async<Cr>
   nnoremap so :<C-u>Unite outline -auto-preview -buffer-name=outline<Cr>
   nnoremap sC :<C-u>Unite colorscheme -auto-preview<Cr>
@@ -3165,6 +3166,96 @@ vnoremap <silent> <Space>ap y<Cmd>tabnew<Cr>]p:call deletebufline('%', 1, 1)<Cr>
 " }}}
 " prettyprint {{{
 let g:prettyprint_width = 80
+" }}}
+" denite {{{
+
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  " nnoremap <silent><buffer><expr> d
+  "\ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <BS>
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> <tab>
+  \ denite#do_map('choose_action')
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+endfunction
+
+" Change file/rec command.
+call denite#custom#var('file/rec', 'command',
+\ ['git', 'grep', '--no-color'])
+
+" Change matchers.
+call denite#custom#source(
+\ 'file_mru', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
+
+" Change sorters.
+call denite#custom#source(
+\ 'file/rec', 'sorters', ['sorter/sublime'])
+
+" Change default action.
+call denite#custom#kind('file', 'default_action', 'split')
+
+if v:false
+  " Add custom menus
+  let s:menus = {}
+
+  let s:menus.zsh = {
+    \ 'description': 'Edit your import zsh configuration'
+    \ }
+  let s:menus.zsh.file_candidates = [
+    \ ['zshrc', '~/.config/zsh/.zshrc'],
+    \ ['zshenv', '~/.zshenv'],
+    \ ]
+
+  let s:menus.my_commands = {
+    \ 'description': 'Example commands'
+    \ }
+  let s:menus.my_commands.command_candidates = [
+    \ ['Split the window', 'vnew'],
+    \ ['Open zsh menu', 'Denite menu:zsh'],
+    \ ['Format code', 'FormatCode', 'go,python'],
+    \ ]
+
+  call denite#custom#var('menu', 'menus', s:menus)
+
+  " Ag command on grep source
+  call denite#custom#var('grep', {
+    \ 'command': ['ag'],
+    \ 'default_opts': ['-i', '--vimgrep'],
+    \ 'recursive_opts': [],
+    \ 'pattern_opt': [],
+    \ 'separator': ['--'],
+    \ 'final_opts': [],
+    \ })
+  endif
+
+" Define alias
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command',
+      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+" Change ignore_globs
+call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
+      \ [ '.git/', '.ropeproject/', '__pycache__/',
+      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+
+nnoremap ss :<C-u>Denite file/rec/git -direction=rightbelow<Cr>
+
 " }}}
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2 :
