@@ -3254,7 +3254,7 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
       \ [ '.git/', '.ropeproject/', '__pycache__/',
       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
-nnoremap ss :<C-u>Denite file/rec/git -direction=rightbelow<Cr>
+nnoremap ss :<C-u>Denite file/rec/git -direction=rightbelow -start-filter<Cr>
 
 " }}}
 " __END__  "{{{1
