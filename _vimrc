@@ -3255,6 +3255,7 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
 nnoremap ss :<C-u>Denite file/rec/git -direction=rightbelow -start-filter<Cr>
+nnoremap sr :<C-u>Denite -resume<Cr>
 
 " }}}
 " __END__  "{{{1
