@@ -1035,7 +1035,7 @@ nnoremap <Space>gH :<C-u>Gina show HEAD^ --opener=vsplit<Cr>
 
 nnoremap <silent> <Space>ga :<C-u>Gina add %:p<Cr>
 nnoremap <Space>gc :<C-u>Gina commit --verbose --opener=vsplit<Cr>
-nnoremap <Space>gp :<C-u>Gina!! push
+nnoremap <Space>gp :<C-u>Gina!! push -u
 nnoremap <Space>go :<C-u>Gina changes HEAD --opener=vsplit<Cr>
 nnoremap <Space>gO :<C-u>Gina changes HEAD~ --opener=vsplit<Cr>
 
