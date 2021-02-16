@@ -10,7 +10,7 @@ PS1='[\u@\h \W]\$ '
 
 export VISUAL="vim"
 
-export PATH=/home/ujihisa/bin:$PATH:/home/ujihisa/Dropbox/bin:
+export PATH=/home/ujihisa/bin:/home/ujihisa/Dropbox/bin:$PATH
 export HISTSIZE=100000000000
 
 # https://github.com/quipper/monorepo/blob/develop/performance-processor/README.md
