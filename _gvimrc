@@ -1,6 +1,6 @@
 if &diff
   set background=light
-  colorscheme solarized
+  colorscheme github
   let &guifont = 'Meslo LG M 9'
 
   finish
