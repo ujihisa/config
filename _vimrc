@@ -469,7 +469,7 @@ vmap <M-o> <Plug>(openbrowser-open)
 nmap <M-S-o> <Plug>(openbrowser-open-incognito)
 vmap <M-S-o> <Plug>(openbrowser-open-incognito)
 let g:openbrowser_browser_commands = [
-      \ {"name": "chromium",
+      \ {"name": 'xdg-open',
       \  "args": ["{browser}", "{uri}"]}]
 
 " yank without newlines
@@ -1906,13 +1906,13 @@ augroup END
 let g:quickrun_config['ruby/monorepo'] = {
       \ 'command': 'doo',
       \ 'runner': 'concurrent_process',
-      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.flush; x = gets; puts x; system x; end"'),
+      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.sync = true; x = gets; puts x; system x; end"'),
       \ 'runner/concurrent_process/load': 'bin/rspec --no-color "%S:."',
       \ 'runner/concurrent_process/prompt': '>>> '}
 let g:quickrun_config['ruby/monorepo/rails-test'] = {
       \ 'command': 'doo',
       \ 'runner': 'concurrent_process',
-      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.flush; x = gets; puts x; system x; end"'),
+      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.sync = true; x = gets; puts x; system x; end"'),
       \ 'runner/concurrent_process/load': 'bin/rails test "%S:."',
       \ 'runner/concurrent_process/prompt': '>>> '}
 
