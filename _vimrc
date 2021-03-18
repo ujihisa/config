@@ -44,13 +44,7 @@ NeoBundle 'thinca/vim-ft-clojure'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
-let s:vimrc_use_lexima = 1
-if s:vimrc_use_lexima
-  NeoBundle 'cohama/lexima.vim'
-else
-  NeoBundle 'kana/vim-smartinput'
-  NeoBundle 'cohama/vim-smartinput-endwise'
-endif
+NeoBundle 'cohama/lexima.vim'
 NeoBundle 'vim-jp/vital.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'veloce/vim-aldmeris'
@@ -481,162 +475,26 @@ inoremap <M-o> <Esc>o<Esc>
 " }}}
 " lexima {{{
 
-if s:vimrc_use_lexima
-  " let g:lexima_enable_basic_rules = 0
-  let g:lexima_enable_basic_rules = 0
-  let g:lexima_enable_newline_rules = 1
-  let g:lexima_enable_space_rules = 0
-  let g:lexima_enable_endwise_rules = 0
+" let g:lexima_enable_basic_rules = 0
+let g:lexima_enable_basic_rules = 0
+let g:lexima_enable_newline_rules = 1
+let g:lexima_enable_space_rules = 0
+let g:lexima_enable_endwise_rules = 0
 
-  " jlj = <Esc>
-  call lexima#add_rule({
-        \   'at': 'jl\%#',
-        \   'char': 'j',
-        \   'input': '<BS><BS><Esc>'})
-  inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
+" jlj = <Esc>
+call lexima#add_rule({
+      \   'at': 'jl\%#',
+      \   'char': 'j',
+      \   'input': '<BS><BS><Esc>'})
+inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
 
-
-else
-  " call smartinput#clear_rules()
-  let g:smartinput_no_default_key_mappings = 1
-
-  function! s:vimrc_smartinput_rules_add(x, ys) abort
-    call smartinput#map_to_trigger('i', a:x[0], a:x[0], a:x[0])
-    call smartinput#map_to_trigger('i', a:x[1], a:x[1], a:x[1])
-    for y in a:ys
-      call smartinput#define_rule(y)
-    endfor
-  endfunction
-  " excerpt from smartinput itself
-  call s:vimrc_smartinput_rules_add('()', [
-  \   {'at': '\%#', 'char': '(', 'input': '()<Left>'},
-  \   {'at': '\%#\_s*)', 'char': ')', 'input': '<C-r>=smartinput#_leave_block('')'')<Enter><Right>'},
-  \   {'at': '(\%#)', 'char': '<BS>', 'input': '<BS><Del>'},
-  \   {'at': '()\%#', 'char': '<BS>', 'input': '<BS><BS>'},
-  \   {'at': '\\\%#', 'char': '(', 'input': '('},
-  \   {'at': '(\%#)', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'},
-  \ ])
-  call s:vimrc_smartinput_rules_add('[]', [
-  \   {'at': '\%#', 'char': '[', 'input': '[]<Left>'},
-  \   {'at': '\%#\_s*\]', 'char': ']', 'input': '<C-r>=smartinput#_leave_block('']'')<Enter><Right>'},
-  \   {'at': '\[\%#\]', 'char': '<BS>', 'input': '<BS><Del>'},
-  \   {'at': '\[\]\%#', 'char': '<BS>', 'input': '<BS><BS>'},
-  \   {'at': '\\\%#', 'char': '[', 'input': '['},
-  \ ])
-  call s:vimrc_smartinput_rules_add('{}', [
-  \   {'at': '\%#', 'char': '{', 'input': '{}<Left>'},
-  \   {'at': '\%#\_s*}', 'char': '}', 'input': '<C-r>=smartinput#_leave_block(''}'')<Enter><Right>'},
-  \   {'at': '{\%#}', 'char': '<BS>', 'input': '<BS><Del>'},
-  \   {'at': '{}\%#', 'char': '<BS>', 'input': '<BS><BS>'},
-  \   {'at': '\\\%#', 'char': '{', 'input': '{'},
-  \   {'at': '{\%#}', 'char': '<Enter>', 'input': '<Enter><Enter><Up><Esc>"_S'},
-  \ ])
-
-
-  call smartinput_endwise#define_default_rules()
-
-  call smartinput#map_to_trigger('i', '<Plug>(vimrc-smartinput-bs)', '<Bs>', '<Bs>')
-
-  " jlj = <Esc>
-  call smartinput#map_to_trigger('i', 'j', 'j', 'j')
-  call smartinput#define_rule({
-        \   'at': 'jl\%#',
-        \   'char': 'j',
-        \   'input': '<BS><BS><Esc>'})
-
-  " uiu = ()
-  call smartinput#map_to_trigger('i', 'u', 'u', 'u')
-  call smartinput#define_rule({
-        \   'at': 'ui\%#',
-        \   'char': 'u',
-        \   'input': '<BS><BS>()<Left>'})
-
-  " {{ in scala string literal = ${}
-  call smartinput#map_to_trigger('i', '{', '{', '{')
-  call smartinput#define_rule({
-        \   'at': '{\%#}',
-        \   'char': '{',
-        \   'input': '<BS>${',
-        \   'filetype': ['scala'],
-        \   'syntax': ['String']})
-  call smartinput#define_rule({
-        \   'at': '{\%#',
-        \   'char': '{',
-        \   'input': '<BS>${}<Left>',
-        \   'filetype': ['scala'],
-        \   'syntax': ['String']})
-  " {{ in clojure string literal = ~{}
-  call smartinput#define_rule({
-        \   'at': '{\%#}',
-        \   'char': '{',
-        \   'input': '<BS>~{',
-        \   'filetype': ['clojure'],
-        \   'syntax': ['String']})
-  call smartinput#define_rule({
-        \   'at': '{\%#',
-        \   'char': '{',
-        \   'input': '<BS>~{}<Left>',
-        \   'filetype': ['clojure'],
-        \   'syntax': ['String']})
-  " (( in clojure string literal = ~()
-  call smartinput#map_to_trigger('i', '(', '(', '(')
-  call smartinput#define_rule({
-        \   'at': '(\%#)',
-        \   'char': '(',
-        \   'input': '<BS>~(',
-        \   'filetype': ['clojure'],
-        \   'syntax': ['String']})
-  call smartinput#define_rule({
-        \   'at': '(\%#',
-        \   'char': '(',
-        \   'input': '<BS>~()<Left>',
-        \   'filetype': ['clojure'],
-        \   'syntax': ['String']})
-
-  " s: in c++ = std::
-  call smartinput#map_to_trigger('i', ':', ':', ':')
-  call smartinput#define_rule({
-        \   'at': '\<s\%#',
-        \   'char': ':',
-        \   'input': 'td::',
-        \   'filetype': ['cpp']})
-        " \   'syntax': ['cBlock']
-  " std:: + : in c++ = s:
-  call smartinput#define_rule({
-        \   'at': '\<std::\%#',
-        \   'char': ':',
-        \   'input': '<BS><BS><BS><BS>:',
-        \   'filetype': ['cpp']})
-        " \   'syntax': ['cBlock']})
-
-  " <Cr> in vimshell closes popup in advance.
-  call smartinput#map_to_trigger('i', '<Cr>', '<Cr>', '<Cr>')
-  call smartinput#define_rule({
-        \   'at': '$\%#',
-        \   'char': '<Cr>',
-        \   'input': '<C-e><Cr>',
-        \   'filetype': ['vimshell', 'int-*']})
-
-  " <Bs> in vimshell closes it when it's on the head
-  " call smartinput#map_to_trigger('i', '<Bs>', '<Bs>', '<Bs>')
-  " call smartinput#define_rule({
-  "       \   'at': '\%#',
-  "       \   'char': '<Bs>',
-  "       \   'input': '<Plug>(vimshell_another_delete_backward_char)',
-  "       \   'filetype': ['vimshell']})
-endif
 "}}}
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
 
 if exists('deoplete#smart_close_popup')
-  if s:vimrc_use_lexima
-    " TODO
-    imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-lexima-bs)"
-  else
-    imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-smartinput-bs)"
-  endif
+  imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-lexima-bs)"
 endif
 " }}}
 " vimshell {{{
@@ -749,12 +607,6 @@ let g:necoghc_enable_detailed_browse = 1
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
 endfunction
-
-if s:vimrc_use_lexima
-  " why doesn't lexima need deoplete#close_popup()?
-else
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-end
 
 if filereadable('/usr/local/opt/python3/bin/python3.6')
   let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
@@ -911,15 +763,6 @@ augroup END
 " Big {{{
 "
 " ^big = Big
-if !s:vimrc_use_lexima
-  call smartinput#map_to_trigger('i', 'g', 'g', 'g')
-  call smartinput#define_rule({
-        \   'at': '^bi\%#',
-        \   'char': 'g',
-        \   'input': '<BS><BS>Big',
-        \   'filetype': ['vim']})
-endif
-
 command! Big wincmd _ | wincmd |
 " }}}
 if has('mac') " {{{
