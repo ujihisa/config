@@ -762,7 +762,6 @@ augroup END
 " }}}
 " Big {{{
 "
-" ^big = Big
 command! Big wincmd _ | wincmd |
 " }}}
 if has('mac') " {{{
