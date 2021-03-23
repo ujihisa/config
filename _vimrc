@@ -2688,6 +2688,7 @@ augroup deol-filetype
   autocmd FileType zsh inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
   autocmd FileType zsh inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
   autocmd FileType zsh nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
+  autocmd FileType zsh let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
 augroup END
 
 let g:deol#shell_history_path = '~/.bash_history'
