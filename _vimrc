@@ -625,7 +625,7 @@ call deoplete#custom#source('vimshell', 'rank', 600)
 " let g:deoplete#enable_profile = 1
 " call deoplete#enable_logging('DEBUG', 'deoplete.log')
 
-call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'zsh'])
+call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'bash'])
 
 " }}}
 " thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
@@ -2685,10 +2685,10 @@ nnoremap <space><space>d :<C-u>Deol -split=vertical -start-insert -edit -toggle 
 
 augroup deol-filetype
   autocmd!
-  autocmd FileType zsh inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  autocmd FileType zsh inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
-  autocmd FileType zsh nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
-  autocmd FileType zsh let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
+  autocmd FileType bash inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+  autocmd FileType bash inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
+  autocmd FileType bash nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
+  autocmd FileType bash let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
 augroup END
 
 let g:deol#shell_history_path = '~/.bash_history'
