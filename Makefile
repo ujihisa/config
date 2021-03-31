@@ -1,4 +1,4 @@
-all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config ~/.bashrc
+all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config ~/.bashrc ~/.config/systemd/user/quipper-tunnel.service
 
 ~/.config/ctags/ujihisa.ctags:
 	mkdir -p ~/.config/ctags/
@@ -51,3 +51,9 @@ all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/
 
 ~/.bashrc:
 	ln -s $(HOME)/git/config/_bashrc ~/.bashrc
+
+~/.config/systemd/user/quipper-tunnel.service:
+	# systemctl --user restart quipper-tunnel
+	# journalctl --user -u quipper-tunnel -f
+	mkdir -p ~/.config/systemd/user/
+	ln -s $(HOME)/Dropbox/dotfiles/config-systemd-user-quipper-tunnel.service ~/.config/systemd/user/quipper-tunnel.service
