@@ -2683,12 +2683,18 @@ nnoremap <space>v :<C-u>Deol -split=farright -start-insert -edit -toggle -auto-c
 nnoremap <space>d :<C-u>Deol -split=farleft -start-insert -edit -toggle -auto-cd<Cr>
 nnoremap <space><space>d :<C-u>Deol -split=vertical -start-insert -edit -toggle -auto-cd<Cr>
 
+function! s:deol_edit() abort
+  if bufname('%') =~# '^deol-edit'
+    inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
+    inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
+    nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
+    let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
+  endif
+endfunction
+
 augroup deol-filetype
   autocmd!
-  autocmd FileType bash inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  autocmd FileType bash inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
-  autocmd FileType bash nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
-  autocmd FileType bash let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
+  autocmd FileType bash call <SID>deol_edit()
 augroup END
 
 let g:deol#shell_history_path = '~/.bash_history'
