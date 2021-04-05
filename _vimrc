@@ -2997,7 +2997,7 @@ augroup END
 
 function! Vimrc_remove_merged_branches() abort
   " QuickRun -runner system -exec 'git branch --merged && git branch --merged | egrep -v "(^\\*|master|develop)" | xargs git branch -d'
-  QuickRun bash -src 'git branch --merged && git branch --merged | egrep -v "(^\\*|master|develop)" | xargs git branch -d'
+  QuickRun bash -exec '%c %o %s %a' -src 'git branch --merged && git branch --merged | egrep -v "(^\\*|master|develop)" | xargs git branch -d'
 endfunction
 
 let g:unite_source_menu_menus.git = {
