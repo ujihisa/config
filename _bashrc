@@ -22,6 +22,9 @@ eval "$(erlenv init -)"
 export PATH="$HOME/.anyenv/envs/exenv/bin:$PATH"
 eval "$(exenv init -)"
 
+# direnv
+eval "$(direnv hook bash)"
+
 AWS_PROFILE=qs
 export PATH=~/.rbenv/shims:$PATH
 
