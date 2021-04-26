@@ -18,3 +18,5 @@ call neobundle#end()
 filetype plugin indent on
 
 let g:deoplete#enable_at_startup = 1
+
+call deoplete#custom#source('file', 'enable_buffer_path', v:false)
