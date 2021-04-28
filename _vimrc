@@ -2688,7 +2688,7 @@ function! s:deol_edit() abort
   if bufname('%') =~# '^deol-edit'
     inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
     " inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
-    inoremap <buffer> <M-l> <Esc>:<C-u>Unite line:backward<Cr>
+    inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
     nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
     let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
   endif
