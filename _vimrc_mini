@@ -9,9 +9,10 @@ endif
 call neobundle#begin(expand('~/.vimbundles'))
 
 let g:neobundle#enable_name_conversion = 1
-NeoBundle 'Shougo/deoplete.nvim', {'depends': [
-     \ 'roxma/nvim-yarp',
-     \ 'roxma/vim-hug-neovim-rpc']}
+NeoBundle 'Shougo/denite.nvim', {'depends': [
+      \ 'roxma/nvim-yarp',
+      \ 'roxma/vim-hug-neovim-rpc']}
+NeoBundle 'Shougo/deol.nvim'
 
 call neobundle#end()
 
