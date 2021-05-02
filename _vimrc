@@ -2701,7 +2701,7 @@ augroup deol-filetype
 augroup END
 
 let g:deol#shell_history_path = '~/.bash_history'
-let g:deol#shell_history_max = $HISTSIZE
+let g:deol#shell_history_max = 100000000000
 
 if v:false
 call lexima#add_rule({

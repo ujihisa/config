@@ -19,5 +19,7 @@ call neobundle#end()
 filetype plugin indent on
 
 let g:deoplete#enable_at_startup = 1
+let g:deol#shell_history_path = '/tmp/fake_bash_history.txt'
+let g:deol#shell_history_max = 3000
 
-call deoplete#custom#source('file', 'enable_buffer_path', v:false)
+" call deoplete#custom#source('file', 'enable_buffer_path', v:false)
