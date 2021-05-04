@@ -2703,19 +2703,6 @@ augroup END
 let g:deol#shell_history_path = '~/.bash_history'
 let g:deol#shell_history_max = 100000000000
 
-if v:false
-call lexima#add_rule({
-      \   'at': '^vim\%#',
-      \   'char': '<space>',
-      \   'input': '<BS><BS><BS>:new ',
-      \   'filetype': ['zsh']})
-call lexima#add_rule({
-      \   'at': '^cd\%#',
-      \   'char': '<space>',
-      \   'input': '<BS><BS>:cd ',
-      \   'filetype': ['zsh']})
-endif
-
 " }}}
 " termdebug {{{
 packadd termdebug
