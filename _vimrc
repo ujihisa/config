@@ -2689,7 +2689,7 @@ function! s:deol_edit() abort
     inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
     " inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
     inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
-    inoremap <buffer> <M-l> <Esc>:<C-u>Denite -start-filter deol/history<Cr>
+    inoremap <buffer> <M-l> <Esc>:<C-u>Denite -start-filter -default-action=insert -unique deol/history<Cr>
     nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
     let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
   endif
@@ -3039,7 +3039,9 @@ endfunction
 call denite#custom#var('file/rec', 'command',
 \ ['git', 'grep', '--no-color'])
 
-" Change matchers.
+" matcher/fuzzy is just a noise, make sure it's disabled
+" call denite#custom#source('file/rec/git', 'matchers', [])
+"
 call denite#custom#source(
 \ 'file_mru', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
 
@@ -3094,7 +3096,7 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
       \ [ '.git/', '.ropeproject/', '__pycache__/',
       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
-nnoremap ss :<C-u>Denite file/rec/git -direction=rightbelow -start-filter<Cr>
+nnoremap ss :<C-u>Denite file/rec/git -direction=rightbelow -start-filter -matchers=matcher/substring<Cr>
 nnoremap sr :<C-u>Denite -resume<Cr>
 
 " }}}
