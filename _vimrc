@@ -3,6 +3,9 @@ if !has('gui') " {{{
 endif
 " }}}
 " neobundle {{{
+
+" Planning to migrate to dein, after finishing migrating from vimshell to deol,
+" and migrating from unite to denite, which are still working in progres.
 if has('vim_starting')
   set runtimepath+=~/.vimbundles/neobundle.vim
 endif
@@ -82,16 +85,13 @@ NeoBundle 'mopp/autodirmake.vim'
 NeoBundle 'vim-scripts/haskell.vim'
 NeoBundle 'git@github.com:ujihisa/nclipper.vim.git'
 NeoBundle 'tpope/vim-surround'
-" NeoBundle 'ujihisa/neco-look'
 NeoBundle 'vim-scripts/Rainbow-Parenthsis-Bundle'
 NeoBundle 'rhysd/textobj-wiw', {'depends': 'kana/vim-textobj-user'}
-" NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'ujihisa/unite-haskellimport'
 NeoBundle 'tsukkee/unite-help'
 NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'Shougo/unite-outline'
-" NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundleLazy 'thinca/vim-painter', {
@@ -103,7 +103,6 @@ NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'ujihisa/vimport'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'ujihisa/ft-cmake'
-" NeoBundle 'Rip-Rip/clang_complete'
 NeoBundle 'ujihisa/unite-include-reversed'
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'guns/vim-sexp'
@@ -112,7 +111,6 @@ NeoBundle 'Shougo/neomru.vim', {
       \   'Shougo/unite.vim']}
 NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'sickill/vim-monokai'
-" NeoBundle 'itchyny/vim-cursorword'
 NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
       \ ['ft-mongo', 'metaffer', 'neochat.vim'])
@@ -146,25 +144,8 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'thinca/vim-prettyprint'
 NeoBundle 'koron/iferr', {'rtp': 'vim'}
 NeoBundle 'coachshea/vim-textobj-markdown'
-" morhetz/gruvbox
 NeoBundle 'tyru/empty-prompt.vim'
 
-if 0
-  NeoBundle 'Shougo/vinarise.vim'
-  NeoBundle 'udalov/kotlin-vim'
-  NeoBundle 'Shougo/echodoc'
-  " NeoBundle 'ujihisa/repl.vim'
-  " NeoBundle 'Shougo/vimfiler'
-  NeoBundle 'Shougo/vesting'
-  " NeoBundle 'tpope/vim-fireplace'
-  NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-  NeoBundle 'mrkn/mrkn256.vim', 'light_background'
-  NeoBundle 'shiracha/shiracha-vim'
-  NeoBundle 'Pychimp/vim-luna'
-  NeoBundle 'ujihisa/unite-font'
-  NeoBundle 'ujihisa/unite-equery'
-  NeoBundle 'ujihisa/unite-gem'
-endif
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nightsense/office'
 NeoBundle 'MaxMEllon/vim-jsx-pretty', {'depends': 'pangloss/vim-javascript'}
@@ -177,8 +158,6 @@ NeoBundle 'vim-conf-live/pres.vim'
 NeoBundle 'machakann/vim-colorscheme-snowtrek'
 NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
-
-" call neobundle#local("~/.vimbundles", {}, ['feed-statusline.vim'])
 
 call neobundle#end()
 
@@ -285,12 +264,6 @@ else
   " incsearch
   " nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
 end
-
-" insearch uses them
-" nnoremap / :<C-u>set hlsearch<Return>/
-" nnoremap ? :<C-u>set hlsearch<Return>?
-" nnoremap * :<C-u>set hlsearch<Return>*
-" nnoremap # :<C-u>set hlsearch<Return>#
 
 command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
 nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
@@ -1743,9 +1716,6 @@ augroup END
 " }}}
 " ruby {{{
 
-" monorepo
-      "\ 'cmdopt': '-f bin/concprocsh',
-      \ 'cmdopt': '-f bash -c "echo -n \">>> \"; while read line; do echo $line; eval $line; echo -n \">>> \"; done"',
 let g:quickrun_config['ruby/monorepo'] = {
       \ 'command': 'doo',
       \ 'runner': 'concurrent_process',
@@ -1768,7 +1738,6 @@ function! s:vimrc_ruby()
   nnoremap <buffer> <S-space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
-
 
   if !filereadable('bin/rspec') && filereadable('bin/rails')
     nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo/rails-test<Cr>
@@ -2442,22 +2411,6 @@ map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
 map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
 map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
 map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
-
-" }}}
-" PM3 (concproc) -- just for now {{{
-
-" if 0
-  function! s:cpcp() abort
-    let s:V = vital#of('vital')
-    let s:CP = s:V.import('ConcurrentProcess')
-
-    let label = s:CP.of('sh -c "sleep 2; echo done"', '', [
-          \ ['*read-all*', 'x']])
-    echomsg string([s:CP.consume(label, 'x')])
-    echomsg string([s:CP.consume_all_blocking(label, 'x', 3)])
-  endfunction
-  nnoremap <Space>[ :<C-u>call <SID>cpcp()<Cr>
-" endif
 
 " }}}
 " cursorword {{{
