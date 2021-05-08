@@ -205,10 +205,10 @@ set backspace=indent,eol,start
 set modeline
 set t_Co=256
 set cmdheight=3
-" http://vim-users.jp/2009/06/hack32/
+" https://vim-jp.org/vim-users-jp/2009/06/26/Hack-32.html
 " set directory-=.
 set directory=~/tmp/
-" http://vim-users.jp/2010/07/hack162/
+" https://vim-jp.org/vim-users-jp/2010/07/19/Hack-162.html
 if has('persistent_undo')
   set undodir=~/.vimundo
   augroup ujihisa-vimrc
@@ -597,7 +597,7 @@ call deoplete#custom#source('vimshell', 'rank', 600)
 call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'bash'])
 
 " }}}
-" thinca's local vimrc http://vim-users.jp/2009/12/hack112/ {{{
+" thinca's local vimrc https://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html {{{
 " Load settings for eacy location.
 augroup ujihisa-vimrc
   autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
@@ -821,7 +821,7 @@ let g:quickrun_config.jq = {
 "     \ },
 
 " }}}
-" filetype aliases http://vim-users.jp/2010/04/hack138/ {{{
+" filetype aliases https://vim-jp.org/vim-users-jp/2010/04/10/Hack-138.html {{{
 augroup FiletypeAliases
   autocmd!
   autocmd FileType md set filetype=markdown
@@ -1053,7 +1053,7 @@ endfunction
 
 " }}}
 " vim filetype specific conf in general  {{{
-" also for No Command-line window by Shougo http://vim-users.jp/2010/07/hack161/
+" also for No Command-line window by Shougo https://vim-jp.org/vim-users-jp/2010/07/14/Hack-161.html
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
@@ -1438,7 +1438,7 @@ vnoremap ] t]
 "vnoremap [ t[
 
 " }}}
-" hack 104 http://vim-users.jp/2009/11/hack104/ {{{
+" hack 104 https://vim-jp.org/vim-users-jp/2009/11/25/Hack-104.html {{{
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " }}}
 " golden ratio {{{
