@@ -238,13 +238,9 @@ set spelllang=en,cjk
 " MacVim default is 5. Stupid
 set scrolloff=0
 
-if has('balloon_eval')
-  set noballooneval
-endif
-
-" scala
-" set wildignore+=*/target/*
-"   disabled because this also disables <C-x><C-f> :(
+" if has('balloon_eval')
+"   set noballooneval
+" endif
 
 " }}}
 " landscape / portrait detect {{{
