@@ -215,7 +215,7 @@ if has('persistent_undo')
     autocmd BufReadPre ~/* setlocal undofile
   augroup END
 endif
-" set equalalways
+set noequalalways
 set eadirection=ver
 set updatetime=500
 set timeoutlen=300
