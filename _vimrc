@@ -184,7 +184,6 @@ endif
 " }}}
 " settings {{{
 set encoding=utf-8
-set termencoding=utf-8
 set fileformats=unix,dos,mac
 set ignorecase
 set smartcase
