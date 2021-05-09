@@ -2938,10 +2938,16 @@ function! Vimrc_remove_merged_branches() abort
   QuickRun bash -exec '%c %o %s %a' -src 'git branch --merged && git branch --merged | egrep -v "(^\\*|master|develop)" | xargs git branch -d'
 endfunction
 
+function! Vimrc_git_pull_rebase() abort
+  QuickRun bash -exec '%c %o %s %a' -src 'git pull --rebase'
+endfunction
+
+
 let g:unite_source_menu_menus.git = {
       \   'description': 'from vimrc',
       \   'command_candidates': [
-      \     ['vimrc_remove_merged_branches', 'call Vimrc_remove_merged_branches()'],
+      \     ['Pull', 'call Vimrc_git_pull_rebase()'],
+      \     ['Remove merged branches', 'call Vimrc_remove_merged_branches()'],
       \   ],
       \ }
 
