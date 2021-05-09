@@ -2638,7 +2638,7 @@ function! s:deol_edit() abort
     " inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
     inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
     inoremap <buffer> <M-l> <Esc>:<C-u>Denite -start-filter -default-action=insert -unique deol/history<Cr>
-    nnoremap <buffer> <M-l> <Cmd>resize 3<Cr>
+    nnoremap <buffer> <M-l> <Cmd>resize 5<Cr>
     let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
   endif
 endfunction
