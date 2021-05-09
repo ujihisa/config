@@ -328,7 +328,7 @@ nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 
 " nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
 
-nnoremap <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:Deol -editwinheight=5 -edit -start-insert -auto-cd -toggle<Cr>
+nnoremap <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:Deol -edit_winheight=5 -edit -start-insert -auto-cd -toggle<Cr>
 nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
@@ -2628,9 +2628,9 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
-nnoremap <space>v :<C-u>Deol -editwinheight=5 -split=farright -start-insert -edit -toggle -auto-cd<Cr>
-nnoremap <space>d :<C-u>Deol -editwinheight=5 -split=farleft -start-insert -edit -toggle -auto-cd<Cr>
-nnoremap <space><space>d :<C-u>Deol -editwinheight=5 -split=vertical -start-insert -edit -toggle -auto-cd<Cr>
+nnoremap <space>v :<C-u>Deol -edit_winheight=5 -split=farright -start-insert -edit -toggle -auto-cd<Cr>
+nnoremap <space>d :<C-u>Deol -edit_winheight=5 -split=farleft -start-insert -edit -toggle -auto-cd<Cr>
+nnoremap <space><space>d :<C-u>Deol -edit_winheight=5 -split=vertical -start-insert -edit -toggle -auto-cd<Cr>
 
 function! s:deol_edit() abort
   if bufname('%') =~# '^deol-edit'
