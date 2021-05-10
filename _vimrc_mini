@@ -13,6 +13,10 @@ NeoBundle 'Shougo/denite.nvim', {'depends': [
       \ 'roxma/nvim-yarp',
       \ 'roxma/vim-hug-neovim-rpc']}
 NeoBundle 'Shougo/deol.nvim'
+NeoBundle 'Shougo/deoplete.nvim', {'depends': [
+     \ 'roxma/nvim-yarp',
+     \ 'roxma/vim-hug-neovim-rpc',
+     \ ]}
 
 call neobundle#end()
 
