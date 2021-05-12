@@ -23,7 +23,9 @@ export PATH="$HOME/.anyenv/envs/exenv/bin:$PATH"
 eval "$(exenv init -)"
 
 # direnv
-eval "$(direnv hook bash)"
+if [ -x "$(command -v direnv)" ]; then
+  eval "$(direnv hook bash)"
+fi
 
 AWS_PROFILE=qs
 export PATH=~/.rbenv/shims:$PATH
