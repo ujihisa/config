@@ -1,6 +1,5 @@
 " git/config/_vimrc_mini
-unlet! skip_defaults_vim
-source $VIMRUNTIME/defaults.vim
+set nocompatible
 
 if has('vim_starting')
   set runtimepath+=~/.vimbundles/neobundle.vim
@@ -9,21 +8,10 @@ endif
 call neobundle#begin(expand('~/.vimbundles'))
 
 let g:neobundle#enable_name_conversion = 1
-NeoBundle 'Shougo/denite.nvim', {'depends': [
-      \ 'roxma/nvim-yarp',
-      \ 'roxma/vim-hug-neovim-rpc']}
-NeoBundle 'Shougo/deol.nvim'
-NeoBundle 'Shougo/deoplete.nvim', {'depends': [
-     \ 'roxma/nvim-yarp',
-     \ 'roxma/vim-hug-neovim-rpc',
-     \ ]}
+NeoBundle 'Shougo/denite.nvim', {'depends': ['roxma/nvim-yarp', 'roxma/vim-hug-neovim-rpc']}
 
 call neobundle#end()
 
 filetype plugin indent on
 
-let g:deoplete#enable_at_startup = 1
-let g:deol#shell_history_path = '/tmp/fake_bash_history.txt'
-let g:deol#shell_history_max = 3000
-
-" call deoplete#custom#source('file', 'enable_buffer_path', v:false)
+nnoremap ss :<C-u>Denite file/rec -start-filter<Cr>
