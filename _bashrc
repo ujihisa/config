@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+PS1="\e[0;32m\][\u@\h \W]\$\e[0m\] "
 
 export VISUAL="vim"
 
@@ -54,5 +54,8 @@ PROMPT_COMMAND="${PROMPT_COMMAND}; history -a;history -n"
 
 HISTCONTROL=ignorespace
 
+alias kgp='kubectl get pods'
+
+# export KUBECONFIG=~/.kube/config:~/.kube/virtualbox_config
 
 # vim: set filetype=bash :
