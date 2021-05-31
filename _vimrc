@@ -2946,12 +2946,17 @@ function! Vimrc_git_pull_rebase() abort
   QuickRun bash -exec '%c %o %s %a' -src 'git pull --rebase'
 endfunction
 
+function! Vimrc_git_gc() abort
+  QuickRun bash -exec '%c %o %s %a' -src 'git fetch --prune && git gc && git remote prune origin'
+endfunction
+
 
 let g:unite_source_menu_menus.git = {
       \   'description': 'from vimrc',
       \   'command_candidates': [
       \     ['Pull', 'call Vimrc_git_pull_rebase()'],
       \     ['Remove merged branches', 'call Vimrc_remove_merged_branches()'],
+      \     ['GC', 'call Vimrc_git_gc()'],
       \   ],
       \ }
 
