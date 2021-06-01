@@ -1715,19 +1715,6 @@ augroup END
 " }}}
 " ruby {{{
 
-let g:quickrun_config['ruby/monorepo'] = {
-      \ 'command': 'doo',
-      \ 'runner': 'concurrent_process',
-      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.sync = true; x = gets; puts x; system x; end"'),
-      \ 'runner/concurrent_process/load': 'bin/rspec --no-color "%S:."',
-      \ 'runner/concurrent_process/prompt': '>>> '}
-let g:quickrun_config['ruby/monorepo/rails-test'] = {
-      \ 'command': 'doo',
-      \ 'runner': 'concurrent_process',
-      \ 'cmdopt': printf('-f ruby -e "loop do print \">>> \"; STDOUT.sync = true; x = gets; puts x; system x; end"'),
-      \ 'runner/concurrent_process/load': 'bin/rails test "%S:."',
-      \ 'runner/concurrent_process/prompt': '>>> '}
-
 function! s:vimrc_ruby()
   " compiler rspec
   " setlocal makeprg=~/bin/rspec-with-docker-compose
@@ -1739,10 +1726,11 @@ function! s:vimrc_ruby()
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
   if !filereadable('bin/rspec') && filereadable('bin/rails')
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo/rails-test<Cr>
+    " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo/rails-test<Cr>
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rails test %s'", expand('%s'))<Cr>
   else
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo<Cr>
-    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -type ruby/monorepo -runner/concurrent_process/load 'bin/rspec --no-color \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec --no-color \"%s\"'", expand('%s'))<Cr>
+    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec --no-color \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
   endif
 endfunction
 
