@@ -2638,6 +2638,8 @@ endfunction
 augroup deol-filetype
   autocmd!
   autocmd FileType bash call <SID>deol_edit()
+  " autocmd FileType deol let &l:termwinsize = printf('0*%d', winwidth('.'))
+  autocmd FileType deol setlocal termwinsize=0*120
 augroup END
 
 let g:deol#shell_history_path = '~/.bash_history'
