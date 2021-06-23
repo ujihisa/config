@@ -1729,8 +1729,8 @@ function! s:vimrc_ruby()
     " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo/rails-test<Cr>
     nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rails test %s'", expand('%s'))<Cr>
   else
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec --no-color \"%s\"'", expand('%s'))<Cr>
-    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec --no-color \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec \"%s\"'", expand('%s'))<Cr>
+    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
   endif
 endfunction
 
