@@ -158,6 +158,7 @@ NeoBundle 'vim-conf-live/pres.vim'
 NeoBundle 'machakann/vim-colorscheme-snowtrek'
 NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
+NeoBundle 'thinca/vim-breadcrumbs'
 
 call neobundle#end()
 
@@ -3051,6 +3052,11 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 
 nnoremap ss :<C-u>Denite file/rec/git -matchers=matcher/substring -start-filter<Cr>
 nnoremap sr :<C-u>Denite -resume -start-filter<Cr>
+
+" }}}
+" breadcrumbs {{{
+
+let g:breadcrumbs#toplevel_placeholder = '/'
 
 " }}}
 " __END__  "{{{1
