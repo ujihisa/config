@@ -2352,10 +2352,6 @@ augroup vimrc-ansible
 augroup END
 
 " }}}
-" Spanish {{{
-inoremap <M-?> ¿
-inoremap <M-1> ¡
-" }}}
 " manga-brightest {{{
 let g:brightest#highlight = {
       \   "group" : "BrightestUnderline"}
