@@ -2474,8 +2474,6 @@ endfunction
 command! -nargs=0 ScalaYankCurrentPackage call s:ujihisa_scala_yank_current_package()
 
 " }}}
-" neochat {{{
-" }}}
 " go {{{
 function! s:vim_go_test_or_quickrun() abort
   if expand('%') =~# '.go$'
