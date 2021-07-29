@@ -625,13 +625,6 @@ endfunction
 " }}}
 " My commands {{{
 command! -nargs=0 OpenVimrcTab call OpenVimrcTab()
-command! -nargs=0 Ctags call Ctags()
-
-function! Ctags()
-  let cmdname = globpath(&rtp, 'plugin/vimproc.vim') != '' ? 'VimProcBang' : '!'
-  execute cmdname 'ctags -R'
-  NeoCompleteTagMakeCache
-endfunction
 
 " }}}
 command! SplitNicely  call s:split_nicely() " {{{
