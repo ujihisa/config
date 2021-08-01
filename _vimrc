@@ -2932,9 +2932,9 @@ endfunction
 let g:unite_source_menu_menus.git = {
       \   'description': 'from vimrc',
       \   'command_candidates': [
-      \     ['Pull', 'call Vimrc_git_pull_rebase()'],
+      \     ['git pull --rebase', 'call Vimrc_git_pull_rebase()'],
       \     ['Remove merged branches', 'call Vimrc_remove_merged_branches()'],
-      \     ['GC', 'call Vimrc_git_gc()'],
+      \     ['git fetch --prune && git gc && git remote prune origin', 'call Vimrc_git_gc()'],
       \   ],
       \ }
 
