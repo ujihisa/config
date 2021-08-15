@@ -2925,7 +2925,7 @@ function! Vimrc_git_pull_rebase() abort
 endfunction
 
 function! Vimrc_git_gc() abort
-  QuickRun bash -exec '%c %o %s %a' -src 'git fetch --prune && git gc && git remote prune origin'
+  QuickRun bash -exec '%c %o %s %a' -src 'git fetch --prune && git gc && git remote prune origin && git prune'
 endfunction
 
 
