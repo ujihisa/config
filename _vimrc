@@ -160,6 +160,15 @@ NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'thinca/vim-breadcrumbs'
 
+if v:false
+  NeoBundle 'vim-denops/denops.vim'
+  NeoBundle 'vim-denops/denops-helloworld.vim'
+
+  NeoBundle 'Shougo/ddc.vim'
+  NeoBundle 'Shougo/ddc-matcher_head'
+  NeoBundle 'Shougo/ddc-sorter_rank'
+endif
+
 call neobundle#end()
 
 filetype plugin indent on
@@ -3044,6 +3053,23 @@ nnoremap sr :<C-u>Denite -resume -start-filter<Cr>
 " breadcrumbs {{{
 
 let g:breadcrumbs#toplevel_placeholder = '/'
+
+" }}}
+" ddc.vim {{{
+
+if v:false
+  call ddc#custom#patch_global('completionMode', 'manual')
+
+  " https://github.com/Shougo/ddc-matcher_head
+  " https://github.com/Shougo/ddc-sorter_rank
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+          \   'matchers': ['matcher_head'],
+          \   'sorters': ['sorter_rank']},
+          \ })
+
+  call ddc#enable()
+endif
 
 " }}}
 " __END__  "{{{1
