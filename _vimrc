@@ -2978,6 +2978,8 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
   nnoremap <silent><buffer><expr> <tab>
   \ denite#do_map('choose_action')
+  nnoremap <silent><buffer><expr> <C-l>
+  \ denite#do_map('redraw')
 endfunction
 
 autocmd FileType denite-filter call s:denite_filter_my_settings()
