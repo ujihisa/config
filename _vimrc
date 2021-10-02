@@ -1722,18 +1722,18 @@ function! s:vimrc_ruby()
   " compiler rspec
   " setlocal makeprg=~/bin/rspec-with-docker-compose
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -command /Users/ujihisa/Dropbox/bin/rspec-with-docker-compose<Cr>
-  nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s'", expand('%s'))<Cr>
-  nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
-  nnoremap <buffer> <S-space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
+  nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo env bundle exec rspec %s'", expand('%s'))<Cr>
+  nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
+  nnoremap <buffer> <S-space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'time doo env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
-  " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo -f env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
+  " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
   if !filereadable('bin/rspec') && filereadable('bin/rails')
     " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo/rails-test<Cr>
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rails test %s'", expand('%s'))<Cr>
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rails test %s'", expand('%s'))<Cr>
   else
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec \"%s\"'", expand('%s'))<Cr>
-    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo -f bin/rspec \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec \"%s\"'", expand('%s'))<Cr>
+    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
   endif
 endfunction
 
