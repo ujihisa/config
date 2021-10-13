@@ -15,14 +15,23 @@ call neobundle#begin(expand('~/.vimbundles'))
 let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
-NeoBundle 'Shougo/deoplete.nvim', {'depends': [
-     \ 'roxma/nvim-yarp',
-     \ 'roxma/vim-hug-neovim-rpc',
-     \ 'Shougo/neoinclude.vim',
-     \ 'Shougo/neco-syntax',
-     \ 'Shougo/neco-vim',
-     \ 'Shougo/neopairs.vim']}
-NeoBundle 'Shougo/denite.nvim'
+
+if v:false
+  NeoBundle 'Shougo/deoplete.nvim', {'depends': [
+       \ 'roxma/nvim-yarp',
+       \ 'roxma/vim-hug-neovim-rpc',
+       \ 'Shougo/neoinclude.vim',
+       \ 'Shougo/neco-syntax',
+       \ 'Shougo/neco-vim',
+       \ 'Shougo/neopairs.vim']}
+
+  NeoBundle 'lighttiger2505/deoplete-vim-lsp'
+endif
+
+NeoBundle 'Shougo/denite.nvim', {'depends': [
+       \ 'roxma/nvim-yarp',
+       \ 'roxma/vim-hug-neovim-rpc']}
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
@@ -153,20 +162,22 @@ NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
 " NeoBundle 'prabirshrestha/asyncomplete.vim'
 " asyncomplete does not work
 NeoBundle 'mattn/vim-lsp-settings'
-NeoBundle 'lighttiger2505/deoplete-vim-lsp'
 NeoBundle 'vim-conf-live/pres.vim'
 NeoBundle 'machakann/vim-colorscheme-snowtrek'
 NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'thinca/vim-breadcrumbs'
 
-if v:false
+if v:true
   NeoBundle 'vim-denops/denops.vim'
   NeoBundle 'vim-denops/denops-helloworld.vim'
 
   NeoBundle 'Shougo/ddc.vim'
   NeoBundle 'Shougo/ddc-matcher_head'
   NeoBundle 'Shougo/ddc-sorter_rank'
+
+  NeoBundle 'LumaKernel/ddc-file'
+  NeoBundle 'matsui54/ddc-buffer'
 endif
 
 call neobundle#end()
@@ -574,7 +585,9 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " https://github.com/Shougo/deoplete.nvim/issues/1013
 " set completeopt+=noselect
 
-let g:deoplete#enable_at_startup = 1
+if v:false
+  let g:deoplete#enable_at_startup = 1
+endif
 
 " see also
 "   * snippets section
@@ -583,32 +596,34 @@ let g:deoplete#enable_at_startup = 1
 let g:necoghc_enable_detailed_browse = 1
 
 
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
+if v:false
+  function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+  endfunction
 
-if filereadable('/usr/local/opt/python3/bin/python3.6')
-  let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
+  if filereadable('/usr/local/opt/python3/bin/python3.6')
+    let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
+  endif
+
+  " the default fuzzy search = noise
+  call deoplete#custom#source('file', 'matchers', ['matcher_head'])
+  call deoplete#custom#source('around', 'matchers', ['matcher_head'])
+  call deoplete#custom#source('buffer', 'matchers', ['matcher_head'])
+
+  call deoplete#custom#source('file', 'enable_buffer_path', v:false)
+  call deoplete#custom#source('file', 'enable_slash_completion', v:true)
+
+  " https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
+  call deoplete#custom#source('file', 'rank', 550)
+  call deoplete#custom#source('vimshell', 'rank', 600)
+  call deoplete#custom#source('neosnippet', 'rank', 650)
+
+  " https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
+  " let g:deoplete#enable_profile = 1
+  " call deoplete#enable_logging('DEBUG', 'deoplete.log')
+
+  call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'bash'])
 endif
-
-" the default fuzzy search = noise
-call deoplete#custom#source('file', 'matchers', ['matcher_head'])
-call deoplete#custom#source('around', 'matchers', ['matcher_head'])
-call deoplete#custom#source('buffer', 'matchers', ['matcher_head'])
-
-call deoplete#custom#source('file', 'enable_buffer_path', v:false)
-call deoplete#custom#source('file', 'enable_slash_completion', v:true)
-
-" https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
-call deoplete#custom#source('file', 'rank', 550)
-call deoplete#custom#source('vimshell', 'rank', 600)
-call deoplete#custom#source('neosnippet', 'rank', 650)
-
-" https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
-" let g:deoplete#enable_profile = 1
-" call deoplete#enable_logging('DEBUG', 'deoplete.log')
-
-call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'bash'])
 
 " }}}
 " thinca's local vimrc https://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html {{{
@@ -3059,18 +3074,49 @@ let g:breadcrumbs#toplevel_placeholder = '/'
 " }}}
 " ddc.vim {{{
 
-if v:false
-  call ddc#custom#patch_global('completionMode', 'manual')
+if v:true
+  function! s:init_ddc()
+    let l:sources = []
 
-  " https://github.com/Shougo/ddc-matcher_head
-  " https://github.com/Shougo/ddc-sorter_rank
-  call ddc#custom#patch_global('sourceOptions', {
-        \ '_': {
-          \   'matchers': ['matcher_head'],
-          \   'sorters': ['sorter_rank']},
+    call ddc#custom#patch_global('completionMode', 'popupmenu')
+    call ddc#custom#patch_global('specialBufferCompletion', v:true) " TODO: disable globally and enable certain butfypes
+
+    " https://github.com/Shougo/ddc-matcher_head
+    " https://github.com/Shougo/ddc-sorter_rank
+    call ddc#custom#patch_global('sourceOptions', {
+          \ '_': {
+            \   'matchers': ['matcher_head'],
+            \   'sorters': ['sorter_rank']},
+            \ })
+
+    " ddc-file
+    let l:sources += ['file']
+    call ddc#custom#patch_global('sourceOptions', {
+          \ 'file': {
+            \   'mark': 'F',
+            \   'isVolatile': v:true,
+            \   'forceCompletionPattern': '/',
+            \ }})
+
+
+    " ddc-buffer
+    let l:sources += ['buffer']
+    call ddc#custom#patch_global('sourceOptions', {
+          \ '_': {'matchers': ['matcher_head']},
+          \ 'buffer': {'mark': 'B'},
           \ })
+    call ddc#custom#patch_global('sourceParams', {
+          \ 'buffer': {
+            \ 'requireSameFiletype': v:false,
+            \ 'forceCollect': v:true,
+            \ },
+            \ })
 
-  call ddc#enable()
+    call ddc#custom#patch_global('sources', l:sources)
+    call ddc#enable()
+  endfunction
+
+  call s:init_ddc()
 endif
 
 " }}}
