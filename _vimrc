@@ -16,7 +16,19 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 
-if v:false
+let s:enable_ddc = v:false
+
+if s:enable_ddc
+  NeoBundle 'vim-denops/denops.vim'
+  NeoBundle 'vim-denops/denops-helloworld.vim'
+
+  NeoBundle 'Shougo/ddc.vim'
+  NeoBundle 'Shougo/ddc-matcher_head'
+  NeoBundle 'Shougo/ddc-sorter_rank'
+
+  NeoBundle 'LumaKernel/ddc-file'
+  NeoBundle 'matsui54/ddc-buffer'
+else
   NeoBundle 'Shougo/deoplete.nvim', {'depends': [
        \ 'roxma/nvim-yarp',
        \ 'roxma/vim-hug-neovim-rpc',
@@ -156,7 +168,6 @@ NeoBundle 'coachshea/vim-textobj-markdown'
 NeoBundle 'tyru/empty-prompt.vim'
 
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'nightsense/office'
 NeoBundle 'MaxMEllon/vim-jsx-pretty', {'depends': 'pangloss/vim-javascript'}
 NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
 " NeoBundle 'prabirshrestha/asyncomplete.vim'
@@ -167,18 +178,6 @@ NeoBundle 'machakann/vim-colorscheme-snowtrek'
 NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'thinca/vim-breadcrumbs'
-
-if v:true
-  NeoBundle 'vim-denops/denops.vim'
-  NeoBundle 'vim-denops/denops-helloworld.vim'
-
-  NeoBundle 'Shougo/ddc.vim'
-  NeoBundle 'Shougo/ddc-matcher_head'
-  NeoBundle 'Shougo/ddc-sorter_rank'
-
-  NeoBundle 'LumaKernel/ddc-file'
-  NeoBundle 'matsui54/ddc-buffer'
-endif
 
 call neobundle#end()
 
@@ -585,7 +584,7 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " https://github.com/Shougo/deoplete.nvim/issues/1013
 " set completeopt+=noselect
 
-if v:false
+if !s:enable_ddc
   let g:deoplete#enable_at_startup = 1
 endif
 
@@ -596,7 +595,7 @@ endif
 let g:necoghc_enable_detailed_browse = 1
 
 
-if v:false
+if !s:enable_ddc
   function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
   endfunction
@@ -3074,7 +3073,7 @@ let g:breadcrumbs#toplevel_placeholder = '/'
 " }}}
 " ddc.vim {{{
 
-if v:true
+if s:enable_ddc
   function! s:init_ddc()
     let l:sources = []
 
@@ -3095,7 +3094,7 @@ if v:true
           \ 'file': {
             \   'mark': 'F',
             \   'isVolatile': v:true,
-            \   'forceCompletionPattern': '/',
+            \   'forceCompletionPattern': '/\S*',
             \ }})
 
 
