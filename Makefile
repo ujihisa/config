@@ -1,4 +1,4 @@
-all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config ~/.bashrc ~/.config/systemd/user/quipper-tunnel.service
+all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/.vimbundles ~/.vimrc ~/.vimrc_secret ~/.config/autokey/data ~/.aws/credentials ~/.xinitrc ~/.xprofile ~/.ssh/config ~/.Xmodmap ~/.local/share/com.github.johnfactotum.Foliate ~/.config/fcitx/config ~/.bashrc ~/.config/systemd/user/quipper-tunnel.service
 
 ~/.config/ctags/ujihisa.ctags:
 	mkdir -p ~/.config/ctags/
@@ -35,6 +35,9 @@ all: ~/.config/ctags/ujihisa.ctags ~/.gitconfig ~/.gitignore ~/.gvimrc ~/.vim ~/
 
 ~/.xinitrc:
 	ln -s $(HOME)/Dropbox/dotfiles/xinitrc ~/.xinitrc
+
+~/.xprofile:
+	ln -s $(HOME)/Dropbox/dotfiles/xprofile ~/.xprofile
 
 ~/.ssh/config:
 	mkdir -p ~/.ssh
