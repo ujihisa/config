@@ -3099,10 +3099,10 @@ if s:enable_ddc
             \   'isVolatile': v:true,
             \   'forceCompletionPattern': '/\S*',
             \ }})
-    call ddc#custom#patch_global('sourceParams', {
-          \ 'file': {
-            \   'trailingSlash': v:true,
-            \ }})
+    " call ddc#custom#patch_global('sourceParams', {
+    "      \ 'file': {
+    "        \   'trailingSlash': v:true,
+    "        \ }})
 
     " ddc-buffer
     let l:sources += ['buffer']
