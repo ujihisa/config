@@ -16,7 +16,7 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 
-let s:enable_ddc = v:false
+let s:enable_ddc = v:true
 
 if s:enable_ddc
   NeoBundle 'vim-denops/denops.vim'
@@ -25,6 +25,9 @@ if s:enable_ddc
   NeoBundle 'Shougo/ddc.vim'
   NeoBundle 'Shougo/ddc-matcher_head'
   NeoBundle 'Shougo/ddc-sorter_rank'
+  " NeoBundle 'tani/ddc-fuzzy'
+  NeoBundle 'gamoutatsumi/ddc-sorter_ascii'
+
 
   NeoBundle 'LumaKernel/ddc-file'
   NeoBundle 'matsui54/ddc-buffer'
@@ -3085,7 +3088,7 @@ if s:enable_ddc
     call ddc#custom#patch_global('sourceOptions', {
           \ '_': {
             \   'matchers': ['matcher_head'],
-            \   'sorters': ['sorter_rank']},
+            \   'sorters': ['sorter_ascii']},
             \ })
 
     " ddc-file
@@ -3096,7 +3099,10 @@ if s:enable_ddc
             \   'isVolatile': v:true,
             \   'forceCompletionPattern': '/\S*',
             \ }})
-
+    call ddc#custom#patch_global('sourceParams', {
+          \ 'file': {
+            \   'trailingSlash': v:true,
+            \ }})
 
     " ddc-buffer
     let l:sources += ['buffer']
