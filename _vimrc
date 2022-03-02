@@ -3117,6 +3117,9 @@ if s:enable_ddc
             \ },
             \ })
 
+    " neosnippet
+    let l:sources += ['neosnippet']
+
     call ddc#custom#patch_global('sources', l:sources)
     call ddc#enable()
   endfunction
