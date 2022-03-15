@@ -2848,6 +2848,12 @@ augroup lsp_install
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+let g:lsp_settings = {
+      \  'ruby_language_server': {
+      \    'disabled': 1,
+      \   },
+      \ }
+
 
 " mattn/vim-lsp-settings
 let g:lsp_settings_enable_suggestions = 0
