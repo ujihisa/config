@@ -2859,6 +2859,8 @@ let g:lsp_settings = {
 " mattn/vim-lsp-settings
 let g:lsp_settings_enable_suggestions = 0
 
+let g:lsp_diagnostics_enabled = 0
+
 nnoremap <C-l> <Cmd>LspDocumentDiagnostics<Cr>
 
 " }}}
