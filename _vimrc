@@ -90,7 +90,6 @@ NeoBundle 'vim-scripts/zenesque.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kossnocorp/perfect.vim'
 NeoBundle 'fatih/vim-go'
-NeoBundle 'vim-scripts/groovyindent'
 NeoBundle 'kana/vim-textobj-syntax', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'basyura/J6uil.vim'
 NeoBundle 'thinca/vim-fontzoom'
