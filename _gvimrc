@@ -128,11 +128,12 @@ highlight scalaNameDefinition gui=italic
 "hi scalaTypeCase gui=underline
 " }}}
 " tabline for gui {{{
-function GuiTabLabel()
+function! GuiTabLabel()
   "return printf("%s/%s", expand('%:p:h:h:t'), expand('%:p:h:t'))
 
   " depends on kana's tabpagecd
-  let cwd = get(t:, 'cwd', getcwd())
+  " let cwd = get(t:, 'cwd', getcwd())
+  let cwd = getcwd(-1, 0)
   let tmp = printf("%s/%s",
         \ fnamemodify(cwd, ':p:h:h:t'),
         \ fnamemodify(cwd, ':p:h:t'))
