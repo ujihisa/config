@@ -52,7 +52,7 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/deol.nvim', {'depends': [
      \ 'zchee/deoplete-zsh']}
-NeoBundle 'Shougo/tabpagebuffer.vim'
+" NeoBundle 'Shougo/tabpagebuffer.vim'
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
         \ ['vimproc'])
@@ -68,7 +68,7 @@ NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'thinca/vim-ft-clojure'
-NeoBundle 'kana/vim-tabpagecd'
+" NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'cohama/lexima.vim'
@@ -123,7 +123,6 @@ NeoBundleLazy 'thinca/vim-painter', {
       \ }}
 NeoBundleLazy 'Shougo/javacomplete'
 NeoBundle 'AndrewRadev/linediff.vim'
-NeoBundle 'ujihisa/vimport'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'ujihisa/ft-cmake'
 NeoBundle 'ujihisa/unite-include-reversed'
