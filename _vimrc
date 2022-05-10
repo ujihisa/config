@@ -179,6 +179,7 @@ NeoBundle 'machakann/vim-colorscheme-snowtrek'
 NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'thinca/vim-breadcrumbs'
+NeoBundle 'mattn/vim-notification'
 
 call neobundle#end()
 
@@ -2851,13 +2852,27 @@ let g:lsp_settings = {
       \  'ruby_language_server': {
       \    'disabled': 1,
       \   },
+      \  'typeprof': {
+      \    'disabled': 1,
+      \   },
       \ }
+
+augroup vimrc-lsp-sorbet
+  autocmd! User lsp_setup call lsp#register_server({
+        \ 'name': 'sorbet',
+        \ 'cmd': {server_info->['bundle', 'exec', 'srb', 'typecheck', '--lsp', '--disable-watchman']},
+        \ 'allowlist': ['ruby'],
+        \ 'root_uri': {server_info->lsp#utils#get_default_root_uri()}
+        \ })
+augroup END
+
+let g:lsp_log_file = expand('/tmp/vimrc-lsp-sorbet.log')
 
 
 " mattn/vim-lsp-settings
 let g:lsp_settings_enable_suggestions = 0
 
-let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_enabled = 1
 
 nnoremap <C-l> <Cmd>LspDocumentDiagnostics<Cr>
 
