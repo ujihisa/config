@@ -180,6 +180,7 @@ NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'thinca/vim-breadcrumbs'
 NeoBundle 'mattn/vim-notification'
+NeoBundle 'hashivim/vim-terraform'
 
 call neobundle#end()
 
