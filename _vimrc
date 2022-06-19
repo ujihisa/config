@@ -573,6 +573,8 @@ nnoremap sG :<C-u>execute 'Unite grep:.:-iR:\\b' . expand('<cword>') . '\\b -def
 nnoremap S <nop>
 nnoremap sg :<C-u>Unite grep/git:. -default-action=split<Cr>
 
+call unite#custom#source('grep', 'ignore_pattern', '\.rbs$')
+
 " }}}
 " {{{ thinca/poslist.vim
 nmap <C-o> <Plug>(poslist-prev-pos)
