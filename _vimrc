@@ -568,7 +568,7 @@ nnoremap <expr> <Cr> <SID>tagjump_or_cr()
 " unite-grep {{{
 nnoremap SG :<C-u>Unite grep:. -default-action=split<Cr>
 nnoremap s<M-g> :<C-u>execute 'Unite grep:.:-iR:' . expand('<cword>') . ' -default-action=split'<Cr>
-nnoremap sG :<C-u>execute 'Unite grep:.:-iR:\\b' . expand('<cword>') . '\\b -default-action=split'<Cr>
+nnoremap sG <Cmd>execute 'Unite grep:.:-iR:\\b' . expand('<cword>') . '\\b -default-action=split'<Cr>
 
 nnoremap S <nop>
 nnoremap sg :<C-u>Unite grep/git:. -default-action=split<Cr>
