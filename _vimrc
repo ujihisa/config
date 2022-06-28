@@ -16,7 +16,7 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 
-let s:enable_ddc = v:true
+let s:enable_ddc = v:false
 
 if s:enable_ddc
   NeoBundle 'vim-denops/denops.vim'
@@ -3148,6 +3148,7 @@ if s:enable_ddc
     let l:sources += ['neosnippet']
 
     call ddc#custom#patch_global('sources', l:sources)
+    " call ddc#enable_cmdline_completion()
     call ddc#enable()
   endfunction
 
