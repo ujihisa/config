@@ -16,7 +16,7 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 
-let s:enable_ddc = v:false
+let s:enable_ddc = v:true
 
 if s:enable_ddc
   NeoBundle 'vim-denops/denops.vim'
