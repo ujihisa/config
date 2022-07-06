@@ -2517,6 +2517,7 @@ let g:go_fmt_command = "goimports"
 augroup vimrc-go
   autocmd!
   autocmd FileType go setlocal nolist
+  autocmd FileType go nnoremap <buffer> <C-]> <Cmd>LspDefinition<Cr>
 augroup END
 "}}}
 " macvim {{{
