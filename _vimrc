@@ -1469,7 +1469,12 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><C
 " }}}
 " golden ratio {{{
 command! -nargs=0 GoldenRatio execute 'vertical resize' &columns * 5 / 8
-nnoremap <silent><Space>] :<C-u>GoldenRatio<Cr>
+nnoremap <silent><Space>] <Cmd>GoldenRatio<Cr>
+
+" half ratio
+command! -nargs=0 HalfRatio execute 'vertical resize' &columns * 1 / 2
+nnoremap <silent><Space>[ <Cmd>HalfRatio<Cr>
+
 " }}}
 " unite-transparency {{{
 let s:unite_source = {'name': 'transparency', 'action_table': {'*': {}} } " avoid triple closes
