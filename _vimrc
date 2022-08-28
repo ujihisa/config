@@ -334,7 +334,7 @@ nnoremap <Space>w :<C-u>write<Cr>
 nnoremap <Space>q :<C-u>quit<Cr>
 " nnoremap <Space>q :<C-u>hide<Cr>
 nnoremap <Space>Q :<C-u>quit!<Cr>
-nnoremap <Space>. :<C-u>OpenVimrcTab<Cr>
+nnoremap <Space>. <Cmd>OpenVimrcTab<Cr>
 "nnoremap <Space>] <C-w>]
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
