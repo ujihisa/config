@@ -25,7 +25,6 @@ if s:enable_ddc
   NeoBundle 'Shougo/ddc.vim'
   NeoBundle 'Shougo/ddc-matcher_head'
   NeoBundle 'Shougo/ddc-sorter_rank'
-  " NeoBundle 'tani/ddc-fuzzy'
   NeoBundle 'gamoutatsumi/ddc-sorter_ascii'
 
 
@@ -52,7 +51,6 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/deol.nvim', {'depends': [
      \ 'zchee/deoplete-zsh']}
-" NeoBundle 'Shougo/tabpagebuffer.vim'
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
         \ ['vimproc'])
@@ -68,7 +66,6 @@ NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet'}
 NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'eagletmt/ghcmod-vim'
 NeoBundle 'thinca/vim-ft-clojure'
-" NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'cohama/lexima.vim'
@@ -356,12 +353,10 @@ nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 "nnoremap <Space>ac  :<C-u>tabclose<CR>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
-" nnoremap <silent> <D-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>:redraw<CR>
 nnoremap <silent> <M-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 inoremap <silent> <M-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 tnoremap <M-j>    <Cmd>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 nnoremap <Space>ak  gT
-" nnoremap <D-k>  gT
 nnoremap <M-k>  gT
 inoremap <M-k>  <Esc>gT
 tnoremap <M-k>  <Cmd>tabprevious<Cr>
@@ -1342,9 +1337,6 @@ let g:echodoc_enable_at_startup = 0
 "        \ {'text': ' ' . substitute(string(result), '\n', "", "")}]
 "endfunction
 "call echodoc#register('clojure', s:clojure_doc_dict)
-" }}}
-" testing neco-ghc {{{
-"nnoremap <D-0> :<C-u>e ~/.vimbundles/neco-ghc/fixtures/a.hs<Cr>
 " }}}
 " vim-ref {{{
 let $MANPAGER='cat'
