@@ -1223,32 +1223,17 @@ call unite#define_source(s:unite_source)
 " PATH {{{
 command! -nargs=1 AddPath   let $PATH = expand(<q-args>) . ':' .$PATH
 
-" AddPath /usr/bin
-" AddPath /usr/local/bin
-" AddPath /sbin
-" AddPath /usr/sbin
 AddPath ~/.vimbundles/themis/bin/
-" pip install --user
-AddPath ~/.local/bin
 
 if isdirectory(expand('~/bin'))
   AddPath ~/bin
 endif
+
 AddPath ~/Dropbox/bin
-AddPath /home/ujihisa/git/termtter/bin
 AddPath /home/ujihisa/git/ruby/local/bin
 AddPath /home/ujihisa/src/llvm-git-build/local/bin
-AddPath /home/ujihisa/git/Gyazo-for-Linux/
-" AddPath ~/.gem/bin
 
-if has('mac')
-  AddPath ~/.rbenv/versions/2.3.1/bin/
-  AddPath ~/.gem/ruby/2.4.0/bin/
-else
-  AddPath ~/.rbenv/shims
-  " AddPath ~/.rbenv/versions/2.5.0/bin
-endif
-
+AddPath ~/.rbenv/shims
 AddPath ~/.anyenv/envs/erlenv/bin
 AddPath ~/.anyenv/envs/erlenv/shims
 AddPath ~/.anyenv/envs/exenv/bin
