@@ -281,7 +281,7 @@ else
 end
 
 command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
-nnoremap & :<C-u>set hlsearch<Return>:Amp<Cr>
+nnoremap & <Cmd>set hlsearch<Return>:Amp<Cr>
 
 vmap p <Plug>(operator-replace)
 vmap P <Plug>(operator-replace)
