@@ -298,14 +298,14 @@ vmap <M-9> %
 nnoremap vv <C-v>
 "nnoremap ]p p`[=`]
 
-nnoremap <silent>sh :<C-u>call <SID>horizontal_move('h')<Cr>
+nnoremap <silent>sh <Cmd>call <SID>horizontal_move('h')<Cr>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
-nnoremap <silent>sl :<C-u>call <SID>horizontal_move('l')<Cr>
-nnoremap <silent>H :<C-u>call <SID>horizontal_move('H')<Cr>
+nnoremap <silent>sl <Cmd>call <SID>horizontal_move('l')<Cr>
+nnoremap <silent>H <Cmd>call <SID>horizontal_move('H')<Cr>
 nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
-nnoremap <silent>L :<C-u>call <SID>horizontal_move('L')<Cr>
+nnoremap <silent>L <Cmd>call <SID>horizontal_move('L')<Cr>
 
 " direction has to be h, l, H, or L
 function! s:horizontal_move(direction) abort
