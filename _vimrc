@@ -246,6 +246,7 @@ set display=lastline
 setglobal autoindent
 setglobal shiftwidth=2
 setglobal tabstop=2
+set nrformats+=unsigned
 
 " Some ftplugin sets tw=78 is tw is 0. Set this to extremely high
 " so that those ftplugins give up.
