@@ -3101,7 +3101,7 @@ if s:enable_ddc
     call ddc#custom#patch_global('sourceOptions', {
           \ '_': {
             \   'matchers': ['matcher_head'],
-            \   'sorters': ['sorter_ascii']},
+            \   'sorters': ['sorter_rank']},
             \ })
 
     " ddc-file
