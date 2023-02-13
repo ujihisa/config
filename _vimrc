@@ -23,6 +23,7 @@ if s:enable_ddc
   NeoBundle 'vim-denops/denops-helloworld.vim'
 
   NeoBundle 'Shougo/ddc.vim'
+  NeoBundle 'Shougo/ddc-ui-native'
   NeoBundle 'Shougo/ddc-matcher_head'
   NeoBundle 'Shougo/ddc-sorter_rank'
   NeoBundle 'gamoutatsumi/ddc-sorter_ascii'
@@ -3089,9 +3090,10 @@ let g:breadcrumbs#toplevel_placeholder = '/'
 
 if s:enable_ddc
   function! s:init_ddc()
+    call ddc#custom#patch_global('ui', 'native')
+
     let l:sources = []
 
-    call ddc#custom#patch_global('completionMode', 'popupmenu')
     call ddc#custom#patch_global('specialBufferCompletion', v:true) " TODO: disable globally and enable certain butfypes
 
     " https://github.com/Shougo/ddc-matcher_head
