@@ -133,7 +133,7 @@ NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
-      \ ['ft-mongo', 'neochat.vim'])
+      \ ['ft-mongo'])
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'rbtnn/mario.vim', {
       \ 'depends': [
