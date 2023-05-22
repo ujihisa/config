@@ -133,13 +133,13 @@ NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
-      \ ['ft-mongo'])
+      \ ['ft-mongo', 'reversi.vim'])
+" NeoBundle 'rbtnn/reversi.vim'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'rbtnn/mario.vim', {
       \ 'depends': [
       \   'rbtnn/game_engine.vim'] }
 NeoBundle 'rbtnn/puyo.vim'
-NeoBundle 'rbtnn/reversi.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'kana/vim-operator-replace', {
       \ 'depends': [
