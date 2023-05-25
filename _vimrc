@@ -2646,6 +2646,12 @@ augroup END
 let g:deol#shell_history_path = '~/.bash_history'
 let g:deol#shell_history_max = 100000000000
 
+call lexima#add_rule({
+      \   'at': '^dc\%#',
+      \   'char': ' ',
+      \   'input': '<BS><BS>docker-compose ',
+      \   'filetype': 'bash'})
+
 " }}}
 " termdebug {{{
 packadd termdebug
