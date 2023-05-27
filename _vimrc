@@ -19,18 +19,18 @@ NeoBundle 'Shougo/neobundle-vim-recipes'
 let s:enable_ddc = v:true
 
 if s:enable_ddc
-  NeoBundle 'vim-denops/denops.vim'
-  NeoBundle 'vim-denops/denops-helloworld.vim'
+  NeoBundle 'vim-denops/denops.vim', 'main'
+  NeoBundle 'vim-denops/denops-helloworld.vim', 'main'
 
-  NeoBundle 'Shougo/ddc.vim'
-  NeoBundle 'Shougo/ddc-ui-native'
-  NeoBundle 'Shougo/ddc-matcher_head'
-  NeoBundle 'Shougo/ddc-sorter_rank'
+  NeoBundle 'Shougo/ddc.vim', 'main'
+  NeoBundle 'Shougo/ddc-ui-native', 'main'
+  NeoBundle 'Shougo/ddc-matcher_head', 'main'
+  NeoBundle 'Shougo/ddc-sorter_rank', 'main'
   NeoBundle 'gamoutatsumi/ddc-sorter_ascii'
 
 
-  NeoBundle 'LumaKernel/ddc-file'
-  NeoBundle 'matsui54/ddc-buffer'
+  NeoBundle 'LumaKernel/ddc-file', 'main'
+  NeoBundle 'matsui54/ddc-buffer', 'main'
 else
   NeoBundle 'Shougo/deoplete.nvim', {'depends': [
        \ 'roxma/nvim-yarp',
@@ -133,13 +133,13 @@ NeoBundle 'jimenezrick/vimerl'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'ujihisa/neoclojure.vim'
 call neobundle#local("~/.vimbundles", {},
-      \ ['ft-mongo'])
+      \ ['ft-mongo', 'reversi.vim'])
+" NeoBundle 'rbtnn/reversi.vim'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'rbtnn/mario.vim', {
       \ 'depends': [
       \   'rbtnn/game_engine.vim'] }
 NeoBundle 'rbtnn/puyo.vim'
-NeoBundle 'rbtnn/reversi.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'kana/vim-operator-replace', {
       \ 'depends': [
@@ -176,8 +176,8 @@ NeoBundle 'vim-conf-live/pres.vim'
 NeoBundle 'machakann/vim-colorscheme-snowtrek'
 NeoBundle 'cormacrelf/vim-colors-github'
 NeoBundle 'tommcdo/vim-exchange'
-NeoBundle 'thinca/vim-breadcrumbs'
-NeoBundle 'mattn/vim-notification'
+NeoBundle 'thinca/vim-breadcrumbs', 'develop'
+NeoBundle 'mattn/vim-notification', 'main'
 NeoBundle 'hashivim/vim-terraform'
 
 call neobundle#end()
