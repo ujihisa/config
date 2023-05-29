@@ -1246,8 +1246,15 @@ AddPath ~/go/1.13.1/bin
 let $ERLENV_ROOT = expand('$HOME/.anyenv/envs/erlenv')
 let $EXENV_ROOT = expand('$HOME/.anyenv/envs/exenv')
 let $GOENV_ROOT = expand('$HOME/.anyenv/envs/goenv')
-let $GOROOT = expand('$HOME/.anyenv/envs/goenv/versions/1.12.6')
-let $GOPATH = expand('$HOME/go/1.12.6')
+
+if executable('goenv')
+  let s:go_version = system('goenv version')->split(' ')[0]
+  let $GOROOT = expand('$HOME/.anyenv/envs/goenv/versions/' . s:go_version)
+  let $GOROOT = expand('$HOME/.anyenv/envs/goenv/versions/' . s:go_version)
+else
+  let $GOPATH = expand('$HOME/go/1.12.6')
+  let $GOPATH = expand('$HOME/go/1.12.6')
+endif
 " }}}
 " macvim proportional {{{
 function! Proportional()
