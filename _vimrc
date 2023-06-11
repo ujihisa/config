@@ -2650,7 +2650,7 @@ augroup deol-filetype
   autocmd FileType deol setlocal termwinsize=0*120
 augroup END
 
-let g:deol#shell_history_path = '~/.bash_history'
+let g:deol#external_history_path = '~/.bash_history'
 let g:deol#shell_history_max = 100000000000
 
 call lexima#add_rule({
