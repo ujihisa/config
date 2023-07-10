@@ -180,6 +180,8 @@ NeoBundle 'thinca/vim-breadcrumbs', 'develop'
 NeoBundle 'mattn/vim-notification', 'main'
 NeoBundle 'hashivim/vim-terraform'
 
+NeoBundle 'prettier/vim-prettier'
+
 call neobundle#end()
 
 filetype plugin indent on
