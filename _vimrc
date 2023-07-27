@@ -3157,6 +3157,12 @@ if s:enable_ddc
 endif
 
 " }}}
+" vim-prettier {{{
+
+let g:prettier#exec_cmd_path = "npx prettier"
+
+" }}}
+" }
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2 :
 " vim: foldmethod=marker
