@@ -1740,12 +1740,13 @@ function! s:vimrc_ruby()
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
-  if !filereadable('bin/rspec') && filereadable('bin/rails')
-    " nnoremap <buffer> <space>m :<C-u>write<Cr>:QuickRun -type ruby/monorepo/rails-test<Cr>
-    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rails test %s'", expand('%s'))<Cr>
-  else
+  if filereadable('bin/rspec')
     nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec \"%s\"'", expand('%s'))<Cr>
     nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
+  elseif filereadable('bin/rails')
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rails test %s'", expand('%s'))<Cr>
+  elseif filereadable('bin/rake')
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rake test %s'", expand('%s'))<Cr>
   endif
 endfunction
 
