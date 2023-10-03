@@ -2789,10 +2789,16 @@ function! s:monorepo_quickrun_config() abort
           \ 'cmdopt': '-f bundle exec ruby -r ./bin/ujihisa_quickrun_loader',
           \ 'tempfile': './for_quickrun.rb',
           \ 'hook/sweep/files': '%S:p:r'}
-  else
+  elseif filereadable('./bin/rails')
     let b:quickrun_config = {
           \ 'command': 'doo',
           \ 'cmdopt': '-f ./bin/rails runner',
+          \ 'tempfile': 'log/for_quickrun.rb',
+          \ 'hook/sweep/files': '%S:p:r'}
+  elseif filereadable('./bin/rake')
+    let b:quickrun_config = {
+          \ 'command': 'doo',
+          \ 'cmdopt': '-f ./bin/rake test',
           \ 'tempfile': 'log/for_quickrun.rb',
           \ 'hook/sweep/files': '%S:p:r'}
   endif
