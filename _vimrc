@@ -181,6 +181,7 @@ NeoBundle 'mattn/vim-notification', 'main'
 NeoBundle 'hashivim/vim-terraform'
 
 NeoBundle 'prettier/vim-prettier'
+NeoBundle 'github/copilot.vim'
 
 call neobundle#end()
 
