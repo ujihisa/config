@@ -1135,6 +1135,8 @@ function! s:init_cmdwin()
 
   " inoremap <buffer><expr> <C-x> expand('%:h')
 
+  imap <buffer><silent><script><expr> <C-J> copilot#Accept("\<CR>")
+
   startinsert!
 endfunction
 
