@@ -63,4 +63,6 @@ alias kgp='kubectl get pods'
 
 # export KUBECONFIG=~/.kube/config:~/.kube/virtualbox_config
 
+export THOR_MERGE=vimdiff
+
 # vim: set filetype=bash :
