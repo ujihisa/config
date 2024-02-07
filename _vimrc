@@ -276,14 +276,6 @@ endfunction
 " mappings {{{
 
 let g:incsearch#auto_nohlsearch = 1
-if g:V.is_mac()
-  let g:transparency = 10
-  " for MacVim's bug
-  " nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>:let &transparency = g:transparency<Cr><C-l>
-else
-  " incsearch
-  " nnoremap <Esc><Esc> :<C-u>set nohlsearch<Cr>
-end
 
 command! -nargs=0 Amp execute 'normal!' printf('/\<%s\><Cr>', expand('<cword>'))
 nnoremap & <Cmd>set hlsearch<Return>:Amp<Cr>
