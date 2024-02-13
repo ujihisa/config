@@ -955,11 +955,7 @@ function! s:open_lib_and_corresponding_test(fname)
 endfunction " }}}
 " gist.vim {{{
 
-if g:V.is_mac()
-  let g:gist_clip_command = 'pbcopy'
-else
-  let g:gist_clip_command = 'xclip -selection clipboard'
-endif
+let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
