@@ -343,8 +343,6 @@ cnoremap <M-BS> <C-w>
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 
-" nnoremap <Space>as  :<C-u>tabnew<CR>:pwd<Cr>:terminal ++noclose ++curwin<Cr>
-
 nnoremap <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:call deol#start({'edit_winheight': 5, 'edit': v:true, 'start_insert': v:true, 'auto_cd': v:true})<Cr>
 nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
