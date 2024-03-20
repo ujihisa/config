@@ -2631,7 +2631,9 @@ function! s:deol_edit() abort
     inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
     inoremap <buffer> <M-l> <Esc>:<C-u>Denite -start-filter -default-action=insert -unique deol/history<Cr>
     nnoremap <buffer> <M-l> <Cmd>resize 5<Cr>
+
     let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
+    let b:copilot_enabled = v:false
   endif
 endfunction
 
@@ -3158,7 +3160,6 @@ endif
 let g:prettier#exec_cmd_path = "npx prettier"
 
 " }}}
-" }
 " __END__  "{{{1
 " vim: expandtab softtabstop=2 shiftwidth=2 :
 " vim: foldmethod=marker
