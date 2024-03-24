@@ -65,4 +65,8 @@ alias kgp='kubectl get pods'
 
 export THOR_MERGE=vimdiff
 
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
 # vim: set filetype=bash :
