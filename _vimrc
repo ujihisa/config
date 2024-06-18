@@ -2620,6 +2620,8 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
+let deol#set_option('prompt_pattern', '\[.\{-}\]\$ $')
+
 nnoremap <space>v :<C-u>Deol -edit_winheight=5 -split=farright -start-insert -edit -toggle -auto-cd<Cr>
 nnoremap <Space>d  :<C-u>:call deol#start({'edit_winheight': 5, 'split': 'farleft', 'toggle': v:true, 'edit': v:true, 'start_insert': v:true, 'auto_cd': v:true})<Cr>
 nnoremap <space><space>d :<C-u>Deol -edit_winheight=5 -split=vertical -start-insert -edit -toggle -auto-cd<Cr>
@@ -2644,14 +2646,41 @@ augroup deol-filetype
   autocmd FileType deol setlocal termwinsize=0*120
 augroup END
 
-let g:deol#external_history_path = '~/.bash_history'
-let g:deol#shell_history_max = 100000000000
+call deol#set_option('external_history_path', '~/.bash_history')
+call deol#set_option('shell_history_max', 100000000000)
 
 call lexima#add_rule({
       \   'at': '^dc\%#',
       \   'char': ' ',
       \   'input': '<BS><BS>docker-compose ',
       \   'filetype': 'bash'})
+
+autocmd FileType deol call s:deol_settings()
+function! s:deol_settings()
+  nnoremap <buffer> <C-n>  <Plug>(deol_next_prompt)
+  nnoremap <buffer> <C-p>  <Plug>(deol_previous_prompt)
+  nnoremap <buffer> <CR>   <Plug>(deol_execute_line)
+  nnoremap <buffer> A      <Plug>(deol_start_append_last)
+  nnoremap <buffer> I      <Plug>(deol_start_insert_first)
+  nnoremap <buffer> a      <Plug>(deol_start_append)
+  nnoremap <buffer> e      <Plug>(deol_edit)
+  nnoremap <buffer> i      <Plug>(deol_start_insert)
+  nnoremap <buffer> q      <Plug>(deol_quit)
+endfunction
+
+autocmd BufEnter deol-edit@default call s:deol_edit_settings()
+function! s:deol_edit_settings()
+  nnoremap <buffer> <CR>  <Plug>(deol_execute_line)
+  nnoremap <buffer> <BS>  <Plug>(deol_backspace)
+  nnoremap <buffer> <C-h> <Plug>(deol_backspace)
+  nnoremap <buffer> q     <Plug>(deol_quit)
+  nnoremap <buffer> <C-c> <Plug>(deol_ctrl_c)
+  inoremap <buffer> <CR>  <Plug>(deol_execute_line)
+  inoremap <buffer> <BS>  <Plug>(deol_backspace)
+  inoremap <buffer> <C-h> <Plug>(deol_backspace)
+  inoremap <buffer> <C-c> <Plug>(deol_ctrl_c)
+  inoremap <buffer> <C-d> <Plug>(deol_ctrl_d)
+endfunction
 
 " }}}
 " termdebug {{{
