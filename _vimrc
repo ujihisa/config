@@ -2620,7 +2620,7 @@ augroup END
 " deol {{{
 
 let g:deol#prompt_pattern = '\[.\{-}\]\$ $'
-let deol#set_option('prompt_pattern', '\[.\{-}\]\$ $')
+call deol#set_option('prompt_pattern', '\[.\{-}\]\$ $')
 
 nnoremap <space>v :<C-u>Deol -edit_winheight=5 -split=farright -start-insert -edit -toggle -auto-cd<Cr>
 nnoremap <Space>d  :<C-u>:call deol#start({'edit_winheight': 5, 'split': 'farleft', 'toggle': v:true, 'edit': v:true, 'start_insert': v:true, 'auto_cd': v:true})<Cr>
