@@ -1100,6 +1100,7 @@ endfunction
 
 inoremap <Plug>(vimrc_cmdwin_close) <ESC>:<C-u>quit<CR>
 function! s:init_cmdwin()
+  nnoremap <buffer><expr><CR> "i\<CR>"
   inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
   inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
   "inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
