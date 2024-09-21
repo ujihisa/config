@@ -1136,14 +1136,6 @@ endfunction
 "  autocmd FileType vim call <SID>vimrc_vim()
 "augroup END
 " }}}
-" load PATH from ~/.zshrc {{{
-"function! LoadPathFromZshrc()
-"  for cmd in split(system("~/bin/loadpathfromzshrc"), "\n")
-"    execute cmd
-"  endfor
-"endfunction
-"call LoadPathFromZshrc()
-" }}}
 " few {{{
 function! s:vimrc_few() abort
   let path = expand('~/git/few/bin/few')
