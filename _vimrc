@@ -3081,7 +3081,6 @@ if v:false
     \ }
   let s:menus.my_commands.command_candidates = [
     \ ['Split the window', 'vnew'],
-    \ ['Open zsh menu', 'Denite menu:zsh'],
     \ ['Format code', 'FormatCode', 'go,python'],
     \ ]
 
