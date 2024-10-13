@@ -517,22 +517,24 @@ function! s:vimshell_local()
   inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
 endfunction
 
-augroup ujihisa-vimrc
-  autocmd FileType int-* call s:vimshell_iexe() " TODO
-augroup END
-function! s:vimshell_iexe()
-  "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
-  if 0 " Let's se..
-    nmap <buffer> j <Plug>(vimshell_int_next_prompt)
-    nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
-  endif
-  inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
-endfunction
+if v:false
+  augroup ujihisa-vimrc
+    autocmd FileType int-* call s:vimshell_iexe() " TODO
+  augroup END
+  function! s:vimshell_iexe()
+    "imap <buffer> <BS>  <Plug>(vimshell_int_another_delete_backward_char)
+    if 0 " Let's se..
+      nmap <buffer> j <Plug>(vimshell_int_next_prompt)
+      nmap <buffer> k <Plug>(vimshell_int_previous_prompt)
+    endif
+    inoremap <buffer> <expr><M-l>  unite#sources#vimshell_history#start_complete(!0)
+  endfunction
 
-let g:vimshell_escape_colors = [
-      \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
-      \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
-      \]
+  let g:vimshell_escape_colors = [
+        \'#3c3c3c', '#ff6666', '#66ff66', '#ffd30a', '#1e95fd', '#ff13ff', '#1bc8c8', '#C0C0C0',
+        \'#686868', '#ff6666', '#66ff66', '#ffd30a', '#6699ff', '#f820ff', '#4ae2e2', '#ffffff'
+        \]
+endif
 " }}}
 " tag opens in a new window {{{
 function! s:tagjump_in_new_window()
