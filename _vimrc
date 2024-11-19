@@ -180,7 +180,6 @@ NeoBundle 'thinca/vim-breadcrumbs', 'develop'
 NeoBundle 'mattn/vim-notification', 'main'
 NeoBundle 'hashivim/vim-terraform'
 
-NeoBundle 'prettier/vim-prettier'
 NeoBundle 'github/copilot.vim'
 
 call neobundle#end()
@@ -3172,11 +3171,6 @@ if s:enable_ddc
 
   call s:init_ddc()
 endif
-
-" }}}
-" vim-prettier {{{
-
-let g:prettier#exec_cmd_path = "npx prettier"
 
 " }}}
 " __END__  "{{{1
