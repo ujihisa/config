@@ -398,8 +398,6 @@ nnoremap <Space>ssl :<C-u>set filetype=scala<Cr>
 nnoremap <Space>scl :<C-u>set filetype=clojure<Cr>
 nnoremap <Space>ssh :<C-u>set filetype=sh<Cr>
 
-nnoremap <space>b <C-w>100+
-
 nnoremap <Space>I $i
 "nnoremap <Space>C $C
 nnoremap X ^x
@@ -1731,9 +1729,12 @@ function! s:vimrc_ruby()
   elseif filereadable('bin/rake')
     nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rake test %s'", expand('%s'))<Cr>
   endif
+
+  nnoremap <buffer> <space>b :<C-u>write<Cr>:execute printf('QuickRun -exec "doo bundle install"')<Cr>
 endfunction
 
-augroup ujihisa-vimrc
+augroup ujihisa-vimrc-ruby
+  autocmd!
   autocmd FileType ruby call <SID>vimrc_ruby()
 augroup END
 
@@ -3171,6 +3172,27 @@ if s:enable_ddc
 
   call s:init_ddc()
 endif
+
+" }}}
+" app/api/api/foo/base.rb <-> spec/api/student_sso/base_spec.rb {{{
+
+function! s:vimrc_alternate_file() abort
+  let x = expand('%')
+  if x =~# 'spec/'
+    let x = substitute(x, 'spec/', 'app/', '')
+    let x = substitute(x, '_spec.rb', '.rb', '')
+  else
+    let x = substitute(x, '^app/api', 'spec/', '')
+    let x = substitute(x, '.rb', '_spec.rb', '')
+  endif
+  if filereadable(x)
+    execute 'new' x
+  else
+    echo printf('No such file: %s', x)
+  endif
+endfunction
+
+nnoremap <silent> <Space>e :<C-u>call <SID>vimrc_alternate_file()<Cr>
 
 " }}}
 " __END__  "{{{1
