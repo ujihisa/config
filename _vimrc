@@ -1509,7 +1509,6 @@ imap <expr> <Bslash> (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite neosnippet<Cr>
-imap <M-\> ~/
 " smap <M-\> <Plug>(neosnippet_jump_or_expand)
 " nmap <M-\> a<M-\>
 " xmap <M-\> <Plug>(neosnippet_start_unite_snippet_target)
