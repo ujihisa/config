@@ -47,6 +47,12 @@ NeoBundle 'Shougo/denite.nvim', {'depends': [
        \ 'roxma/nvim-yarp',
        \ 'roxma/vim-hug-neovim-rpc']}
 
+NeoBundle 'Shougo/ddu.vim', 'main'
+NeoBundle 'Shougo/ddu-ui-ff', 'main'
+NeoBundle 'Shougo/ddu-kind-file', 'main'
+NeoBundle 'Shougo/ddu-filter-matcher_substring', 'main'
+NeoBundle 'matsui54/ddu-source-file_external', 'main'
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
@@ -1509,6 +1515,7 @@ imap <expr> <Bslash> (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : '\'
 
 nnoremap <C-s> :<C-u>Unite neosnippet<Cr>
+imap <M-\> ~/
 " smap <M-\> <Plug>(neosnippet_jump_or_expand)
 " nmap <M-\> a<M-\>
 " xmap <M-\> <Plug>(neosnippet_start_unite_snippet_target)
@@ -3192,6 +3199,44 @@ function! s:vimrc_alternate_file() abort
 endfunction
 
 nnoremap <silent> <Space>e :<C-u>call <SID>vimrc_alternate_file()<Cr>
+
+" }}}
+" ddu {{{
+
+call ddu#custom#patch_global(#{
+      \   ui: 'ff',
+      \ })
+
+call ddu#custom#patch_global(#{
+      \   kindOptions: #{
+      \     file: #{
+      \       defaultAction: 'open',
+      \     },
+      \   }
+      \ })
+
+call ddu#custom#patch_global(#{
+      \   sourceOptions: #{
+      \     _: #{
+      \       matchers: ['matcher_substring'],
+      \     },
+      \   }
+      \ })
+
+" call ddu#custom#patch_global(#{
+"      \   'sources': [#{ name: 'file', params: {} }],
+"      \ })
+
+" call ddu#start()
+
+" call ddu#custom#patch_local('files', #{
+"    \   sources: [
+"    \     #{ name: 'file', params: {} },
+"    \     #{ name: 'file_old', params: {} },
+"    \ ],
+"    \ })
+
+"call ddu#start(#{ name: 'files' })
 
 " }}}
 " __END__  "{{{1
