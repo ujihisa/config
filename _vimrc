@@ -310,6 +310,7 @@ nnoremap sK <C-w>K
 nnoremap <silent>L <Cmd>call <SID>horizontal_move('L')<Cr>
 
 nnoremap <M-l> <C-w><C-w>
+nnoremap <Tab> <C-w><C-w>
 
 " direction has to be h, l, H, or L
 function! s:horizontal_move(direction) abort
