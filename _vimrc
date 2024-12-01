@@ -309,6 +309,8 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap <silent>L <Cmd>call <SID>horizontal_move('L')<Cr>
 
+nnoremap <M-l> <C-w><C-w>
+
 " direction has to be h, l, H, or L
 function! s:horizontal_move(direction) abort
   execute 'wincmd' a:direction
@@ -2633,7 +2635,7 @@ function! s:deol_edit() abort
     " inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
     inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
     inoremap <buffer> <M-l> <Esc>:<C-u>Denite -start-filter -default-action=insert -unique deol/history<Cr>
-    nnoremap <buffer> <M-l> <Cmd>resize 5<Cr>
+    " nnoremap <buffer> <M-l> <Cmd>resize 5<Cr>
 
     let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
     let b:copilot_enabled = v:false
