@@ -3187,12 +3187,17 @@ endif
 
 function! s:vimrc_alternate_file() abort
   let x = expand('%')
-  if x =~# 'spec/'
-    let x = substitute(x, 'spec/', 'app/', '')
-    let x = substitute(x, '_spec.rb', '.rb', '')
-  else
-    let x = substitute(x, '^app/api', 'spec/', '')
-    let x = substitute(x, '.rb', '_spec.rb', '')
+  if expand('%:p') =~# 'monorepo/api'
+    if x =~# 'spec/'
+      let x = substitute(x, 'spec/', 'app/', '')
+      let x = substitute(x, '_spec.rb', '.rb', '')
+    else
+      let x = substitute(x, '^app/api', 'spec/', '')
+      let x = substitute(x, '.rb', '_spec.rb', '')
+    endif
+  elseif
+    " TODO
+    let x = 'not-exist'
   endif
   if filereadable(x)
     execute 'new' x
