@@ -58,6 +58,8 @@ NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/deol.nvim', {'depends': [
      \ 'zchee/deoplete-zsh']}
+NeoBundle 'Shougo/ddc-source-shell-history'
+
 if has('mac')
   call neobundle#local("~/.vimbundles2", {},
         \ ['vimproc'])
@@ -2650,7 +2652,15 @@ augroup deol-filetype
   autocmd FileType deol setlocal termwinsize=0*120
 augroup END
 
-call deol#set_option('external_history_path', '~/.bash_history')
+call ddc#custom#patch_filetype(['deol'], 'sources', ['shell-history'])
+call ddc#custom#patch_global('sourceOptions', {
+    \   "_": #{
+    \     matchers: ['matcher_head'],
+    \     sorters: ['sorter_rank']
+    \   },
+    \   "shell-history": {'mark': 'history'},
+    \ })
+
 call deol#set_option('shell_history_max', 100000000000)
 
 call lexima#add_rule({
