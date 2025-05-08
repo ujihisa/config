@@ -1690,7 +1690,6 @@ function! s:vimrc_python()
   " setl nolist
 
   "inoremap <buffer> <expr> \  smartchr#one_of('function(', '\')
-  inoremap <buffer> ` print()<Left>
 endfunction
 augroup vimrc-python
   autocmd!
