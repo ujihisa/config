@@ -760,10 +760,6 @@ command! Big wincmd _ | wincmd |
 " }}}
 if has('mac') " {{{
   " Option+Arrow keys
-  set <xRight>=OC
-  set <xLeft>=OD
-  set <xUp>=OA
-  set <xDown>=OB
   nnoremap <xRight> <C-w>>
   nnoremap <xLeft> <C-w><LT>
   nnoremap <xUp> <C-w>+
