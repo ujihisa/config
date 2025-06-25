@@ -465,7 +465,6 @@ inoremap <M-o> <Esc>o<Esc>
 " }}}
 " lexima {{{
 
-" let g:lexima_enable_basic_rules = 0
 let g:lexima_enable_basic_rules = 0
 let g:lexima_enable_newline_rules = 1
 let g:lexima_enable_space_rules = 0
