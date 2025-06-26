@@ -1003,6 +1003,7 @@ endif
 "   * g:lingr_vim_password
 " }}}
 " Rename (See Vim Hacks #17) {{{
+" https://vim-jp.org/vim-users-jp/2009/05/27/Hack-17.html
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
 " }}}
 " mspec/rubyspec supports {{{
