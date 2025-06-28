@@ -2495,7 +2495,11 @@ augroup END
 "fatih/vim-go {{{
 
 " enable af and if
-let g:go_textobj_enabled = 1
+" ... should be enabled by default. Let's see
+if v:false
+  let g:go_textobj_enabled = 1
+endif
+
 let g:go_fmt_command = "goimports"
 
 augroup vimrc-go
