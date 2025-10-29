@@ -188,7 +188,7 @@ NeoBundle 'thinca/vim-breadcrumbs', 'develop'
 NeoBundle 'mattn/vim-notification', 'main'
 NeoBundle 'hashivim/vim-terraform'
 
-NeoBundle 'github/copilot.vim'
+" NeoBundle 'github/copilot.vim'
 
 call neobundle#end()
 
@@ -1128,7 +1128,7 @@ function! s:init_cmdwin()
 
   " inoremap <buffer><expr> <C-x> expand('%:h')
 
-  imap <buffer><silent><script><expr> <C-J> copilot#Accept("\<CR>")
+  " imap <buffer><silent><script><expr> <C-J> copilot#Accept("\<CR>")
 
   startinsert!
 endfunction
@@ -2640,7 +2640,7 @@ function! s:deol_edit() abort
     " nnoremap <buffer> <M-l> <Cmd>resize 5<Cr>
 
     let b:quickrun_config = {'exec': 'echo "You cannot quickrun this"'}
-    let b:copilot_enabled = v:false
+    " let b:copilot_enabled = v:false
   endif
 endfunction
 
