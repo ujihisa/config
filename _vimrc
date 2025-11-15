@@ -49,6 +49,7 @@ NeoBundle 'Shougo/denite.nvim', {'depends': [
 
 NeoBundle 'Shougo/ddu.vim', 'main'
 NeoBundle 'Shougo/ddu-ui-ff', 'main'
+NeoBundle 'git@github.com:kyoh86/ddu-source-git_files.git'
 NeoBundle 'Shougo/ddu-kind-file', 'main'
 NeoBundle 'Shougo/ddu-filter-matcher_substring', 'main'
 NeoBundle 'matsui54/ddu-source-file_external', 'main'
