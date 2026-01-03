@@ -88,16 +88,16 @@ set guioptions+=c " console dialogs. no popup allowed
 
 set mouse=a " only on gui
 
-function! s:relative_tranparency(diff)
+function! s:relative_transparency(diff)
   let &transparency = a:diff + &transparency
   let g:transparency = &transparency
 endfunction
 
 if g:V.is_mac()
-  nnoremap <up> :<C-u>call <SID>relative_tranparency(5)<Cr>
-  nnoremap <down> :<C-u>call <SID>relative_tranparency(-5)<Cr>
-  inoremap <up> <C-o>:call <SID>relative_tranparency(5)<Cr>
-  inoremap <down> <C-o>:call <SID>relative_tranparency(-5)<Cr>
+  nnoremap <up> :<C-u>call <SID>relative_transparency(5)<Cr>
+  nnoremap <down> :<C-u>call <SID>relative_transparency(-5)<Cr>
+  inoremap <up> <C-o>:call <SID>relative_transparency(5)<Cr>
+  inoremap <down> <C-o>:call <SID>relative_transparency(-5)<Cr>
 endif
 
 winpos 99 0
