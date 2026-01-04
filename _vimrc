@@ -5,7 +5,7 @@ endif
 " neobundle {{{
 
 " Planning to migrate to dein, after finishing migrating from vimshell to deol,
-" and migrating from unite to denite, which are still working in progres.
+" and migrating from unite to denite, which are still working in progress.
 if has('vim_starting')
   set runtimepath+=~/.vimbundles/neobundle.vim
 endif
