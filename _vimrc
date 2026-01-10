@@ -631,7 +631,8 @@ endif
 
 " }}}
 " thinca's local vimrc https://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html {{{
-" Load settings for eacy location.
+" http://d.hatena.ne.jp/thinca/20100216/1266294717
+" Load settings for each location.
 augroup ujihisa-vimrc
   autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
 augroup END
