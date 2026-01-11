@@ -1030,34 +1030,6 @@ function! DoMspec()
   read! /usr/bin/ruby ~/git/ruby-trunk/spec/mspec/bin/mspec -t /usr/bin/ruby #
 endfunction
 " }}}
-" Haskell Tag {{{
-if 0
-  " see also: ~/bin/update-cabal-tags
-  set tag+=~/.cabal/tags
-endif
-" }}}
-" thinca vim development environment {{{
-" http://d.hatena.ne.jp/thinca/20100216/1266294717
-" Load settings for each location.
-augroup vimrc-local
-  autocmd!
-  autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_local(loc)
-  let files = findfile('vimrc_local.vim', escape(a:loc, ' ') . ';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
-endfunction
-
-
-if exists('g:loaded_vimrc') && g:loaded_vimrc == 0
-  call s:vimrc_local(getcwd())
-endif
-let g:loaded_vimrc = 1
-
-" }}}
 " Open junk file. by Shougo "{{{
 command! -nargs=0 JunkFile call s:open_junk_file()
 function! s:open_junk_file()
