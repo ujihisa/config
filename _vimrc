@@ -2887,7 +2887,7 @@ let g:lsp_settings_enable_suggestions = 0
 
 let g:lsp_diagnostics_enabled = 1
 
-nnoremap <C-l> <Cmd>LspDocumentDiagnostics<Cr>
+" nnoremap <C-l> <Cmd>LspDocumentDiagnostics<Cr>
 
 " }}}
 " Terminal, be always normal {{{
