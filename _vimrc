@@ -563,7 +563,7 @@ function! s:tagjump_or_cr()
 endfunction
 
 nnoremap <C-]> :<C-u>call <SID>tagjump_in_new_window()<Cr>
-nnoremap <expr> <Cr> <SID>tagjump_or_cr()
+" nnoremap <expr> <Cr> <SID>tagjump_or_cr()
 " }}}
 " unite-grep {{{
 nnoremap SG :<C-u>Unite grep:. -default-action=split<Cr>
