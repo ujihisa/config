@@ -15,6 +15,7 @@ all: ~/.config/ctags/ujihisa.ctags \
 	~/.local/share/com.github.johnfactotum.Foliate \
 	~/.config/fcitx/config \
 	~/.bashrc \
+	~/.tmux.conf \
 	~/.config/systemd/user/quipper-tunnel.service
 
 ~/.config/ctags/ujihisa.ctags:
@@ -71,6 +72,9 @@ all: ~/.config/ctags/ujihisa.ctags \
 
 ~/.bashrc:
 	ln -s $(HOME)/git/config/_bashrc ~/.bashrc
+
+~/.tmux.conf:
+	ln -s $(HOME)/git/config/_tmux.conf ~/.tmux.conf
 
 ~/.config/systemd/user/quipper-tunnel.service:
 	# systemctl --user restart quipper-tunnel
