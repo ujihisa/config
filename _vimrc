@@ -164,8 +164,6 @@ NeoBundle 'tyru/empty-prompt.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'MaxMEllon/vim-jsx-pretty', {'depends': 'pangloss/vim-javascript'}
 NeoBundle 'prabirshrestha/vim-lsp', {'depends': 'prabirshrestha/async.vim'}
-" NeoBundle 'prabirshrestha/asyncomplete.vim'
-" asyncomplete does not work
 NeoBundle 'mattn/vim-lsp-settings'
 NeoBundle 'vim-conf-live/pres.vim'
 NeoBundle 'machakann/vim-colorscheme-snowtrek'
@@ -174,8 +172,6 @@ NeoBundle 'tommcdo/vim-exchange'
 NeoBundle 'thinca/vim-breadcrumbs', 'develop'
 NeoBundle 'mattn/vim-notification', 'main'
 NeoBundle 'hashivim/vim-terraform'
-
-" NeoBundle 'github/copilot.vim'
 
 call neobundle#end()
 
@@ -468,10 +464,6 @@ inoremap <expr> <Plug>(vimrc-lexima-bs) lexima#expand('<Bs>', 'i')
 " = for completion and <bs> for cancel {{{
 inoremap <expr> = pumvisible() ? "\<C-n>" : '='
 inoremap <M-=> =
-
-if exists('deoplete#smart_close_popup')
-  imap <expr> <BS> deoplete#smart_close_popup() . "\<Plug>(vimrc-lexima-bs)"
-endif
 " }}}
 " vimshell {{{
 function! EmptyBufferP()
@@ -569,19 +561,6 @@ vmap <C-o> <Plug>(poslist-prev-pos)
 " }}}
 " remote {{{
 command! -nargs=1 RunOnVm !run_on_vm <args> %
-" }}}
-" Neocomplecache/Neocomplete/Deoplete {{{
-
-" https://github.com/Shougo/deoplete.nvim/issues/1013
-" set completeopt+=noselect
-
-" see also
-"   * snippets section
-
-
-let g:necoghc_enable_detailed_browse = 1
-
-
 " }}}
 " thinca's local vimrc https://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html {{{
 " http://d.hatena.ne.jp/thinca/20100216/1266294717
@@ -1046,7 +1025,6 @@ function! s:init_cmdwin()
 
   inoremap <buffer><expr>: col('.') == 1 ? "VimProcBang " : col('.') == 2 && getline('.')[0] == 'r' ? "<BS>VimProcRead " : ":"
   "inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
-  " inoremap <silent><buffer><expr> \ deoplete#close_popup() . <SID>cmdwin_backslash()
 
   " Completion.
   "inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -1928,7 +1906,7 @@ let g:unite_source_menu_menus.neobundle = {
       \   'description' : 'Test menu',
       \   'command_candidates': [
       \     ['all', 'Unite -no-start-insert -horizontal -log neobundle/update:all'],
-      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:deoplete neobundle/update:neosnippet neobundle/update:deol neobundle/update:denite']
+      \     ['shougo', 'Unite -no-start-insert -horizontal -log neobundle/update:vimshell neobundle/update:vimproc neobundle/update:unite.vim neobundle/update:neosnippet neobundle/update:deol neobundle/update:denite']
       \   ]
       \ }
 let g:unite_source_menu_menus.quickrun_set = {
