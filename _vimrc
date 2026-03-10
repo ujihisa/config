@@ -16,32 +16,18 @@ let g:neobundle#enable_name_conversion = 1
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/neobundle-vim-recipes'
 
-let s:enable_ddc = v:true
+NeoBundle 'vim-denops/denops.vim', 'main'
+NeoBundle 'vim-denops/denops-helloworld.vim', 'main'
 
-if s:enable_ddc
-  NeoBundle 'vim-denops/denops.vim', 'main'
-  NeoBundle 'vim-denops/denops-helloworld.vim', 'main'
-
-  NeoBundle 'Shougo/ddc.vim', 'main'
-  NeoBundle 'Shougo/ddc-ui-native', 'main'
-  NeoBundle 'Shougo/ddc-matcher_head', 'main'
-  NeoBundle 'Shougo/ddc-sorter_rank', 'main'
-  NeoBundle 'gamoutatsumi/ddc-sorter_ascii'
+NeoBundle 'Shougo/ddc.vim', 'main'
+NeoBundle 'Shougo/ddc-ui-native', 'main'
+NeoBundle 'Shougo/ddc-matcher_head', 'main'
+NeoBundle 'Shougo/ddc-sorter_rank', 'main'
+NeoBundle 'gamoutatsumi/ddc-sorter_ascii'
 
 
-  NeoBundle 'LumaKernel/ddc-file', 'main'
-  NeoBundle 'matsui54/ddc-buffer', 'main'
-else
-  NeoBundle 'Shougo/deoplete.nvim', {'depends': [
-       \ 'roxma/nvim-yarp',
-       \ 'roxma/vim-hug-neovim-rpc',
-       \ 'Shougo/neoinclude.vim',
-       \ 'Shougo/neco-syntax',
-       \ 'Shougo/neco-vim',
-       \ 'Shougo/neopairs.vim']}
-
-  NeoBundle 'lighttiger2505/deoplete-vim-lsp'
-endif
+NeoBundle 'LumaKernel/ddc-file', 'main'
+NeoBundle 'matsui54/ddc-buffer', 'main'
 
 NeoBundle 'Shougo/denite.nvim', {'depends': [
        \ 'roxma/nvim-yarp',
@@ -589,45 +575,12 @@ command! -nargs=1 RunOnVm !run_on_vm <args> %
 " https://github.com/Shougo/deoplete.nvim/issues/1013
 " set completeopt+=noselect
 
-if !s:enable_ddc
-  let g:deoplete#enable_at_startup = 1
-endif
-
 " see also
 "   * snippets section
 
 
 let g:necoghc_enable_detailed_browse = 1
 
-
-if !s:enable_ddc
-  function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-  endfunction
-
-  if filereadable('/usr/local/opt/python3/bin/python3.6')
-    let g:python3_host_prog = '/usr/local/opt/python3/bin/python3.6'
-  endif
-
-  " the default fuzzy search = noise
-  call deoplete#custom#source('file', 'matchers', ['matcher_head'])
-  call deoplete#custom#source('around', 'matchers', ['matcher_head'])
-  call deoplete#custom#source('buffer', 'matchers', ['matcher_head'])
-
-  call deoplete#custom#source('file', 'enable_buffer_path', v:false)
-  call deoplete#custom#source('file', 'enable_slash_completion', v:true)
-
-  " https://ujihisa.wordpress.com/2020/01/29/how-to-prioritize-deopletes-filename-completion-higher-than-others-but-less-than-vimshell/
-  call deoplete#custom#source('file', 'rank', 550)
-  call deoplete#custom#source('vimshell', 'rank', 600)
-  call deoplete#custom#source('neosnippet', 'rank', 650)
-
-  " https://github.com/Shougo/deoplete.nvim/issues/955#issuecomment-477841695
-  " let g:deoplete#enable_profile = 1
-  " call deoplete#enable_logging('DEBUG', 'deoplete.log')
-
-  call deoplete#custom#option('nofile_complete_filetypes', ['denite-filter', 'vimshell', 'bash'])
-endif
 
 " }}}
 " thinca's local vimrc https://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html {{{
@@ -3104,58 +3057,56 @@ let g:breadcrumbs#toplevel_placeholder = '/'
 " }}}
 " ddc.vim {{{
 
-if s:enable_ddc
-  function! s:init_ddc()
-    call ddc#custom#patch_global('ui', 'native')
+function! s:init_ddc()
+  call ddc#custom#patch_global('ui', 'native')
 
-    let l:sources = []
+  let l:sources = []
 
-    call ddc#custom#patch_global('specialBufferCompletion', v:true) " TODO: disable globally and enable certain butfypes
+  call ddc#custom#patch_global('specialBufferCompletion', v:true) " TODO: disable globally and enable certain butfypes
 
-    " https://github.com/Shougo/ddc-matcher_head
-    " https://github.com/Shougo/ddc-sorter_rank
-    call ddc#custom#patch_global('sourceOptions', {
-          \ '_': {
-            \   'matchers': ['matcher_head'],
-            \   'sorters': ['sorter_ascii']},
-            \ })
-
-    " ddc-file
-    let l:sources += ['file']
-    call ddc#custom#patch_global('sourceOptions', {
-          \ 'file': {
-            \   'mark': 'F',
-            \   'isVolatile': v:true,
-            \   'forceCompletionPattern': '/\S*',
-            \ }})
-    call ddc#custom#patch_global('sourceParams', {
-          \ 'file': {
-            \ 'projFromCwdMaxCandidates': [0],
-            \ }})
-
-    " ddc-buffer
-    let l:sources += ['buffer']
-    call ddc#custom#patch_global('sourceOptions', {
-          \ '_': {'matchers': ['matcher_head']},
-          \ 'buffer': {'mark': 'B'},
+  " https://github.com/Shougo/ddc-matcher_head
+  " https://github.com/Shougo/ddc-sorter_rank
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+          \   'matchers': ['matcher_head'],
+          \   'sorters': ['sorter_ascii']},
           \ })
-    call ddc#custom#patch_global('sourceParams', {
-          \ 'buffer': {
-            \ 'requireSameFiletype': v:false,
-            \ 'forceCollect': v:true,
-            \ },
-            \ })
 
-    " neosnippet
-    let l:sources += ['neosnippet']
+  " ddc-file
+  let l:sources += ['file']
+  call ddc#custom#patch_global('sourceOptions', {
+        \ 'file': {
+          \   'mark': 'F',
+          \   'isVolatile': v:true,
+          \   'forceCompletionPattern': '/\S*',
+          \ }})
+  call ddc#custom#patch_global('sourceParams', {
+        \ 'file': {
+          \ 'projFromCwdMaxCandidates': [0],
+          \ }})
 
-    call ddc#custom#patch_global('sources', l:sources)
-    " call ddc#enable_cmdline_completion()
-    call ddc#enable()
-  endfunction
+  " ddc-buffer
+  let l:sources += ['buffer']
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {'matchers': ['matcher_head']},
+        \ 'buffer': {'mark': 'B'},
+        \ })
+  call ddc#custom#patch_global('sourceParams', {
+        \ 'buffer': {
+          \ 'requireSameFiletype': v:false,
+          \ 'forceCollect': v:true,
+          \ },
+          \ })
 
-  call s:init_ddc()
-endif
+  " neosnippet
+  let l:sources += ['neosnippet']
+
+  call ddc#custom#patch_global('sources', l:sources)
+  " call ddc#enable_cmdline_completion()
+  call ddc#enable()
+endfunction
+
+call s:init_ddc()
 
 " }}}
 " app/api/api/foo/base.rb <-> spec/api/student_sso/base_spec.rb {{{
