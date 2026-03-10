@@ -1145,9 +1145,7 @@ let $GOENV_ROOT = expand('$HOME/.anyenv/envs/goenv')
 if executable('goenv')
   let s:go_version = system('goenv version')->split(' ')[0]
   let $GOROOT = expand('$HOME/.anyenv/envs/goenv/versions/' . s:go_version)
-  let $GOROOT = expand('$HOME/.anyenv/envs/goenv/versions/' . s:go_version)
 else
-  let $GOPATH = expand('$HOME/go/1.12.6')
   let $GOPATH = expand('$HOME/go/1.12.6')
 endif
 " }}}
@@ -2431,7 +2429,7 @@ let g:sexp_mappings['sexp_swap_list_backward'] = ''
 let g:sexp_mappings['sexp_swap_list_forward'] = ''
 " Default is <M-h>
 let g:sexp_mappings['sexp_swap_element_backward'] = ''
-" Default is <M-j>
+" Default is <M-l>
 let g:sexp_mappings['sexp_swap_element_forward'] = ''
 
 let g:sexp_mappings['sexp_round_head_wrap_list'] = '<M-i>'
@@ -2540,7 +2538,7 @@ function! s:deol_edit() abort
   if bufname('%') =~# '^deol-edit'
     inoremap <buffer><expr> \  smartchr#one_of('~/', '\')
     " inoremap <buffer> <expr><M-l> unite#start_complete(['line'], { 'sorters': ['sorter_reverse'] })
-    inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
+    " inoremap <buffer> <M-l> <Esc>:<C-u>Unite -unique line:backward<Cr>
     inoremap <buffer> <M-l> <Esc>:<C-u>Denite -start-filter -default-action=insert -unique deol/history<Cr>
     " nnoremap <buffer> <M-l> <Cmd>resize 5<Cr>
 
