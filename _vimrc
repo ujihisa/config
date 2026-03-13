@@ -341,6 +341,8 @@ cnoremap <M-BS> <C-w>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 
 function! s:close_extra_blank_windows_in_tab(tabnr) abort
+  " Vim always creates an initial [No Name] buffer for a new tab;
+  " just closing the stray window keeps tabnew→deol→Gina tidy.
   let l:candidates = []
   for win in getwininfo()
     if win.tabnr != a:tabnr
