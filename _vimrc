@@ -92,7 +92,9 @@ NeoBundleLazy 'AndrewRadev/splitjoin.vim', {
 NeoBundle 'git@github.com:ujihisa/unite-ruby-require.vim.git'
 NeoBundle 'osyo-manga/jplus'
 NeoBundle 'deris/rengbang'
-NeoBundle 'lambdalisue/gina.vim'
+if !exists('g:vimrc_headless')
+  NeoBundle 'lambdalisue/gina.vim'
+endif
 NeoBundle 'kamichidu/vim-unite-javaimport', {
       \ 'depends': [
       \   'kamichidu/vim-javaclasspath']}
@@ -190,12 +192,14 @@ augroup ujihisa-vimrc
   autocmd!
 augroup END
 " }}}
-" g:V {{{
+ " g:V {{{
 if !has_key(g:, 'V')
   let g:V = vital#of('vital')
-  call extend(g:V, g:V.import('Prelude'))
+  if !exists('g:vimrc_headless')
+    call extend(g:V, g:V.import('Prelude'))
+  endif
 endif
-" }}}
+ " }}}
 " settings {{{
 set encoding=utf-8
 set fileformats=unix,dos,mac
@@ -336,11 +340,33 @@ cnoremap <M-BS> <C-w>
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 
+function! s:open_monorepo_with_gina() abort
+  let l:repo = expand('~/git/monorepo')
+  tabnew
+  execute 'cd ' . fnameescape(l:repo)
+  call deol#start({
+        \ 'edit_winheight': 5,
+        \ 'edit': v:true,
+        \ 'auto_cd': v:true,
+        \ 'split': 'vertical'})
+  silent! stopinsert
+  execute 'Gina status --opener=vsplit'
+endfunction
+
 nnoremap <silent> <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:call deol#start({'edit_winheight': 5, 'edit': v:true, 'auto_cd': v:true})<Cr>
-nnoremap <silent> <Space>am  :<C-u>tabnew<Cr>:cd ~/git/monorepo<Cr>:Gina status --opener=vsplit<Cr>:call deol#start({'edit_winheight': 5, 'edit': v:true, 'auto_cd': v:true})<Cr>
+nnoremap <silent> <Space>am  :<C-u>call <SID>open_monorepo_with_gina()<Cr>
 " nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
 " nnoremap <Space>an  :<C-u>tabnew<CR>:cd ~/<Cr>:VimShell<Cr>
 nnoremap <silent> <Space>aj  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
+if exists('g:vimrc_headless')
+  function! s:vimrc_headless_gina(...) abort
+    silent! vsplit
+    setlocal buftype=nofile bufhidden=wipe noswapfile
+    call setline(1, ['[gina stub]'])
+    normal! gg
+  endfunction
+  command! -bang -nargs=* Gina call <SID>vimrc_headless_gina(<f-args>)
+endif
 nnoremap <silent> <M-j>      :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 inoremap <silent> <M-j>      <Esc>:execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
 tnoremap <M-j>    <Cmd>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
@@ -785,6 +811,7 @@ augroup END
 
 " }}}
 " for gina {{{
+if !exists('g:vimrc_headless')
 
 augroup vimrc-local
   autocmd FileType diff nnoremap <buffer> q :<C-u>quit<Cr>
@@ -819,11 +846,7 @@ call gina#custom#mapping#nmap(
       \ '<Plug>(gina-branch-delete)'
       \)
 
-call gina#custom#mapping#nmap(
-      \ 'branch', '<S-BS>',
-      \ '<Plug>(gina-branch-delete-force)'
-      \)
-
+endif
 " }}}
 " html {{{
 function! s:HtmlEscape()
@@ -2028,10 +2051,13 @@ endfunction
 "endfunction
 " }}}
 " maxlength {{{
-let s:L = g:V.import('Data.List')
 function! s:vimrc_currentfile_maxlength(limit)
-  let buf_max_len = s:L.max_by(map(getline(1, line('$')), 'len(v:val)'), 'v:val')
-  return s:L.min_by([buf_max_len, a:limit], 'v:val')
+  let lines = getline(1, line('$'))
+  if empty(lines)
+    return 0
+  endif
+  let buf_max_len = max(map(lines, 'len(v:val)'))
+  return min([buf_max_len, a:limit])
 endfunction
 nnoremap <M-]> :<C-u>execute printf(
       \ 'vertical resize %s',
@@ -2145,7 +2171,7 @@ vmap <M-,> <Plug>(caw:wrap:comment)gv
 " vitalista.vim {{{
 function! s:vitalista() abort
   if empty(neobundle#get('vital.vim'))
-    call g:V.import('Vim.Message').error('vital.vim not installed globally.')
+    echoerr 'vital.vim not installed globally.'
     return
   endif
 
@@ -2412,7 +2438,7 @@ augroup vimrc-go
 augroup END
 "}}}
 " macvim {{{
-if g:V.is_mac()
+if !exists('g:vimrc_headless') && has('mac')
   augroup vimrc-macvim
     autocmd!
     autocmd BufEnter * set macmeta
