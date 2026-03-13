@@ -8,5 +8,4 @@
 ## Format
 
 Markdown
-* Do not start any line with "- ".
-* If a list is necessary, use only "* ".
+* Make sure it passes `mdl --rule "MD004=asterisk" --rule "MD007=4" <filename>`
