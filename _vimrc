@@ -376,8 +376,6 @@ function! s:open_monorepo_with_gina() abort
   call <SID>close_extra_blank_windows_in_tab(l:target_tab)
 endfunction
 
-command! -nargs=0 Am call <SID>open_monorepo_with_gina()
-
 nnoremap <silent> <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:call deol#start({'edit_winheight': 5, 'edit': v:true, 'auto_cd': v:true})<Cr>
 nnoremap <silent> <Space>am  :<C-u>call <SID>open_monorepo_with_gina()<Cr>
 " nnoremap <Space>av  :<C-u>tabnew<CR>:cd ~/.vimbundles<Cr>:VimShell<Cr>
