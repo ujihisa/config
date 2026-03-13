@@ -340,9 +340,31 @@ cnoremap <M-BS> <C-w>
 "nnoremap <Space>a  <Nop>
 nnoremap <Space>aa  :<C-u>tabnew<CR>:pwd<Cr>:VimShell<Cr>
 
+function! s:close_extra_blank_windows_in_tab(tabnr) abort
+  let l:candidates = []
+  for win in getwininfo()
+    if win.tabnr != a:tabnr
+      continue
+    endif
+    if bufname(win.bufnr) !=# ''
+      continue
+    endif
+    let l:first = getbufline(win.bufnr, 1)
+    if !empty(l:first) && l:first[0] !=# ''
+      continue
+    endif
+    call add(l:candidates, win.winid)
+  endfor
+  for winid in l:candidates
+    call win_gotoid(winid)
+    silent! close
+  endfor
+endfunction
+
 function! s:open_monorepo_with_gina() abort
   let l:repo = expand('~/git/monorepo')
   tabnew
+  let l:target_tab = tabpagenr()
   execute 'cd ' . fnameescape(l:repo)
   call deol#start({
         \ 'edit_winheight': 5,
@@ -351,7 +373,10 @@ function! s:open_monorepo_with_gina() abort
         \ 'split': 'vertical'})
   silent! stopinsert
   execute 'Gina status --opener=vsplit'
+  call <SID>close_extra_blank_windows_in_tab(l:target_tab)
 endfunction
+
+command! -nargs=0 Am call <SID>open_monorepo_with_gina()
 
 nnoremap <silent> <Space>as  :<C-u>tabnew<Cr>:pwd<Cr>:call deol#start({'edit_winheight': 5, 'edit': v:true, 'auto_cd': v:true})<Cr>
 nnoremap <silent> <Space>am  :<C-u>call <SID>open_monorepo_with_gina()<Cr>
