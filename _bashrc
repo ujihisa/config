@@ -38,7 +38,7 @@ export EDITOR="vim -u NONE -U NONE"
 # Aliases imported from vimshrc
 alias cp='cp -i'
 alias mv='mv -i'
-alias gss='git stash save'
+alias gss='git stash push -u'
 alias gsp='git stash pop'
 alias gslp='gss; git pull --rebase; gsp'
 alias pus='git push'
