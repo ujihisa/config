@@ -870,6 +870,10 @@ call gina#custom#mapping#nmap(
       \ 'branch', '<BS>',
       \ '<Plug>(gina-branch-delete)'
       \)
+call gina#custom#mapping#nmap(
+      \ 'branch', '<S-BS>',
+      \ '<Plug>(gina-branch-delete-force)'
+      \)
 
 endif
 " }}}
