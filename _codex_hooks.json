@@ -1,1 +1,16 @@
-{}
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Checking staged markdown before git commit",
+            "command": "/bin/bash -lc 'payload=$(cat); case \"$payload\" in *\"git commit\"* ) ;; * ) exit 0 ;; esac; files=$(git diff --cached --name-only --diff-filter=ACMRT | grep -E \"\\.md$\" || true); [ -n \"$files\" ] || exit 0; style=$(mktemp /tmp/codex-mdl-style.XXXXXX.rb); trap \"rm -f \\\"$style\\\"\" EXIT; printf \"rule \\\"MD004\\\", :style => \\\"*\\\"\\nrule \\\"MD007\\\", :indent => 4\\n\" > \"$style\"; failed=0; while IFS= read -r file; do [ -n \"$file\" ] || continue; mdl --rules MD004,MD007 -s \"$style\" \"$file\" || failed=1; done <<EOF\n$files\nEOF\n[ \"$failed\" -eq 0 ] || { printf \"markdown lint failed for staged markdown files\\n\" >&2; exit 2; }'"
+          }
+        ]
+      }
+    ]
+  }
+}
