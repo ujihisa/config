@@ -1,0 +1,24 @@
+model = "gpt-5.4-mini"
+model_reasoning_effort = "low"
+
+# For codex_hooks
+suppress_unstable_features_warning = true
+
+[projects."/home/ujihisa/git/fm"]
+trust_level = "trusted"
+
+[projects."/home/ujihisa/git/vancouversnowboarding.ca"]
+trust_level = "trusted"
+
+[projects."/home/ujihisa/git/config"]
+trust_level = "trusted"
+
+[projects."/home/ujihisa/git/monorepo"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.1-codex-mini" = "gpt-5.4"
+
+[features]
+codex_hooks = true

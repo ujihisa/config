@@ -16,6 +16,8 @@ all: ~/.config/ctags/ujihisa.ctags \
 	~/.config/fcitx/config \
 	~/.bashrc \
 	~/.tmux.conf \
+	~/.codex/config.toml \
+	~/.codex/hooks.json \
 	~/.config/systemd/user/quipper-tunnel.service
 
 ~/.config/ctags/ujihisa.ctags:
@@ -75,6 +77,12 @@ all: ~/.config/ctags/ujihisa.ctags \
 
 ~/.tmux.conf:
 	ln -s $(HOME)/git/config/_tmux.conf ~/.tmux.conf
+
+~/.codex/config.toml:
+	ln -s $(HOME)/git/config/_codex_config.toml ~/.codex/config.toml
+
+~/.codex/hooks.json:
+	ln -s $(HOME)/git/config/_codex_hooks.json ~/.codex/hooks.json
 
 ~/.config/systemd/user/quipper-tunnel.service:
 	# systemctl --user restart quipper-tunnel
