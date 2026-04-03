@@ -1,5 +1,5 @@
 model = "gpt-5.4-mini"
-model_reasoning_effort = "low"
+model_reasoning_effort = "medium"
 
 # For codex_hooks
 suppress_unstable_features_warning = true
@@ -14,6 +14,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/ujihisa/git/monorepo"]
+trust_level = "trusted"
+
+[projects."/home/ujihisa/git/MechJeb2"]
 trust_level = "trusted"
 
 [notice.model_migrations]
