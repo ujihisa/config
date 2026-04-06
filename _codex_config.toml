@@ -17,16 +17,12 @@ trust_level = "trusted"
 [projects."/home/ujihisa/git/monorepo"]
 trust_level = "trusted"
 
-<<<<<<< HEAD
 [projects."/home/ujihisa/git/MechJeb2"]
 trust_level = "trusted"
 
-||||||| parent of e8eb490 (Minor tweaks)
-=======
 [notice]
 hide_rate_limit_model_nudge = true
 
->>>>>>> e8eb490 (Minor tweaks)
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.1-codex-mini" = "gpt-5.4"
