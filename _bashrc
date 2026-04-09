@@ -54,11 +54,12 @@ alias gl='git pull --rebase'
 alias grh='git reset HEAD'
 
 # Save bash commands immediately
-if [ -z "${PROMPT_COMMAND}" ]; then
-  PROMPT_COMMAND="history -a;history -n"
-else
-  PROMPT_COMMAND="${PROMPT_COMMAND}; history -a;history -n"
-fi
+# if [ -z "${PROMPT_COMMAND}" ]; then
+#   PROMPT_COMMAND="history -a;history -n"
+# else
+#   PROMPT_COMMAND="${PROMPT_COMMAND}; history -a;history -n"
+# fi
+PROMPT_COMMAND="history -a;history -n"
 
 HISTCONTROL=ignorespace
 
