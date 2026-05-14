@@ -1682,7 +1682,10 @@ function! s:vimrc_ruby()
 
   " nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun - 'doo env bundle exec rspec %s:%d'", expand('%s'), getpos('.')[1])<Cr>
 
-  if filereadable('bin/rspec')
+  if filereadable('bin/rspec_in_both_modes')
+    nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec_in_both_modes \"%s\"'", expand('%s'))<Cr>
+    nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec_in_both_modes \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
+  elseif filereadable('bin/rspec')
     nnoremap <buffer> <space>m :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec \"%s\"'", expand('%s'))<Cr>
     nnoremap <buffer> <space>M :<C-u>write<Cr>:execute printf("QuickRun -exec 'doo bin/rspec \"%s:%d\"'", expand('%:p:.'), getpos('.')[1])<Cr>
   elseif filereadable('bin/rails')
