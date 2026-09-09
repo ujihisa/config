@@ -32,3 +32,6 @@ network_access = true
 
 [features]
 codex_hooks = true
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "five-hour-limit", "weekly-limit"]
