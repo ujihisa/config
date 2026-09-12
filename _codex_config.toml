@@ -20,6 +20,9 @@ trust_level = "trusted"
 [projects."/home/ujihisa/git/MechJeb2"]
 trust_level = "trusted"
 
+[projects."/home/ujihisa/git/versa"]
+trust_level = "trusted"
+
 [notice]
 hide_rate_limit_model_nudge = true
 
